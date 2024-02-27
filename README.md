@@ -1,6 +1,10 @@
 # 《灵数奇缘》游戏项目
 
-![LSD](Image/l-s-d-small.jpg)
+<p align="center">
+  <img src='Image/l-s-d-small.jpg' alt='LSD' width='500px'/>
+</p>
+
+------
 
 ## 开发测试使用说明
 
