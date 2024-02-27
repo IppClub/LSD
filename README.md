@@ -6,7 +6,7 @@
 
 ## 美术、音乐素材版权
 
-归《灵数奇缘》社区所有。获得使用授权见[这里](https://luv-sense-digital.readthedocs.io/community/licencing.html)。
+归《灵数奇缘》社区所有。相关资产授权见[这里](https://luv-sense-digital.readthedocs.io/community/licencing.html)。
 
 ## 程序代码授权
 
