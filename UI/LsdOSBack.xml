@@ -1,0 +1,19 @@
+<Dora>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode InUI="True" IsRoot="True">
+		<AlignNode Name="bg" HAlign="Center" VAlign="Center" Ref="True">
+			<Playable File="bone:lsdOSBack">
+				<Item Tag="logo" Visible="False"/>
+				<Item Tag="formation_head_line" Visible="False"/>
+			</Playable>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="_w, h">
+			<Yue>
+				scale = h / H
+				bg.scaleX = scale
+				bg.scaleY = scale
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

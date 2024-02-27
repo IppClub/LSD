@@ -1,0 +1,198 @@
+<Dora>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.FormationRole"/>
+	<Import Module="UI.GearBox"/>
+	<Import Module="UI.LsdOS"/>
+	<Import Module="UI.Button"/>
+	<Import Module="UI.BackButton"/>
+	<Import Module="UI.FormationSlot"/>
+	<Import Module="UI.RoleSelect"/>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+	<Import Module="UI.RoleTab"/>
+	<!-- <Import Module="UI.FilterBox"/> -->
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode Name="formation" InUI="True" IsRoot="True">
+		<AlignNode HAlign="Center" VAlign="Center" AlignWidth="3258 * math.min(h / 1563, w / 3258)" AlignHeight="h">
+			<!-- Background -->
+			<AlignNode Name="bg" HAlign="Center" VAlign="Center">
+				<Playable File="bone:lsdOSBack">
+					<Item Tag="logo" Visible="False"/>
+					<Item Tag="formation_head_line">
+						<Label Name="title"
+							Text="2-3地底的喧嚣"
+							FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Center"
+							Spacing="20" X ="1333" Y="-8" AnchorY="0"/>
+					</Item>
+				</Playable>
+			</AlignNode>
+			<!-- Figures -->
+			<AlignNode Name="figure" HAlign="Center" VAlign="Center">
+				<Menu Name="menu" Width="2721" Height="1074" Y="100" Visible="True" Ref="True">
+					<FormationRole Name="p1" Role="charM" Editing="False" Cap="True"/>
+					<FormationRole Name="p2" Role="moling" Editing="False">
+						<Slot Name="Tapped">
+							<Lua>
+								formation.menu.visible = false
+								formation.shadow.visible = false
+								formation.selection.visible = true
+							</Lua>
+						</Slot>
+					</FormationRole>
+					<FormationRole Name="p3" Role="moyu" Editing="False"/>
+					<FormationRole Name="p4" Role="villywan" Editing="False"/>
+					<FormationRole Name="p5" Role="liyena" Editing="False"/>
+					<Lua>menu:alignItems(28.5)</Lua>
+				</Menu>
+				<Node Name="selection" Visible="False" Ref="True">
+					<Menu Name="teamMenu" Width="2721" Height="382" Y="446">
+						<FormationSlot/>
+						<FormationSlot>
+							<Slot Name="Tapped">
+								<Lua>
+									formation.menu.visible = true
+									formation.shadow.visible = true
+									formation.selection.visible = false
+								</Lua>
+							</Slot>
+						</FormationSlot>
+						<FormationSlot/>
+						<FormationSlot/>
+						<FormationSlot/>
+						<Lua>teamMenu:alignItems(28.5)</Lua>
+					</Menu>
+					<ScrollArea Name="charMenu" Y="-263.25" PaddingX="0" ScrollBar="False">
+						<Item Name="view">
+							<RoleSelect Vacant="True"/>
+							<RoleSelect/>
+							<RoleSelect Locked="True"/>
+							<RoleSelect Selected="True"/>
+							<RoleSelect/>
+							<RoleSelect/>
+							<RoleSelect/>
+							<RoleSelect/>
+						</Item>
+					</ScrollArea>
+					<RoleTab X="-1375" Y="240"/>
+				</Node>
+			</AlignNode>
+			<AlignNode Name="bottomControl" HAlign="Center" VAlign="Bottom">
+				<Node Name="shadow" Visible="True" Ref="True">
+					<Node Name="mirror" Width="2721" Height="300" AnchorY="1" ScaleY="-1">
+						<Sprite File="box2.png" X="{ p1.x - 150 }" Y="100"/>
+						<Sprite File="box1.png" X="{ p1.x - 150 }" Y="170"/>
+						<Sprite File="box2.png" X="{ p1.x + 150 }" Y="100" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p1.x + 150 }" Y="170" ScaleX="-1"/>
+						<Sprite File="box2.png" X="{ p2.x - 150 }" Y="100"/>
+						<Sprite File="box1.png" X="{ p2.x - 150 }" Y="170"/>
+						<Sprite File="box2.png" X="{ p2.x + 150 }" Y="100" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p2.x + 150 }" Y="170" ScaleX="-1"/>
+						<Sprite File="box2.png" X="{ p3.x - 150 }" Y="100"/>
+						<Sprite File="box1.png" X="{ p3.x - 150 }" Y="170"/>
+						<Sprite File="box2.png" X="{ p3.x + 150 }" Y="100" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p3.x + 150 }" Y="170" ScaleX="-1"/>
+						<Sprite File="box2.png" X="{ p4.x - 150 }" Y="100"/>
+						<Sprite File="box1.png" X="{ p4.x - 150 }" Y="170"/>
+						<Sprite File="box2.png" X="{ p4.x + 150 }" Y="100" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p4.x + 150 }" Y="170" ScaleX="-1"/>
+						<Sprite File="box2.png" X="{ p5.x - 150 }" Y="100"/>
+						<Sprite File="box1.png" X="{ p5.x - 150 }" Y="170"/>
+						<Sprite File="box2.png" X="{ p5.x + 150 }" Y="100" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p5.x + 150 }" Y="170" ScaleX="-1"/>
+						<Playable File="spine:charM" X="{ p1.x }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:moling" X="{ p2.x }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:moyu" X="{ p3.x }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:villywan" X="{ p4.x }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:liyena" X="{ p5.x }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5" Fliped="True"/>
+						<Yue>
+							with mirror\grab 1, 1
+								\setColor 1, 1, Color 0x00ffffff
+								\setColor 2, 1, Color 0x00ffffff
+								\setColor 1, 2, Color 0x44ffffff
+								\setColor 2, 2, Color 0x44ffffff
+						</Yue>
+					</Node>
+					<Node Width="2721" Y="250">
+						<Sprite File="shadow.png" X="{ p1.x - 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p1.x - 150 }" Y="90"/>
+						<Sprite File="box1.png" X="{ p1.x - 150 }" Y="160"/>
+						<Sprite File="shadow.png" X="{ p1.x + 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p1.x + 150 }" Y="90" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p1.x + 150 }" Y="160" ScaleX="-1"/>
+						<Sprite File="shadow.png" X="{ p2.x - 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p2.x - 150 }" Y="90"/>
+						<Sprite File="box1.png" X="{ p2.x - 150 }" Y="160"/>
+						<Sprite File="shadow.png" X="{ p2.x + 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p2.x + 150 }" Y="90" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p2.x + 150 }" Y="160" ScaleX="-1"/>
+						<Sprite File="shadow.png" X="{ p3.x - 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p3.x - 150 }" Y="90"/>
+						<Sprite File="box1.png" X="{ p3.x - 150 }" Y="160"/>
+						<Sprite File="shadow.png" X="{ p3.x + 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p3.x + 150 }" Y="90" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p3.x + 150 }" Y="160" ScaleX="-1"/>
+						<Sprite File="shadow.png" X="{ p4.x - 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p4.x - 150 }" Y="90"/>
+						<Sprite File="box1.png" X="{ p4.x - 150 }" Y="160"/>
+						<Sprite File="shadow.png" X="{ p4.x + 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p4.x + 150 }" Y="90" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p4.x + 150 }" Y="160" ScaleX="-1"/>
+						<Sprite File="shadow.png" X="{ p5.x - 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p5.x - 150 }" Y="90"/>
+						<Sprite File="box1.png" X="{ p5.x - 150 }" Y="160"/>
+						<Sprite File="shadow.png" X="{ p5.x + 150 }" Y="50" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="box2.png" X="{ p5.x + 150 }" Y="90" ScaleX="-1"/>
+						<Sprite File="box1.png" X="{ p5.x + 150 }" Y="160" ScaleX="-1"/>
+						<Sprite File="shadow.png" X="{ p1.x }" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="shadow.png" X="{ p2.x }" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="shadow.png" X="{ p3.x }" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="shadow.png" X="{ p4.x }" ScaleX="1.5" ScaleY="1.5"/>
+						<Sprite File="shadow.png" X="{ p5.x }" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:charM" X="{ p1.x }" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:moling" X="{ p2.x }" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:moyu" X="{ p3.x }" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:villywan" X="{ p4.x }" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+						<Playable File="spine:liyena" X="{ p5.x }" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5" Fliped="True"/>
+					</Node>
+				</Node>
+			</AlignNode>
+			<!-- LSD OS -->
+			<LsdOS Name="lsdOS"/>
+			<!-- Left Top -->
+			<AlignNode Name="topControl" HAlign="Left" VAlign="Top">
+				<BackButton X="155" Y="-78.5"/>
+			</AlignNode>
+			<!-- Left Bottom -->
+			<AlignNode Name="leftControl" HAlign="Left" VAlign="Bottom">
+				<Button Text="已有编队" TextBG="FORMATION" X="281.5" Y="111.5"/>
+			</AlignNode>
+			<!-- Right Bottom -->
+			<AlignNode Name="rightControl" HAlign="Right" VAlign="Bottom">
+				<Button Text="开始作战" TextBG="START BATTLE" X="-281.5" Y="111.5"/>
+			</AlignNode>
+		</AlignNode>
+		<!-- Left GearBox -->
+		<AlignNode Name="leftBox" HAlign="Left" VAlign="Center">
+			<!--<GearBox Right="False"/>-->
+			<!--<FilterBox/>-->
+		</AlignNode>
+		<!-- Right GearBox -->
+		<AlignNode Name="rightBox" HAlign="Right" VAlign="Center">
+			<GearBox Right="True"/>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				scale = h / H
+				ratio = w / h
+				extraScale = ratio / math.max ratio, 1.9
+				for item in *{figure, bottomControl}
+					item.scaleX = scale * extraScale
+					item.scaleY = scale * extraScale
+				for item in *{bg, lsdOS, topControl, leftControl, rightControl, leftBox, rightBox}
+					item.scaleX = scale
+					item.scaleY = scale
+				charMenu\adjustSizeWithAlign "Auto", 27, Size 2715, 1036.5
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

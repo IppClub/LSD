@@ -1,0 +1,191 @@
+_ENV = Dora dora.Platformer
+import "Utils" as :Struct
+import "utf-8" as u8
+
+const W = 3840
+const HW = W / 2
+const H = 1080
+const HH = H / 2
+const Offset = 140
+const PathOffset = Vec2 50, 30
+const MaxPath = 2
+const DefaultZoom = 1.0
+
+const FrameScale = 1
+const FrameLook = "frame1"
+const FrameHeight = 630
+const FrameWidth = 1308
+const FrameCol = 21
+const FrameSize = FrameWidth / FrameCol
+const FrameRow = math.floor FrameHeight / FrameSize
+const FrameLen = FrameCol * FrameRow
+
+const CodeFile = "Data/wenyan-lang.xlsx"
+
+:codes = Content\loadExcel CodeFile, {"codes"}
+do
+	Struct.Wenyan codes[1]
+	table.remove codes, 1
+	for code in *codes
+		Struct\load "Wenyan", code
+
+macro order = (value)->
+	global globals = globals or {}
+	globals.layerId = if value then tonumber value
+	else globals.layerId - 1
+	globals.layerId
+
+layerDefs =
+	* look: "floor", order: $order(-100)
+	* look: "stats", order: $order, handle: => with @
+		.z = 600
+		\play "stat", true
+	* look: "back", order: $order
+
+addLayer = (world, def)->
+	layer = with Spine "VRTraining"
+		.look = def.look
+		.order = def.order
+	if def.ratio
+		world\setLayerRatio def.order, def.ratio
+	if def.offset
+		world\setLayerOffset def.order, def.offset
+	world\addChild layer
+	def.handle layer if def.handle
+	layer
+
+export default Class
+	width: property -> W
+	offset: property -> Offset
+
+	addShadowTo: =>
+
+	zoom: property => @_zoom,
+		(value)=>
+			@_zoom = value
+			@updateZoom!
+
+	updateZoom: =>
+		:width, :height = View.size
+		zoom = @_zoom / DefaultZoom
+		zoom = math.max width / W / zoom, height / H / zoom
+		realWidth = math.min W / zoom, W
+		realHeight = math.min H / zoom, H
+		zoom = math.max W / realWidth, H / realHeight
+		@camera.zoom = zoom
+
+	__partial: =>
+		with PlatformWorld!
+			with .camera
+				.boundary = Rect 0, 0, W, H
+				.followRatio = Vec2 0.03, 0.03
+			.tag = "VRTraining"
+
+	__init: =>
+		for i = -MaxPath, MaxPath
+			@setLayerOffset i, PathOffset * -i
+
+		for def in *layerDefs
+			addLayer @, def
+
+		code = codes[math.random(1, #codes)]
+		codeStr = code.code
+		len = u8.len codeStr
+		start = 1
+		i = 0
+		lefts = {}
+		rights = {}
+		blink = Sequence(
+			Opacity 0.1, 0.2, 1
+			Opacity 1, 1, 0.2
+		)
+		while true
+			i += 1
+			fontSize = math.floor(FrameSize * FrameScale) - 6
+			break if start >= len
+			codePanel = with Spine "VRTraining"
+				.scaleX = FrameScale
+				.scaleY = FrameScale
+				.look = FrameLook
+				if i % 2 ~= 0
+					.x = math.random 0, (W / 2) - math.floor(FrameWidth * FrameScale) - 600
+				else
+					.x = math.random (W / 2) + 600, W - math.floor(FrameWidth * FrameScale)
+				.y = math.random 350, H - math.floor(FrameHeight * FrameScale) - 100
+				.z = math.random 100, 500
+				.order = -3
+				.visible = false
+				.opacity = 0
+			if i % 2 ~= 0
+				table.insert lefts, codePanel
+			else
+				table.insert rights, codePanel
+			@addChild codePanel
+			str = u8.sub codeStr, start, start + FrameLen - 1
+			row = 1
+			col = 1
+			chars = for _, c in utf8.codes str
+				ch = utf8.char c
+				label = with Label "DroidSansFallback", fontSize
+					.color3 = Color3 0x4aa0e8
+					.text = ch
+					.x = (FrameWidth - (FrameSize / 2) - FrameSize * (col - 1)) * FrameScale
+					.y = (FrameHeight - (FrameSize / 2) - FrameSize * (row - 1)) * FrameScale
+					.opacity = 0.2
+				codePanel\addChild label
+				row += 1
+				if row > FrameRow
+					row = 1
+					col += 1
+				label
+			codePanel\schedule loop ->
+				codePanel\addChild with Node!
+					\schedule once ->
+						for char in *chars
+							char\perform blink
+							sleep 0.01
+						\removeFromParent!
+				sleep 2
+			start += FrameLen
+		index = 1
+		count = math.max #lefts, #rights
+		@schedule loop ->
+			left = lefts[index]
+			right = rights[index]
+			left\perform Sequence(
+				Show!
+				Opacity 5, 0, 1, Ease.InQuad
+			) if left
+			right\perform Sequence(
+				Show!
+				Opacity 5, 0, 1, Ease.InQuad
+			) if right
+			return true if count == 1
+			sleep 10
+			left\perform Sequence(
+				Opacity 5, 1, 0, Ease.OutQuad
+				Hide!
+			) if left
+			right\perform Sequence(
+				Opacity 5, 1, 0, Ease.OutQuad
+				Hide!
+			) if right
+			index += 1
+			index = 1 if index > count
+		terrainDef = with BodyDef!
+			.type = "Static"
+			\attachPolygon Vec2(HW, 0), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(HW, H), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
+			\attachPolygon Vec2(W, HH), 10, H, 0, 1, 1, 0
+			.position = Vec2 0, Offset
+
+		with Body terrainDef, @, Vec2.zero
+			.group = Data.groupTerrain
+			\addTo @
+
+		@_zoom = 1.0
+		@gslot "AppSizeChanged", -> @updateZoom!
+		@updateZoom!
+
+	loadAsync: => Cache\loadAsync "spine:VRTraining"

@@ -1,0 +1,35 @@
+_ENV = Dora!
+
+import "UI.Bubble"
+import "YarnRunner"
+import "Data.Config"
+import "System.Command"
+import "utf-8" as u8
+
+getCharName = (current) ->
+	if current.marks
+		for mark in *current.marks
+			switch mark when {name: attr, attrs: {:name = '', :id = ''}}
+				if attr in ["char", "Character"]
+					id = Config.char if id == "char"
+					return name, id
+	'', ''
+
+export default (file) ->
+	runner = YarnRunner file, "Start", Config, Command
+	unitGroup = Group {"unit", "name"}
+	thread -> repeat
+		itemType, result = runner\advance!
+		switch itemType when "Text"
+			name, characterId = getCharName result
+			text = result.text
+			if entity := unitGroup\find => @name == characterId
+				:unit = entity
+				if bubble := unit\getChildByTag "bubble"
+					bubble\removeFromParent!
+				unit\addChild Bubble :text
+				emit "MessageBox.Add", title: "对话", special: false, text: "#{name}：#{text}"
+				sleep math.max 1, 0.15 * u8.len text
+		else
+			return
+	until false

@@ -1,0 +1,3 @@
+<Node X="{ x or 0 }" Y="{ y or 0 }" Width="110" Height="67" TouchEnabled="True">
+	<Sprite File="button.clip|btn_return_2" X="{ $X }" Y="{ $Y }"/>
+</Node>

@@ -1,0 +1,168 @@
+_ENV = Dora dora.Platformer
+store:Store = Data
+
+
+-- Unit
+
+Store["charF"] = with Dictionary!
+	.linearAcceleration = Vec2 0,-15
+	.bodyType = "Dynamic"
+	.scale = 1.0
+	.density = 1.0
+	.friction = 1.0
+	.restitution = 0.0
+	.playable = "spine:charF"
+	.defaultFaceRight = true
+	.size = Size 100,300
+	.sensity = 0
+	.move = 400
+	.jump = 1200
+	.detectDistance = 350
+	.tag = "player"
+
+	.hp = 100.0
+	.decisionTree = "AI:PlayerControl"
+	.usePreciseHit = false
+	.attackDelay = 0.08
+	.attackSpeed = 1.2
+	.attackRange = Size 260+84/2,250
+	.attackEffectDelay = 0.10
+	.attackPower = Vec2 100,100
+	.attackTarget = "Single"
+	.targetAllow = do
+		config = with TargetAllow!
+			.terrainAllowed = true
+			\allow "Enemy", true
+		config\toValue!
+	.damageType = 0
+	.defenceType = 0
+	.bulletType = "Bullet_1"
+	.attackEffect = ""
+	.hitEffect = "Particle/bloodp.par"
+	.sndAttack = ""
+	.sndFallen = ""
+	.actions = Array {
+		"idle"
+		"turn"
+		"fallOff"
+		"test"
+		"cancel"
+		"keepIdle"
+		"keepMove"
+		"idle1"
+		"rush"
+		"evade"
+		"jump"
+		"fall"
+		"fmove"
+		"bmove"
+		"hit"
+		"pistol"
+		"melee"
+	}
+
+Store["charM"] = with Dictionary!
+	.linearAcceleration = Vec2 0,-15
+	.bodyType = "Dynamic"
+	.scale = 1.0
+	.density = 1.0
+	.friction = 1.0
+	.restitution = 0.0
+	.playable = "spine:charM"
+	.defaultFaceRight = true
+	.size = Size 100,300
+	.sensity = 0
+	.move = 300
+	.jump = 1200
+	.detectDistance = 350
+	.tag = "player"
+
+	.hp = 5.0
+	.decisionTree = "AI:NPC"
+	.usePreciseHit = false
+	.attackDelay = 0.4
+	.attackEffectDelay = 0.1
+	.attackPower = Vec2 100,100
+	.attackTarget = "Single"
+	.targetAllow = do
+		config = with TargetAllow!
+			.terrainAllowed = true
+			\allow "Enemy", true
+		config\toValue!
+	.damageType = 0
+	.defenceType = 0
+	.bulletType = "Bullet_1"
+	.attackEffect = ""
+	.hitEffect = ""
+	.sndAttack = ""
+	.sndFallen = ""
+	.actions = Array {
+		"idle"
+		"turn"
+		"fallOff"
+		"test"
+		"cancel"
+		"keepIdle"
+		"keepMove"
+		"idle1"
+		"rush"
+		"evade"
+		"jump"
+		"pistol"
+		"fall"
+		"fmove"
+		"bmove"
+	}
+
+Store["villywan"] = with Dictionary!
+	.linearAcceleration = Vec2 0,-15
+	.bodyType = "Dynamic"
+	.scale = 1.0
+	.density = 1.0
+	.friction = 1.0
+	.restitution = 0.0
+	.playable = "spine:villywan"
+	.defaultFaceRight = true
+	.size = Size 100,300
+	.sensity = 0
+	.move = 300
+	.jump = 1200
+	.detectDistance = 350
+	.tag = "player"
+
+	.hp = 5.0
+	.decisionTree = "AI:NPC"
+	.usePreciseHit = false
+	.attackDelay = 0.4
+	.attackEffectDelay = 0.1
+	.attackPower = Vec2 100,100
+	.attackTarget = "Single"
+	.targetAllow = do
+		config = with TargetAllow!
+			.terrainAllowed = true
+			\allow "Enemy", true
+		config\toValue!
+	.damageType = 0
+	.defenceType = 0
+	.bulletType = "Bullet_1"
+	.attackEffect = ""
+	.hitEffect = ""
+	.sndAttack = ""
+	.sndFallen = ""
+	.actions = Array {
+		"idle"
+		"turn"
+		"fallOff"
+		"test"
+		"cancel"
+		"keepIdle"
+		"keepMove"
+		"idle1"
+		"rush"
+		"evade"
+		"jump"
+		"pistol"
+		"fall"
+		"fmove"
+		"bmove"
+	}

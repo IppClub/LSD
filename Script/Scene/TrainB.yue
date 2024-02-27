@@ -1,0 +1,6 @@
+_ENV = Dora!
+import "Scene.Train"
+export default Class Train,
+	__init: =>
+		@__base.__init @, false
+		@tag = "TrainB"

@@ -1,0 +1,21 @@
+{
+	"header": {
+		"lastSavedUnix": "2024-02-23T00:05:56.303Z",
+		"language": "en-GB",
+		"documentType": "yarn",
+		"markupLanguage": "bbcode",
+		"filetypeVersion": "2"
+	},
+	"nodes": [
+		{
+			"title": "Start",
+			"tags": "",
+			"body": "[char id=ninilite name=妮妮莉特/]跟我走吧。\n[char id=char name=我/]去哪里？\n[char id=ninilite name=妮妮莉特/]到我们的基地，在那里有人可以帮你。\n[char id=char name=我/]好的。",
+			"position": {
+				"x": 532,
+				"y": 299
+			},
+			"colorID": 0
+		}
+	]
+}

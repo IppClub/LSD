@@ -1,0 +1,83 @@
+<Dora>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.Skill"/>
+	<Import Module="UI.CmdButtonL"/>
+	<Import Module="UI.CmdButtonS"/>
+	<Import Module="UI.HeadBox"/>
+	<Import Module="UI.MessageBox"/>
+	<Import Module="UI.HUDMove"/>
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode InUI="True" IsRoot="True">
+		<AlignNode Name="topControl" HAlign="Center" VAlign="Top">
+			<Sprite File="ar.clip|lsdar_bossblood_1" Y="-102.5" Visible="False"/>
+			<Sprite File="ar.clip|lsdar_bossblood_2" Y="-112.5" Visible="False"/>
+			<Sprite File="ar.clip|lsdar_bossblood_3" Y="-85"/>
+		</AlignNode>
+		<AlignNode Name="ltControl" HAlign="Left" VAlign="Top">
+			<Node AngleY="-20" Visible="False">
+				<Sprite File="ar.clip|lsd_ar_display" AnchorX="0" AnchorY="1" X="5" Y="-150" ScaleX="0.7" ScaleY="0.7"/>
+			</Node>
+		</AlignNode>
+		<AlignNode Name="leftControl" HAlign="Left" VAlign="Center">
+			<Node AngleY="-20" Visible="False">
+				<CmdButtonL Text="团队指令" X="202.5" Y="462" Selected="True"/>
+				<CmdButtonS Text="跟随" Action="follow" X="303" Y="338"/>
+				<CmdButtonS Text="掩护" Action="cover" X="303" Y="{ 338 - 105 }" Selected="True"/>
+				<CmdButtonS Text="集结" Action="assemble" X="303" Y="{ 338 - 105 * 2 }"/>
+				<CmdButtonS Text="进攻" Action="fight" X="303" Y="{ 338 - 105 * 3 }"/>
+				<CmdButtonS Text="撤退" Action="retreat" X="303" Y="{ 338 - 105 * 4 }"/>
+			</Node>
+		</AlignNode>
+		<AlignNode Name="lbControl" HAlign="Left" VAlign="Bottom">
+			<Node AngleY="-20">
+				<MessageBox X="414" Y="530"/>
+				<HUDMove X="414" Y="230" Visible="False"/>
+			</Node>
+		</AlignNode>
+		<AlignNode Name="rightControl" HAlign="Right" VAlign="Center">
+			<Node AngleY="20" Visible="False">
+				<HeadBox X="-223" Y="580"/>
+				<HeadBox X="-223" Y="{ 580 - 170 }" Selected="True"/>
+				<HeadBox X="-223" Y="{ 580 - 170 * 2 }"/>
+				<HeadBox X="-223" Y="{ 580 - 170 * 3 }"/>
+				<Node X="-518" Y="612">
+					<CmdButtonS Text="共享视野"/>
+					<CmdButtonS Text="跟随" Action="follow" Y="-105"/>
+					<CmdButtonS Text="掩护" Action="cover" Y="{ -105 * 2 }" Selected="True"/>
+					<CmdButtonS Text="集结" Action="assemble" Y="{ -105 * 3 }"/>
+					<CmdButtonS Text="进攻" Action="fight" Y="{ -105 * 4 }"/>
+					<CmdButtonS Text="撤退" Action="retreat" Y="{ -105 * 5 }"/>
+				</Node>
+			</Node>
+		</AlignNode>
+		<AlignNode Name="rbControl" HAlign="Right" VAlign="Bottom">
+			<Node AngleY="20" Visible="True">
+				<Node Name="skillArea" X="-580" Y="365" Width="888" Height="592">
+					<Skill Visible="False" PlaceHolder="True"/>
+					<Skill Visible="False" PlaceHolder="True"/>
+					<Skill Visible="False" PlaceHolder="True"/>
+					<Skill Visible="False" PlaceHolder="True"/>
+					<Skill Visible="False" PlaceHolder="True"/>
+					<Skill Visible="False" Name="weapon" Ref="True">
+						<Slot Name="TapBegan">
+							<Lua>emit("Skill.Began")</Lua>
+						</Slot>
+						<Slot Name="TapEnded">
+							<Lua>emit("Skill.Ended")</Lua>
+						</Slot>
+					</Skill>
+					<Lua>skillArea:alignItems(0)</Lua>
+				</Node>
+			</Node>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="_w, h">
+			<Yue>
+				scale = h / H
+				for item in *{topControl, ltControl, leftControl, lbControl, rightControl, rbControl}
+					item.scaleX = scale
+					item.scaleY = scale
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

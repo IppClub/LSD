@@ -1,0 +1,22 @@
+<Dora>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+	<Import Module="UI.Message"/>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="700" Height="204">
+		<Sprite File="button.clip|prompt" X="{ $X }" Y="{ $Y }"/>
+		<ScrollArea Name="area" X="{ $X }" Y="{ $Y }" PaddingX="0" ScrollBar="False" Ref="True">
+			<Item Name="view" Ref="True">
+				<!--
+				<Message Title="社交" Text="你借调的学员默翎获得了3个赞"/>
+				<Message Title="研发" Special="True" Text="新装备已经研发成功新装备已经研发成功新装备已经研发成功新装备已经研发成功新装备已经研发成功新装备已经研发成功新装备已经研发成功新装备已经研发成功"/>
+				<Message Title="社交" Text="你借调的学员默翎获得了3个赞"/>
+				<Message Title="社交" Text="你借调的学员默翎获得了3个赞"/>
+				-->
+			</Item>
+		</ScrollArea>
+		<!--
+		<Yue>
+			area\adjustSizeWithAlign "Auto", 0, Size 700, 204
+		</Yue>
+		-->
+	</Node>
+</Dora>

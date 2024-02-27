@@ -1,0 +1,31 @@
+{
+	"header": {
+		"lastSavedUnix": "2024-02-04T09:10:13.813Z",
+		"language": "en-GB",
+		"documentType": "yarn",
+		"markupLanguage": "bbcode",
+		"filetypeVersion": "2",
+		"pluginStorage": {
+			"Runner": {
+				"variables": [
+					{
+						"key": "charName",
+						"value": "瑾"
+					}
+				]
+			}
+		}
+	},
+	"nodes": [
+		{
+			"title": "Start",
+			"tags": "",
+			"body": "工作人员: 感谢您加入我们的游戏内测团队。我们目前面临一些挑战，需要您的帮助来识别游戏中的BUG成因。\n-> 我: 我准备好了。\n-> 我: 我可以知道更多的背景信息吗？\n工作人员: 当然，我们的游戏尝试引入了一些创新的游戏机制，但这也带来了不少问题。我们希望在游戏正式发布前，找出并解决这些问题。\n我: 我明白了。我该怎么开始？\n工作人员: 首先，我们需要收集一些基本信息。您的名字是？\n-> 我: 提供姓名信息。\n    <<inputName>>\n工作人员: 了解了，{$charName}。您的性别是？\n-> 我: 男。\n    <<setCharId 'charM'>>\n-> 我: 女。\n    <<setCharId 'charF'>>\n工作人员: 非常感谢，{$charName}。您现在可以开始您的任务了。如果遇到任何问题，请随时与我们联系。\n工作人员: 您会从上一个测试玩家的进度开始强制同步，起初看到混乱的视角和画面都是正常的，现在开始。",
+			"position": {
+				"x": 50,
+				"y": 50
+			},
+			"colorID": 0
+		}
+	]
+}

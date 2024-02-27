@@ -1,0 +1,9 @@
+<Dora>
+	<Node Width="241" Height="231">
+		<Sprite File="gearBox.clip|prop_bg_1" X="{ $X }" Y="{ $Y + 30 }"/>
+		<Label
+			Text="{ 'x' .. tostring(num or 1) }"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xffffff" TextAlign="Center"
+			X="{ $X }" Y="30" Opacity="0.5"/>
+	</Node>
+</Dora>

@@ -1,0 +1,232 @@
+_ENV = Dora dora.Platformer
+
+export default ->
+	import "UI.Interaction"
+	import "Utils" as :Set
+	import "Academy.Map" as Map
+
+	const {store: Store} = Data
+	const Width, Height, GrabSize, Outline, MaxPath = 100, 300, 400, 6, 2
+
+	const names = {
+		moling: '默翎'
+		moyu: '默羽'
+		liyena: '李叶那'
+		ayan: '阿岩'
+		villywan: '万薇莉'
+		yuzijiang: '余梓绛'
+		ninilite: '妮妮莉特'
+		wuyun: '乌云'
+		sunborn: '向阳珄'
+	}
+
+	const moveComs =
+		* "unit"
+		* "moveFromRight"
+		* "moveRouteName"
+		* "moveEnter"
+		* "moveTargets"
+
+	defaultFaceLeft = Set
+		* "liyena"
+		* "dataotie"
+
+	with Observer "Add", moveComs
+		\watch (
+				unit
+				moveFromRight
+				moveRouteName
+				moveEnter
+				moveTargets
+			) =>
+			buttons = [{Map.getName(target), target\upper!} for target in *moveTargets]
+			fliped = not moveFromRight
+			forbidden = moveTargets.empty
+			buttons[] = {"禁行区域", "FORBIDDEN"} if forbidden
+			@interaction = with Interaction text: moveRouteName, :buttons, :fliped
+				.order = unit.world.children.last.order
+				.transformTarget = unit
+				\show!
+				if forbidden
+					.menu.enabled = false
+				else
+					:name = @
+					\slot "Tapped", (index) ->
+						sceneName = moveTargets[index]
+						worldClass = require "Scene.#{sceneName}"
+						\schedule once ->
+							startTime = App.runningTime
+							worldClass\loadAsync!
+							deltaTime = App.runningTime - startTime
+							if deltaTime < 0.5
+								sleep 0.5 - deltaTime
+							oldWorld = Store.world
+							world = with worldClass!
+								.visible = false
+								.camera.position = [moveEnter]
+								switch moveEnter
+									when "left" then \openLeftDoor!
+									when "right" then \openRightDoor!
+									when "center" then \openCenterDoor!
+								\addTo Director.entry
+							Store.world = world
+							Entity
+								player: true
+								name: name
+								faceRight: switch moveEnter
+									when "center" then unit.faceRight
+									when "left" then true
+									when "right" then false
+								position: assert world[moveEnter]
+								base: true
+							--[[
+							if not Group({"name", "player"})\find => @name == "liyena" and not @player
+								Entity
+									player: false
+									name: "liyena"
+									faceRight: true
+									position: Vec2 world.width / 2 - 200, world.offset
+									base: true
+								Entity
+									player: false
+									name: "moling"
+									faceRight: true
+									position: Vec2 world.width / 2, world.offset
+									base: true
+							]]
+							sleep!
+							world.visible = true
+							oldWorld\removeFromParent!
+				\addTo unit.world
+
+	with Observer "Remove", moveComs
+		\watch =>
+			with? @interaction
+				\hide!
+				@interaction = nil
+
+	with Observer "Add", {"player", "name", "position", "faceRight", "base"}
+		\watch (player, name, position, faceRight) =>
+			unitDef = with Dictionary!
+				.linearAcceleration = Vec2 0, -15
+				.bodyType = "Dynamic"
+				.scale = 1.0
+				.density = 1.0
+				.friction = 1.0
+				.restitution = 0.0
+				.playable = "spine:#{name}"
+				.defaultFaceRight = not defaultFaceLeft[name]
+				.size = Size Width, Height
+				.sensity = player and 0.0 or 0.5
+				.move = 300
+				.jump = 800
+				.detectDistance = 200
+				.attackRange = Size 800, 200
+				.hp = 1.0
+				.decisionTree = @decisionTree ?? player and "AI:PlayerControl" or "AI:NPC"
+				.usePreciseHit = false
+				.actions = Array
+					* "hit"
+					* "pistol"
+					* "idle"
+					* "prepare"
+					* "turn"
+					* "fmove"
+					* "bmove"
+					* "jump"
+					* "fallOff"
+					* "cancel"
+					* "keepIdle"
+					* "keepMove"
+					* "idle1"
+			:world = Store
+			unit = with u = Unit unitDef, world, @, position + Vec2 0, Height / 2
+				.group = 1
+				.faceRight = faceRight
+				.order = player and 0 or (@order ?? math.random -MaxPath, MaxPath)
+				with .playable
+					parent = .parent
+					\moveToParent with Node!
+						.size = Size GrabSize, GrabSize
+						\addTo parent
+					.position = Vec2 GrabSize / 2, GrabSize / 2 - Height / 2
+				isCommonAI = true
+				if .decisionTree not in ["AI:PlayerControl", "AI:NPC"]
+					isCommonAI = false
+					if player
+						world.camera.followTarget = unit
+				world\addShadowTo u
+				\addTo world
+				return unless isCommonAI
+			if player
+				unit\gslot "Skill.Began", -> @keySkill = true
+				unit\gslot "Skill.Ended", -> @keySkill = false
+				with world.camera
+					.followTarget = unit
+				with unit.playable.parent
+					sensor = unit\getSensorByTag Unit.DetectSensorTag
+					\schedule ->
+						target = nil
+						minDictance = nil
+						return if unit.entity.busy
+						for body in *sensor.sensedBodies
+							:entity = body
+							continue unless entity
+							continue if body.decisionTree ~= "AI:NPC"
+							continue unless entity.player?
+							continue if body == unit
+							continue if entity.busy
+							posA, zA = body\convertToWorldSpace Vec2.zero, 0
+							posB, zB = unit\convertToWorldSpace Vec2.zero, 0
+							dx, dy, dz = posA.x - posB.x, posA.y - posB.y, zA - zB
+							distance = dx * dx + dy * dy + dz * dz
+							if not minDictance or minDictance > distance
+								minDictance = distance
+								target = body
+						oldTarget = @target
+						if oldTarget ~= target
+							if oldTarget
+								with? oldTarget.entity.interaction
+									\hide!
+									oldTarget.entity.interaction = nil
+								:playable = oldTarget
+								playable\schedule once ->
+									with playable.parent\grab!
+										color = Color 0x007ec0f8
+										.effect\get(1)\set "u_linecolor", color
+										cycle 0.3, (dt) ->
+											color.opacity = 1.0 - dt
+											.effect\get(1)\set "u_linecolor", color
+									playable.parent\grab false
+							@target = target
+							if target
+								with target.playable.parent\grab!
+									.effect = with SpriteEffect "builtin:vs_sprite", "builtin:fs_spriteoutlinecolor"
+										color = Color 0x007ec0f8
+										\get(1)\set "u_linecolor", color
+										target.playable\schedule once ->
+											cycle 0.3, (dt) ->
+												color.opacity = dt
+												\get(1)\set "u_linecolor", color
+										\get(1)\set "u_lineoffset", Outline / GrabSize, Outline / GrabSize, Outline, 0.1
+								nameText = names[target.entity.name] ?? "人物"
+								target.entity.interaction = with ui = Interaction text: nameText, buttons: {
+											{"对话", "TALK"}
+											{"进行训练", "TRAINING"}
+											{"个人信息", "INFORMATION"}
+										}, fliped: target.x < unit.x
+									.order = world.children.last.order
+									.transformTarget = target
+									\slot "Tapped", (index) ->
+										switch index
+											when 1 then \schedule once ->
+												startTime = App.runningTime
+												deltaTime = App.runningTime - startTime
+												if deltaTime < 0.5
+													sleep 0.5 - deltaTime
+												\hide false
+												import "UI.Story"
+												Director.ui\addChild with Story!
+													\slot "Hide", -> ui\show!
+									\addTo world
+									\show!

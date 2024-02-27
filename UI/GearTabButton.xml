@@ -1,0 +1,14 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="211" Height="90">
+		<Sprite File="button.clip|btn_small_1" X="{ $X }" Y="{ $Y }" Visible="{ not selected }">
+			<Label Text="{ text }" FontName="SourceHanSansCN-Regular"
+				FontSize="40" Color3="0xffffff" TextAlign="Center"
+				Spacing="5" X="{ $X }" Y="{ $Y }"/>
+		</Sprite>
+		<Sprite File="button.clip|btn_small_3" X="{ $X }" Y="{ $Y }" Visible="{ selected }">
+			<Label Text="{ text }" FontName="SourceHanSansCN-Regular"
+				FontSize="40" Color3="0x0" TextAlign="Center"
+				Spacing="5" X="{ $X }" Y="{ $Y }"/>
+		</Sprite>
+	</Node>
+</Dora>

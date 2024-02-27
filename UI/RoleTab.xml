@@ -1,0 +1,89 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Node X="{ x or  0 }" Y="{ y or 0 }">
+		<Node Name="hide" Visible="False"/>
+		<Menu Name="menu" Width="113" Height="596" AnchorX="1" AnchorY="1">
+			<Lua>
+				local lastSelected
+				local lastSelectedActive
+				local function itemSelect(item, itemActive)
+					lastSelected:removeFromParent(false)
+					lastSelected:addTo(menu)
+					lastSelectedActive:removeFromParent(false)
+					lastSelectedActive:addTo(hide)
+					itemActive:removeFromParent(false)
+					itemActive:addTo(menu)
+					item:removeFromParent(false)
+					item:addTo(hide)
+					lastSelected = item
+					lastSelectedActive = itemActive
+					menu:alignItems(15)
+				end
+			</Lua>
+			<Sprite Name="upActive" File="viewBox.clip|formation_tab_1" Order="1">
+				<MovingText Angle="90" Y="{ $T }" OffsetY="45" TextBG="TEAM MEMBER" FontSize="50">
+					<Lua>do</Lua>
+					<Item Name="mask">
+						<Sprite File="viewBox.clip|formation_tab_1" AnchorX="0" AnchorY="1" Angle="-90"/>
+					</Item>
+					<Lua>end</Lua>
+				</MovingText>
+				<Label
+					Text="己方学员"
+					FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0x7ec0f8" TextAlign="Center"
+					X ="{ $X }" Y="{ $Y }" TextWidth="45" LineGap="5"/>
+			</Sprite>
+			<Sprite Name="up" File="viewBox.clip|formation_tab_2" TouchEnabled="True" Order="2">
+				<Label
+					Text="己"
+					FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+					X ="{ $X }" Y="{ $Y }" TextWidth="45" LineGap="5"/>
+				<Slot Name="TapBegan">
+					<Lua>itemSelect(up, upActive)</Lua>
+				</Slot>
+			</Sprite>
+			<Sprite Name="middleActive" File="viewBox.clip|formation_tab_5" Order="3">
+				<MovingText Angle="90" Y="{ $T }" OffsetY="45" TextBG="REINFORCEMENT" FontSize="50">
+					<Lua>do</Lua>
+					<Item Name="mask">
+						<Sprite File="viewBox.clip|formation_tab_5" AnchorX="0" AnchorY="1" Angle="-90"/>
+					</Item>
+					<Lua>end</Lua>
+				</MovingText>
+				<Label
+					Text="协助队员"
+					FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0x7ec0f8" TextAlign="Center"
+					X ="{ $X }" Y="{ $Y }" TextWidth="45" LineGap="5"/>
+			</Sprite>
+			<Sprite Name="middle" File="viewBox.clip|formation_tab_3" TouchEnabled="True" Order="4">
+				<Label
+					Text="协"
+					FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+					X ="{ $X }" Y="{ $Y }" TextWidth="45" LineGap="5"/>
+				<Slot Name="TapBegan">
+					<Lua>itemSelect(middle, middleActive)</Lua>
+				</Slot>
+			</Sprite>
+			<Sprite Name="down" File="viewBox.clip|formation_tab_6" TouchEnabled="True" Order="5">
+				<MovingText Angle="90" Y="{ $T }" OffsetY="45" TextBG="FIND MEMBER" FontSize="50">
+					<Item Name="mask">
+						<Sprite File="viewBox.clip|formation_tab_6" AnchorX="0" AnchorY="1" Angle="-90"/>
+					</Item>
+				</MovingText>
+				<Label
+					Text="筛选"
+					FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+					X ="{ $X }" Y="{ $Y }" TextWidth="45" LineGap="5"/>
+			</Sprite>
+			<Lua>
+				lastSelected = up
+				lastSelectedActive = upActive
+				up:removeFromParent(false)
+				up:addTo(hide)
+				middleActive:removeFromParent(false)
+				middleActive:addTo(hide)
+				menu:alignItems(15)
+			</Lua>
+		</Menu>
+	</Node>
+</Dora>

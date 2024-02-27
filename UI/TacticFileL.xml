@@ -1,0 +1,22 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="383" Height="538">
+		<Sprite File="ai.clip|ai_big_1" X="{ $X }" Y="{ $Y + 100 }">
+			<Node Y="-45">
+				<Sprite File="ai.clip|ai_big_slip_1" AnchorX="0"/>
+				<Sprite File="ai.clip|ai_big_slip_2" AnchorX="0" ScaleX="0.5"/>
+			</Node>
+			<Label
+				Text="50%"
+				FontName="FangZhengHeiTiJianTi" FontSize="35" Color3="0xffffff" TextAlign="Center"
+				X ="{ $X }" Y="-45"/>
+		</Sprite>
+		<Label
+			Text="10,575 B"
+			FontName="FangZhengHeiTiJianTi" FontSize="40" Color3="0x7a95f8" TextAlign="Right"
+			X ="{ $R - 25 }" Y="{ $T + 80 }" AnchorX="1" AnchorY="1"/>
+		<Label
+			Text="DATAOTIE"
+			FontName="FangZhengHeiTiJianTi" FontSize="40" Color3="0x7a95f8" TextAlign="Right"
+			X ="{ $L + 15 }" Y="{ $T + 35 }" AnchorX="1" AnchorY="1" Angle="-90"/>
+	</Node>
+</Dora>

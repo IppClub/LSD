@@ -1,0 +1,47 @@
+<Menu Name="menu" X="{ x or 0 }" Y="{ y or 0 }" Visible="{ visible }">
+	<Sprite File="skill.clip|lsdar_move_bg_1"/>
+	<Sprite Name="leftBack" File="skill.clip|lsdar_move_bg_3" X="-125" Visible="False"/>
+	<Sprite Name="rightBack" File="skill.clip|lsdar_move_bg_3" X="125" ScaleX="-1" Visible="False"/>
+	<Sprite File="skill.clip|lsdar_move_rocker_1"/>
+	<Sprite Name="centerLight" File="skill.clip|lsdar_move_rocker_2" Visible="False"/>
+	<Sprite File="skill.clip|lsdar_move_left_1" X="-153"/>
+	<Sprite Name="leftArrow" File="skill.clip|lsdar_move_left_2" X="-153" Visible="False"/>
+	<Sprite File="skill.clip|lsdar_move_left_1" X="153" ScaleX="-1"/>
+	<Sprite Name="rightArrow" File="skill.clip|lsdar_move_left_2" X="153" ScaleX="-1" Visible="False"/>
+	<Node X="-125" Width="250" Height="250" TouchEnabled="True">
+		<Slot Name="TapBegan">
+			<Lua>
+				leftBack.visible = true
+				leftArrow.visible = true
+				centerLight.visible = true
+				menu:emit("Left", true)
+			</Lua>
+		</Slot>
+		<Slot Name="TapEnded">
+			<Lua>
+				leftBack.visible = false
+				leftArrow.visible = false
+				centerLight.visible = leftBack.visible or rightBack.visible
+				menu:emit("Left", false)
+			</Lua>
+		</Slot>
+	</Node>
+	<Node X="125" Width="250" Height="250" TouchEnabled="True">
+		<Slot Name="TapBegan">
+			<Lua>
+				rightBack.visible = true
+				rightArrow.visible = true
+				centerLight.visible = true
+				menu:emit("Right", true)
+			</Lua>
+		</Slot>
+		<Slot Name="TapEnded">
+			<Lua>
+				rightBack.visible = false
+				rightArrow.visible = false
+				centerLight.visible = leftBack.visible or rightBack.visible
+				menu:emit("Right", false)
+			</Lua>
+		</Slot>
+	</Node>
+</Menu>

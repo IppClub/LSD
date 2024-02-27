@@ -1,0 +1,94 @@
+_ENV = Dora dora.Platformer
+
+const W = 11520
+const HW = W / 2
+const H = 1080
+const HH = H / 2
+const Offset = 100
+const PathOffset = Vec2 50, -25
+const MaxPath = 2
+const DefaultZoom = 1.0
+
+macro order = (value)->
+	global globals = globals or {}
+	globals.layerId = if value then tonumber value
+	else globals.layerId - 1
+	globals.layerId
+
+layerDefs =
+	* look: "frontUp", order: $order(100), ratio: Vec2 -0.2, 0
+	* look: "frontDown", order: $order, ratio: Vec2 -0.2, 0
+	* look: "floor", order: $order(-100)
+	* look: "car", order: $order, ratio: Vec2 0.2, 0
+	* look: "light", order: $order, ratio: Vec2 0.4, 0
+	* look: "back1", order: $order, ratio: Vec2 0.4, 0
+	* look: "back2", order: $order, ratio: Vec2 0.6, 0
+
+addLayer = (world, def)->
+	layer = with Spine "station"
+		.look = def.look
+		.order = def.order
+	if def.ratio
+		world\setLayerRatio def.order, def.ratio
+	if def.offset
+		world\setLayerOffset def.order, def.offset
+	world\addChild layer
+	def.handle layer if def.handle
+	layer
+
+export default Class
+	width: property -> W
+	offset: property -> Offset
+
+	addShadowTo: (unit)=>
+		with Sprite "Image/shadow.png"
+			.order = -1
+			\schedule -> .y = @offset - unit.y
+			\addTo unit
+
+	zoom: property => @_zoom,
+		(value)=>
+			@_zoom = value
+			@updateZoom!
+
+	updateZoom: =>
+		:scale = View
+		:width, :height = View.size * Vec2 scale, scale
+		zoom = @_zoom / DefaultZoom
+		zoom = math.max width / W / zoom, height / H / zoom
+		realWidth = math.min W / zoom, W
+		realHeight = math.min H / zoom, H
+		zoom = math.max W / realWidth, H / realHeight
+		@camera.zoom = zoom / scale
+
+	__partial: =>
+		with PlatformWorld!
+			with .camera
+				.boundary = Rect 0, 0, W, H
+				.followRatio = Vec2 0.03, 0.03
+			.tag = "Station"
+
+	__init: =>
+		for i = -MaxPath, MaxPath
+			@setLayerOffset i, PathOffset * i
+
+		for def in *layerDefs
+			addLayer @, def
+
+		terrainDef = with BodyDef!
+			.type = "Static"
+			\attachPolygon Vec2(HW, 0), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(HW, H), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
+			\attachPolygon Vec2(W, HH), 10, H, 0, 1, 1, 0
+			.position = Vec2 0, Offset
+
+		with Body terrainDef, @, Vec2.zero
+			.group = Data.groupTerrain
+			\addTo @
+
+		@_zoom = 1.0
+		@gslot "AppSizeChanged", -> @updateZoom!
+		@updateZoom!
+
+	loadAsync: => Cache\loadAsync "spine:station"

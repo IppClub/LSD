@@ -1,0 +1,38 @@
+_ENV = Dora!
+import "UI.View.StatusBar" as default: StatusBarView
+
+getHPColor = (isHostile) -> isHostile and 0xffffff or 0x79f652
+
+StatusBar = Class
+	__partial: (hp, ap, isHostile) =>
+		node, @_hpBar, @_apBar = StatusBarView hp, ap, getHPColor isHostile
+		node
+
+	hp: property => @_hp,
+		(value) =>
+			return if @_hp == value
+			@_hp = value
+			if (value <= 0.25) ~= @_lowHp
+				if @_lowHp := not @_lowHp
+					@_hpBar.color3 = Color3 0xff0000
+				else
+					@_hpBar.color3 = Color3 getHPColor @_isHostile
+			@_hpBar\perform ScaleX 1, @_hpBar.scaleX, value, Ease.OutExpo
+
+	ap: property => @_ap,
+		(value) =>
+			return if @_ap == value
+			@_ap = value
+			@_apBar\perform ScaleX 1, @_apBar.scaleX, value, Ease.OutExpo
+
+	__init: (hp, ap, isHostile) =>
+		@_hp = hp
+		@_ap = ap
+		@_isHostile = isHostile
+		@_lowHp = hp <= 0.25
+		if @_lowHp
+			@_hpBar.color3 = Color3 0xff0000
+		else
+			@_hpBar.color3 = Color3 getHPColor @_isHostile
+
+export default StatusBar

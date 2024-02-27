@@ -1,0 +1,22 @@
+_ENV = Dora dora.Platformer
+
+if not DB\exist "Config", "lsd"
+	dbPath = Path Content.writablePath, "lsd.db"
+	DB\exec "ATTACH DATABASE '#{dbPath}' AS lsd;"
+Director.entry\slot "Cleanup", -> DB\exec "DETACH DATABASE lsd"
+
+Director.entry\schedule once ->
+	import "Data.Config"
+	Config\loadAsync!
+	Config.skipOP = 0
+	Config.char = "charM"
+	Config.charName = "瑾"
+	Config.heroine = "于灵"
+
+	if Config.skipOP == nil or Config.skipOP == 0
+		Config.skipOP = 1
+		import "System.PlayOP"
+		PlayOP!
+
+	import "Tutorial.Level" as TutorialLevel
+	TutorialLevel!

@@ -1,0 +1,86 @@
+<Dora>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.MovingText"/>
+	<Import Module="UI.FullScreenMask"/>
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode InUI="True" IsRoot="True">
+		<FullScreenMask/>
+		<AlignNode Name="left" HAlign="Left" VAlign="Center">
+			<SolidRect Name="rc" Y="-296" Width="3258" Height="592" Color="0xb2000000"/>
+			<Grid Name="logo" File="ar.clip|lsdar_settlement_logo" X="438.5" Y="-268.5" GridX="1" GridY="1" Order="1">
+				<Yue>
+					logo\moveUV 1, 2, Vec2 0, -537
+					logo\moveUV 2, 2, Vec2 0, -537
+				</Yue>
+			</Grid>
+			<Label
+				Text="行动失败"
+				FontName="SourceHanSansCN-Regular" FontSize="300" Color3="0xffffff" TextAlign="Left"
+				Spacing="10" X="129.5" Y="268.5" AnchorX="0" Order="1"/>
+			<Label
+				Text="2-3地底的喧嚣"
+				FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Center"
+				X="787.5" Y="225" Order="1" AnchorX="0" Opacity="0.7"/>
+		</AlignNode>
+		<AlignNode Name="center" HAlign="Center" VAlign="Center">
+			<Sprite File="ar.clip|lsdar_settlement_icon_1" X="-540"/>
+			<Sprite File="ar.clip|lsdar_settlement_icon_2"/>
+			<Sprite File="ar.clip|lsdar_settlement_icon_3" X="540"/>
+			<Sprite File="ar.clip|lsdar_settlement_divider" X="-540" Y="-170"/>
+			<Sprite File="ar.clip|lsdar_settlement_divider" Y="-170"/>
+			<Sprite File="ar.clip|lsdar_settlement_divider" X="540" Y="-170"/>
+			<Sprite File="ar.clip|lsdar_settlement_ribbon_1" Y="-335" AnchorY="1"/>
+			<Label
+				Text="学员培养"
+				FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+				X="-540" Y="-115" Order="1" AnchorY="1"/>
+			<Label
+				Text="装备强化"
+				FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+				Y="-115" Order="1" AnchorY="1"/>
+			<Label
+				Text="更多战术"
+				FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+				X="540" Y="-115" Order="1" AnchorY="1"/>
+			<Label
+				Text="提升学员对策"
+				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
+				X="-540" Y="-190" Order="1" AnchorY="1" Opacity="0.5"/>
+			<Label
+				Text="配备更好的装备"
+				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
+				Y="-190" Order="1" AnchorY="1" Opacity="0.5"/>
+			<Label
+				Text="组建更适合的编队"
+				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
+				X="540" Y="-190" Order="1" AnchorY="1" Opacity="0.5"/>
+			<Label
+				Text="点击空白处退出"
+				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
+				Y="-357" Order="1" AnchorY="1" Opacity="0.3"/>
+		</AlignNode>
+		<AlignNode Name="right" HAlign="Right" VAlign="Center">
+			<Node ScaleX="1.5" ScaleY="1.5" Y="296" Opacity="0.1">
+				<MovingText X="-2000" Y="-75" TextBG="MISSION FAILED     MISSION FAILED" FontSize="100" OffsetY="0" Color3="0xffffff">
+					<Item Name="mask">
+						<SolidRect Width="2000" Height="75"/>
+					</Item>
+				</MovingText>
+			</Node>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				global rc
+				scale = h / H
+				rc\removeFromParent!
+				rc = SolidRect y: -296, width: w / scale, height: 592, color: 0xb2000000
+				left\addChild rc
+				for item in *{left, center, right}
+					item.scaleX = scale
+					item.scaleY = scale
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

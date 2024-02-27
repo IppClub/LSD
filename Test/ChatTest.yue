@@ -1,0 +1,31 @@
+_ENV = Dora!
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+import "UI.LsdOSBack"
+import "UI.Interaction"
+import "UI.MessageBox"
+import "UI.Bubble"
+
+Director.ui3D\addChild with LsdOSBack!
+	.bg\addChild with Interaction text: "妮妮莉特", buttons: {
+			{"对话", "TALK"}
+			{"进行训练", "TRAINING"}
+			{"个人信息", "INFORMATION"}
+		}
+		\show!
+		\slot "Tapped", (index)-> print index
+	.bg\addChild with MessageBox!
+		.x = -600
+	.bg\addChild with Bubble text: "聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字"
+		.x = 600
+	\alignLayout!

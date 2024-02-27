@@ -1,0 +1,8 @@
+<Dora>
+	<Node Width="510" Height="325" TouchEnabled="True">
+		<Sprite File="viewBox.clip|formation_role_small_bg_1" X="{ $X }" Y="{ $Y }"/>
+		<Sprite File="viewBox.clip|formation_role_small_img" X="{ $X }" Y="{ $Y }"/>
+		<Sprite File="viewBox.clip|formation_role_small_bg_2" X="{ $X }" Y="{ $Y }" Visible="False"/>
+		<Sprite File="viewBox.clip|formation_icon_add_1" X="{ $X }" Y="{ $Y }"/>
+	</Node>
+</Dora>

@@ -1,0 +1,11 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="375" Height="117">
+		<Sprite File="button.clip|lsdar_btn_bg_1" X="{ $X }" Y="{ $Y }" Visible="{ not selected }"/>
+		<Sprite File="button.clip|lsdar_btn_bg_2" X="{ $X }" Y="{ $Y }" Visible="{ selected }"/>
+		<Sprite File="button.clip|lsdar_btn_teem_1" X="55" Y="{ $Y }" Opacity="{ selected and 1.0 or 0.5 }"/>
+		<Label
+			Text="{ text or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
+			X="110" Y="{ $Y }" AnchorX="0" Spacing="5" Opacity="{ selected and 1.0 or 0.5 }"/>
+	</Node>
+</Dora>

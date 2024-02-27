@@ -1,0 +1,31 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Node Width="421" Height="321">
+		<Lua>if vacant then</Lua>
+			<Sprite File="viewBox.clip|formation_role_alternative_img" X="{ $X }" Y="{ $Y }"/>
+			<Sprite File="viewBox.clip|formation_role_alternative_1" X="{ $X }" Y="{ $Y }"/>
+			<Sprite File="viewBox.clip|formation_role_alternative_1_tab" X="{ $X }" Y="{ $Y }">
+				<MovingText OffsetY="40" Color3="0xffffff" TextBG="VACANT POSITION">
+					<Item Name="mask">
+						<Sprite File="viewBox.clip|formation_role_alternative_1_tab" AnchorX="0" AnchorY="0"/>
+					</Item>
+				</MovingText>
+			</Sprite>
+			<Label
+				Text="空置"
+				FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Center"
+				Spacing="20" X ="{ $X }" Y="{ $Y }"/>
+		<Lua>else</Lua>
+			<Sprite File="viewBox.clip|formation_role_alternative_1" X="{ $X }" Y="{ $Y }" Visible="{ not locked }"/>
+			<Sprite File="viewBox.clip|formation_role_alternative_2" X="{ $X }" Y="{ $Y }" Visible="{ locked }"/>
+			<Sprite File="viewBox.clip|formation_role_alternative_3" X="{ $X }" Y="{ $Y }" Visible="{ selected and not locked }"/>
+			<Sprite File="viewBox.clip|formation_role_small_bg_2" X="{ $X }" Y="{ $Y }" ScaleX="0.8255" ScaleY="0.9847" Visible="{ selected }"/>
+			<Sprite File="viewBox.clip|formation_role_alternative_2_tab" X="{ $X }" Y="{ $B }" AnchorY="0" Visible="{ locked }">
+				<Label
+					Text="队伍中"
+					FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Center"
+					Spacing="10" X ="{ $X }" Y="{ $Y }"/>
+			</Sprite>
+		<Lua>end</Lua>
+	</Node>
+</Dora>

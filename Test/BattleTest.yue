@@ -1,0 +1,569 @@
+_ENV = Dora(
+	dora.Platformer
+	dora.Platformer.Decision
+	dora.ImGui
+)
+
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+require "Control"
+import "Utils" as :Set
+--import "UI.BattleControl"
+require "Logic.MotherBase"
+require "Logic.BattleLogic"
+require "Unit.HeroUnit"
+require "Unit.EnemyUnit"
+
+-- Director.ui3D\addChild BattleControl!
+store:Store = Data
+
+with Data.store
+	.PlayerGroup = 1
+	.EnemyGroup = 2
+
+	.CurrentScene = 1
+
+	.PlayerLayer = 1
+	.EnemyLayer = 2
+	.TerrainLayer = 0
+
+	Data\setShouldContact .PlayerGroup, .EnemyGroup, false
+	Data\setRelation .PlayerGroup, .EnemyGroup, "Enemy"
+	.unit = nil
+{
+	:PlayerGroup
+	:EnemyGroup
+	:CurrentScene
+	:PlayerLayer
+	:EnemyLayer
+	:unit
+} = Store
+
+
+Store.battle = false
+playable = nil
+
+require "Action.Battle"
+
+
+--AI
+
+_fightDecision = Seq {
+	Con "see enemy", -> AI\getNearestUnit("Enemy")?
+	Sel {
+		Seq {
+			Con "need evade", =>
+				return false if not @onSurface
+				evadeLeftEnemy = false
+				evadeRightEnemy = false
+				sensor = @getSensorByTag Unit.DetectSensorTag
+				sensor.sensedBodies\each (body)->
+					if Data\isEnemy @,body
+						distance = math.abs @x - body.x
+						if distance < 350
+							evadeRightEnemy = false
+							evadeLeftEnemy = false
+							return true
+						elseif distance < 600
+							evadeRightEnemy = true if body.x > @x
+							evadeLeftEnemy = true if body.x <= @x
+				needEvade = not (evadeLeftEnemy == evadeRightEnemy)
+				@entity.evadeRight = evadeRightEnemy if needEvade
+				needEvade
+			Sel {
+				Seq {
+					Con "face enemy", => @entity.evadeRight == @faceRight
+					Act "roll"
+				}
+				Act "turn"
+				Act "roll"
+			}
+		}
+		Seq {
+			Con "not facing nearest enemy", =>
+				enemy = AI\getNearestUnit "Enemy"
+				(@x > enemy.x) == @faceRight
+			Act "turn"
+		}
+		Seq {
+			Con "enemy in attack range", ->
+				enemy = AI\getNearestUnit "Enemy"
+				attackUnits = AI\getUnitsInAttackRange!
+				attackUnits and attackUnits\contains(enemy) or false
+			Act "butt"
+		}
+		Act "fmove"
+	}
+}
+
+Store["AI:NPC"] = Act "idle"
+
+Store["AI:XIAOTAOTIE"] = Sel {
+	Seq {
+		Con "is dead", => @entity.hp <= 0
+		Accept!
+	}
+	Seq {
+		Con "see enemy", -> AI\getNearestUnit("Enemy")?
+		Sel {
+			Seq {
+				Con "need evade", =>
+					return false if not @onSurface
+					evadeLeftEnemy = false
+					evadeRightEnemy = false
+					sensor = @getSensorByTag Unit.DetectSensorTag
+					sensor.sensedBodies\each (body)->
+						if Data\isEnemy @,body
+							distance = math.abs @x - body.x
+							if distance < 350
+								evadeRightEnemy = false
+								evadeLeftEnemy = false
+								return true
+							elseif distance < 600
+								evadeRightEnemy = true if body.x > @x
+								evadeLeftEnemy = true if body.x <= @x
+					needEvade = not (evadeLeftEnemy == evadeRightEnemy)
+					@entity.evadeRight = evadeRightEnemy if needEvade
+					needEvade
+				Sel {
+					Seq {
+						Con "face enemy", => @entity.evadeRight == @faceRight
+						Act "roll"
+					}
+					Act "turn"
+					Act "roll"
+				}
+			}
+			Seq {
+				Con "not facing nearest enemy", =>
+					enemy = AI\getNearestUnit "Enemy"
+					(@x > enemy.x) == @faceRight
+				Act "turn"
+			}
+			Seq {
+				Con "enemy in attack range", ->
+					enemy = AI\getNearestUnit "Enemy"
+					attackUnits = AI\getUnitsInAttackRange!
+					attackUnits and attackUnits\contains(enemy) or false
+				Act "butt"
+			}
+			Act "fmove"
+		}
+	}
+	Seq {
+		Con "need stop", => not @isDoing "idle"
+		Act "cancel"
+		Act "idle"
+	}
+}
+
+Store["AI:DATAOTIE"] = Sel {
+	Seq {
+		Con "is dead", => @entity.hp <= 0
+		Accept!
+	}
+	Seq {
+		Con "see enemy", -> AI\getNearestUnit("Enemy")?
+		Sel {
+			Seq {
+				Con "need evade", =>
+					return false if not @onSurface
+					evadeLeftEnemy = false
+					evadeRightEnemy = false
+					sensor = @getSensorByTag Unit.DetectSensorTag
+					sensor.sensedBodies\each (body)->
+						if Data\isEnemy @,body
+							distance = math.abs @x - body.x
+							if distance < 350
+								evadeRightEnemy = false
+								evadeLeftEnemy = false
+								return true
+							elseif distance < 600
+								evadeRightEnemy = true if body.x > @x
+								evadeLeftEnemy = true if body.x <= @x
+					needEvade = not (evadeLeftEnemy == evadeRightEnemy)
+					@entity.evadeRight = evadeRightEnemy if needEvade
+					needEvade
+				Sel {
+					Seq {
+						Con "face enemy", => @entity.evadeRight == @faceRight
+						Act "dtdRush1"
+					}
+					Act "turn"
+					Act "dtdRush1"
+				}
+			}
+			Seq {
+				Con "not facing nearest enemy", =>
+					enemy = AI\getNearestUnit "Enemy"
+					(@x > enemy.x) == @faceRight
+				Act "turn"
+			}
+			Seq {
+				Con "enemy in attack range", ->
+					enemy = AI\getNearestUnit "Enemy"
+					attackUnits = AI\getUnitsInAttackRange!
+					attackUnits and attackUnits\contains(enemy) or false
+				Act "trample"
+			}
+			Act "fmove"
+		}
+	}
+	Seq {
+		Con "need stop", => not @isDoing "idle"
+		Act "cancel"
+		Act "idle"
+	}
+}
+
+Store["AI:PlayerControl"] = Sel {
+	Seq {
+		Sel {
+			Seq {
+				Con "fmove key down", =>
+					not (@entity.keyLeft and @entity.keyRight) and
+					(
+						(@entity.keyLeft and @faceRight) or
+						(@entity.keyRight and not @faceRight)
+					)
+				Act "turn"
+			}
+			Seq {
+				Con "bmove key down", =>
+					not (@entity.keyLeft or @entity.keyRight) and
+					not (@entity.keyBLeft and @entity.keyBRight) and
+					(
+						(@entity.keyBLeft and not @faceRight) or
+						(@entity.keyBRight and @faceRight)
+					)
+				Act "turn"
+			}
+		}
+		Reject!
+	}
+	Seq {
+		Con "test", => @entity.keyTest
+		Act "test"
+	}
+	Seq {
+		Con "melee", => @entity.keyMelee
+		Act "melee"
+	}
+	Seq {
+		Con "pistol", => @entity.keyShoot
+		Act "pistol"
+	}
+	Seq {
+		Con "evade", => @entity.keyEvade
+		Act "evade"
+	}
+	Seq {
+		Con "rush", => @entity.keyRush
+		Act "rush"
+	}
+	Seq {
+		Con "fall", => @entity.keyFall
+		Act "fall"
+	}
+	Sel {
+		Seq {
+			Con "is falling", => not @onSurface
+			Act "fallOff"
+		}
+		Seq {
+			Con "jump key down", => @entity.keyUp
+			Act "jump"
+		}
+	}
+	Seq {
+		Con "fmove key down", => @entity.keyLeft or @entity.keyRight
+		Act "fmove"
+	}
+	Seq {
+		Con "bmove key down", => @entity.keyBLeft or @entity.keyBRight
+		Act "bmove"
+	}
+	Act "idle"
+}
+
+-- Bullet
+
+Store["Bullet_1"] = with BulletDef!
+	.tag = ""
+	.endEffect = ""
+	.lifeTime = 2
+	.damageRadius = 0
+	.highSpeedFix = false
+	.gravity = Vec2.zero
+	-- .face = Face "Image/ar.clip|lsdar_settlement_role_evaluate_good"
+
+	\setAsCircle 10
+	\setVelocity 0,1800
+
+
+
+--Load file
+
+targetAnims = Set {
+	"bmove"
+	"bow"
+	"bstep"
+	"comm"
+	"comp"
+	"defence"
+	"fall"
+	"fmove"
+	"fstep"
+	"gun1"
+	"gun2"
+	"gun3"
+	"hit"
+	"idle"
+	"idle1"
+	"jump"
+	"jumping"
+	"landing"
+	"lose"
+	"melee"
+	"parry"
+	"pistol"
+	"prepare"
+	"standUp"
+	"throw"
+}
+
+testAnims = {
+	"bow"
+	"gun1"
+	"gun2"
+	"gun3"
+	"hit"
+	"lose"
+	"melee"
+	"parry"
+	"throw"
+	"comm"
+	"comp"
+	"defence"
+}
+
+missingAnims = {}
+extraAnims = {}
+
+availableAnims = {}
+defaultFaceRight = true
+
+getAllFiles = (path,exts)->
+	filters = Set exts
+	return for file in *Content\getAllFiles path
+		continue if not filters[Path\getExt file]
+		file
+
+files = Set for file in *getAllFiles "Spine", {"skel","json"}
+	Path\getName file
+includes = Set
+	* "char"
+	* "charF"
+	* "charM"
+	* "ayan"
+	* "liyena"
+	* "moling"
+	* "moyu"
+	* "villywan"
+	* "sunborn"
+	* "yuzijiang"
+	* "dataotie"
+	* "xiaotaotie"
+
+files = [k for k in pairs files when includes[k]]
+
+defaultFaceLeft = Set
+	* "liyena"
+	* "dataotie"
+
+scenes =
+	* "Station"
+	* "Factory"
+	* "FrozenCity"
+	* "AbandonedCity"
+	* "OuterHeaven"
+	* "TrainA"
+	* "TrainB"
+	* "VRTraining"
+	* "PreparationRoom"
+	* "PassageA"
+	* "PassageB"
+	* "PassageC"
+	* "PassageD"
+	* "TrainingRoom"
+	* "OperationRoom"
+	* "RestRoom"
+	* "RDRoom"
+
+
+
+-- Load Animations
+playable = "charF"   -- Init value
+
+anims = Set Spine\getAnimations playable
+
+missingAnims = for anim in pairs targetAnims
+	if not anims[anim]
+		anim
+	else continue
+
+extraAnims = for anim in pairs anims
+	if not targetAnims[anim]
+		anim
+	else continue
+
+defaultFaceRight = not defaultFaceLeft[playable]
+
+
+availableAnims = for anim in *testAnims
+	if anims[anim]
+		anim
+	else continue
+
+for a in *extraAnims
+	table.insert availableAnims, a
+
+
+
+
+
+
+createScene = ->
+	--Audio\playStream "Audio/battle2.ogg", true
+	:world = Store
+	world\removeFromParent! if world
+	world = (require "Scene.#{scenes[CurrentScene]}")!
+	Store.world = world
+	Director.entry\addChild world
+
+
+
+
+createUnit = ->
+	-- unit\removeFromParent! if unit
+	:world = Store
+	--Player
+	Entity
+		hero: playable
+		-- playble: playable
+		group: PlayerGroup
+		layer: PlayerLayer
+		position: Vec2 world.width / 2, world.offset + 150
+		faceRight: true
+		player: true
+
+	--Team Member
+	-- Entity
+	-- 	hero: "charM"
+	-- 	-- playble: playable
+	-- 	group: PlayerGroup
+	-- 	layer: PlayerLayer
+	-- 	position: Vec2 world.width / 2 + 150, world.offset + 150
+	-- 	faceRight: true
+	-- 	player: false
+
+	-- Entity
+	-- 	hero: "villywan"
+	-- 	-- playble: playable
+	-- 	group: PlayerGroup
+	-- 	layer: PlayerLayer
+	-- 	position: Vec2 world.width / 2 - 150, world.offset + 150
+	-- 	faceRight: true
+	-- 	player: false
+
+	--Enenmy
+	Entity
+		player: false
+		enemy: "xiaotaotie"
+		faceRight: true
+		position: Vec2 world.width / 2 - 300, world.offset
+		group: EnemyGroup
+		layer: EnemyLayer
+		hp: 3.0
+
+
+	Entity
+		player: false
+		enemy: "xiaotaotie"
+		faceRight: false
+		position: Vec2 world.width / 2 + 550, world.offset
+		group: EnemyGroup
+		layer: EnemyLayer
+		hp: 3.0
+
+	Entity
+		player: false
+		enemy: "dataotie"
+		faceRight: false
+		position: Vec2 world.width / 2 + 1050, world.offset
+		group: EnemyGroup
+		layer: EnemyLayer
+		hp: 5.0
+
+	world.showDebug = false
+
+
+
+
+--Initialize
+
+createScene!
+if #files > 0
+	createUnit!
+
+
+
+-- Debug
+
+Director.entry\addChild with Node!
+	\schedule ->
+		:width, :height = App.visualSize
+		SetNextWindowPos Vec2(width-300,10), "FirstUseEver"
+		SetNextWindowSize Vec2(290,325), "FirstUseEver"
+		Begin "Spine", {"NoResize","NoSavedSettings"}, ->
+			changed, CurrentScene = Combo "Scene", CurrentScene, scenes
+			if changed
+				createScene!
+				createUnit!
+			-- changed, currentFile = Combo "Spine", currentFile, files
+			-- if changed
+			-- 	playable = files[currentFile]
+			-- 	createUnit playable
+			changed, defaultFaceRight = Checkbox "默认朝向右", defaultFaceRight
+			createUnit! if changed
+			-- changed, battle = Checkbox "战斗状态", battle
+			-- if changed
+			-- 	Store.battle = battle
+			-- 	if unit.onSurface
+			-- 		unit\start "cancel"
+			-- 		unit\start "idle"
+			:world = Store
+			changed,result = Checkbox "Debug",world.showDebug
+			world.showDebug = result if changed
+			for i, anim in ipairs availableAnims
+				if Button anim
+					if not unit.currentAction or unit.currentAction.name ~= "test_"
+						Store.testAction = anim
+						-- unit\start "test"
+				SameLine! if i % 3 ~= 0 and i ~= #availableAnims
+			if #missingAnims > 0
+				Text "缺失动作或名称错误："
+				Text table.concat missingAnims, "\n"
+			if #extraAnims > 0
+				Text "多余动作："
+				Text table.concat extraAnims, "\n"

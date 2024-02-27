@@ -1,0 +1,23 @@
+_ENV = Dora!
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+DB\exec "ATTACH DATABASE '#{Path Content.writablePath, "lsd.db"}' AS lsd;"
+Director.entry\slot "Cleanup", -> DB\exec "DETACH DATABASE lsd"
+
+import "Data.StoryLoader"
+
+Director.entry\addChild with Node!
+	\schedule once ->
+		StoryLoader!
+		p DB\query "select c.name, p.sentence from lsd.Paragraph p, lsd.Character c where p.story_id = 1 and p.conversation_id = 1 and p.character_id = c.id order by p.id", true
+		p DB\query "select id, name from lsd.Character"

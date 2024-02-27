@@ -1,0 +1,30 @@
+<Dora>
+	<Import Module="UI.View.Shape.Circle"/>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="829" Height="142" TouchEnabled="True">
+		<Sprite File="phone.clip|phone_tab_com"/>
+		<Circle X="-330" Radius="60" BorderColor="0xff7f8c8d">
+			<Sprite File="{ avatar }" AnchorX="0" AnchorY="0" X="30" Y="30"/>
+		</Circle>
+		<Label
+			Text="{ username or 'Anonymous' }"
+			FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+			AnchorX="0" X="-240" Y="20"
+		/>
+		<Label
+			Text="{ msg or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0x7a7f8c8d"  TextAlign="Left"
+			AnchorX="0" X="-240" Y="-30"
+		/>
+		<Label
+			Text="{ date or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0x7a7f8c8d"  TextAlign="Right"
+			AnchorX="0" X="300" Y="0"
+		/>
+		<Label
+			Text="{ time or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0x7a7f8c8d"  TextAlign="Right"
+			AnchorX="0" X="300" Y="-40"
+		/>
+
+	</Node>
+</Dora>

@@ -1,0 +1,167 @@
+_ENV = Dora!
+import "UI.View.Story"
+import "UI.StoryFigure"
+import "UI.Answer"
+import "Utils" as :Struct
+import "YarnRunner"
+import "Data.Config"
+import "System.Command"
+
+Dialog = Struct.Story.Dialog "character", "name", "text"
+
+getCharName = (current) ->
+	if current.marks
+		for mark in *current.marks
+			switch mark when {name: attr, attrs: {:name = '', :id = ''}}
+				if attr in ["char", "Character"]
+					id = Config.char if id == "char"
+					return name, id
+	'', ''
+
+export default Class Story,
+	reviewVisible: property => @_reviewVisible,
+		(value)=>
+			@_reviewVisible = value
+			@reviewMask.visible = value
+			@topCenter.visible = value
+			@reviewBack.visible = value
+			@reviewArea.visible = value
+
+	advance: (option)=>
+		action, result = @_runner\advance option
+		switch action when "Text"
+			if result.optionsFollowed
+				_, @_options = @_runner\advance!
+			else
+				@_options = nil
+			@_current = result
+			return true
+		when "Command"
+			@_current = nil
+			@_options = nil
+			@answerList\removeAllChildren!
+			@continueIcon.visible = true
+			@_advancing = true
+			switch result when :preload
+				@_preload = preload
+				return @advance!
+			return true
+		else
+			return false
+
+	__init: (dialogFile)=>
+		@_runner = YarnRunner dialogFile, "Start", Config, Command
+		@advance!
+		@reviewVisible = false
+		@_advancing = false
+		nextSentence = ->
+			return if @_advancing
+			return if @_options
+			if @advance!
+				thread -> @updateDialogAsync!
+			else
+				@hide!
+		@gslot "Story.Advance", ->
+			@_advancing = false
+			nextSentence!
+		@confirm\slot "Tapped", nextSentence
+		@textArea\slot "NoneScrollTapped", nextSentence
+		@reviewButton\slot "Tapped", ->
+			return if @_advancing
+			@reviewVisible = true
+			@alignLayout!
+		@reviewBack\slot "Tapped", -> @reviewVisible = false
+		@reviewArea\slot "NoneScrollTapped", -> @reviewVisible = false
+		@_dialog = with Dialog!
+			.__notify = (event, key, value)->
+				if event == "Modified" and value ~= nil
+					switch key
+						when "character"
+							@figure\removeAllChildren!
+							if value ~= ""
+								@figure\addChild StoryFigure char: value
+						when "name"
+							@name.text = value
+						when "text"
+							@text.text = value
+				elseif event == "Updated"
+					@alignLayout!
+		@_reviews = {}
+		@visible = false
+
+	updateDialogAsync: =>
+		if @_preload
+			for item in *@_preload
+				Cache\loadAsync "spine:#{item == 'char' and Config.char or item}Figure"
+			@_preload = nil
+		return unless @_current
+		return if @_advancing
+		@_advancing = true
+		name, characterId = getCharName @_current
+		Cache\loadAsync "spine:#{characterId}Figure" if characterId ~= ""
+		text = @_current.text
+		@_reviews[] = :name, :text
+		@_dialog.character = characterId
+		@_dialog.name = name
+		@_dialog.text = text
+		@answerList\removeAllChildren!
+		if @_options
+			@continueIcon.visible = false
+			count = #@_options
+			for i = 1, count
+				option = @_options[i]
+				name = getCharName option
+				local optionText = option.text
+				@answerList\addChild with Answer text: optionText
+					\slot "Tapped", ->
+						.touchEnabled = false
+						thread ->
+							sleep 0.3
+							@_reviews[] = :name, text: optionText
+							if @advance i
+								thread -> @updateDialogAsync!
+							else
+								@hide!
+			size = @answerList\alignItems 40
+			@answerList.size = size
+			@answerList\alignItems 40
+		else
+			@continueIcon.visible = true
+		@_advancing = false
+
+	showAsync: =>
+		@updateDialogAsync!
+		@visible = true
+		@_viewScale = View.scale
+		@_viewEffect = View.postEffect
+		View.scale = 4 * @_viewScale
+		:size = View
+		blurH = with Pass "builtin:vs_sprite", "builtin:fs_spriteblurh"
+			.grabPass = true
+			\set "u_radius", size.width
+		blurV = with Pass "builtin:vs_sprite", "builtin:fs_spriteblurv"
+			.grabPass = true
+			\set "u_radius", size.height
+		View.postEffect = with SpriteEffect!
+			for _ = 1, 3
+				\add blurH
+				\add blurV
+		@gslot "AppSizeChanged", ->
+			:width, :height = View.size
+			blurH\set "u_radius", width
+			blurV\set "u_radius", height
+		emit "Story.Display", true
+
+	hide: =>
+		@gslot "AppSizeChanged", nil
+		@emit "Ended"
+		@removeFromParent!
+		viewScale = @_viewScale
+		viewEffect = @_viewEffect
+		thread ->
+			collectgarbage!
+			Cache\removeUnused!
+			emit "Story.Display", false
+			View.scale = viewScale
+			sleep!
+			View.postEffect = viewEffect

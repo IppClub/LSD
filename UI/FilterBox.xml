@@ -1,0 +1,40 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Import Module="UI.GearTabButton"/>
+	<Node>
+		<Grid Name="bg" File="gearBox.clip|formation_pop_bg" ScaleX="-1" GridX="2" GridY="1" X="335">
+			<Grid Name="logo" File="gearBox.clip|formation_pop_logo" X="{ 11.5 - 185 }" ScaleX="-1" GridX="2" GridY="1"/>
+			<Yue>
+				bg\moveUV 3, 1, Vec2 -185, 0
+				bg\moveUV 3, 2, Vec2 -185, 0
+				logo\moveUV 3, 1, Vec2 -185, 0
+				logo\moveUV 3, 2, Vec2 -185, 0
+			</Yue>
+		</Grid>
+		<Grid Name="header" File="gearBox.clip|formation_pop_header" X="{ 520 - 12 }" Y="711" GridX="2" GridY="1">
+			<Yue>
+				header\moveUV 3, 1, Vec2 -185, 0
+				header\moveUV 3, 2, Vec2 -185, 0
+			</Yue>
+		</Grid>
+		<MovingText Y="711" TextBG="FIND MEMBER" Color3="0xffffff" FontSize="100" OffsetY="0" Opacity="0.2">
+			<Item Name="mask">
+				<Sprite File="gearBox.clip|formation_pop_header" AnchorX="0" ScaleX="0.8221"/>
+			</Item>
+		</MovingText>
+		<Sprite Name="icon" File="gearBox.clip|formation_pop_icon_4" X="180" Y="711"/>
+		<Label Text="筛选" FontName="SourceHanSansCN-Regular"
+			FontSize="70" Color3="0xffffff" TextAlign="Left"
+			Spacing="10" X="{ icon.x + 95 }" Y="711" AnchorX="0"/>
+		<GearTabButton X="245" Y="570" Text="递增" Selected="True"/>
+		<GearTabButton X="470" Y="570" Text="递减" Selected="False"/>
+		<Sprite File="gearBox.clip|formation_pop_sep1" X="470" Y="497" ScaleX="1.08"/>
+		<GearTabButton X="245" Y="425" Text="力量" Selected="True"/>
+		<GearTabButton X="470" Y="425" Text="体力" Selected="False"/>
+		<GearTabButton X="695" Y="425" Text="灵活" Selected="False"/>
+		<GearTabButton X="245" Y="325" Text="亲密度" Selected="False"/>
+		<GearTabButton X="470" Y="325" Text="移动" Selected="False"/>
+		<GearTabButton X="695" Y="325" Text="跳跃力" Selected="False"/>
+		<GearTabButton X="245" Y="225" Text="命中率" Selected="False"/>
+	</Node>
+</Dora>

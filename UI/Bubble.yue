@@ -1,0 +1,13 @@
+_ENV = Dora!
+
+import "UI.View.Bubble"
+
+export default Class Bubble,
+	__init: (args)=>
+		:text = args
+		@tag = "bubble"
+		@schedule once ->
+			time = 3 + math.max 0.15 * utf8.len text, 1
+			sleep time
+			@perform Opacity 0.5, 1, 0
+			@removeFromParent!

@@ -1,0 +1,159 @@
+<Dora>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.FormationRole"/>
+	<!--<Import Module="UI.GearBox"/>-->
+	<Import Module="UI.LsdOS"/>
+	<Import Module="UI.Button"/>
+	<Import Module="UI.BackButton"/>
+	<Import Module="UI.Skill"/>
+	<!--<Import Module="UI.TrainingBox"/>-->
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode InUI="True" IsRoot="True">
+		<AlignNode HAlign="Center" VAlign="Center" AlignWidth="3258 * math.min(h / 1563, w / 3258)" AlignHeight="h">
+			<!-- Background -->
+			<AlignNode Name="bg" HAlign="Center" VAlign="Center">
+				<Playable File="bone:lsdOSBack">
+					<Item Tag="logo" Visible="False"/>
+					<Item Tag="formation_head_line">
+						<Label Name="title"
+							Text="专项训练"
+							FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Center"
+							Spacing="20" X ="1333" Y="-8" AnchorY="0"/>
+					</Item>
+				</Playable>
+			</AlignNode>
+			<AlignNode Name="figure" HAlign="Center" VAlign="Center">
+				<FormationRole Name="p1" X="-1077" Y="100" Role="moyu" Editing="False" Cap="True"/>
+				<Label Text="默羽"
+					FontName="SourceHanSansCN-Regular" FontSize="80" Color3="0x0" TextAlign="Left"
+					Spacing="20" X ="-672" Y="600" AnchorX="0" AnchorY="1"/>
+				<Sprite File="button.clip|article_tab_bg" X="-700" Y="445" AnchorX="0"/>
+				<Label Text="基础属性"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Center"
+					Spacing="5" X ="-314" Y="445"/>
+				<Label Text="生命"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-677" Y="360" AnchorX="0"/>
+				<Label Text="80"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x538eff" TextAlign="Right"
+					X ="-465" Y="360" AnchorX="1"/>
+				<Label Text="力量"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-677" Y="{ 360 - 70 }" AnchorX="0"/>
+				<Label Text="20"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x538eff" TextAlign="Right"
+					X ="-465" Y="{ 360 - 70 }" AnchorX="1"/>
+				<Label Text="体能"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-677" Y="{ 360 - 70 * 2 }" AnchorX="0"/>
+				<Label Text="60"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Right"
+					X ="-465" Y="{ 360 - 70 * 2 }" AnchorX="1"/>
+				<Label Text="灵活"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-677" Y="{ 360 - 70 * 3 }" AnchorX="0"/>
+				<Label Text="2.3"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Right"
+					X ="-465" Y="{ 360 - 70 * 3 }" AnchorX="1"/>
+
+				<Label Text="移动速度"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-330" Y="360" AnchorX="0"/>
+				<Label Text="200"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x538eff" TextAlign="Right"
+					X ="60" Y="360" AnchorX="1"/>
+				<Label Text="跳跃能力"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-330" Y="{ 360 - 70 }" AnchorX="0"/>
+				<Label Text="100"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x538eff" TextAlign="Right"
+					X ="60" Y="{ 360 - 70 }" AnchorX="1"/>
+				<Label Text="近战命中率"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-330" Y="{ 360 - 70 * 2 }" AnchorX="0"/>
+				<Label Text="60%"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Right"
+					X ="60" Y="{ 360 - 70 * 2 }" AnchorX="1"/>
+				<Label Text="射击命中率"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-330" Y="{ 360 - 70 * 3 }" AnchorX="0"/>
+				<Label Text="83%"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Right"
+					X ="60" Y="{ 360 - 70 * 3 }" AnchorX="1"/>
+				<Label Text="技能命中率"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+					Spacing="5" X ="-330" Y="{ 360 - 70 * 4 }" AnchorX="0"/>
+				<Label Text="100%"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Right"
+					X ="60" Y="{ 360 - 70 * 4 }" AnchorX="1"/>
+				<Node Name="skillArea" X="-303" Y="-280" Width="888" Height="592">
+					<Skill/>
+					<Skill/>
+					<Skill/>
+					<Skill/>
+					<Skill/>
+					<Skill/>
+					<Lua>skillArea:alignItems(0)</Lua>
+				</Node>
+			</AlignNode>
+			<AlignNode Name="bottomControl" HAlign="Center" VAlign="Bottom">
+				<Node Name="mirror" Width="2721" Height="300" AnchorY="1" ScaleY="-1">
+					<Playable File="spine:moyu" X="{ $X + p1.x }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+					<Playable File="spine:dataotie" X="{ $X + 852 }" Y="60" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+					<Yue>
+						with mirror\grab 1, 1
+							\setColor 1, 1, Color 0x00ffffff
+							\setColor 2, 1, Color 0x00ffffff
+							\setColor 1, 2, Color 0x44ffffff
+							\setColor 2, 2, Color 0x44ffffff
+					</Yue>
+				</Node>
+				<Node X="852" Y="250">
+					<Sprite File="shadow.png" ScaleX="8" ScaleY="8"/>
+					<Playable File="spine:dataotie" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+					<Label Text="狂暴的巨型饕餮"
+						FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Center"
+						Y="1100"/>
+				</Node>
+				<Sprite File="shadow.png" X="{ p1.x }" Y="250" ScaleX="1.5" ScaleY="1.5"/>
+				<Playable File="spine:moyu" X="{ p1.x }" Y="250" Play="idle" Loop="True" ScaleX="1.5" ScaleY="1.5"/>
+			</AlignNode>
+			<!-- LSD OS -->
+			<LsdOS Name="lsdOS"/>
+			<!-- Left Top -->
+			<AlignNode Name="topControl" HAlign="Left" VAlign="Top">
+				<BackButton X="{ 100 + 55 }" Y="{ -45 - 33.5 }"/>
+			</AlignNode>
+			<!-- Left Bottom -->
+			<AlignNode Name="leftControl" HAlign="Left" VAlign="Bottom">
+				<Button Text="选择学员" TextBG="SELECT MEMBER" X="{ 100 + 181.5 }" Y="{ 70 + 41.5 }"/>
+			</AlignNode>
+			<!-- Right Bottom -->
+			<AlignNode Name="rightControl" HAlign="Right" VAlign="Bottom">
+				<Button Text="开始训练" TextBG="START TRAINING" X="{ -100 - 181.5 }" Y="{ 70 + 41.5 }"/>
+			</AlignNode>
+		</AlignNode>
+		<!-- Left TrainingBox -->
+		<AlignNode Name="trainingBox" HAlign="Left" VAlign="Center">
+			<!--<TrainingBox/>-->
+		</AlignNode>
+		<!-- Right GearBox -->
+		<AlignNode Name="gearBox" HAlign="Right" VAlign="Center">
+			<!--<GearBox Right="True"/>-->
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				scale = h / H
+				ratio = w / h
+				extraScale = ratio / math.max ratio, 1.9
+				for item in *{figure, bottomControl}
+					item.scaleX = scale * extraScale
+					item.scaleY = scale * extraScale
+				for item in *{bg, lsdOS, topControl, leftControl, rightControl, trainingBox, gearBox}
+					item.scaleX = scale
+					item.scaleY = scale
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

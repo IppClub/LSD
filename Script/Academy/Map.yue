@@ -1,0 +1,153 @@
+import "Platformer" as :Data
+
+routes =
+	LoopTowerInitial:
+		name: "开场螺旋塔"
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["PreparationRoom",]
+
+	PreparationRoom:
+		name: "备战室"
+		left:
+			name: "左边门"
+			enter: "right"
+			targets: ["PassageA",]
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["PassageB",]
+
+	OperationRoom:
+		name: "指挥室"
+		left:
+			name: "左边门"
+			enter: "right"
+			targets: ["PassageC",]
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: []
+
+	RDRoom:
+		name: "研发室"
+		left:
+			name: "左边门"
+			enter: "right"
+			targets: ["PassageD",]
+		right:
+			name: "右边门"
+			enter: ""
+			targets: []
+
+	RestRoom:
+		name: "休息室"
+		left:
+			name: "左边门"
+			enter: ""
+			targets: []
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["PassageA",]
+
+	TrainingRoom:
+		name: "训练室"
+		left:
+			name: "左边门"
+			enter: "right"
+			targets: ["PassageB",]
+		right:
+			name: "右边门"
+			enter: ""
+			targets: []
+
+	PassageA:
+		name: "A区走廊"
+		left:
+			name: "左边门"
+			enter: "right"
+			targets: ["RestRoom",]
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["PreparationRoom",]
+		center:
+			name: "电梯"
+			enter: "center"
+			targets: ["PassageC",]
+
+	PassageB:
+		name: "B区走廊"
+		left:
+			name: "左边门"
+			enter: "right"
+			targets: ["PreparationRoom",]
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["TrainingRoom",]
+		center:
+			name: "电梯"
+			enter: "center"
+			targets: ["PassageA", "PassageC"]
+
+	PassageC:
+		name: "C区走廊"
+		left:
+			name: "左边门"
+			enter: ""
+			targets: []
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["OperationRoom",]
+		center:
+			name: "电梯"
+			enter: "center"
+			targets: ["PassageA", "PassageD"]
+
+	PassageD:
+		name: "D区走廊"
+		left:
+			name: "左边门"
+			enter: ""
+			targets: []
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: ["RDRoom", ]
+		center:
+			name: "电梯"
+			enter: "center"
+			targets: ["PassageC", ]
+
+states =
+	* PreparationRoom: true
+		PassageA: true
+		RestRoom: true
+
+	* PassageB: true
+		TrainingRoom: true
+
+	* PassageC: true
+		OperationRoom: true
+
+	* PassageD: true
+		RDRoom: true
+
+isAvailable = (name) ->
+	level = Data.store.academyLevel ?? #states
+	for i = 1, level
+		if states[i][name]
+			return true
+	false
+
+export getRoute = (name, route) ->
+	if {:name, :enter, :targets} := routes[name]?[route]
+		targets = [target for target in *targets when isAvailable target]
+		return name, enter, targets
+	nil, nil, nil
+
+export getName = (nameEN) -> routes[nameEN]?.name

@@ -1,0 +1,30 @@
+_ENV = Dora!
+
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+Director.entry\addChild with Node!
+	.scaleX = 1
+	.scaleY = 1
+	.size = View.size
+	.height += 600
+	with \grab 10, 1
+		for x = 1, 11
+			for y = 1, 2
+				pos = \getPos x, y
+				\setPos x, y, pos, math.sin(math.abs(x - 6) * math.pi / 50) * math.abs(x - 6) * 200
+	\addChild with Sprite "Image/loopTower.png"
+		.position = Vec2(0.5, 0.5) * View.size
+		.y += 350
+		scale = View.size.height / 1563
+		.scaleX = scale
+		.scaleY = scale

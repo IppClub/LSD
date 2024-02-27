@@ -1,0 +1,21 @@
+{
+	"header": {
+		"lastSavedUnix": "2024-02-22T10:15:24.636Z",
+		"language": "en-GB",
+		"documentType": "yarn",
+		"markupLanguage": "bbcode",
+		"filetypeVersion": "2"
+	},
+	"nodes": [
+		{
+			"title": "Start",
+			"tags": "",
+			"body": "[char id=ninilite name=妮妮莉特/]就是现在！给它最后一击！",
+			"position": {
+				"x": 0,
+				"y": 0
+			},
+			"colorID": 0
+		}
+	]
+}

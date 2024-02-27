@@ -1,0 +1,181 @@
+_ENV = Dora dora.Platformer
+import "Academy.Map" as Map
+
+const W = 3840
+const HW = W / 2
+const H = 1080
+const HH = H / 2
+const Offset = 0
+const BackZ = 475
+const ZOffset = BackZ / 2
+const PathOffset = 50
+const MaxPath = 2
+const DefaultZoom = 0.65
+const SceneName = "TrainingRoom"
+
+macro order = (value)->
+	global globals = globals or {}
+	globals.layerId = if value then tonumber value
+	else globals.layerId - 1
+	globals.layerId
+
+layerDefs =
+	* look: "lantern", order: $order(100), x: W * (1.0 - DefaultZoom) / 2, scale: DefaultZoom
+	* look: "dummyanchor2", order: $order, x: 1761, z: ZOffset - 80 - 60
+	* look: "dummyanchor1", order: $order, x: 1761, z: ZOffset - 80 - 30
+	* look: "dummy", order: $order, x: 1761, z: ZOffset - 80, handle: => @play "dummyglow", true
+	* look: "backanchor2", order: $order, z: BackZ - 300
+	* look: "seat", order: $order, x: 935, z: ZOffset - 100, scale: 0.7
+	* look: "horseanchor2", order: $order(-100), x: 2382, z: ZOffset + 100 - 60
+	* look: "horseanchor1", order: $order, x: 2382, z: ZOffset + 100 - 30
+	* look: "horse", order: $order, x: 2382, z: ZOffset + 100, handle: => @play "horseglow", true
+	* look: "dummyanchor2", order: $order, x: 2940, z: ZOffset + 150 - 60
+	* look: "dummyanchor1", order: $order, x: 2940, z: ZOffset + 150 - 30
+	* look: "dummy", order: $order, x: 2940, z: ZOffset + 150, handle: => @play "dummyglow", true
+	* look: "text", order: $order, x: 935, z: ZOffset + 50, handle: => @play "textroll", true
+	* look: "table", order: $order, x: 935, z: ZOffset + 50, handle: => @play "maskglow", true
+	* look: "leftwall", order: $order, angleY: -90
+	* look: "rightwall", order: $order, x: W, angleY: 90
+	* look: "backanchor1", order: $order, z: BackZ - 100
+	* look: "back", order: $order, z: BackZ
+	* look: "floor", order: $order, angleX: 90
+
+addLayer = (world, def)->
+	layer = with Spine "trainingRoom"
+		.look = def.look
+		.order = def.order
+		.scaleX = def.scale or 1.0
+		.scaleY = def.scale or 1.0
+		.x = def.x or 0
+		.y = def.y or 0
+		.z = def.z or 0
+		.angleX = def.angleX or 0
+		.angleY = def.angleY or 0
+		.x = def.x or 0
+	if def.ratio
+		world\setLayerRatio def.order, def.ratio
+	if def.offset
+		world\setLayerOffset def.order, def.offset
+	world\addChild layer
+	def.handle layer if def.handle
+	layer
+
+export default Class
+	width: property -> W
+	offset: property -> Offset
+	left: property => Vec2 100, @offset
+	right: property => Vec2 @width - 100, @offset
+
+	addShadowTo: (unit)=>
+		with Sprite "Image/shadow1.png"
+			.angleX = 90
+			.order = -1
+			\schedule -> .y = @offset - unit.y
+			\addTo unit
+
+	openLeftDoor: => with @_layers.leftwall
+		.opened = true
+		.recovery = 0
+		\play "openLI"
+
+	openRightDoor: => with @_layers.rightwall
+		.opened = true
+		.recovery = 0
+		\play "openRI"
+
+	zoom: property => @_zoom,
+		(value)=>
+			@_zoom = value
+			@updateZoom!
+
+	updateZoom: =>
+		actualZoom = @_zoom * DefaultZoom
+		with @_layers.lantern
+			.x = W * (1.0 - actualZoom) / 2
+			.scaleX = actualZoom
+			.scaleY = actualZoom
+		:width, :height = View.size
+		zoom = height / H / actualZoom
+		if width > W * zoom
+			zoom = width / W
+		with @camera
+			.zoom = zoom
+			.boundary = Rect 0, 0, W, H * actualZoom
+
+	__partial: =>
+		with PlatformWorld!
+			.camera.followRatio = Vec2 0.03, 0.03
+			.tag = "TrainingRoom"
+
+	__init: =>
+		for i = -MaxPath, MaxPath
+			with @getLayer i
+				.z = ZOffset - PathOffset * i
+
+		@_layers = {def.look, addLayer(@, def) for def in *layerDefs}
+
+		const LeftDoorSensor = 0
+		const RightDoorSensor = 1
+		terrainDef = with BodyDef!
+			.type = "Static"
+			\attachPolygon Vec2(HW, 0), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(HW, H), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
+			\attachPolygon Vec2(W, HH), 10, H, 0, 1, 1, 0
+			\attachPolygonSensor LeftDoorSensor, Vec2(75, 175), 150, 350
+			\attachPolygonSensor RightDoorSensor, Vec2(W - 75, 175), 150, 350
+			.position = Vec2 0, Offset
+
+		@_layers.leftwall.opened = false
+		@_layers.rightwall.opened = false
+		const DoorSpeed = 1.5
+		with Body terrainDef, @, Vec2.zero
+			.group = Data.groupTerrain
+			\slot "BodyEnter", (body, sensorTag)->
+				return unless body.entity
+				return unless body.entity.player
+				door, animation, route = switch sensorTag
+					when LeftDoorSensor
+						@_layers.leftwall, "openL", "left"
+					when RightDoorSensor
+						@_layers.rightwall, "openR", "right"
+				if name, enter, targets := Map.getRoute SceneName, route
+					with body.entity
+						.moveFromRight = if body.velocityX == 0 then route ~= "right" else body.velocityX < 0
+						.moveRouteName = name
+						.moveEnter = enter
+						.moveTargets = Array targets
+					if #targets > 0 and not door.opened
+						with door
+							.opened = true
+							.recovery = 1
+							.speed = DoorSpeed
+							\play animation
+			\slot "BodyLeave", (body, sensorTag)->
+				return unless body.entity
+				return unless body.entity.player
+				return unless body.entity.moveTargets
+				available = not body.entity.moveTargets.empty
+				with body.entity
+					.moveFromRight = nil
+					.moveRouteName = nil
+					.moveEnter = nil
+					.moveTargets = nil
+				return unless available
+				door, animation = switch sensorTag
+					when LeftDoorSensor
+						@_layers.leftwall, "closeL"
+					when RightDoorSensor
+						@_layers.rightwall, "closeR"
+				with door
+					.opened = false
+					.recovery = 1
+					.speed = DoorSpeed
+					\play animation
+			\addTo @
+
+		@_zoom = 1.0
+		@gslot "AppSizeChanged", -> @updateZoom!
+		@updateZoom!
+
+	loadAsync: => Cache\loadAsync "spine:trainingRoom"

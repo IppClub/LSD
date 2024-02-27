@@ -1,0 +1,62 @@
+_ENV = Dora dora.Platformer
+
+import "Academy.Action" as AcademyAction
+import "Academy.AI" as AcademyAI
+import "Academy.System" as AcademySystem
+import "Scene.PreparationRoom"
+import "Data.Config"
+
+export default ->
+	PreparationRoom\loadAsync!
+	world = PreparationRoom!
+	with Director.entry
+		\removeAllChildren!
+		Cache\removeUnused "Texture"
+		\addChild world
+	Director.ui3D\removeAllChildren!
+
+	Entity\clear!
+	Data.store\clear!
+	Data.store.world = world
+	AcademyAction!
+	AcademyAI!
+	AcademySystem!
+
+	world\turnOnLights!
+
+	Entity
+		player: true
+		name: Config.char
+		faceRight: false
+		position: Vec2 world.width / 2, world.offset
+		busy: true
+		base: true
+
+	Entity
+		player: false
+		name: "ninilite"
+		faceRight: false
+		position: Vec2 world.width / 2 + 180, world.offset
+		busy: true
+		base: true
+
+	threadLoop ->
+		group = Group({"player", "name", "unit"})
+		if group.count > 0
+			group\each =>
+				if @name in ["charF", "charM"]
+					world.camera.position = @unit.position
+					world\makeUnitEnter @unit, 1, 0
+				else
+					world\makeUnitEnter @unit, 0, -1
+			true
+
+	thread ->
+		import "UI.HUDControl"
+		with HUDControl!
+			\addTo Director.ui3D
+			.visible = false
+			sleep 6
+			.visible = true
+			\perform Opacity 1, 0, 1
+			emit "HUD.DisplayMove", true

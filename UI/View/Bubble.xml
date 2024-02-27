@@ -1,0 +1,26 @@
+<Dora>
+	<Node Name="node" X="{ x or 0 }" Y="{ y or 200 }" ScaleX="0.5" ScaleY="0.5" Width="524" Height="112" AnchorY="0">
+		<Grid Name="back1" File="button.clip|prompt_chat_1_1" X="{ $X }" Y="{ $Y }" GridX="1" GridY="3"/>
+		<Sprite Name="back2" File="button.clip|prompt_chat_1_2" X="{ $X }" Y="{ $B }" AnchorY="1"/>
+		<Label Name="lb"
+			Text="{ text or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xffffff" TextAlign="Left"
+			X="20" Y="{ $Y }" AnchorX="0" TextWidth="490" LineGap="5"/>
+		<Yue>
+			height = lb.height + 40
+			if height > 112
+				yOffset = height - 112
+				offset = Vec2 0, yOffset
+				back1.y = height / 2 + yOffset / 2
+				lb.y = height / 2
+				node.height = height
+				for {x, y} in *{
+						{1, 3}
+						{2, 3}
+						{1, 4}
+						{2, 4}
+					}
+					back1\setPos x, y, back1\getPos(x, y) - offset
+		</Yue>
+	</Node>
+</Dora>

@@ -1,0 +1,9 @@
+_ENV = Dora!
+import "UI.View.HUDControl"
+
+export default Class HUDControl,
+	__init: =>
+		@gslot "Story.Display", (visible)-> @visible = not visible
+		@gslot "Tutorial.Weapon", ->
+			@weapon\perform Scale 0.3, 0, 1, Ease.OutBack
+			@weapon.visible = true

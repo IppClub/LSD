@@ -1,0 +1,41 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="896" Height="63">
+		<Sprite File="ar.clip|lsdar_settlement_mission_bg" X="{ $X }" Y="{ $Y }"/>
+		<Lua>if mode == "Main" then</Lua>
+			<Label
+				Text="[主线]"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xe32323" TextAlign="Left"
+				X="20" Y="{ $Y }" AnchorX="0"/>
+		<Lua>elseif mode == "Side" then</Lua>
+			<Label
+				Text="[支线]"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+				X="20" Y="{ $Y }" AnchorX="0" Opacity="0.5"/>
+		<Lua>else</Lua>
+			<Label
+				Text="[地图]"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x7396ff" TextAlign="Left"
+				X="20" Y="{ $Y }" AnchorX="0"/>
+		<Lua>end</Lua>
+		<Label
+			Text="{ title or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+			X="145" Y="{ $Y }" AnchorX="0"/>
+		<Lua>if status == "Complete" then</Lua>
+			<Label
+				Text="完成"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x7396ff" TextAlign="Right"
+				X="{ $R-20 }" Y="{ $Y }" AnchorX="1"/>
+		<Lua>elseif status == "Failed" then</Lua>
+			<Label
+				Text="失败"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xe32323" TextAlign="Right"
+				X="{ $R-20 }" Y="{ $Y }" AnchorX="1"/>
+		<Lua>else</Lua>
+			<Label
+				Text="{ status or '' }"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Right"
+				X="{ $R-20 }" Y="{ $Y }" AnchorX="1"/>
+		<Lua>end</Lua>
+	</Node>
+</Dora>

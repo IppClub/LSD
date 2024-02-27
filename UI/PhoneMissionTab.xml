@@ -1,0 +1,16 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="829" Height="117" TouchEnabled="True">
+		<Sprite File="phone.clip|phone_tab_mission_1"/>
+		<Label
+			Text="[主线]"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffff0000"  TextAlign="Left"
+			AnchorX="0" X="-375"
+		/>
+		<Label
+			Text="{ name }"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x7a000000"  TextAlign="Left"
+			AnchorX="0" X="-235"
+		/>
+		<Sprite File="phone.clip|phone_point_2" X="380"/>
+	</Node>
+</Dora>

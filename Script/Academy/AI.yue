@@ -1,0 +1,58 @@
+_ENV = Dora(
+	dora.Platformer
+	dora.Platformer.Decision
+)
+
+export default ->
+	store: Store = Data
+
+	Store["AI:NPC"] = Sel [
+		Seq [
+			Con "not facing nearest player", =>
+				for unit in *AI\getDetectedUnits!
+					if unit.entity.player
+						return math.abs(@x - unit.x) <= 200 and (@x > unit.x) == @faceRight
+				if unit := AI\getNearestUnit "Any"
+					math.abs(@x - unit.x) <= 200 and (@x > unit.x) == @faceRight
+				else
+					false
+			Act "turn"
+		]
+		Act "idle"
+	]
+
+	Store["AI:PlayerControl"] = Sel [
+		Seq [
+			Sel [
+				Seq [
+					Con "fmove key down", =>
+						not (@entity.keyLeft and @entity.keyRight) and
+						(
+							(@entity.keyLeft and @faceRight) or
+							(@entity.keyRight and not @faceRight)
+						)
+					Act "turn"
+				]
+				Seq [
+					Con "bmove key down", =>
+						not (@entity.keyLeft or @entity.keyRight) and
+						not (@entity.keyBLeft and @entity.keyBRight) and
+						(
+							(@entity.keyBLeft and not @faceRight) or
+							(@entity.keyBRight and @faceRight)
+						)
+					Act "turn"
+				]
+			]
+			Reject!
+		]
+		Seq [
+			Con "is falling", => not @onSurface
+			Act "fallOff"
+		]
+		Seq [
+			Con "fmove key down", => @entity.keyLeft or @entity.keyRight
+			Act "fmove"
+		]
+		Act "idle"
+	]

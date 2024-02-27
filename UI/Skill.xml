@@ -1,0 +1,19 @@
+<Node Width="296" Height="296" Visible="{ visible }" TouchEnabled="True">
+	<Lua>if not placeHolder then</Lua>
+	<Sprite Name="normal" File="skill.clip|lsdar_skill_bg_1" X="{ $X }" Y="{ $Y }"/>
+	<Sprite Name="highlight" File="skill.clip|lsdar_skill_bg_2" X="{ $X }" Y="{ $Y }" Visible="False"/>
+	<Playable File="spine:Spine/kineticgun" Look="PT" X="{ $X - 60 }" Y="{ $Y - 40 }" ScaleX="{ 0.5 }" ScaleY="{ 0.5 }"/>
+	<Slot Name="TapBegan">
+		<Lua>
+			normal.visible = false
+			highlight.visible = true
+		</Lua>
+	</Slot>
+	<Slot Name="TapEnded">
+		<Lua>
+			normal.visible = true
+			highlight.visible = false
+		</Lua>
+	</Slot>
+	<Lua>end</Lua>
+</Node>

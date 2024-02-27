@@ -1,0 +1,26 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="263" Height="92">
+		<Sprite File="button.clip|lsdar_btn_bg_3" X="{ $X }" Y="{ $Y }" Visible="{ not selected }">
+		</Sprite>
+		<Sprite File="button.clip|lsdar_btn_bg_4" X="{ $X }" Y="{ $Y }" Visible="{ selected }"/>
+		<Yue>
+			validAction = switch action
+				when "cover", "fight", "follow", "move", "retreat", "assemble" then true
+				when nil then true
+				else false
+			error "invalid cmd button type: #{ action }" unless validAction
+		</Yue>
+		<Lua>if action then</Lua>
+			<Sprite File="{ 'button.clip|lsdar_btn_' .. action .. '_1' }" X="55" Y="{ $Y }" Opacity="{ selected and 1.0 or 0.5 }"/>
+			<Label
+				Text="{ text or '' }"
+				FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Left"
+				X="110" Y="{ $Y }" AnchorX="0" Spacing="5" Opacity="{ selected and 1.0 or 0.5 }"/>
+		<Lua>else</Lua>
+			<Label
+				Text="{ text or '' }"
+				FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Center"
+				X="{ $X }" Y="{ $Y }" Spacing="5" Opacity="{ selected and 1.0 or 0.5 }"/>
+		<Lua>end</Lua>
+	</Node>
+</Dora>

@@ -1,0 +1,46 @@
+<Dora>
+	<Node Name="node" Width="827" Height="114" TouchEnabled="True">
+		<Grid Name="back1" File="button.clip|prompt_chat_answer_1" X="{ $X }" Y="{ $Y }" GridX="1" GridY="2"/>
+		<Grid Name="back2" File="button.clip|prompt_chat_answer_2" X="{ $X }" Y="{ $Y }" GridX="1" GridY="2" Visible="False"/>
+		<Label Name="lb"
+			Text="{ text or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Left"
+			X="55" Y="{ $Y }" AnchorX="0" TextWidth="717"/>
+		<Action>
+			<Sequence Name="scaleAction">
+				<Scale Time="0.08" Start="1" Stop="0.8"/>
+				<Scale Time="0.3" Start="0.8" Stop="1" Ease="OutBack"/>
+			</Sequence>
+			<Spawn Name="show" Ref="True">
+				<Show/>
+				<Opacity Start="0.6"/>
+			</Spawn>
+			<Sequence Name="hide" Ref="True">
+				<Show/>
+				<Opacity Time="0.8" Start="0.6" Stop="0"/>
+				<Hide/>
+			</Sequence>
+		</Action>
+		<Slot Name="Tapped" Perform="scaleAction"/>
+		<Slot Name="TapBegan" Target="back2" Perform="show"/>
+		<Slot Name="TapEnded" Target="back2" Perform="hide"/>
+		<Yue>
+			height = lb.height + 40
+			if height > 114
+				yOffset = height - 114
+				offset = Vec2 0, yOffset
+				back1.y = height / 2 + yOffset / 2
+				back2.y = height / 2 + yOffset / 2
+				lb.y = height / 2
+				node.height = height
+				for {x, y} in *{
+						{1, 2}
+						{2, 2}
+						{1, 3}
+						{2, 3}
+					}
+					back1\setPos x, y, back1\getPos(x, y) - offset
+					back2\setPos x, y, back2\getPos(x, y) - offset
+		</Yue>
+	</Node>
+</Dora>

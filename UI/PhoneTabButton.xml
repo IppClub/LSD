@@ -1,0 +1,20 @@
+<Dora>
+	<Node  X="{ x or 0}" Y="{ y or 0 }" Width="204" Height="93" TouchEnabled="True">
+		<Node Name="inactive" Visible="True" Ref="True">
+			<Sprite File="{ 'phone.clip|phone_btn_1' }"  />
+			<Sprite File="{ tabIcon ..  '2' }"/>
+		</Node>
+		<Node Name="active" Visible="False" Ref="True">
+			<Sprite File="{ 'phone.clip|phone_btn_2' }"/>
+			<Sprite File="{ tabIcon ..  '3' }"/>
+		</Node>
+		<Slot Name="Tapped">
+			<Yue>
+				inactive.visible = not inactive.visible
+				active.visible = not active.visible
+				print index
+			</Yue>
+		</Slot>
+
+	</Node>
+</Dora>

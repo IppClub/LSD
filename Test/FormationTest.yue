@@ -1,0 +1,17 @@
+_ENV = Dora!
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+import "UI.Formation"
+
+Director.ui3D\addChild with Formation!
+	\alignLayout!

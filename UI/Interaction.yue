@@ -1,0 +1,43 @@
+_ENV = Dora!
+import "UI.InputButton"
+import "UI.View.Interaction"
+
+-- [signals]
+-- "Tapped", (buttonIndex)->
+-- [params]
+-- text, buttons:{{text,textBG}}
+export default Class Interaction,
+	__init: (args)=>
+		{:buttons = {}} = args
+		index = 1
+		for {text, textBG} in *buttons
+			buttonIndex = index
+			@menu\addChild with InputButton :text, :textBG
+				@menu.enabled = false
+				\slot "Tapped", -> @emit "Tapped", buttonIndex
+			index += 1
+		size = @menu\alignItems 5
+		@menu.size = size
+		@menu\alignItems 5
+		@slot "Remove", -> @removeFromParent!
+
+	show: =>
+		@menu.enabled = true
+		@perform Spawn(
+			Opacity 0.2, 0, 1
+			Y 0.2, 220, 200, Ease.OutQuad
+		)
+
+	hide: (remove = true)=>
+		@menu.enabled = false
+		fadeOut = Spawn(
+			Opacity 0.2, 1, 0
+			Y 0.2, 200, 220, Ease.InQuad
+		)
+		@perform if remove
+			Sequence(
+				fadeOut
+				Event "Remove"
+			)
+		else
+			fadeOut

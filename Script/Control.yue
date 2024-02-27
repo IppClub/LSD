@@ -1,0 +1,150 @@
+_ENV = Dora dora.Platformer
+import "UI.Control.Basic.AlignNode"
+import "UI.Control.Basic.CircleButton"
+
+store:Store = Data
+
+keyboardEnabled = switch App.platform
+	when "macOS", "Windows", "Linux" then true
+	else false
+
+Store.keyboardEnabled = keyboardEnabled
+
+playerGroup = Group {"player"}
+updatePlayerControl = (key, flag, vpad = false)->
+	if keyboardEnabled
+		Store.keyboardEnabled = not flag if vpad
+	playerGroup\each => @[key] = flag
+uiScale = App.devicePixelRatio
+
+with AlignNode isRoot:true, inUI:true
+	.opacity = 0.5
+	--.visible = false
+	\addChild with AlignNode!
+		.hAlign = "Left"
+		.vAlign = "Bottom"
+		\addChild with Menu!
+			\addChild with CircleButton {
+					text: "左(a)"
+					x: 20*uiScale
+					y: 60*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyLeft",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyLeft",false,true
+			\addChild with CircleButton {
+					text: "右(d)"
+					x: 90*uiScale
+					y: 60*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyRight",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyRight",false,true
+			\addChild with CircleButton {
+					text: "左退(q)"
+					x: 20*uiScale
+					y: (60*2+10)*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyBLeft",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyBLeft",false,true
+			\addChild with CircleButton {
+					text: "右退(e)"
+					x: 90*uiScale
+					y: (60*2+10)*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyBRight",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyBRight",false,true
+	\addChild with AlignNode!
+		.hAlign = "Right"
+		.vAlign = "Bottom"
+		\addChild with Menu!
+			\addChild with CircleButton {
+					text: "跳(k)"
+					x: -80*uiScale
+					y: 60*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyUp",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyUp",false,true
+			\addChild with CircleButton {
+					text: "手枪(j)"
+					x: -150*uiScale
+					y: 60*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyShoot",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyShoot",false,true
+		\addChild with Menu!
+			\addChild with CircleButton {
+					text: "闪避(i)"
+					x: -80*uiScale
+					y: (60*2+10)*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyEvade",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyEvade",false,true
+			\addChild with CircleButton {
+					text: "冲刺(u)"
+					x: -150*uiScale
+					y: (60*2+10)*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyRush",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyRush",false,true
+			\addChild with CircleButton {
+					text: "倒地起身(o)"
+					x: -150*uiScale
+					y: (60*3+20)*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyFall",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyFall",false,true
+			\addChild with CircleButton {
+					text: "普攻(l)"
+					x: -80*uiScale
+					y: (60*3+20)*uiScale
+					radius: 30*uiScale
+					fontSize: math.floor 18*uiScale
+				}
+				.anchor = Vec2.zero
+				\slot "TapBegan", -> updatePlayerControl "keyMelee",true,true
+				\slot "TapEnded", -> updatePlayerControl "keyMelee",false,true
+	\addTo with Director.ui
+		.renderGroup = true
+
+keyboardControl = ->
+	return unless Store.keyboardEnabled
+	updatePlayerControl "keyLeft", Keyboard\isKeyPressed "A"
+	updatePlayerControl "keyRight", Keyboard\isKeyPressed "D"
+	updatePlayerControl "keyBLeft", Keyboard\isKeyPressed "Q"
+	updatePlayerControl "keyBRight", Keyboard\isKeyPressed "E"
+	updatePlayerControl "keyUp", Keyboard\isKeyPressed "K"
+	updatePlayerControl "keyShoot", Keyboard\isKeyPressed "J"
+	updatePlayerControl "keyRush", Keyboard\isKeyPressed "U"
+	updatePlayerControl "keyEvade", Keyboard\isKeyPressed "I"
+	updatePlayerControl "keyFall", Keyboard\isKeyPressed "O"
+	updatePlayerControl "keyMelee", Keyboard\isKeyPressed "L"
+	updatePlayerControl "keyTest", Keyboard\isKeyPressed "T"
+
+Director.entry\addChild with Node!
+	\schedule keyboardControl

@@ -1,0 +1,82 @@
+<Dora>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+	<Import Module="UI.GearTabButton"/>
+	<Import Module="UI.TrainingButton"/>
+	<Import Module="UI.ArrowButton"/>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.MovingText"/>
+
+	<Node X="733.5">
+		<Sprite File="gearBox.clip|formation_pop_bg_4"/>
+		<MovingText X="-733.5" Y="711" TextBG="ENEMY SIMULATION" Color3="0xffffff" FontSize="100" OffsetY="0" Opacity="0.2">
+			<Item Name="mask">
+				<SolidRect X="0" Y="0" Width="1467" Height="140"/>
+			</Item>
+		</MovingText>
+		<Sprite File="gearBox.clip|formation_pop_icon_3" X="-509" Y="711"/>
+		<Label Text="假想敌模拟" FontName="SourceHanSansCN-Regular"
+				FontSize="70" Color3="0xffffff" TextAlign="Left"
+				Spacing="10" X="-410" Y="711" AnchorX="0"/>
+		<Menu Name="tab" Width="844" Height="90" X="-584" Y="570" AnchorX="0">
+			<GearTabButton Text="BOSS" Selected="True"/>
+			<GearTabButton Text="精英怪"/>
+			<GearTabButton Text="怪物潮"/>
+			<GearTabButton Text="特殊"/>
+			<Lua>tab:alignItems(0)</Lua>
+		</Menu>
+		<ScrollArea Name="scrollArea" X="-160" PaddingX="0" Y="165" Width="804" Height="700" ScrollBar="False">
+			<Item Name="view">
+				<TrainingButton/>
+				<TrainingButton Selected="True"/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+				<TrainingButton/>
+			</Item>
+			<Lua>scrollArea:adjustSizeWithAlign("Auto", 0, Size(804, 700))</Lua>
+		</ScrollArea>
+		<Label Text="怪物名称" FontName="SourceHanSansCN-Regular"
+			FontSize="35" Color3="0xffffff" TextAlign="Left"
+			X="-545" Y="-240" AnchorX="0"/>
+		<ScrollArea Name="descArea" PaddingX="0" X="-160" Y="-450" Width="800" Height="300" ScrollBar="False">
+			<Item Name="view">
+				<Label Text="怪物描述文字，怪物描述文字，怪物描述文字，怪物描述文字，怪物描述文字，怪物描述文字，怪物描述文字"
+					FontName="SourceHanSansCN-Regular"
+					FontSize="35" Color3="0xffffff" TextAlign="Left" TextWidth="800"/>
+			</Item>
+			<Lua>descArea:adjustSizeWithAlign("Auto", 0, Size(800, 300))</Lua>
+		</ScrollArea>
+		<Sprite File="button.clip|btn_middle_1" X="-170" Y="-670">
+			<Label Text="确定" FontName="SourceHanSansCN-Regular"
+				FontSize="40" Color3="0x0" TextAlign="Center"
+				Spacing="20" X="{ $X }" Y="{ $Y }"/>
+		</Sprite>
+		<Menu>
+			<Label Text="难度" FontName="SourceHanSansCN-Regular"
+				FontSize="50" Color3="0xffffff" TextAlign="Center" Opacity="0.5"
+				Spacing="5" X="490" Y="585"/>
+			<Label Text="呆滞" FontName="SourceHanSansCN-Regular"
+				FontSize="50" Color3="0xffffff" TextAlign="Center"
+				Spacing="5" X="490" Y="510"/>
+			<ArrowButton X="355" Y="510"/>
+			<ArrowButton X="624" Y="510" Right="True"/>
+
+			<Label Text="训练时长" FontName="SourceHanSansCN-Regular"
+				FontSize="50" Color3="0xffffff" TextAlign="Center" Opacity="0.5"
+				Spacing="5" X="490" Y="{ 585 - 152 }"/>
+			<Label Text="3m" FontName="SourceHanSansCN-Regular"
+				FontSize="50" Color3="0xffffff" TextAlign="Center"
+				Spacing="5" X="490" Y="{ 510 - 152 }"/>
+			<ArrowButton X="355" Y="{ 510 - 152 }"/>
+			<ArrowButton X="624" Y="{ 510 - 152 }" Right="True"/>
+		</Menu>
+	</Node>
+</Dora>

@@ -1,0 +1,120 @@
+<Dora>
+	<Node X="{ x or -415 }" Y="{ y or -55 }">
+		<Node Name="basic">
+			<Sprite File="phone.clip|phone_tab_set" />
+			<Label
+			Text="基础设置"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xff000000"  TextAlign="Left"
+			X="-260"
+			/>
+			<Label
+			Text="Basic Settings"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0x7a7f8c8d"  TextAlign="Left"
+			X="-120" AnchorX="0"
+			/>
+			<Node X="-370">
+			<Node Y="-120">
+				<Label
+				Text="帧率"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+				AnchorX="0"
+				/>
+				<Label
+				Text="标准"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="210" AnchorX="0"
+				/>
+				<Label
+				Text="高"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="420" AnchorX="0"
+				/>
+				<Label
+				Text="极致"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="630" AnchorX="0"
+				/>
+			</Node>
+			<Node Y="-220">
+				<Label
+				Text="伤害数字"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+				AnchorX="0"
+				/>
+				<Label
+				Text="关"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="210" AnchorX="0"
+				/>
+				<Label
+				Text="小"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="360" AnchorX="0"
+				/>
+				<Label
+				Text="中"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="510" AnchorX="0"
+				/>
+				<Label
+				Text="大"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xff000000"  TextAlign="Left"
+				X="660" AnchorX="0"
+				/>
+			</Node>
+			<Node Y="-420">
+				<Label
+				Text="游戏音乐"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+				AnchorX="0"
+				/>
+			</Node>
+			<Node Y="-320">
+				<Label
+				Text="游戏音效"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+				AnchorX="0"
+				/>
+			</Node>
+			</Node>
+
+		</Node>
+
+	     	<Node Name="operation" Y="-530">
+			<Sprite File="phone.clip|phone_tab_set"/>
+			<Label
+				Text="操作设置"
+				FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xff000000"  TextAlign="Left"
+				X="-260"
+				/>
+				<Label
+				Text="Operation Settings"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0x7a7f8c8d"  TextAlign="Left"
+				X="-120" AnchorX="0"
+				/>
+			<Node X="-370">
+				<Node Y="-120">
+					<Label
+					Text="按键设置"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+					AnchorX="0"
+					/>
+				</Node>
+				<Node Y="-220">
+					<Label
+					Text="摇杆设置"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+					AnchorX="0"
+					/>
+				</Node>
+				<Node Y="-320">
+					<Label
+					Text="其他模式"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xff000000"  TextAlign="Left"
+					AnchorX="0"
+					/>
+				</Node>
+			</Node>
+		</Node>
+	</Node>
+</Dora>

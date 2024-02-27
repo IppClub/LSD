@@ -1,0 +1,47 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Node Name="box" Width="1071" Height="103">
+		<Grid Name="bk" File="button.clip|role_story_4" GridX="1" GridY="3" X="{ $X + 15 }" Visible="{ content ~= nil }"/>
+		<Sprite Name="tab" File="button.clip|role_story_2" AnchorX="0" AnchorY="0" Color3="{ content and 0x7ec0f8 or 0xffffff }" Y="20">
+			<MovingText TextBG="STORY" PassColor="{ content ~= nil }" Color3="0xffffff">
+				<Item Name="mask">
+					<Sprite File="button.clip|btn_big_1" AnchorX="0" AnchorY="0"/>
+				</Item>
+			</MovingText>
+		</Sprite>
+		<Lua>if not content then</Lua>
+			<Sprite File="button.clip|role_story_lock" X="35" Y="61.5" AnchorX="0"/>
+		<Lua>end</Lua>
+		<Label Name="tt"
+			Text="{ title or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+			X="{ content and 35 or 35 + 52 }" Y="61.5" AnchorX="0"/>
+		<Lua>if requirement then</Lua>
+			<Label
+				Text="{ requirement }"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+				X="363" Y="61.5" AnchorX="0"/>
+		<Lua>end</Lua>
+		<Label Name="txt" Visible="{ content ~= nil }"
+			Text="{ content or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+			TextWidth="950" AnchorX="0" AnchorY="1" X="75"/>
+		<Yue>
+			if content
+				padding = 20
+				:height = txt
+				offset = 30 + height + 83 / 3
+				txt.y = offset - 30 + padding
+				tt.y = offset + 41.5 + padding
+				box.height = 83 + offset + padding
+				tab.y = offset + padding
+				with bk
+					yOffset = height + 30
+					.y = 83 / 2 + padding
+					:x, :y = \getPos 1, 1
+					\setPos 1, 1, Vec2 x, y + yOffset
+					:x, :y = \getPos 2, 1
+					\setPos 2, 1, Vec2 x, y + yOffset
+		</Yue>
+	</Node>
+</Dora>

@@ -1,0 +1,182 @@
+_ENV = Dora dora.ImGui
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+import "UI.LsdOSBack"
+
+Director.entry\addChild with LsdOSBack!
+	\alignLayout!
+
+spineStr = "ninilite"
+
+animations = Spine\getAnimations spineStr
+looks = Spine\getLooks spineStr
+p animations, looks
+
+spineShadow = with s = Spine spineStr
+	.x = 200
+	.y = 190
+	.scaleY = -1.0
+	.look = looks[1]
+	\play animations[1], true
+
+spine = with Spine spineStr
+	.y = -200
+	\addChild with Node!
+		.order = -1
+		.size = Size 400, 400
+		--.angleX = 60
+		with \grab!
+			.effect = with SpriteEffect "builtin::vs_sprite", "builtin::fs_spriteoutlinecolor"
+				\get(1)\set "u_linecolor", Color 0xff00ffff
+				\get(1)\set "u_lineoffset", 5 / 400, 5 / 400, 5, 0.1
+			\setColor 1, 2, Color 0x007ec0f8
+			\setColor 2, 2, Color 0x007ec0f8
+		\addChild spineShadow
+	.scaleX = 2.0
+	.scaleY = 2.0
+	.look = looks[1]
+	\play animations[1], true
+	\slot "AnimationEnd", (name)-> print "#{name} end!"
+	\schedule loop ->
+		with spineShadow
+			\setSlot "item", with Spine "coldweapon"
+				.look = "grenade"
+				.scaleX = 0.04
+				.scaleY = 0.04
+			\play "throw"
+		\setSlot "item", with Spine "coldweapon"
+			.look = "grenade"
+			.scaleX = 0.04
+			.scaleY = 0.04
+		sleep \play "throw"
+
+		with spineShadow
+			\setSlot "comm", with Spine "coldweapon"
+				.look = "comm"
+				.scaleX = 0.06
+				.scaleY = 0.06
+			\play "comm"
+		\setSlot "comm", with Spine "coldweapon"
+			.look = "comm"
+			.scaleX = 0.06
+			.scaleY = 0.06
+		sleep \play "comm"
+
+		with spineShadow
+			\setSlot "comp", with Spine "coldweapon"
+				.look = "comp"
+				.scaleX = 0.1
+				.scaleY = 0.1
+			\play "comp"
+		\setSlot "comp", with Spine "coldweapon"
+			.look = "comp"
+			.scaleX = 0.1
+			.scaleY = 0.1
+		sleep \play "comp"
+
+		with spineShadow
+			\setSlot "shield", with Spine "coldweapon"
+				.look = "shield"
+				.scaleX = 0.2
+				.scaleY = 0.2
+			\play "defence"
+		\setSlot "shield", with Spine "coldweapon"
+			.look = "shield"
+			.scaleX = 0.2
+			.scaleY = 0.2
+		sleep \play "defence"
+
+		for mname in *{"sword", "shovel", "axe"}
+			spineShadow\setSlot "melee", with Spine "coldweapon"
+				.look = mname
+				.scaleX = 0.2
+				.scaleY = 0.2
+			\setSlot "melee", with Spine "coldweapon"
+				.look = mname
+				.scaleX = 0.2
+				.scaleY = 0.2
+			spineShadow\play "melee"
+			sleep \play "melee"
+			spineShadow\play "parry"
+			sleep \play "parry"
+
+		with spineShadow
+			\setSlot "bow", with Spine "coldweapon"
+				.look = "bow"
+				.scaleX = 0.2
+				.scaleY = 0.2
+			\play "bow"
+		\setSlot "bow", with Spine "coldweapon"
+			.look = "bow"
+			.scaleX = 0.2
+			.scaleY = 0.2
+		sleep \play "bow"
+
+		for gname in *{"kineticgun", "lasergun", "empgun"}
+			with spineShadow
+				\setSlot "pistol", with Spine gname
+					.look = "PT"
+					.scaleX = 0.2
+					.scaleY = 0.2
+				\play "pistol"
+			\setSlot "pistol", with Spine gname
+				.look = "PT"
+				.scaleX = 0.2
+				.scaleY = 0.2
+			sleep \play "pistol"
+
+			for gtype in *{"AR", "LMG", "SMG", "SR", "SCG", "SG"}
+				spineShadow\setSlot "gun", with Spine gname
+					.look = gtype
+					.scaleX = 0.2
+					.scaleY = 0.2
+				\setSlot "gun", with Spine gname
+					.look = gtype
+					.scaleX = 0.2
+					.scaleY = 0.2
+				spineShadow\play "gun1"
+				sleep \play "gun1"
+				spineShadow\play "gun2"
+				sleep \play "gun2"
+				spineShadow\play "gun3"
+				sleep \play "gun3"
+
+	.touchEnabled = true
+	\slot "TapBegan", (touch)->
+		:x, :y = touch.location
+		if name := \containsPoint x, y
+			\addChild with Label "NotoSansHans-Regular", 30
+				.text = name
+				.color = Color 0xff00ffff
+				\perform Sequence(Spawn(
+					Scale 1, 0, 2, Ease.OutQuad
+					Sequence(
+						Delay 0.5
+						Opacity 0.5, 1, 0
+					)
+				), Event "Stop")
+				.position = Vec2 x, y
+				\slot "Stop", -> \removeFromParent!
+
+Director.entry\addChild spine
+
+-- example codes ends here, some test ui below --
+
+Director.entry\addChild with Node!
+	\schedule ->
+		:width, :height = App.visualSize
+		SetNextWindowPos Vec2(width - 250, 10), "FirstUseEver"
+		SetNextWindowSize Vec2(240, 140), "FirstUseEver"
+		Begin "Assembling", {"NoResize", "NoSavedSettings"}, ->
+			TextWrapped "Assembling troops example. Tap it for a hit test."
+			_, spine.showDebug = Checkbox "BoundingBox", spine.showDebug

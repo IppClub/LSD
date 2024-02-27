@@ -1,0 +1,4 @@
+<Node X="{ x or 0 }" Y="{ y or 0 }" Width="72" Height="72">
+	<Sprite File="button.clip|formation_pop_icon_1" X="{ $X }" Y="{ $Y }" Visible="False" ScaleX="{ right and -1 or 1 }"/>
+	<Sprite File="button.clip|formation_pop_icon_2" X="{ $X }" Y="{ $Y }" Visible="True" ScaleX="{ right and -1 or 1 }"/>
+</Node>

@@ -1,0 +1,119 @@
+_ENV = Dora!
+import "utf-8" as u8
+import "UI.View.InputBox"
+
+TextInput = Class ((args) ->
+	{
+		:hint = ""
+		:text = ""
+	} = args
+
+	inputBox = InputBox!
+	:width, :height = inputBox.label.parent
+
+	label = with inputBox.label
+		if text == "" and hint ~= ""
+			.text = hint
+			.opacity = 0.6
+		else
+			.text = text
+		.y = height / 2 - 35 / 2
+		.anchor = Vec2.zero
+		.alignment = "Left"
+
+	cursor = Line [Vec2.zero, Vec2 0, 35 + 2], Color 0xffffffff
+	blink = -> loop ->
+		cursor.visible = true
+		sleep 0.5
+		cursor.visible = false
+		sleep 0.5
+	with cursor
+		.y = label.y
+		.visible = false
+
+	updateText = (txt) ->
+		label.text = txt
+		offsetX = math.max label.width + 3 - width, 0
+		label.x = -offsetX
+		cursor.x = label.width - offsetX - 30
+		cursor\schedule blink!
+
+	with inputBox.box
+		textEditing = ""
+		textDisplay = ""
+
+		.size = Size width, height
+		.hint = hint
+		\addChild cursor
+
+		updateIMEPos = ->
+			(pos) <- \convertToWindowSpace Vec2 -label.x + label.width, 0
+			Keyboard\updateIMEPosHint pos
+		startEditing = ->
+			if not .imeAttached
+				\attachIME!
+				updateIMEPos!
+		.updateDisplayText = (_, txt) ->
+			textDisplay = txt
+			label.text = txt
+
+		.imeAttached = false
+		\slot "AttachIME", ->
+			label.opacity = 1.0
+			.imeAttached = true
+			.keyboardEnabled = true
+			updateText textDisplay
+
+		\slot "DetachIME", ->
+			.imeAttached = false
+			.keyboardEnabled = false
+			cursor.visible = false
+			cursor\unschedule!
+			textEditing = ""
+			label.x = 0
+			if textDisplay == ""
+				label.opacity = 0.6
+				label.text = .hint
+
+		.touchEnabled = true
+		\slot "Tapped", (touch) -> startEditing! if touch.first
+
+		\slot "KeyPressed", (key) ->
+			if App.platform == "Android" and u8.len(textEditing) == 1
+				textEditing = "" if key == "BackSpace"
+			else
+				return if textEditing ~= ""
+			switch key
+				when "BackSpace"
+					if #textDisplay > 0
+						textDisplay = u8.sub textDisplay, 1, -2
+						updateText textDisplay
+				when "Return", "Escape"
+					\detachIME!
+					inputBox\emit "Inputed", textDisplay
+
+		\slot "TextInput", (txt) ->
+			textDisplay = u8.sub(textDisplay, 1, -1 - u8.len(textEditing)) .. txt
+			textEditing = ""
+			updateText textDisplay
+			updateIMEPos!
+
+		\slot "TextEditing", (txt, _start) ->
+			textDisplay = u8.sub(textDisplay, 1, -1 - u8.len(textEditing)) .. txt
+			textEditing = txt
+			label.text = textDisplay
+			offsetX = math.max label.width + 3 - width, 0
+			label.x = -offsetX
+			updateText textDisplay
+			updateIMEPos!
+
+	inputBox\alignLayout!
+	inputBox
+), {
+	text: property (=> @label.text),
+		(value) =>
+			@detachIME! if @imeAttached
+			@updateDisplayText value
+}
+
+export default TextInput

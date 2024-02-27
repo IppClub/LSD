@@ -1,0 +1,114 @@
+<Dora>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+	<!--<Import Module="UI.Answer"/>-->
+	<Import Module="UI.FullScreenMask"/>
+	<Import Module="UI.ReviewSentence"/>
+	<!--<Import Module="UI.PropButton"/>-->
+	<Import Module="UI.ReviewButton"/>
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode Name="ui" InUI="True" IsRoot="True">
+		<FullScreenMask/>
+		<AlignNode Name="figure" HAlign="Center" VAlign="Bottom" Ref="True"/>
+		<AlignNode Name="talkArea" HAlign="Left" VAlign="Bottom">
+			<SolidRect Name="talkBack" Width="3258" Height="370" Color="0x66000000" Order="-1"/>
+			<Sprite File="button.clip|prompt_chat_2" X="50" Y="340"/>
+			<Sprite Name="rightLabel" File="button.clip|prompt_chat_2" X="3208" Y="340"/>
+			<Line Name="talkLine" Color3="0xffffff">
+				<Vec2 X="92" Y="340"/>
+				<Vec2 X="3166" Y="340"/>
+			</Line>
+			<Label Name="name"
+				Text=""
+				FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+				X="97" Y="185" AnchorX="0" Ref="True"/>
+			<Node Name="confirm" TouchEnabled="True" Ref="True"/>
+			<ScrollArea Name="textArea" PaddingX="0" ScrollBar="False" X="1620" Y="165" Ref="True">
+				<Item Name="view">
+					<Label Name="text"
+						Text=""
+						FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+						TextWidth="2368" Ref="True"/>
+				</Item>
+			</ScrollArea>
+		</AlignNode>
+		<AlignNode Name="rightCenter" HAlign="Right" VAlign="Center" Ref="True">
+			<Menu Name="answerList" X="-413.5" Width="907" Height="114" Ref="True">
+			</Menu>
+		</AlignNode>
+		<AlignNode Name="rightBottom" HAlign="Right" VAlign="Bottom">
+			<ReviewButton Name="reviewButton" X="-163" Y="260" Ref="True"/>
+			<Action>
+				<Sequence Name="move">
+					<Move Time="1" StartX="-163" StartY="94" StopX="-163" StopY="114" Ease="InExpo"/>
+					<Move Time="1" StartX="-163" StartY="114" StopX="-163" StopY="94" Ease="OutExpo"/>
+				</Sequence>
+			</Action>
+			<Sprite Name="continueIcon" File="button.clip|prompt_chat_continue" X="-163" Y="94" Ref="True">
+				<Slot Name="Enter" Perform="move" Loop="True"/>
+			</Sprite>
+		</AlignNode>
+		<AlignNode Name="rightTop" HAlign="Right" VAlign="Top">
+			<!--
+			<Sprite File="button.clip|prompt_chat_skip" X="-163" Y="-58"/>
+			<Sprite File="button.clip|prompt_chat_acc" X="-358" Y="-58"/>
+			-->
+		</AlignNode>
+		<FullScreenMask Name="reviewMask" Ref="True"/>
+		<AlignNode Name="topCenter" HAlign="Center" VAlign="Top" Ref="True">
+			<Label
+				Text="对话回顾"
+				FontName="SourceHanSansCN-Regular" FontSize="70" Color3="0xffffff" TextAlign="Center"
+				Y="-83" AnchorY="1"/>
+			<Sprite Name="leftLabel1" File="button.clip|prompt_chat_2" X="-1579" Y="-208"/>
+			<Sprite Name="rightLabel1" File="button.clip|prompt_chat_2" X="1579" Y="-208"/>
+			<Line Name="talkLine2" Color3="0xffffff" Y="-208">
+				<Vec2 X="-1579" Y="0"/>
+				<Vec2 X="1579" Y="0"/>
+			</Line>
+			<Node Name="reviewBack" TouchEnabled="True" Ref="True"/>
+			<ScrollArea Name="reviewArea" PaddingX="0" ScrollBar="False" Ref="True">
+				<Item Name="view">
+				</Item>
+			</ScrollArea>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				global talkBack, talkLine, talkLine2
+				scale = h / H
+				reviewW = w / scale - 160 * 2
+				reviewH = h / scale - 208 - 370
+				reviewArea.y = -208 - reviewH / 2
+				reviewArea.view\removeAllChildren!
+				for {:name, :text} in *ui._reviews
+					reviewArea.view\addChild ReviewSentence width: reviewW, :name, :text
+				reviewArea.view\addChild ReviewSentence width: reviewW, name: "", text: "\n"
+				reviewArea\adjustSizeWithAlign "Auto", 0, Size reviewW, reviewH
+				offset = (w  / 2) / scale - 150
+				leftLabel1.x = -offset
+				rightLabel1.x = offset
+				offset = (w  / 2) / scale - 192
+				talkLine2\removeFromParent!
+				talkLine2 = with Line {Vec2(-offset, -208), Vec2(offset, -208)}, Color 0xffffffff
+					\addTo topCenter
+				for item in *{talkArea, rightBottom, rightTop, rightCenter, figure, topCenter}
+					item.scaleX = scale
+					item.scaleY = scale
+				talkBack\removeFromParent!
+				realWidth = w / scale
+				talkBack = with SolidRect width: realWidth, height: 370, color: 0x66000000
+					.order = -1
+					\addTo talkArea
+				talkLine\removeFromParent!
+				talkLine = with Line {Vec2(92, 340), Vec2(realWidth - 92, 340)}, Color 0xffffffff
+					\addTo talkArea
+				rightLabel.x = realWidth - 50
+				text.textWidth = realWidth - 890
+				textArea.x = 436 + (realWidth - 890) / 2
+				textArea\adjustSizeWithAlign "Auto", 0, Size realWidth - 890, math.min 300, text.height
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

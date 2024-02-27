@@ -1,0 +1,26 @@
+_ENV = Dora!
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+import "UI.LsdOSBack"
+import "UI.HUDControl"
+
+Director.ui3D\addChild with LsdOSBack!
+	\alignLayout!
+
+Director.ui3D\addChild HUDControl!
+
+thread ->
+	sleep 1
+	emit "MessageBox", title: "社交", special: false, text: "你借调的学员默翎获得了3个赞"
+	sleep 1
+	emit "MessageBox", title: "系统", special: true, text: "你借调的学员默翎获得了3个赞"

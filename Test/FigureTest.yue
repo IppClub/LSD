@@ -1,0 +1,67 @@
+_ENV = Dora dora.ImGui
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+import "UI.RoleStats"
+
+roleStats = with RoleStats!
+	\alignLayout!
+Director.ui3D\addChild roleStats
+
+figures =
+	* "molingFigure"
+	* "ayanFigure"
+	* "charFFigure"
+	* "charFigure"
+	* "charMFigure"
+	* "liyenaFigure"
+	* "moyuFigure"
+	* "niniliteFigure"
+	* "sunbornFigure"
+	* "villywanFigure"
+	* "wuyunFigure"
+	* "yuzijiangFigure"
+
+currentFigure = 1
+
+spine = with Spine figures[currentFigure]
+	.look = "full"
+	\play "idle", true
+	.scaleX = 0.21
+	.scaleY = 0.21
+roleStats.figure\addChild spine
+
+Director.entry\addChild with Node!
+	windowFlags =
+		* "NoDecoration"
+		* "AlwaysAutoResize"
+		* "NoSavedSettings"
+		* "NoFocusOnAppearing"
+		* "NoNav"
+		* "NoMove"
+	\schedule ->
+		:width, :height = App.visualSize
+		SetNextWindowBgAlpha 0.35
+		SetNextWindowPos Vec2(width-10,10), "Always", Vec2 1, 0
+		SetNextWindowSize Vec2(100, 0), "FirstUseEver"
+		Begin "FigureTest", windowFlags, ->
+			Text "Figure"
+			Separator!
+			changed, currentFigure = Combo "Change", currentFigure, figures
+			if changed
+				spine\removeFromParent!
+				spine = with Spine figures[currentFigure]
+					.look = "full"
+					\play "idle", true
+					.scaleX = 0.21
+					.scaleY = 0.21
+				roleStats.figure\addChild spine

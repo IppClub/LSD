@@ -1,0 +1,700 @@
+_ENV = Dora(
+	dora.Platformer
+	dora.Platformer.Decision
+	dora.ImGui
+)
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+require "Control"
+import "Utils" as :Set
+import "UI.HUDControl"
+import "Logic.MotherBase"
+
+MotherBase!
+
+Director.ui3D\addChild HUDControl!
+
+store:Store = Data
+
+UnitAction\add "fall",
+	priority: 10
+	reaction: 3
+	recovery: 0.1
+	queued: true
+	available: -> true
+	create: => once -> with @playable
+		.speed = 1
+		sleep \play "fall"
+		sleep 0.1
+		.recovery = 0
+		sleep \play "standUp"
+
+UnitAction\add "evade",
+	priority: 10
+	reaction: 10
+	recovery: 0
+	queued: true
+	available: -> true
+	create: =>
+		time = 0
+		with @playable
+			.speed = 1.0
+			time = \play "bstep"
+		once =>
+			dir = @faceRight and -1 or 1
+			cycle math.max(time, 0.4), -> @velocityX = 800 * dir
+			with @playable
+				.recovery = 0.3
+				.speed = 1.0
+				\play "idle"
+			sleep 0.3
+			true
+
+UnitAction\add "rush",
+	priority: 10
+	reaction: 10
+	recovery: 0
+	queued: true
+	available: -> true
+	create: =>
+		time = 0
+		with @playable
+			.speed = 1.0
+			time = \play "fstep"
+		once =>
+			dir = @faceRight and 1 or -1
+			cycle math.max(time, 0.4), -> @velocityX = 800 * dir
+			with @playable
+				.recovery = 0.3
+				.speed = 1.0
+				\play "idle"
+			sleep 0.3
+			true
+
+pistolEnd = (name, playable)-> if name == "pistol"
+	playable.parent.parent\stop!
+
+UnitAction\add "pistol",
+	priority: 3
+	reaction: 3
+	recovery: 0.2
+	queued: true
+	available: -> true
+	create: =>
+		with @playable
+			.speed = 1
+			\play "pistol"
+			\slot "AnimationEnd", pistolEnd
+		-> false
+	stop: =>
+		@playable\slot("AnimationEnd")\remove pistolEnd
+
+testEnd = (name, playable)-> if name == Store.testAction
+	playable.parent.parent\stop!
+
+UnitAction\add "test",
+	priority: 3
+	reaction: 3
+	recovery: 0.1
+	queued: true
+	available: -> true
+	create: =>
+		with @playable
+			.speed = 1
+			\play Store.testAction
+			\slot "AnimationEnd", testEnd
+		-> false
+	stop: =>
+		@playable\slot("AnimationEnd")\remove testEnd
+
+UnitAction\add "idle",
+	priority: 1
+	reaction: 2.0
+	recovery: 0.2
+	available: => @onSurface
+	create: => with @playable
+		.speed = 1.0
+		if Store.battle
+			switch .lastCompleted
+				when "melee","pistol","bow","gun1","gun2","gun3","throw","parry","defense","comp","comm"
+					.recovery = 0.0
+			\play "prepare", true
+			return => not @onSurface
+		else
+			\play "idle", true
+			playIdleSpecial = coroutine.create -> while true
+				sleep 3
+				sleep \play "idle1"
+				\play "idle", true
+			@data.playIdleSpecial = playIdleSpecial
+			return =>
+				coroutine.resume playIdleSpecial
+				not @onSurface
+
+UnitAction\add "fmove",
+	priority: 1
+	reaction: 2.0
+	recovery: 0.2
+	available: => @onSurface
+	create: =>
+		with @playable
+			.speed = 1
+			duration = \play "fmove", true
+			if duration == 0
+				\play "move", true
+		(action)=>
+			:elapsedTime, :recovery = action
+			:move = @unitDef
+			moveSpeed = if elapsedTime < recovery
+				math.min elapsedTime / recovery, 1.0
+			else
+				1.0
+			@velocityX = moveSpeed * (@faceRight and move or -move)
+			not @onSurface
+
+UnitAction\add "keepIdle",
+	priority: 100
+	reaction: 2.0
+	recovery: 0.2
+	available: -> true
+	create: =>
+		with @playable
+			.speed = 1
+			\play "idle", true
+		-> false
+
+UnitAction\add "idle1",
+	priority: 1
+	reaction: 2.0
+	recovery: 0.2
+	available: -> true
+	queued: true
+	create: => once ->
+		with @playable
+			.speed = 1
+			sleep \play "idle1", false
+
+UnitAction\add "keepMove",
+	priority: 100
+	reaction: 2.0
+	recovery: 0.2
+	available: -> true
+	create: =>
+		with @playable
+			.speed = 1
+			\play "fmove", true
+		-> false
+
+UnitAction\add "bmove",
+	priority: 1
+	reaction: 2.0
+	recovery: 0.2
+	available: => @onSurface
+	create: =>
+		with @playable
+			.speed = 1
+			\play "bmove", true
+		(action)=>
+			:elapsedTime, :recovery = action
+			:move = @unitDef
+			moveSpeed = if elapsedTime < recovery
+				math.min elapsedTime / recovery, 1.0
+			else
+				1.0
+			@velocityX = moveSpeed * (@faceRight and -move or move) * 0.5
+			not @onSurface
+
+UnitAction\add "jump",
+	priority: 3
+	reaction: 2.0
+	recovery: 0.1
+	queued: true
+	available: => @onSurface
+	create: =>
+		:velocityX = @
+		:jump = @unitDef
+		@velocity = Vec2 velocityX, jump
+		once (_action)=>
+			with @playable
+				.speed = 1
+				sleep \play "jump", false
+
+UnitAction\add "fallOff",
+	priority: 2
+	reaction: -1
+	recovery: 0.3
+	available: => not @onSurface
+	create: =>
+		if @playable.current ~= "jumping"
+			with @playable
+				.speed = 1
+				\play "jumping", true
+		once (_action)=>
+			while true
+				if @onSurface
+					with @playable
+						.speed = 1
+						sleep \play "landing", false
+					coroutine.yield true
+				else
+					coroutine.yield false
+
+Store["AI:NPC"] = Sel {
+	Seq {
+		Con "not facing nearest unit", =>
+			for unit in *AI\getDetectedUnits!
+				if unit.entity.player
+					return (@x > unit.x) == @faceRight
+			if unit := AI\getNearestUnit "Any"
+				(@x > unit.x) == @faceRight
+			else
+				false
+		Act "turn"
+	}
+	Act "idle"
+}
+
+Store["AI:PlayerControl"] = Sel {
+	Seq {
+		Sel {
+			Seq {
+				Con "fmove key down", =>
+					not (@entity.keyLeft and @entity.keyRight) and
+					(
+						(@entity.keyLeft and @faceRight) or
+						(@entity.keyRight and not @faceRight)
+					)
+				Act "turn"
+			}
+			Seq {
+				Con "bmove key down", =>
+					not (@entity.keyLeft or @entity.keyRight) and
+					not (@entity.keyBLeft and @entity.keyBRight) and
+					(
+						(@entity.keyBLeft and not @faceRight) or
+						(@entity.keyBRight and @faceRight)
+					)
+				Act "turn"
+			}
+		}
+		Reject!
+	}
+	Seq {
+		Con "pistol", => @entity.keyShoot
+		Act "pistol"
+	}
+	Seq {
+		Con "evade", => @entity.keyEvade
+		Act "evade"
+	}
+	Seq {
+		Con "rush", => @entity.keyRush
+		Act "rush"
+	}
+	Seq {
+		Con "fall", => @entity.keyFall
+		Act "fall"
+	}
+	Sel {
+		Seq {
+			Con "is falling", => not @onSurface
+			Act "fallOff"
+		}
+		Seq {
+			Con "jump key down", => @entity.keyUp
+			Act "jump"
+		}
+	}
+	Seq {
+		Con "fmove key down", => @entity.keyLeft or @entity.keyRight
+		Act "fmove"
+	}
+	Seq {
+		Con "bmove key down", => @entity.keyBLeft or @entity.keyBRight
+		Act "bmove"
+	}
+	Act "idle"
+}
+
+Store.battle = false
+
+unit = nil
+playable = nil
+
+targetAnims = Set {
+	"bmove"
+	"bow"
+	"bstep"
+	"comm"
+	"comp"
+	"defence"
+	"fall"
+	"fmove"
+	"fstep"
+	"gun1"
+	"gun2"
+	"gun3"
+	"hit"
+	"idle"
+	"idle1"
+	"jump"
+	"jumping"
+	"landing"
+	"lose"
+	"melee"
+	"parry"
+	"pistol"
+	"prepare"
+	"standUp"
+	"throw"
+}
+
+testAnims = {
+	"bow"
+	"gun1"
+	"gun2"
+	"gun3"
+	"hit"
+	"lose"
+	"melee"
+	"parry"
+	"throw"
+	"comm"
+	"comp"
+	"defence"
+}
+
+missingAnims = {}
+extraAnims = {}
+
+availableAnims = {}
+defaultFaceRight = true
+
+getAllFiles = (path,exts)->
+	filters = Set exts
+	return for file in *Content\getAllFiles path
+		continue if not filters[Path\getExt file]
+		file
+
+fileSet = Set for file in *getAllFiles "Spine", {"skel","json"}
+	Path\getName file
+includes =
+	* "char"
+	* "charF"
+	* "charM"
+	* "ayan"
+	* "liyena"
+	* "moling"
+	* "moyu"
+	* "villywan"
+	* "sunborn"
+	* "yuzijiang"
+	* "ninilite"
+	* "wuyun"
+	* "dataotie"
+	* "xiaotaotie"
+	* "dahuayao"
+	* "xiaohuayao"
+	* "dashanxiao"
+	* "xiaoshanxiao"
+	* "dayingzhao"
+	* "zhongyingzhao"
+	* "xiaoyingzhao"
+	* "dahuli"
+	* "xiaohuli"
+
+files = [k for k in *includes when fileSet[k]]
+
+defaultFaceLeft = Set
+	* "liyena"
+	* "dataotie"
+	* "dahuayao"
+	* "xiaohuayao"
+	* "dashanxiao"
+	* "xiaoshanxiao"
+	* "dayingzhao"
+	* "zhongyingzhao"
+	* "xiaoyingzhao"
+	* "dahuli"
+	* "xiaohuli"
+
+looks =
+	xiaohuayao: "white"
+	dashanxiao: "glasses"
+
+scenes =
+	* "LoopTowerA"
+	* "Station"
+	* "Factory"
+	* "FrozenCity"
+	* "AbandonedCity"
+	* "OuterHeaven"
+	* "TrainA"
+	* "TrainB"
+	* "VRTraining"
+	* "PreparationRoom"
+	* "PassageA"
+	* "PassageB"
+	* "PassageC"
+	* "PassageD"
+	* "TrainingRoom"
+	* "OperationRoom"
+	* "RestRoom"
+	* "RDRoom"
+
+currentScene = 3
+
+createScene = ->
+	:world = Store
+	world\removeFromParent! if world
+	world = (require "Scene.#{scenes[currentScene]}")!
+	Store.world = world
+	Director.entry\addChild world
+	--scene.showDebug = true
+	--[[
+	scene.touchEnabled = true
+	scene\slot "Tapped", (touch)->
+		wloc = scene\convertToWorldSpace touch.location
+		group = Group {"unit","hitTest"}
+		group\each =>
+			:playable = @unit
+			loc = playable\convertToNodeSpace wloc
+			print playable\containsPoint loc.x, loc.y
+	]]
+
+createUnit = ->
+	unit\removeFromParent! if unit
+	Group({"player"})\each => @unit?\removeFromParent!
+
+	Entity
+		player: true
+		name: playable
+
+	entity = Group{"player"}\find -> true
+
+	anims = Set Spine\getAnimations playable
+
+	missingAnims = for anim in pairs targetAnims
+		if not anims[anim]
+			anim
+		else continue
+
+	extraAnims = for anim in pairs anims
+		if not targetAnims[anim]
+			anim
+		else continue
+
+	defaultFaceRight = not defaultFaceLeft[playable]
+
+	getUnitDef = -> with Dictionary!
+		.linearAcceleration = Vec2 0,-15
+		.bodyType = "Dynamic"
+		.scale = 1.0
+		.density = 1.0
+		.friction = 1.0
+		.restitution = 0.0
+		.playable = "spine:#{playable}"
+		.defaultFaceRight = defaultFaceRight
+		.size = Size 100,300
+		.sensity = 0
+		.move = 300
+		.jump = 1200
+		.detectDistance = 300
+		.hp = 5.0
+		.tag = "player"
+		.decisionTree = "AI:PlayerControl"
+		.usePreciseHit = false
+		.actions = with Array {
+				"idle"
+				"turn"
+				"fallOff"
+				"test"
+				"cancel"
+				"keepIdle"
+				"keepMove"
+				"idle1"
+			}
+			\add "rush" if anims["fstep"]
+			\add "evade" if anims["bstep"]
+			\add "jump" if anims["jump"]
+			\add "pistol" if anims["pistol"]
+			\add "fall" if anims["fall"] and anims["standUp"]
+			\add "fmove" if anims["fmove"] or anims["move"]
+			\add "bmove" if anims["bmove"]
+
+	availableAnims = for anim in *testAnims
+		if anims[anim]
+			anim
+		else continue
+
+	for a in *extraAnims
+		table.insert availableAnims, a
+
+	:world = Store
+	const grabSize = 800
+	unit = with Unit getUnitDef!, world, entity, Vec2 100, world.offset + 150
+		.group = 1
+		with .playable
+			.look = looks[playable] or ""
+			parent = .parent
+			\moveToParent with Node!
+				.size = Size grabSize, grabSize
+				--[[
+				with \grab!
+					.effect = with SpriteEffect "builtin::vs_sprite", "builtin::fs_spriteoutlinecolor"
+						\get(1)\set "u_linecolor", Color 0xff00ffff
+						\get(1)\set "u_lineoffset", 10 / grabSize, 10 / grabSize, 5, 0.5
+				]]
+				\addTo parent
+			.position = Vec2 grabSize / 2, grabSize / 2 - 150
+
+	if unit.playable.hitTestEnabled
+		entity.hitTest = true
+
+	scaleY = defaultFaceRight and 1.0 or -1.0
+
+	with unit.playable
+		\setSlot "item", with Spine "coldweapon"
+			.look = "grenade"
+			.scaleX = 0.04
+			.scaleY = 0.04 * scaleY
+		\setSlot "comm", with Spine "coldweapon"
+			.look = "comm"
+			.scaleX = 0.06
+			.scaleY = 0.06 * scaleY
+		\setSlot "comp", with Spine "coldweapon"
+			.look = "comp"
+			.scaleX = 0.1
+			.scaleY = 0.1 * scaleY
+		\setSlot "shield", with Spine "coldweapon"
+			.look = "shield"
+			.scaleX = 0.2
+			.scaleY = 0.2 * scaleY
+		\setSlot "melee", with Spine "coldweapon"
+			.look = "sword"
+			.scaleX = 0.2
+			.scaleY = 0.2 * scaleY
+		\setSlot "bow", with Spine "coldweapon"
+			.look = "bow"
+			.scaleX = 0.2
+			.scaleY = 0.2 * scaleY
+		\setSlot "pistol", with Spine "kineticgun"
+			.look = "PT"
+			.scaleX = 0.2
+			.scaleY = 0.2 * scaleY
+		\setSlot "gun", with Spine "kineticgun"
+			.look = "AR"
+			.scaleX = 0.2
+			.scaleY = 0.2 * scaleY
+
+	shadow = with Sprite "Image/shadow.png"
+		.order = -1
+		\schedule ->
+			position: start = unit
+			stop = start + Vec2 0, -1000
+			if world\raycast start, stop, false, (body, point)->
+					if body.group == Data.groupTerrain
+						stop = point
+						return true
+					false
+				.y = stop.y - unit.y
+		\addTo unit
+	world\addChild unit
+	with world.camera
+		.position = unit.position
+		.followTarget = unit
+
+	if scenes[currentScene] == "PreparationRoom"
+		world\turnOnLights!
+		world\makeUnitEnter unit
+	else
+		if not Group({"name", "player"})\find => @name == "liyena" and not @player
+			Entity
+				player: false
+				name: "liyena"
+				faceRight: true
+				position: Vec2 300, world.offset
+				order: -1
+				base: true
+			Entity
+				player: false
+				name: "moling"
+				faceRight: true
+				position: Vec2 300, world.offset
+				order: -2
+				base: true
+			Entity
+				player: false
+				name: "villywan"
+				faceRight: true
+				position: Vec2 300, world.offset
+				order: 1
+				base: true
+			Entity
+				player: false
+				name: "ayan"
+				faceRight: true
+				position: Vec2 300, world.offset
+				order: 2
+				base: true
+
+currentFile = 1
+
+createScene!
+if #files > 0
+	for i = 1, #files
+		if files[i] == "charF"
+			playable = files[i]
+			currentFile = math.tointeger i
+			break
+	unless playable
+		currentFile = 1
+		playable = files[1]
+	createUnit!
+
+battle = false
+Director.entry\addChild with Node!
+	\schedule ->
+		:width, :height = App.visualSize
+		SetNextWindowPos Vec2(width-300,10), "FirstUseEver"
+		SetNextWindowSize Vec2(290,325), "FirstUseEver"
+		Begin "Spine", {"NoResize","NoSavedSettings"}, ->
+			changed, currentScene = Combo "Scene", currentScene, scenes
+			if changed
+				createScene!
+				createUnit!
+			changed, currentFile = Combo "Spine", currentFile, files
+			if changed
+				playable = files[currentFile]
+				createUnit!
+			changed, defaultFaceRight = Checkbox "默认朝向右", defaultFaceRight
+			createUnit! if changed
+			changed, battle = Checkbox "战斗状态", battle
+			if changed
+				Store.battle = battle
+				if unit.onSurface
+					unit\start "cancel"
+					unit\start "idle"
+			for i, anim in ipairs availableAnims
+				if Button anim
+					if not unit.currentAction or unit.currentAction.name ~= "test_"
+						if not unit\isDoing "test"
+							Store.testAction = anim
+							unit\start "test"
+				SameLine! if i % 3 ~= 0 and i ~= #availableAnims
+			if #missingAnims > 0
+				Text "缺失动作或名称错误："
+				Text table.concat missingAnims, "\n"
+			if #extraAnims > 0
+				Text "多余动作："
+				Text table.concat extraAnims, "\n"

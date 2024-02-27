@@ -1,0 +1,26 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Node Name="btn" X="{ x or 0 }" Y="{ y or 0 }" Width="363" Height="83" TouchEnabled="True">
+		<Sprite Name="active" File="button.clip|btn_big_1" AnchorX="0" AnchorY="0"/>
+		<MovingText TextBG="{ textBG or '' }">
+			<Item Name="mask">
+				<Sprite File="button.clip|btn_big_1" AnchorX="0" AnchorY="0"/>
+			</Item>
+		</MovingText>
+		<Label Name="txt"
+			Text="{ text or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+			Spacing="5" X="35" Y="41.5" AnchorX="0"/>
+		<Action>
+			<Sequence Name="scaleAction">
+				<Scale Time="0.08" Start="1" Stop="0.8"/>
+				<Scale Time="0.3" Start="0.8" Stop="1" Ease="OutBack"/>
+			</Sequence>
+			<Tint Name="tapBegan" Start="0x7ec0f8"/>
+			<Tint Name="tapEnded" Time="0.8" Start="0x7ec0f8" Stop="0xffffff"/>
+		</Action>
+		<Slot Name="Tapped" Perform="scaleAction"/>
+		<Slot Name="TapBegan" Target="txt" Perform="tapBegan"/>
+		<Slot Name="TapEnded" Target="txt" Perform="tapEnded"/>
+	</Node>
+</Dora>

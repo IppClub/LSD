@@ -1,0 +1,32 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Import Module="UI.InputButton"/>
+	<Node X="{ fliped and -80 or 80 }" ScaleX="0.5" ScaleY="0.5" Z="-200">
+		<Node Width="228" Height="67">
+			<Lua>if fliped then</Lua>
+				<Sprite File="button.clip|prompt_chat_name" X="{ $X }" Y="{ $Y }" ScaleX="-1"/>
+				<Sprite File="button.clip|prompt_chat_name1" X="{ $L }" Y="{ $B }" ScaleX="-1" AnchorX="0" AnchorY="0"/>
+				<MovingText Name="clip" TextBG="TARGET" OffsetY="25">
+					<Item Name="mask">
+						<Sprite File="button.clip|prompt_chat_name" AnchorX="1" AnchorY="0" ScaleX="-1"/>
+					</Item>
+				</MovingText>
+				<Lua>clip.alphaThreshold = 0.5</Lua>
+			<Lua>else</Lua>
+				<Sprite File="button.clip|prompt_chat_name" X="{ $X }" Y="{ $Y }"/>
+				<Sprite File="button.clip|prompt_chat_name1" X="{ $R }" Y="{ $B }" AnchorX="0" AnchorY="0"/>
+				<MovingText Name="clip" TextBG="TARGET" OffsetY="25">
+					<Item Name="mask">
+						<Sprite File="button.clip|prompt_chat_name" AnchorX="0" AnchorY="0"/>
+					</Item>
+				</MovingText>
+				<Lua>clip.alphaThreshold = 0.5</Lua>
+			<Lua>end</Lua>
+			<Label
+				Text="{ text or '' }"
+				FontName="SourceHanSansCN-Regular" FontSize="45" Color3="0xffffff" TextAlign="Left"
+				X="20" Y="{ $Y }" AnchorX="0"/>
+		</Node>
+		<Menu Name="menu" X="{ fliped and -160 or 160 }" Y="-40" Width="319" Height="93" AnchorY="1" Ref="True"/>
+	</Node>
+</Dora>

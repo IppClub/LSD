@@ -1,0 +1,98 @@
+_ENV = Dora dora.Platformer
+store:Store = Data
+
+Store["xiaotaotie"] = with Dictionary!
+	.linearAcceleration = Vec2 0, -15
+	.bodyType = "Dynamic"
+	.scale = 1.0
+	.density = 1.0
+	.friction = 1.0
+	.restitution = 0.0
+	.playable = "spine:xiaotaotie"
+	.defaultFaceRight = true
+	.size = Size 100, 300
+	.sensity = --[[player and 0.0 or]] 0.5
+	.move = 300
+	.jump = 800
+	.detectDistance = 1200
+	.hp = 3.0
+	.decisionTree = "AI:XIAOTAOTIE"
+	.usePreciseHit = false
+	.attackDelay = 0.5
+	.attackSpeed = 1
+	.attackRange = Size 260+84/2,250
+	.attackEffectDelay = 0.08
+	.attackPower = Vec2 100,100
+	.attackTarget = "Single"
+	.targetAllow = do
+		config = with TargetAllow!
+			.terrainAllowed = true
+			\allow "Enemy", true
+		config\toValue!
+	.actions = Array
+		* "idle"
+		* "turn"
+		* "fmove"
+		* "jump"
+		* "fallOff"
+		* "cancel"
+		* "keepIdle"
+		* "keepMove"
+		* "idle1"
+		* "hit"
+		* "lose"
+		* "bomb"
+		* "dizzy1"
+		* "dizzy"
+		* "swing"
+		* "butt"
+		* "roll"
+		* "rollStart"
+		* "rollEnd"
+		* "blow"
+
+
+Store["dataotie"] = with Dictionary!
+	.linearAcceleration = Vec2 0, -15
+	.bodyType = "Dynamic"
+	.scale = 1.0
+	.density = 1.0
+	.friction = 1.0
+	.restitution = 0.0
+	.playable = "spine:dataotie"
+	.defaultFaceRight = false
+	.size = Size 450, 450
+	.sensity = 0.5
+	.move = 300
+	.jump = 800
+	.detectDistance = 1200
+	.hp = 5.0
+	.decisionTree = "AI:DATAOTIE"
+	.usePreciseHit = false
+	.attackDelay = 0.5
+	.attackSpeed = 1
+	.attackRange = Size 260+84/2,500
+	.attackEffectDelay = 0.08
+	.actions = Array
+		* "idle"
+		* "turn"
+		* "fmove"
+		* "jump"
+		* "fallOff"
+		* "cancel"
+		* "keepIdle"
+		* "keepMove"
+		* "idle1"
+		* "hit"
+		* "lose"
+		* "trample"
+		* "rush2"
+		* "shot"
+		* "rush3"
+		* "dizzy1"
+		* "dizzy2"
+		* "swing"
+		* "pounce"
+		* "rush"
+		* "fmove1"
+		* "dtdRush1"

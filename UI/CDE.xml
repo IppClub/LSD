@@ -1,0 +1,7 @@
+<Node Width="256" Height="91" Tag="CDE">
+	<Playable X="{ $X }" Y="{ $Y }" ScaleX="0.96" ScaleY="0.96" File="model:CDE" Look="normal" Opacity="0.8" RenderOrder="9"/>
+	<Label
+		Text="性格缺点"
+		FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Center"
+		X="{ $X }" Y="{ $Y }" RenderOrder="10"/>
+</Node>

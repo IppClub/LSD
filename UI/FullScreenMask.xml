@@ -1,0 +1,22 @@
+<Dora>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+
+	<AlignNode Name="lb" HAlign="Left" VAlign="Bottom">
+		<SolidRect Name="mask" Width="3258" Height="1563" Color="0x66000000"/>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				global mask
+				mask\removeFromParent!
+				with mask = SolidRect width: w, height: h, color: 0x66000000
+					.touchEnabled = true
+					.swallowTouches = true
+					\addTo lb
+			</Yue>
+		</Slot>
+		<Yue>
+			mask.touchEnabled = true
+			mask.swallowTouches = true
+		</Yue>
+	</AlignNode>
+</Dora>

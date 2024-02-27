@@ -1,0 +1,22 @@
+<Dora>
+	<Node Width="201" Height="201">
+		<Sprite File="gearBox.clip|prop_bg_1" X="{ $X }" Y="{ $Y }" Visible="{ not equiped and not locked }"/>
+		<Sprite File="gearBox.clip|prop_bg_2" X="{ $X }" Y="{ $Y }" Visible="{ locked }"/>
+		<Sprite File="gearBox.clip|prop_bg_4" X="{ $X }" Y="{ $Y }" Visible="{ equiped and not locked }"/>
+		<Sprite File="gearBox.clip|prop_bg_3" X="{ $X }" Y="{ $Y }" Visible="False"/>
+		<Sprite File="gearBox.clip|prop_equipperd_1" X="{ $X - 1 }" Y="{ $Y }" Visible="{ locked }"/>
+		<ClipNode X="{ $X - 1 }" Y="{ $Y }" Visible="{ equiped and not locked }">
+			<Stencil>
+				<Sprite File="gearBox.clip|prop_equipperd_2"/>
+			</Stencil>
+			<Node>
+				<Sprite File="gearBox.clip|prop_equipperd_2" X="170" ScaleX="1.01"/>
+				<Sprite File="gearBox.clip|prop_equipperd_2" ScaleX="1.01"/>
+				<Action>
+					<Move Name="move" Time="3" StartX="0" StopX="-170" StartY="0" StopY="0"/>
+				</Action>
+				<Slot Name="Enter" Perform="move" Loop="True"/>
+			</Node>
+		</ClipNode>
+	</Node>
+</Dora>

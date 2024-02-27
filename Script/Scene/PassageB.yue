@@ -1,0 +1,6 @@
+_ENV = Dora!
+import "Scene.Passage"
+export default Class Passage,
+	__init: =>
+		@__base.__init @, "PassageB", 1, false
+		@tag = "PassageB"

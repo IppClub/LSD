@@ -1,0 +1,10 @@
+<Dora>
+	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="208" Height="154">
+		<Node X="{ $X }" Y="{ $Y }" Visible="{ not selected }">
+			<Sprite File="ar.clip|lsdar_role_1"/>
+		</Node>
+		<Node X="{ $R }" Y="{ $Y }" Visible="{ selected }">
+			<Sprite File="ar.clip|lsdar_role_2" AnchorX="1"/>
+		</Node>
+	</Node>
+</Dora>

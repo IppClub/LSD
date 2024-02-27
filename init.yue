@@ -1,0 +1,12 @@
+_ENV = Dora!
+
+if scriptPath := Path\getScriptPath ...
+	for path in *[
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		]
+		Content\insertSearchPath 1, path
+	require "Start"

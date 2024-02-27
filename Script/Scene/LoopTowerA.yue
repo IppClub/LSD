@@ -1,0 +1,164 @@
+_ENV = Dora dora.Platformer
+
+const SceneScale = 1.7
+const W = (11700 + 4000) / SceneScale
+const H = (2616 + 2000) / SceneScale
+const HH = H / 2
+const Offset = 150
+const PathOffset = Vec2 10, 10
+const MaxPath = 2
+const DefaultZoom = 0.45
+
+macro order = (value) ->
+	global globals = globals or {}
+	globals.layerId = if value then tonumber value
+	else globals.layerId - 1
+	globals.layerId
+
+layerDefs =
+	* look: "front", order: $order 100
+	* look: "backitem", order: $order -100
+	* look: "floor", order: $order
+	* look: "window", order: $order
+	* look: "windowmask", order: $order
+	* look: "windowoutside", order: $order, ratio: Vec2 -0.1, 0
+	* look: "back", order: $order
+	* look: "door", order: $order
+	* look: "doorinside", order: $order
+
+lightDefs = [def for def in *layerDefs when def.light]
+darkDefs = [def for def in *layerDefs when def.light ~= nil and def.light == false]
+
+addLayer = (world, def) ->
+	layer = with Spine "loopTowerA"
+		.scaleX = 1 / SceneScale
+		.scaleY = 1 / SceneScale
+		.look = def.look
+		.order = def.order
+	if def.ratio
+		world\setLayerRatio def.order, def.ratio
+	world\addChild layer
+	def.handle layer, world if def.handle
+	layer
+
+export default Class
+	width: property -> W
+	offset: property -> Offset
+
+	addShadowTo: (unit) =>
+		with Sprite "Image/shadow.png"
+			.order = -1
+			\schedule ->
+				:position = unit
+				target = position
+				if @raycast position, Vec2(position.x, position.y - 1000), false, (body, point) ->
+						if body.group == Data.groupTerrain
+							target = point
+							true
+						else
+							false
+					.y = target.y - unit.y
+			\addTo unit
+
+	zoom: property => @_zoom,
+		(value) =>
+			@_zoom = value
+			@updateZoom!
+
+	updateZoom: =>
+		:width, :height = View.size
+		zoom = @_zoom * DefaultZoom
+		@camera.zoom = math.max height / H / zoom, width / W / zoom
+
+	__partial: (_) ->
+		with PlatformWorld!
+			with .camera
+				.boundary = Rect 0, 0, W, H
+				.followRatio = Vec2 0.03, 0.03
+				.followOffset = Vec2 0, 200
+			.tag = "LoopTowerA"
+
+	openRightDoor: => @_layers.door\play "openR"
+
+	__init: =>
+		for i = -MaxPath, MaxPath
+			@setLayerOffset i, PathOffset * -i
+
+		@_layers = {def.look, addLayer @, def for def in *layerDefs}
+
+		with mask = @_layers.windowmask
+			\removeFromParent false
+			with clip = ClipNode mask
+				.order = mask.order
+				\addTo @
+				with @_layers.windowoutside
+					.transformTarget = .parent
+					\moveToParent clip
+
+		const RightDoorSensor = 0
+		terrainDef = with BodyDef!
+			.type = "Static"
+			\attachPolygon Vec2(959/SceneScale, 0), 1918/SceneScale, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(5838/SceneScale, 398/SceneScale), 7880/SceneScale, 10, -5.8, 1, 1, 0
+			\attachPolygon Vec2(10618.5/SceneScale, 796/SceneScale), 1721/SceneScale, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
+			\attachPolygon Vec2(11479/SceneScale, HH), 10, H, 0, 1, 1, 0
+			\attachPolygonSensor RightDoorSensor, Vec2(6230, 675), 300, 400
+			.position = Vec2 0, Offset
+
+		with Body terrainDef, @, Vec2.zero
+			.group = Data.groupTerrain
+			\addTo @
+			\slot "BodyEnter", (body, sensorTag) ->
+				if sensorTag == RightDoorSensor
+					return unless body.entity
+					return unless body.entity.player
+					body.entity.enterExit = true
+			\slot "BodyLeave", (body, sensorTag) ->
+				if sensorTag == RightDoorSensor
+					return unless body.entity
+					return unless body.entity.player
+					body.entity.enterExit = false
+
+		@_zoom = 1.0
+		@gslot "AppSizeChanged", -> @updateZoom!
+		@updateZoom!
+		---[[
+		world = @
+		world.scaleX = 1.33
+		world.scaleY = 1.33
+		world\slot "Enter", ->
+			with node = Node!
+				\addTo world.parent
+				\schedule ->
+					:position, :zoom = Director.currentCamera
+					size = View.size * Vec2 1.0 / zoom, 1.0 / zoom
+					.scaleX = 1.33
+					.scaleY = 1.33
+					h = size.height
+					.position = position
+					world.position = Vec2(0.5, 0.5) * size - position
+					world.y += h * 0.1
+					.size = size
+				:zoom = Director.currentCamera
+				.size = View.size * Vec2 1.0 / zoom, 1.0 / zoom
+				h = .size.height
+				with \grab 20, 1
+					for x = 1, 21
+						for y = 1, 2
+							pos = \getPos x, y
+							\setPos x, y, pos, math.sin(math.abs(x - 11) * math.pi / 200) * math.abs(x - 11) * h * 0.25
+				\gslot "AppSizeChanged", ->
+					:zoom = Director.currentCamera
+					.size = View.size * Vec2 1.0 / zoom, 1.0 / zoom
+					h = .size.height
+					\grab false
+					with \grab 20, 1
+						for x = 1, 21
+							for y = 1, 2
+								pos = \getPos x, y
+								\setPos x, y, pos, math.sin(math.abs(x - 11) * math.pi / 200) * math.abs(x - 11) * h * 0.25
+				world\moveToParent node
+		--]]
+
+	loadAsync: (_) -> Cache\loadAsync "spine:loopTowerA"

@@ -1,0 +1,22 @@
+<Dora>
+	<Node Name="item" Width="700">
+		<Sprite Name="label" File="{ 'button.clip|' ..  (special and 'prompt_laberl_1' or 'prompt_laberl_2') }" X="12" AnchorX="0" AnchorY="1">
+			<Label
+				Text="{ title or '' }"
+				FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0x0" TextAlign="Center"
+				X="{ $X }" Y="{ $Y }"/>
+		</Sprite>
+		<Label Name="txt"
+			Text="{ text or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xffffff" TextAlign="Left"
+			X="126" AnchorX="0" AnchorY="1" TextWidth="{ 700 - 126 - 12 }" LineGap="0"/>
+		<Yue>
+			:height = txt
+			padding = 14
+			height += 8 + padding
+			item.height = height
+			label.y = height - padding / 2
+			txt.y = height - 6 - padding / 2
+		</Yue>
+	</Node>
+</Dora>

@@ -1,0 +1,6 @@
+<Dora>
+	<Node Width="408" Height="843">
+		<Sprite File="ar.clip|lsdar_settlement_role_bg" X="{ $X }" Y="{ $Y + 40 }"/>
+		<Sprite File="ar.clip|lsdar_settlement_role_evaluate_5" X="{ $X }" Y="37.5"/>
+	</Node>
+</Dora>

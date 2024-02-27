@@ -1,0 +1,27 @@
+_ENV = Dora!
+import "Data.Config"
+import "utf-8" as u8
+
+commands = {
+	preload: (...) ->
+		coroutine.yield "Command", preload: [...,]
+	inputName: ->
+		import "UI.InputBox"
+		with InputBox hint: "请输入你的姓名"
+			.visible = false
+			\schedule once ->
+				sleep!
+				.visible = true
+			\addTo Director.ui3D
+			\slot "Inputed", (name) ->
+				name = "匿名玩家" if name == ""
+				Config.charName = u8.sub name, 1, 10
+				\removeFromParent!
+				emit "Story.Advance"
+			coroutine.yield "Command"
+	setCharId: (charId) -> Config.char = charId
+	<index>: (_self, name) -> (...) ->
+		print "[command]: #{name}(#{table.concat [tostring select i, ... for i = 1, select '#', ...], ', '})"
+}
+
+export default commands

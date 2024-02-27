@@ -1,0 +1,144 @@
+<Dora>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.PhoneTabButton"/>
+	<Import Module="UI.MovingText"/>
+	<Import Module="UI.PhoneMessageTab"/>
+	<Import Module="UI.PhoneMissionTab"/>
+	<Import Module="UI.PhoneSetting"/>
+	<Lua>
+		local H <const> = 1563
+		-- local curTab = 1
+	</Lua>
+	<AlignNode Name="phone" InUI="True" IsRoot="True">
+
+		<AlignNode Name="screenArea" HAlign="Center" VAlign="Center">
+
+			<!--Center-->
+			<Sprite File="phone.clip|phone_bg"/>
+			<Node Name="content" X="415" Y="600">
+				<PhoneMessageTab Avatar="phone.clip|phone_icon_set_3" Username="妮妮莉特" Msg="快到研发室来！" Date="3.4" Time="17:28"/>
+				<PhoneMessageTab Avatar="phone.clip|phone_icon_set_3" Msg="地下城疑似怪物入侵" Date="3.4" Time="16:16" Y="-145"/>
+			</Node>
+
+			<!--Top-->
+			<Node Name="top" Y="650">
+				<Sprite File="phone.clip|phone_signal_4" X="-375" Y="-0"/>
+				<Node Name="topname1" Visible ="True" Ref="True">
+					<Sprite File="phone.clip|phone_icon_com_1" X="-120" Y="-0"/>
+					<Label
+					Text="通讯"
+					FontName="SourceHanSansCN-Regular" FontSize="65" Color3="0xffffff" TextAlign="Center"
+					Y="-0"
+				/>
+				</Node>
+				<Node Name="topname2" Visible ="False" Ref="True">
+					<Sprite File="phone.clip|phone_icon_mission_1" X="-120" Y="-0"/>
+					<Label
+					Text="任务"
+					FontName="SourceHanSansCN-Regular" FontSize="65" Color3="0xffffff" TextAlign="Center"
+					Y="-0"
+				/>
+				</Node>
+				<Node Name="topname3" Visible ="False" Ref="True">
+					<Sprite File="phone.clip|phone_icon_collect_1" X="-120" Y="-0"/>
+					<Label
+					Text="服务"
+					FontName="SourceHanSansCN-Regular" FontSize="65" Color3="0xffffff" TextAlign="Center"
+					Y="-0"
+				/>
+				</Node>
+				<Node Name="topname4" Visible ="False" Ref="True">
+					<Sprite File="phone.clip|phone_icon_set_1" X="-120" Y="-0"/>
+					<Label
+					Text="设置"
+					FontName="SourceHanSansCN-Regular" FontSize="65" Color3="0xffffff" TextAlign="Center"
+					Y="-0"
+				/>
+				</Node>
+
+				<Sprite File="phone.clip|phone_electric_5" X="355" Y="-0"/>
+				<Node Opacity="0.3">
+					<MovingText X="-200" Y="-25" TextBG="COMMUNITY" FontSize="150" OffsetY="0" Color3="0xffffff">
+						<Item Name="mask">
+							<SolidRect Width="600" Height="85"/>
+						</Item>
+					</MovingText>
+				</Node>
+			</Node>
+
+
+			<!--Tab Bar-->
+			<Node Y="-599">
+				<PhoneTabButton Name="tab1" TabIcon="phone.clip|phone_icon_com_" Index="1" X="-211">
+					<Slot Name="Tapped">
+						<Yue>
+							global content
+							topname1.visible = true
+							topname2.visible = false
+							topname3.visible = false
+							topname4.visible = false
+							content\removeFromParent!
+							content = with Node!
+								.x = 415
+								.y = 600
+							content\addChild PhoneMissionTab name: '地底的喧嚣'
+							--content\addChild PhoneMissionTab name: '234'
+							screenArea\addChild content
+						</Yue>
+					</Slot>
+				</PhoneTabButton>
+				<PhoneTabButton Name="tab2" TabIcon="phone.clip|phone_icon_mission_" Index="2" X="-3">
+					<Slot Name="Tapped">
+						<Yue>
+							global content
+							topname1.visible = false
+							topname2.visible = true
+							topname3.visible = false
+							topname4.visible = false
+							content\removeFromParent!
+							content = with Node!
+								.x = 415
+								.y = 600
+							content\addChild PhoneMessageTab avatar: "phone.clip|phone_icon_set_3", username: "妮妮莉特", msg:"快到研发室来！", date: "3.4", time: "17:28"
+							screenArea\addChild content
+						</Yue>
+					</Slot>
+				</PhoneTabButton>
+				<PhoneTabButton Name="tab3" TabIcon="phone.clip|phone_icon_collect_" Index="3" X="206"/>
+				<PhoneTabButton Name="tab4" TabIcon="phone.clip|phone_icon_set_" Index="4" X="414">
+					<Slot Name="Tapped">
+						<Yue>
+							global content
+							topname1.visible = false
+							topname2.visible = false
+							topname3.visible = false
+							topname4.visible = true
+							content\removeFromParent!
+							content = with Node!
+								.x = 415
+								.y = 600
+							content\addChild PhoneSetting!
+							screenArea\addChild content
+						</Yue>
+					</Slot>
+				</PhoneTabButton>
+			</Node>
+
+
+		</AlignNode>
+
+		<!--Resize-->
+		<Slot Name="AlignLayout" Args="_w,  h">
+			<Yue>
+				scale = h / H
+				for item in *{screenArea}
+					item.scaleX = scale
+					item.scaleY = scale
+			</Yue>
+		</Slot>
+
+
+
+	</AlignNode>
+</Dora>

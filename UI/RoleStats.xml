@@ -1,0 +1,329 @@
+<Dora>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+	<Import Module="UI.CDE"/>
+	<Import Module="UI.TabButton"/>
+	<Import Module="UI.LsdOS"/>
+	<Import Module="UI.Button"/>
+	<Import Module="UI.BackButton"/>
+	<Import Module="UI.StoryBox"/>
+	<Import Module="UI.TacticFileS"/>
+	<Import Module="UI.TacticFileL"/>
+	<Import Module="UI.TacticAction"/>
+	<Import Module="UI.TacticDetail"/>
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode Name="ui" InUI="True" IsRoot="True">
+		<AlignNode HAlign="Center" VAlign="Center" AlignWidth="3000 * math.min(h / 1563, w / 3000)" AlignHeight="h">
+			<!-- Background -->
+			<AlignNode HAlign="Center" VAlign="Center">
+				<Playable Name="bg" File="bone:lsdOSBack">
+					<Item Tag="formation_head_line" Visible="False"/>
+				</Playable>
+			</AlignNode>
+			<!-- LSD OS -->
+			<LsdOS Name="lsdOS"/>
+			<!-- Figure -->
+			<AlignNode HAlign="Left" VAlign="Center" AlignWidth="w / 2" AlignHeight="h">
+				<AlignNode Name="figure" HAlign="Center" VAlign="Center" Ref="True"/>
+			</AlignNode>
+			<!-- Left Bottom -->
+			<AlignNode Name="leftControl" HAlign="Left" VAlign="Bottom">
+				<Menu Name="menu" X="70" Y="40" AnchorX="0" AnchorY="0" Width="971" Height="143" Order="1">
+					<TabButton Name="btn1" Text="总览" TextBG="OVERVIEW" Selected="True">
+						<Slot Name="Tapped">
+							<Yue>
+								btn1\emit "Toggle"
+								menu.selected\emit "Toggle"
+								menu.selected = btn1
+								menu\alignItems 30
+								ui.infoArea.visible = true
+								ui.storyArea.visible = false
+							</Yue>
+						</Slot>
+					</TabButton>
+					<TabButton Name="btn2" Text="对策" TextBG="INTELLIGENCE">
+						<Slot Name="Tapped">
+							<Yue>
+								btn2\emit "Toggle"
+								menu.selected\emit "Toggle"
+								menu.selected = btn2
+								menu\alignItems 30
+							</Yue>
+						</Slot>
+					</TabButton>
+					<TabButton Name="btn3" Text="故事" TextBG="STORY">
+						<Slot Name="Tapped">
+							<Yue>
+								btn3\emit "Toggle"
+								menu.selected\emit "Toggle"
+								menu.selected = btn3
+								menu\alignItems 30
+								ui.infoArea.visible = false
+								ui.storyArea.visible = true
+							</Yue>
+						</Slot>
+					</TabButton>
+					<Yue>
+						menu.selected = btn1
+						menu\alignItems 30
+					</Yue>
+				</Menu>
+			</AlignNode>
+			<!-- Character Infomation -->
+			<AlignNode HAlign="Right" VAlign="Center" AlignWidth="w / 2" AlignHeight="h">
+				<AlignNode Name="scrollArea" HAlign="Center" VAlign="Center">
+					<ScrollArea Name="aiArea" X="50" PaddingX="0" ScrollBar="False" Clipping="False" Visible="False" Ref="True">
+						<Item Name="view">
+							<Node Width="1042" Height="270"/>
+							<TacticFileS/>
+							<TacticFileS/>
+							<TacticFileS/>
+							<TacticFileS/>
+							<TacticFileS/>
+							<TacticFileS/>
+						</Item>
+					</ScrollArea>
+					<Node X="90" Y="100">
+						<TacticFileL X="-500" Y="-150"/>
+						<Sprite File="ai.clip|ai_img" X="262.5" Y="-520" ScaleX="0.6" ScaleY="0.6" Opacity="0.3" AnchorX="1"/>
+						<Sprite File="ai.clip|ai_img" X="302.5" Y="-520" ScaleX="-0.6" ScaleY="0.6" Opacity="0.3" AnchorX="1"/>
+						<Sprite File="ai.clip|ai_big_circuit" X="-115"/>
+						<TacticAction Text="枪械" X="84.5" Y="430"/>
+						<TacticAction Text="近战武器" X="84.5" Y="260"/>
+						<TacticAction Text="近战武器" X="84.5" Y="90"/>
+						<TacticAction Text="闪避" X="84.5" Y="-80"/>
+						<TacticAction Text="格挡" X="84.5" Y="-250"/>
+						<TacticAction Text="防御" X="84.5" Y="-420"/>
+					</Node>
+					<Lua>do</Lua>
+					<ScrollArea Name="infoArea" PaddingX="0" ScrollBar="False" Clipping="False" Visible="False" Ref="True">
+						<Item Name="view">
+							<Node Width="1042" Height="108"/>
+							<Label Name="name" FontName="SourceHanSansCN-Regular" FontSize="70" Text="默翎" Color3="0x0" Spacing="5"/>
+							<Node Width="37" Height="{ name.height }">
+								<Label
+									Text="LIAN"
+									FontName="FangZhengHeiTiJianTi" FontSize="60" Color3="0x0" TextAlign="Left"
+									X="37" Y="26" AnchorX="0" Opacity="0.5" Spacing="5"/>
+							</Node>
+							<Node Width="1042" Height="10"/>
+							<Node Width="1042" Height="210">
+								<Sprite File="CDE.clip|role_divider" X="520.8" Y="205.81"/>
+								<Sprite File="CDE.clip|role_icon_hp_1" X="34.17" Y="129.93"/>
+								<Sprite File="CDE.clip|role_icon_sp_1" X="38.49" Y="31.43"/>
+								<Sprite File="CDE.clip|role_icon_atk_1" X="660.45" Y="125.64"/>
+								<Sprite File="CDE.clip|role_icon_atks_1" X="656.88" Y="34.34"/>
+								<Label
+									Text="生命"
+									FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0x0" TextAlign="Left"
+									X="118" Y="130" AnchorX="0" Opacity="0.5" Spacing="10" RenderOrder="8"/>
+								<Label
+									Text="100"
+									FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Right"
+									X="408" Y="130" AnchorX="1" RenderOrder="7"/>
+								<Label
+									Text="力量"
+									FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0x0" TextAlign="Left"
+									X="732" Y="130" AnchorX="0" Opacity="0.5" Spacing="10" RenderOrder="8"/>
+								<Label Name="lb"
+									Text="100"
+									FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Right"
+									X="1020" Y="130" AnchorX="1" RenderOrder="7"/>
+								<Label
+									Text="体能"
+									FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0x0" TextAlign="Left"
+									X="118" Y="32" AnchorX="0" Opacity="0.5" Spacing="10" RenderOrder="8"/>
+								<Label
+									Text="100"
+									FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Right"
+									X="408" Y="32" AnchorX="1" RenderOrder="7"/>
+								<Label
+									Text="灵活"
+									FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0x0" TextAlign="Left"
+									X="732" Y="32" AnchorX="0" Opacity="0.5" Spacing="10" RenderOrder="8"/>
+								<Label
+									Text="100"
+									FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Right"
+									X="1020" Y="32" AnchorX="1" RenderOrder="7"/>
+							</Node>
+							<Node Width="1042" Height="132">
+								<Lua>
+									local left <const> = 70
+									local right <const> = 110
+								</Lua>
+								<Label Name="lb"
+									Text="移动速度"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x0" TextAlign="Left"
+									X="10" Y="82.5" AnchorX="0"/>
+								<Label Name="lb1"
+									Text="100"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x538eff" TextAlign="Center"
+									X="{ lb.x + lb.width + left }" Y="82.5"/>
+								<Label Name="lb2"
+									Text="近战命中率"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x0" TextAlign="Left"
+									X="{ lb1.x + right }" Y="82.5" AnchorX="0"/>
+								<Label Name="lb3"
+									Text="100%"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x538eff" TextAlign="Center"
+									X="{ lb2.x + lb2.width + left }" Y="82.5"/>
+								<Label Name="lb4"
+									Text="技能命中率"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x0" TextAlign="Left"
+									X="{ lb3.x + right }" Y="82.5" AnchorX="0"/>
+								<Label Name="lb5"
+									Text="100%"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x538eff" TextAlign="Center"
+									X="{ lb4.x + lb4.width + left }" Y="82.5"/>
+
+								<Label Name="lb"
+									Text="跳跃能力"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x0" TextAlign="Left"
+									X="10" Y="17.5" AnchorX="0"/>
+								<Label Name="lb1"
+									Text="100"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x538eff" TextAlign="Center"
+									X="{ lb.x + lb.width + left }" Y="17.5"/>
+								<Label Name="lb2"
+									Text="射击命中率"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x0" TextAlign="Left"
+									X="{ lb1.x + right }" Y="17.5" AnchorX="0"/>
+								<Label Name="lb3"
+									Text="100%"
+									FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0x538eff" TextAlign="Center"
+									X="{ lb2.x + lb2.width + left }" Y="17.5"/>
+							</Node>
+							<Node Width="1042" Height="116">
+								<Label Name="lb"
+									Text="无形之毒"
+									FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Left"
+									X="138" Y="25" AnchorX="0" Spacing="5" RenderOrder="6"/>
+								<Label
+									Text="Invisible Poison"
+									FontName="FangZhengHeiTiJianTi" FontSize="30" Color3="0x0" TextAlign="Left"
+									X="{ lb.x + lb.width + 10 }" Y="10" Opacity="0.5" AnchorX="0" Spacing="2" RenderOrder="5"/>
+							</Node>
+							<Node Width="1042" Height="24"/>
+							<Label Name="lb"
+								Text="技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明技能说明"
+								FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0x0" TextAlign="Left"
+								TextWidth="1020"/>
+							<Node Width="1042" Height="116">
+								<Label Name="lb"
+									Text="人物缺点"
+									FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0x0" TextAlign="Left"
+									X="10" Y="25" AnchorX="0" Spacing="5" RenderOrder="6"/>
+								<Label
+									Text="Character Defects"
+									FontName="FangZhengHeiTiJianTi" FontSize="30" Color3="0x0" TextAlign="Left"
+									X="{ lb.x + lb.width + 10 }" Y="10" Opacity="0.5" AnchorX="0" Spacing="2" RenderOrder="5"/>
+							</Node>
+							<Node Width="1042" Height="10"/>
+							<Lua>for i = 1, 20 do</Lua>
+							<CDE/>
+							<Lua>end</Lua>
+						</Item>
+					</ScrollArea>
+					<Lua>end</Lua>
+					<Lua>do</Lua>
+					<ScrollArea Name="storyArea" PaddingX="0" ScrollBar="False" Clipping="False" Visible="False" Ref="True">
+						<Item Name="view">
+							<Node Width="1071" Height="108"/>
+							<StoryBox Title="故事一" Content="人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事人物故事"/>
+							<StoryBox Title="故事二" TextBG="STORY" Requirement="解锁条件"/>
+							<StoryBox Title="故事三" TextBG="STORY" Requirement="解锁条件解锁条件解锁条件解锁条件"/>
+						</Item>
+					</ScrollArea>
+					<Lua>end</Lua>
+				</AlignNode>
+			</AlignNode>
+			<Sprite Name="pop" File="CDE.clip|pop_small_bg" AnchorX="1" AnchorY="0" Visible="False" RenderGroup="True" RenderOrder="0">
+				<Label
+					Text="人物缺点"
+					FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+					X="25" Y="500" AnchorX="0" AnchorY="0" Spacing="5" RenderOrder="1"/>
+				<Sprite File="CDE.clip|pop_small_tab_bg" X="13" Y="404" AnchorX="0" AnchorY="0" RenderOrder="0"/>
+				<Label
+					Text="减益效果"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+					X="25" Y="437" AnchorX="0" Spacing="1" RenderOrder="2"/>
+				<Label Name="debuffDesc"
+					Text="进⼊战场前60秒各项属性提升5%，过60秒后各项属性降低10%"
+					FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Left"
+					X="25" Y="398" AnchorX="0" AnchorY="1" TextWidth="466" RenderOrder="3"/>
+				<Sprite Name="tab2" File="CDE.clip|pop_small_tab_bg" X="13" Y="{ debuffDesc.y - debuffDesc.height - 6 }" AnchorX="0" AnchorY="1" RenderOrder="0"/>
+				<Label
+					Text="成长条件"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+					X="25" Y="{ tab2.y - 12 }" AnchorX="0" AnchorY="1" Spacing="1" RenderOrder="2"/>
+				<Label Name="growDesc"
+					Text="1、满足条件A\n2、满足条件B"
+					FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Left"
+					X="25" Y="{ tab2.y - tab2.height - 6 }" AnchorX="0" AnchorY="1" TextWidth="466" RenderOrder="3"/>
+			</Sprite>
+			<Yue>
+				switch App.platform
+					when "Windows", "macOS", "Linux"
+						local pos
+						viewCDE = =>
+							return if @tag ~= "CDE"
+							localPos = @convertToNodeSpace pos
+							if Rect(Vec2.zero, @size)\containsPoint localPos
+								pop.position = pop.parent\convertToNodeSpace pos
+								pop.visible = true
+								return true
+							else
+								pop.visible = false
+						pop\schedule ->
+							return unless infoArea.visible
+							:width, :height = View.size
+							pos = nvg.TouchPos! * (width / App.visualSize.width)
+							pos = Vec2 pos.x, height - pos.y
+							infoArea.view\eachChild viewCDE
+							false
+					else
+						if infoArea.visible
+							infoArea.view\eachChild =>
+								return if @tag ~= "CDE"
+								@touchEnabled = true
+								@slot "TapBegan", ->
+									pop.position = pop.parent\convertToNodeSpace @convertToWorldSpace Vec2(0.5, 0.5) * @size
+									pop\perform Spawn Show!, Opacity(0, 0, 1)
+								@slot "TapEnded", ->
+									pop\perform Sequence(
+										Opacity 0.3, pop.opacity, 0
+										Hide!
+									)
+			</Yue>
+			<!-- Left Top -->
+			<AlignNode Name="topControl" HAlign="Left" VAlign="Top">
+				<BackButton X="{ 100 + 55 }" Y="{ -45 - 33.5 }"/>
+				<Sprite File="button.clip|btn_explain" X="{ 100 + 110 + 30 }" Y="{ -45 - 33.5 }" AnchorX="0"/>
+			</AlignNode>
+			<!-- Right Bottom -->
+			<AlignNode Name="rightControl" HAlign="Right" VAlign="Bottom">
+				<Button Text="确定" TextBG="CONFIRM" X="{ -100 - 181.5 }" Y="{ 70 + 41.5 }"/>
+			</AlignNode>
+			<AlignNode Name="centerControl" HAlign="Center" VAlign="Center">
+				<TacticDetail/>
+			</AlignNode>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				ratio = w / h
+				ratio = math.min ratio / 1.5, 1.0
+				scale = h / H
+				for item in *{figure, scrollArea}
+					item.scaleX = scale * ratio
+					item.scaleY = scale * ratio
+				for item in *{bg, leftControl, topControl, rightControl, centerControl, pop, lsdOS}
+					item.scaleX = scale
+					item.scaleY = scale
+				aiArea\adjustSizeWithAlign "Auto", 0, Size 1168, H
+				infoArea\adjustSizeWithAlign "Auto", 0, Size 1042, H
+				storyArea\adjustSizeWithAlign "Auto", 0, Size 1071, H
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

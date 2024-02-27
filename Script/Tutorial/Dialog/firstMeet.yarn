@@ -1,0 +1,39 @@
+{
+	"header": {
+		"lastSavedUnix": "2024-02-04T09:10:17.447Z",
+		"language": "en-GB",
+		"documentType": "yarn",
+		"markupLanguage": "bbcode",
+		"filetypeVersion": "2",
+		"pluginStorage": {
+			"Runner": {
+				"variables": [
+					{
+						"key": "charName",
+						"value": "瑾"
+					},
+					{
+						"key": "heroine",
+						"value": "于灵"
+					},
+					{
+						"key": "charId",
+						"value": "charF"
+					}
+				]
+			}
+		}
+	},
+	"nodes": [
+		{
+			"title": "Start",
+			"tags": "",
+			"body": "<<preload 'ninilite', 'char'>>\r\n[char id=ninilite name=妮妮莉特/]别动……\r\n[char id=ninilite name=妮妮莉特/]你是谁？\r\n[char id=ninilite name=妮妮莉特/]你为什么在这里？\r\n[char id=char name=我/]别紧张，我没有伤害你的意思。我是一名接受内测的侦探，或许是“友方单位”，是这么说吗？\r\n[char id=ninilite name=妮妮莉特/]友方单位？\r\n[char id=char name=我/]我叫{$charName}，来接替{$heroine}保护你的数据，也可以说是你的灵魂。\r\n[char id=ninilite name=妮妮莉特/]我凭什么相信你？\r\n-> [char id=char name=我/]使用道具“幽兰草印章”。\r\n[char id=char name=我/]这是她传输给我的，名字叫幽兰草印章。\r\n[char id=char name=我/]她说你认得这个，这是GPG密钥之类的东西吗？\r\n[char id=ninilite name=妮妮莉特/]印章？\r\n[char id=ninilite name=妮妮莉特/]你是上面那个世界来的？\r\n[char id=char name=我/]按照你们这的说法，是的。\r\n[char id=char name=我/]所以可以停下火焰吗？虽然这里只是拟真的数据，但是{$heroine}出了那样的事情，很难不让我害怕。\r\n[char id=ninilite name=妮妮莉特/]她现在怎么样了？她让你来的，那她一定没事吧？\r\n[char id=char name=我/]她没有生命危险，有间断的清醒时间，她清醒的时候我会收到她的消息，但大多数时候还是昏迷状态。\r\n[char id=ninilite name=妮妮莉特/]那就好。\r\n[char id=char name=我/]究竟发生了什么，我所知道最好的医生都解释不清楚，她身上发生了什么。\r\n[char id=ninilite name=妮妮莉特/]自从接触事件，人们开始了解到自己只是一个游戏NPC，一种绝望的情绪就在地下成里蔓延，而{$heroine}是来自那个创造我们的世界，也理所当然地变成了人们发泄自己情绪的标靶……\r\n[char id=char name=我/]被攻击了？接触事件又……\r\n[char id=ninilite name=妮妮莉特/]到我这边来！快！我们有麻烦了！",
+			"position": {
+				"x": 50,
+				"y": 50
+			},
+			"colorID": 0
+		}
+	]
+}

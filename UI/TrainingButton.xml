@@ -1,0 +1,14 @@
+<Dora>
+	<Node Width="201" Height="201">
+		<Sprite File="gearBox.clip|prop_bg_1" X="{ $X }" Y="{ $Y }" Visible="{ not selected }"/>
+		<Sprite File="gearBox.clip|prop_bg_4" X="{ $X }" Y="{ $Y }" Visible="{ selected }"/>
+		<Sprite Name="light" File="gearBox.clip|prop_bg_3" X="{ $X }" Y="{ $Y }" Visible="{ selected }"/>
+		<Action>
+			<Sequence Name="glow">
+				<Opacity Time="0.5" Start="0" Stop="1"/>
+				<Opacity Time="0.5" Start="1" Stop="0"/>
+			</Sequence>
+		</Action>
+		<Slot Name="Enter" Perform="glow" Target="light" Loop="True"/>
+	</Node>
+</Dora>

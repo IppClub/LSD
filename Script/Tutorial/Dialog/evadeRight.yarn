@@ -1,0 +1,21 @@
+{
+	"header": {
+		"lastSavedUnix": "2024-02-04T08:31:30.773Z",
+		"language": "en-GB",
+		"documentType": "yarn",
+		"markupLanguage": "bbcode",
+		"filetypeVersion": "2"
+	},
+	"nodes": [
+		{
+			"title": "Start",
+			"tags": "",
+			"body": "[char id=char name=我/]不用太保守。",
+			"position": {
+				"x": 520,
+				"y": 280
+			},
+			"colorID": 0
+		}
+	]
+}

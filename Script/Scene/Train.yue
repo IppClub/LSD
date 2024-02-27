@@ -1,0 +1,130 @@
+_ENV = Dora dora.Platformer
+
+const SceneScale = 1.7
+const W = 3840 / SceneScale
+const HW = W / 2
+const H = 1080 / SceneScale
+const HH = H / 2
+const Offset = 100
+const PathOffset = Vec2 10, 10
+const MaxPath = 2
+
+macro order = (value)->
+	global globals = globals or {}
+	globals.layerId = if value then tonumber value
+	else globals.layerId - 1
+	globals.layerId
+
+layerDefs =
+	* look: "front", order: $order(100), ratio: Vec2 -0.2, 0
+	* look: "lightambient", order: $order, light: true
+	* look: "handrails", order: $order, ratio: Vec2(-0.05, 0), highSpeed: false
+	* look: "handrailshadow", order: $order, light: true, ratio: Vec2(-0.05, 0), highSpeed: false
+	* look: "seat1", order: $order(-100), highSpeed: true
+	* look: "seat2", order: $order(-100), highSpeed: false
+	* look: "lightwindow1", order: $order, light: true, highSpeed: false
+	* look: "lightwindow", order: $order, light: true, highSpeed: true
+	* look: "lightfloor", order: $order, light: true
+	* look: "floor", order: $order
+	* look: "carriage", order: $order
+	* look: "scenerylight", order: $order, light: true, handle: (world)=> with @
+		\play "idle", true
+		world\slot "SpeedUp", ->
+			\schedule once -> cycle 10, (dt)-> .speed = dt * world.speed
+		world\slot "SpeedDown", ->
+			\schedule once -> cycle 10, (dt)-> .speed = (1.0 - dt) * world.speed
+	* look: "scenerydark", order: $order, handle: (world)=> with @
+		\play "idle", true
+		world\slot "SpeedUp", ->
+			\schedule once -> cycle 10, (dt)-> .speed = dt * world.speed
+		world\slot "SpeedDown", ->
+			\schedule once -> cycle 10, (dt)-> .speed = (1.0 - dt) * world.speed
+
+lightDefs = [def for def in *layerDefs when def.light]
+darkDefs = [def for def in *layerDefs when def.light ~= nil and def.light == false]
+
+addLayer = (world, def)->
+	layer = with Spine "train"
+		.scaleX = 1 / SceneScale
+		.scaleY = 1 / SceneScale
+		.look = def.look
+		.order = def.order
+	if def.ratio
+		world\setLayerRatio def.order, def.ratio
+	world\addChild layer
+	def.handle layer, world if def.handle
+	layer
+
+export default Class
+	width: property -> W
+	offset: property -> Offset
+
+	addShadowTo: (unit)=>
+		with Sprite "Image/shadow.png"
+			.order = -1
+			\schedule -> .y = @offset - unit.y
+			\addTo unit
+
+	zoom: property => @_zoom,
+		(value)=>
+			@_zoom = value
+			@updateZoom!
+
+	updateZoom: =>
+		:width, :height = View.size
+		zoom = @_zoom
+		@camera.zoom = math.max height / H / zoom, width / W / zoom
+
+	isUnderground: property => @_isUnderground,
+		(value)=>
+			@_isUnderground = value
+			showLayers = value and darkDefs or lightDefs
+			hideLayers = value and lightDefs or darkDefs
+			for def in *hideLayers
+				layer = @getLayer def.order
+				layer\runAction Opacity 0.5, 1, 0
+				layer\schedule once ->
+					sleep 0.5
+					layer.visible = false
+			for def in *showLayers
+				layer = @getLayer def.order
+				layer\runAction Opacity 0.5, 0, 1
+				layer.visible = true
+
+	__partial: =>
+		with PlatformWorld!
+			with .camera
+				.boundary = Rect 0, 0, W, H
+				.followRatio = Vec2 0.03, 0.03
+
+	__init: (highSpeed = true)=>
+		for i = -MaxPath, MaxPath
+			@setLayerOffset i, PathOffset * -i
+
+		for def in *layerDefs
+			if not def.highSpeed? or def.highSpeed == highSpeed
+				addLayer @, def
+
+		terrainDef = with BodyDef!
+			.type = "Static"
+			\attachPolygon Vec2(HW, 0), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(HW, H), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
+			\attachPolygon Vec2(W, HH), 10, H, 0, 1, 1, 0
+			.position = Vec2 0, Offset
+
+		with Body terrainDef, @, Vec2.zero
+			.group = Data.groupTerrain
+			\addTo @
+
+		@_zoom = 1.0
+		@gslot "AppSizeChanged", -> @updateZoom!
+		@updateZoom!
+
+		@speed = highSpeed and 2.0 or 1.0
+		@emit "SpeedUp"
+		@schedule loop ->
+			sleep math.random 5, 30
+			@isUnderground = not @isUnderground
+
+	loadAsync: => Cache\loadAsync "spine:train"

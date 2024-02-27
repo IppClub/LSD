@@ -1,0 +1,234 @@
+_ENV = Dora dora.Platformer
+import "UI.View.Shape.Rectangle"
+import "Academy.Map" as Map
+
+const H = 940
+const HH = H / 2
+const Offset = 0
+const BackZ = 470
+const ZOffset = BackZ / 2
+const PathOffset = 80
+const MaxPath = 2
+const DefaultZoom = 0.7
+
+macro order = (value) ->
+	global globals = globals or {}
+	globals.layerId = if value then tonumber value
+	else globals.layerId - 1
+	globals.layerId
+
+passageDefs =
+	* w: 790
+		items:
+			* look: "spotlight1", order: $order(100), z: ZOffset
+			* look: "leftwall", order: $order(-110), angleY: -90
+			* look: "rightwall", order: $order, x: 790, angleY: 90
+			* look: "floor1", order: $order, angleX: 90
+			* look: "back1", order: $order, z: BackZ
+		elevator:
+			frame: look: "elevator", order: $order(-100), x: 790 / 2, z: BackZ
+			door: look: "elevatordoor", order: $order, x: 790 / 2, z: BackZ
+			floor: look: "elevatorfloor", order: $order, x: 790 / 2, z: BackZ, angleX: 90
+			back: look: "elevatorback", order: $order, x: 790 / 2, z: BackZ + 134
+	* w: 1570
+		items:
+			* look: "spotlight2", order: $order(100), z: ZOffset
+			* look: "leftwall", order: $order(-110), angleY: -90
+			* look: "rightwall", order: $order, x: 1570, angleY: 90
+			* look: "floor2", order: $order, angleX: 90
+			* look: "back2", order: $order, z: BackZ
+		elevator:
+			frame: look: "elevator", order: $order(-100), x: 1570 / 2, z: BackZ
+			door: look: "elevatordoor", order: $order, x: 1570 / 2, z: BackZ
+			floor: look: "elevatorfloor", order: $order, x: 1570 / 2, z: BackZ, angleX: 90
+			back: look: "elevatorback", order: $order, x: 1570 / 2, z: BackZ + 134
+	* w: 2344
+		items:
+			* look: "spotlight3", order: $order(100), z: ZOffset
+			* look: "leftwall", order: $order(-110), angleY: -90
+			* look: "rightwall", order: $order, x: 2344, angleY: 90
+			* look: "floor3", order: $order, angleX: 90
+			* look: "back3", order: $order, z: BackZ
+		elevator:
+			frame: look: "elevator", order: $order(-100), x: 1558, z: BackZ
+			door: look: "elevatordoor", order: $order, x: 1558, z: BackZ
+			floor: look: "elevatorfloor", order: $order, x: 1558, z: BackZ, angleX: 90
+			back: look: "elevatorback", order: $order, x: 1558, z: BackZ + 134
+
+createLayer = (def) ->
+	with Spine "passage"
+		.look = def.look
+		.order = def.order
+		.scaleX = def.scale or 1.0
+		.scaleY = def.scale or 1.0
+		.x = def.x or 0
+		.y = def.y or 0
+		.z = def.z or 0
+		.angleX = def.angleX or 0
+		.angleY = def.angleY or 0
+		.x = def.x or 0
+
+addLayer = (world, def) ->
+	layer = createLayer def
+	if def.ratio
+		world\setLayerRatio def.order, def.ratio
+	if def.offset
+		world\setLayerOffset def.order, def.offset
+	world\addChild layer
+	def.handle layer if def.handle
+	layer
+
+export default Class
+	width: property => @_width
+	offset: property -> Offset
+	left: property => Vec2 100, @offset
+	right: property => Vec2 @width - 100, @offset
+	center: property =>
+		if elevator := @_layers.elevatorDoor
+			Vec2 elevator.x, @offset
+		else
+			nil
+
+	addShadowTo: (unit) =>
+		with Sprite "Image/shadow1.png"
+			.angleX = 90
+			.order = -1
+			\schedule -> .y = @offset - unit.y
+			\addTo unit
+
+	openLeftDoor: => with @_layers.leftwall
+		.opened = true
+		.recovery = 0
+		\play "openLI"
+
+	openRightDoor: => with @_layers.rightwall
+		.opened = true
+		.recovery = 0
+		\play "openRI"
+
+	openCenterDoor: => with @_layers.elevatorDoor
+		.opened = true
+		.recovery = 0
+		\play "openElevatorI"
+
+	zoom: property => @_zoom,
+		(value) =>
+			@_zoom = value
+			@updateZoom!
+
+	updateZoom: =>
+		actualZoom = @_zoom * DefaultZoom
+		:width, :height = View.size
+		zoom = height / H / actualZoom
+		if width > @_width * zoom
+			zoom = width / @_width
+		with @camera
+			.zoom = zoom
+			.boundary = Rect 0, 0, @_width, H * actualZoom
+
+	__partial: ->
+		with PlatformWorld!
+			.camera.followRatio = Vec2 0.03, 0.03
+
+	__init: (name, index = 3, withElevator = true) =>
+		@_name = name
+
+		passageDef = passageDefs[index]
+		const W = passageDef.w
+		const HW = W / 2
+		@_width = W
+
+		for i = -MaxPath, MaxPath
+			with @getLayer i
+				.z = ZOffset - PathOffset * i
+
+		@_layers = {def.look, addLayer @, def for def in *passageDef.items}
+
+		if withElevator
+			{:frame, :door, :floor, :back} = passageDef.elevator
+			addLayer @, frame
+			@_layers.elevatorDoor = with addLayer @, door
+				.opened = false
+			mask = with Rectangle {
+					x: frame.x
+					y: 375 / 2
+					width: 270
+					height: 375
+					fillColor: 0xffffffff
+				}
+				.z = frame.z
+			@addChild with ClipNode mask
+				\addChild createLayer back
+				\addChild createLayer floor
+				.order = back.order
+
+		const LeftDoorSensor = 0
+		const RightDoorSensor = 1
+		const ElevatorSensor = 2
+		terrainDef = with BodyDef!
+			.type = "Static"
+			\attachPolygon Vec2(HW, 0), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(HW, H), W, 10, 0, 1, 1, 0
+			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
+			\attachPolygon Vec2(W, HH), 10, H, 0, 1, 1, 0
+			\attachPolygonSensor LeftDoorSensor, Vec2(75, 175), 150, 350
+			\attachPolygonSensor RightDoorSensor, Vec2(W - 75, 175), 150, 350
+			if withElevator
+				\attachPolygonSensor ElevatorSensor, Vec2(passageDef.elevator.frame.x, 175), 270, 350
+			.position = Vec2 0, Offset
+
+		@_layers.leftwall.opened = false
+		@_layers.rightwall.opened = false
+		const DoorSpeed = 1.5
+		@addChild with Body terrainDef, @, Vec2.zero
+			.group = Data.groupTerrain
+			\slot "BodyEnter", (body, sensorTag) ->
+				return unless body.entity
+				return unless body.entity.player
+				door, animation, route = switch sensorTag
+					when LeftDoorSensor
+						@_layers.leftwall, "openL", "left"
+					when RightDoorSensor
+						@_layers.rightwall, "openR", "right"
+					when ElevatorSensor
+						@_layers.elevatorDoor, "openElevator", "center"
+				if name, enter, targets := Map.getRoute @_name, route
+					with body.entity
+						.moveFromRight = if body.velocityX == 0 then route ~= "right" else body.velocityX < 0
+						.moveRouteName = name
+						.moveEnter = enter
+						.moveTargets = Array targets
+					if #targets > 0 and not door.opened
+						with door
+							.opened = true
+							.recovery = 1
+							.speed = DoorSpeed
+							\play animation
+			\slot "BodyLeave", (body, sensorTag) ->
+				return unless body.entity
+				return unless body.entity.player
+				return unless body.entity.moveTargets
+				available = not body.entity.moveTargets.empty
+				with body.entity
+					.moveFromRight = nil
+					.moveRouteName = nil
+					.moveEnter = nil
+					.moveTargets = nil
+				return unless available
+				door, animation = switch sensorTag
+					when LeftDoorSensor
+						@_layers.leftwall, "closeL"
+					when RightDoorSensor
+						@_layers.rightwall, "closeR"
+					when ElevatorSensor
+						@_layers.elevatorDoor, "closeElevator"
+				with door
+					.opened = false
+					.recovery = 1
+					.speed = DoorSpeed
+					\play animation
+		@_zoom = 1.0
+		@gslot "AppSizeChanged", -> @updateZoom!
+		@updateZoom!
+
+	loadAsync: -> Cache\loadAsync "spine:passage"

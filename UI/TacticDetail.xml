@@ -1,0 +1,22 @@
+<Dora>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+
+	<Node Width="704" Height="1154">
+		<Sprite File="ai.clip|pop_ai_bg" X="{ $X }" Y="{ $Y }"/>
+		<Sprite File="ai.clip|pop_ai_close" X="{ $X + 295 }" Y="{ $Y + 515 }"/>
+		<Label
+			Text="近战武器"
+			FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Center"
+			Spacing="5" X ="{ $X }" Y="{ $Y + 535 }" AnchorY="1"/>
+		<ScrollArea Name="infoArea" PaddingX="0" ScrollBar="False" X="{ $X }" Y="{ $Y - 25 }">
+			<Item Name="view">
+				<Label
+					Text="策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明\n\n策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明\n\n策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明\n\n策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明"
+					FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Left" TextWidth="630"/>
+			</Item>
+			<Yue>
+				infoArea\adjustSizeWithAlign "Auto", 0, Size 630, 1000
+			</Yue>
+		</ScrollArea>
+	</Node>
+</Dora>

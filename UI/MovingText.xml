@@ -1,0 +1,23 @@
+<ClipNode X="{ x or 0 }" Y="{ y or 0 }" Angle="{ angle or 0 }" PassColor="{ passColor == nil or passColor }">
+	<Stencil>
+		<Node Name="mask" Ref="True"/>
+	</Stencil>
+	<Node Name="node" Y="{ offsetY or 35 }" Opacity="{ opacity or 0.5 }">
+		<Label Name="te1"
+			Text="{ textBG or '' }"
+			FontName="FangZhengHeiTiJianTi" FontSize="{ fontSize or 60 }" Color3="{ color3 or 0x7ec0f8 }" TextAlign="Left"
+			AnchorX="0" AnchorY="0"/>
+		<Label Name="te2"
+			Text="{ textBG or '' }"
+			FontName="FangZhengHeiTiJianTi" FontSize="{ fontSize or 60 }" Color3="{ color3 or 0x7ec0f8 }" TextAlign="Left"
+			X ="{ te1.width + 10 }" AnchorX="0" AnchorY="0"/>
+		<Label Name="te3"
+			Text="{ textBG or '' }"
+			FontName="FangZhengHeiTiJianTi" FontSize="{ fontSize or 60 }" Color3="{ color3 or 0x7ec0f8 }" TextAlign="Left"
+			X="{ te2.x + te2.width + 10 }" AnchorX="0" AnchorY="0"/>
+		<Action>
+			<Move Name="move" Time="{ te1.width * 0.01 }" StartX="0" StartY="{ offsetY or 35 }" StopX="{ -te1.width - 10 }" StopY="{ offsetY or 35 }"/>
+		</Action>
+		<Slot Name="Enter" Perform="move" Loop="True"/>
+	</Node>
+</ClipNode>

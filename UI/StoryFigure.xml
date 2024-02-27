@@ -1,0 +1,30 @@
+<Dora>
+	<Lua>
+		local offsets = {
+			charF = {x = 330, y = -350, scale = 0.49},
+			charM = {x = 0, y = -560, scale = 0.54},
+			ninilite = {x = 0, y = 40, scale = 0.46}
+		}
+	</Lua>
+	<Playable Name="spine"
+		File="{ 'spine:' .. char .. 'Figure' }"
+		X="{ offsets[char].x }"
+		Y="{ offsets[char].y }"
+		ScaleX="{ offsets[char].scale }"
+		ScaleY="{ offsets[char].scale }"
+		Play="idle" Loop="True">
+		<Yue>
+			if editing
+				spine\schedule ->
+					:width, :height = App.visualSize
+					ImGui.SetNextWindowPos Vec2(width - 10, 10), "FirstUseEver", Vec2 1, 0
+					ImGui.SetNextWindowSize Vec2(240, 160), "FirstUseEver"
+					ImGui.Begin char, {"NoResize", "NoSavedSettings"}, ->
+						:x, :y, scaleX: scale = spine
+						spine.x = x if changed, x := ImGui.DragFloat "X", x, 1, -2000, 2000, "%.2f"
+						spine.y = y if changed, y := ImGui.DragFloat "Y", y, 1, -2000, 2000, "%.2f"
+						if changed, scale := ImGui.DragFloat "Scale", scale, 0.01, -2, 2, "%.2f"
+							spine.scaleX = spine.scaleY = scale
+		</Yue>
+	</Playable>
+</Dora>

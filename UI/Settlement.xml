@@ -1,0 +1,136 @@
+<Dora>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.Control.Basic.ScrollArea"/>
+	<Import Module="UI.MovingText"/>
+	<Import Module="UI.MissionTab"/>
+	<Import Module="UI.RewardItem"/>
+	<Import Module="UI.MemberView"/>
+	<Import Module="UI.PropButton"/>
+	<Import Module="UI.TacticReview"/>
+
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode InUI="True" IsRoot="True">
+		<AlignNode Name="bk" HAlign="Left" VAlign="Bottom">
+			<SolidRect Name="mask" Width="3258" Height="1563" Color="0x66000000"/>
+		</AlignNode>
+		<AlignNode Name="left" HAlign="Left" VAlign="Center">
+			<SolidRect Name="rc" Y="-618.5" Width="3258" Height="1129" Color="0xb2000000"/>
+			<Node Order="1" Y="-54">
+				<Sprite Name="logo" File="ar.clip|lsdar_settlement_logo" X="438.5"/>
+				<Sprite File="ar.clip|lsdar_settlement_ribbon" Y="-492" AnchorX="0"/>
+				<Label
+					Text="行动结束"
+					FontName="SourceHanSansCN-Regular" FontSize="300" Color3="0xffffff" TextAlign="Left"
+					Spacing="10" X="129.5" Y="537" AnchorX="0"/>
+				<Label
+					Text="2-3地底的喧嚣"
+					FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
+					X="129.5" Y="657" AnchorX="0" Opacity="0.7"/>
+				<Label
+					Text="10秒后自动退出战斗结算界面"
+					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+					X="129.5" Y="-492" AnchorX="0"/>
+				<Node Name="assessment" Visible="True">
+					<Label Name="lb"
+						Text="获得物资"
+						FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+						X="129.5" Y="100" AnchorX="0" Opacity="0.5" AnchorY="0"/>
+					<Label
+						Text="REWARD"
+						FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xffffff" TextAlign="Left"
+						X="{ lb.x + lb.width + 30 }" Y="100" AnchorX="0" Opacity="0.5" AnchorY="0"/>
+					<Label Name="lb1"
+						Text="出战成员"
+						FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+						X="1125" Y="476" AnchorX="0" Opacity="0.5" AnchorY="0"/>
+					<Label
+						Text="TEAM MEMBER"
+						FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xffffff" TextAlign="Left"
+						X="{ lb1.x + lb1.width + 30 }" Y="476" AnchorX="0" Opacity="0.5" AnchorY="0"/>
+					<MissionTab X="582" Y="407" Mode="Main" Title="地底的喧嚣" Status="Complete"/>
+					<MissionTab X="582" Y="315" Mode="Side" Title="饕餮骚动中" Status="(15/30)"/>
+					<MissionTab X="582" Y="223" Mode="Map" Title="黑暗中的残影" Status="Failed"/>
+					<ScrollArea Name="rewardArea" PaddingX="0" X="582" Y="-166" Width="964" Height="500" ScrollBar="False">
+						<Lua>do</Lua>
+						<Item Name="view">
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+							<RewardItem/>
+						</Item>
+						<Lua>end</Lua>
+						<Lua>rewardArea:adjustSizeWithAlign("Auto", 0, Size(964, 500))</Lua>
+					</ScrollArea>
+					<ScrollArea Name="memberArea" PaddingY="0" Y="24" Width="964" Height="843" ScrollBar="False">
+						<Lua>do</Lua>
+						<Item Name="view">
+							<MemberView/>
+							<MemberView/>
+							<MemberView/>
+							<MemberView/>
+							<MemberView/>
+						</Item>
+						<Lua>end</Lua>
+						<Lua>memberArea:adjustSizeWithAlign("Horizontal", 0, Size(964, 843))</Lua>
+					</ScrollArea>
+				</Node>
+			</Node>
+			<Node Name="tacticReview" Order="1" Visible="False">
+				<Sprite File="ar.clip|lsdar_settlement_role_bg" X="342" Y="5"/>
+				<ScrollArea Name="tacticArea" PaddingY="0" X="942" Y="10" Width="476" Height="739" ScrollBar="False">
+					<Lua>do</Lua>
+					<Item Name="view">
+						<TacticReview Score="S"/>
+						<TacticReview Score="A"/>
+						<TacticReview Score="B"/>
+						<TacticReview Score="C"/>
+						<TacticReview Score="C"/>
+					</Item>
+					<Lua>end</Lua>
+					<Lua>tacticArea:adjustSizeWithAlign("Horizontal", 0, Size(476, 739))</Lua>
+				</ScrollArea>
+			</Node>
+		</AlignNode>
+		<AlignNode Name="right" HAlign="Right" VAlign="Center">
+			<Node ScaleX="1.5" ScaleY="1.5" Y="510.5" Opacity="0.1">
+				<MovingText X="-2000" Y="-75" TextBG="MISSION COMPLETE     MISSION COMPLETE" FontSize="100" OffsetY="0" Color3="0xffffff">
+					<Item Name="mask">
+						<SolidRect Width="2000" Height="75"/>
+					</Item>
+				</MovingText>
+			</Node>
+			<PropButton X="-646" Y="-546" Text="再次行动"/>
+			<PropButton X="-273" Y="-546" Text="返回基地"/>
+		</AlignNode>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				global rc, mask
+				scale = h / H
+				rc\removeFromParent!
+				rc = SolidRect y: -618.5, width: w / scale, height: 1129, color: 0xb2000000
+				left\addChild rc
+				mask\removeFromParent!
+				mask = SolidRect width: w, height: h, color: 0x66000000
+				bk\addChild mask
+				for item in *{left, right}
+					item.scaleX = scale
+					item.scaleY = scale
+				memberWidth = w / scale - 1115
+				with memberArea
+					.x = 1115 + memberWidth / 2
+					\adjustSizeWithAlign "Horizontal", 0, Size memberWidth, 843
+				tacticWidth = w / scale - 704
+				with tacticArea
+					.x = 704 + tacticWidth / 2
+					\adjustSizeWithAlign "Horizontal", 0, Size tacticWidth, 739
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

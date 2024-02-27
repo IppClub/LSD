@@ -1,0 +1,81 @@
+_ENV = Dora!
+
+const PVInfo = [
+	[3003, 1688, 3.1666667461395] -- 1
+	[3000, 1686, 4.0] -- 2
+	[3013, 1699, 4.2666668891907] -- 3
+	[2988, 1700, 5.0000004768372] -- 4
+	[3017, 1704, 5.3333334922791] -- 5
+	[3021, 1704, 5.0000004768372] -- 6
+	[3018, 1703, 2.8333334922791] -- 7
+	[3018, 1706, 3.0000002384186, 1.0] -- 8
+	[3020, 1707, 3.0000002384186] -- 9
+	[1162, 656, 4.1666669845581] -- 10
+	[2999, 1687, 4.6666669845581] -- 11
+	[2928, 1650, 4.0] -- 12
+	[2926, 1650, 1.5000001192093] -- 13
+	[2927, 1651, 1.5000001192093] -- 14
+	[2926, 1651, 2.566666841507] -- 15
+	[2927, 1650, 1.6666667461395] -- 16
+	[2903, 1629, 1.5000001192093] -- 17
+	[3006, 1689, 5.0000004768372] -- 18
+	[2907, 1632, 0.66666668653488] -- 19
+	[2999, 1686, 2.0] -- 20
+	[2907, 1631, 1.0666667222977] -- 21
+	[2907, 1631, 3, 1.0] -- 22
+	[2907, 1631, 5.3333334922791] -- 23
+	[2998, 1685, 1.1666667461395] -- 24
+	[3353, 1882, 4.0] -- 25
+	[2918, 1646, 6.6666669845581] -- 26
+]
+
+scaleView = (index) =>
+	[width, height, time, target = time] = PVInfo[index]
+	{width: w, height: h} = View.size
+	scale = if (w / h) > (width / height)
+		h / height
+	else
+		w / width
+	@scaleX = scale
+	@scaleY = scale
+	@speed = time / target
+
+playOP = ->
+	Director.clearColor = Color 0x0
+	start = 1
+	Cache\loadAsync "spine:PV1/PV1_#{start}"
+	for i = start, #PVInfo
+		continue if i in [9, 19]
+		playEnded = false
+		nextViewLoaded = false
+		with playable = Playable "spine:PV1/PV1_#{i}"
+			\play "animation", i == 1
+			\gslot "AppSizeChanged", -> scaleView playable, i
+			scaleView playable, i
+			if i + 1 <= #PVInfo
+				\schedule once ->
+					Cache\loadAsync "spine:PV1/PV1_#{i + 1}"
+					nextViewLoaded = true
+			else
+				nextViewLoaded = true
+			\addTo Director.entry
+			Cache\unload "PV1/PV1_#{i}.atlas"
+			Cache\unload "spine:PV1/PV1_#{i}"
+			if i == 1
+				sleep 3
+				import "UI.Story"
+				story = with Story "Tutorial/Dialog/startUp.yarn"
+					\slot "Ended", -> playEnded = true
+					\showAsync!
+					\addTo Director.ui3D
+				wait -> playEnded
+				sleep 2
+			else
+				\slot "end", -> playEnded = true
+				\slot "AnimationEnd", -> playEnded = true
+			wait -> playEnded and nextViewLoaded
+			if i + 1 <= #PVInfo
+				\removeFromParent!
+				Cache\removeUnused "Texture"
+
+export default playOP

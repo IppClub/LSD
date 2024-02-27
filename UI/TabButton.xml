@@ -1,0 +1,47 @@
+<Dora>
+	<Import Module="UI.MovingText"/>
+	<Node Name="btn" TouchEnabled="True">
+		<Sprite Name="active" File="button.clip|btn_big_1" Visible="{ selected }" AnchorX="0" AnchorY="0">
+			<Sprite File="button.clip|btn_big_light" X="{ $X }" Y="{ $Y }" Order="-1" ScaleX="2" ScaleY="2">
+				<Action>
+					<Sequence Name="glow">
+						<Opacity Time="0.5" Start="0" Stop="1"/>
+						<Opacity Time="0.5" Start="1" Stop="0"/>
+					</Sequence>
+				</Action>
+				<Slot Name="Enter" Perform="glow" Loop="True"/>
+			</Sprite>
+		</Sprite>
+		<Sprite Name="inactive" File="button.clip|btn_big_2" Visible="{ not selected }" AnchorX="0" AnchorY="0"/>
+		<MovingText Name="movingText" TextBG="{ textBG or '' }" Color3="0xffffff">
+			<Item Name="mask">
+				<Sprite Name="activeStencil" File="button.clip|btn_big_1" AnchorX="0" AnchorY="0" Visible="{ selected }"/>
+				<Sprite Name="inactiveStencil" File="button.clip|btn_big_2" AnchorX="0" AnchorY="0" Visible="{ not selected }"/>
+			</Item>
+		</MovingText>
+		<Label Name="txt"
+			Text="{ text or '' }"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="{  selected and 0x7ec0f8 or 0xffffff }" TextAlign="Left"
+			Spacing="5" X="35" Y="41.5" AnchorX="0"/>
+		<Slot Name="Toggle">
+			<Yue>
+				btn.selected = not btn.selected
+				:selected = btn
+				btn.size = selected and active.size or inactive.size
+				color3 = Color3 selected and 0x7ec0f8 or 0xffffff
+				movingText.color3 = color3
+				txt.color3 = color3
+				active.visible = selected
+				activeStencil.visible = selected
+				inactive.visible = not selected
+				inactiveStencil.visible = not selected
+			</Yue>
+		</Slot>
+		<Yue>
+			movingText.color3 = Color3 selected and 0x7ec0f8 or 0xffffff
+			btn.selected = selected or false
+			size = selected and active.size or inactive.size
+			btn.size = size
+		</Yue>
+	</Node>
+</Dora>

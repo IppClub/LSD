@@ -1,0 +1,221 @@
+_ENV = Dora(
+	dora.Platformer
+	dora.Platformer.Decision
+)
+
+export default ->
+	store: Store = Data
+	BT = dora.Platformer.Behavior
+
+	Store["AI:NiniliteIntro"] = Behave "intro", BT.Seq [
+		BT.Con "raise gun", =>
+			with @owner.playable
+				\setSlot "pistol", with Spine "empgun"
+					.look = "PT"
+					.scaleX = 0.2
+					.scaleY = 0.2
+				.speed = 0.8
+				\play "pistol"
+			true
+		BT.Wait 0.5
+		BT.Con "hold gun", =>
+			@owner.playable.speed = 0
+			true
+		BT.Repeat BT.Con "wait", -> true
+	]
+
+	normalNPC = Sel [
+		Seq [
+			Con "not facing nearest player", =>
+				for unit in *AI\getDetectedUnits!
+					if unit.entity.player
+						return math.abs(@x - unit.x) <= 200 and (@x > unit.x) == @faceRight
+				if unit := AI\getNearestUnit "Any"
+					math.abs(@x - unit.x) <= 200 and (@x > unit.x) == @faceRight
+				else
+					false
+			Act "turn"
+		]
+		Act "idle"
+	]
+
+	gotoExit = Seq [
+		Con "leading", => @entity.leading
+		Sel [
+			Seq [
+				Con "reached exit", (unit) ->
+					if unit.x >= 6200
+						unit.entity.leading = false
+						unit\emit "ReachedExit"
+						true
+					else
+						false
+				normalNPC
+			]
+			Seq [
+				Con "player is far", (unit) ->
+					Group(["player", "unit"])\each => @player and unit.x - @unit.x > 400
+				Act "idle"
+			]
+			Seq [
+				Con "not facing exit", => not @faceRight
+				Act "turn"
+				Reject!
+			]
+			Act "fmove"
+		]
+	]
+
+	Store["AI:NPC"] = Sel [
+		Seq [
+			Con "enemy nearby", -> AI\getNearestUnit("Enemy")?
+			Sel [
+				Seq [
+					Con "not facing nearest enemy", =>
+						if unit := AI\getNearestUnit "Enemy"
+							(@x > unit.x) == @faceRight
+						else
+							false
+					Act "turn"
+					Reject!
+				]
+				Seq [
+					Con "is falling", => not @onSurface
+					Act "fallOff"
+				]
+				Seq [
+					Con "attackable", =>
+						units = AI\getUnitsInAttackRange!
+						units.count > 0 and units\each (unit) -> (@x <= unit.x) == @faceRight
+					Behave "attack", BT.Seq [
+						BT.Command "prepare"
+						BT.Wait 1
+						BT.Act "laser"
+					]
+				]
+				Act "prepare"
+			]
+		]
+		gotoExit
+		normalNPC
+	]
+
+	Store["AI:Monster"] = Sel [
+		Seq [
+			Con "enemy dead", => @entity.hp <= 0
+			Accept!
+		]
+		Seq [
+			Con "enemy nearby", -> AI\getNearestUnit("Enemy")?
+			Sel [
+				Seq [
+					Con "not facing nearest enemy", =>
+						if unit := AI\getNearestUnit "Enemy"
+							(@x > unit.x) == @faceRight
+						else
+							false
+					Act "turn"
+					Reject!
+				]
+				Seq [
+					Con "attackable", =>
+						units = AI\getUnitsInAttackRange!
+						units.count > 0 and units\each (unit) -> (@x <= unit.x) == @faceRight
+					Act "blow"
+				]
+				Act "fmove"
+			]
+		]
+		Act "idle"
+	]
+
+	Store["AI:NiniliteFight"] = Store["AI:NPC"]
+
+	normalControl = Sel [
+		Seq [
+			Sel [
+				Seq [
+					Con "fmove key down", =>
+						not (@entity.keyLeft and @entity.keyRight) and
+						(
+							(@entity.keyLeft and @faceRight) or
+							(@entity.keyRight and not @faceRight)
+						)
+					Act "turn"
+				]
+				Seq [
+					Con "bmove key down", =>
+						not (@entity.keyLeft or @entity.keyRight) and
+						not (@entity.keyBLeft and @entity.keyBRight) and
+						(
+							(@entity.keyBLeft and not @faceRight) or
+							(@entity.keyBRight and @faceRight)
+						)
+					Act "turn"
+				]
+			]
+			Reject!
+		]
+		Seq [
+			Con "kinetic", => @entity.keyShoot
+			Act "kinetic"
+		]
+		Seq [
+			Con "is falling", => not @onSurface
+			Act "fallOff"
+		]
+		Seq [
+			Con "fmove key down", => @entity.keyLeft or @entity.keyRight
+			Act "fmove"
+		]
+		Seq [
+			Con "bmove key down", => @entity.keyBLeft or @entity.keyBRight
+			Act "bmove"
+		]
+		Act "idle"
+	]
+
+	battleControl = Sel [
+		Seq [
+			Con "kinetic", => @entity.keyShoot
+			Act "kinetic"
+		]
+		Seq [
+			Con "is falling", => not @onSurface
+			Act "fallOff"
+		]
+		Seq [
+			Con "not facing nearest enemy", =>
+				if unit := AI\getNearestUnit "Enemy"
+					(@x > unit.x) == @faceRight
+				else
+					false
+			Act "turn"
+			Reject!
+		]
+		Seq [
+			Con "left key down", => @entity.keyLeft
+			Act =>
+				if unit := AI\getNearestUnit "Enemy"
+					@x > unit.x and "fmove" or "bmove"
+				else
+					""
+		]
+		Seq [
+			Con "right key down", => @entity.keyRight
+			Act =>
+				if unit := AI\getNearestUnit "Enemy"
+					@x <= unit.x and "fmove" or "bmove"
+				else
+					""
+		]
+		Act "prepare"
+	]
+
+	Store["AI:PlayerControl"] = Sel [
+		Seq [
+			Con "enemy nearby", -> AI\getNearestUnit("Enemy")?
+			battleControl
+		]
+		normalControl
+	]

@@ -1,0 +1,17 @@
+<Dora>
+	<Import Module="UI.Control.Basic.FixedLabel"/>
+
+	<Node Width="476" Height="739">
+		<Sprite File="ar.clip|lsdar_settlement_ai_1" X="{ $X }" Y="{ $T }" AnchorY="1"/>
+		<Sprite File="ar.clip|lsdar_settlement_ai_2" X="{ $X }" Y="{ $T }" AnchorY="1">
+			<Label
+				Text="{ title or '' }"
+				FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Center"
+				Spacing="5" X="{ $X }" Y="{ $Y }"/>
+		</Sprite>
+		<Sprite File="ar.clip|lsdar_settlement_ai_record" X="{ $X }" Y="{ $B }" AnchorY="0"/>
+		<FixedLabel Width="350" Height="500"
+			Text="策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明\n\n策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明\n\n策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明\n\n策略说明\n策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明策略说明"
+			FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Left" X="{ $X }" Y="{ $Y }"/>
+	</Node>
+</Dora>

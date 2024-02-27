@@ -1,0 +1,239 @@
+_ENV = Dora dora.Platformer
+
+export default ->
+	store: Store = Data
+
+	UnitAction\add "fall",
+		priority: 10
+		reaction: 3
+		recovery: 0.1
+		queued: true
+		available: -> true
+		create: => once -> with @playable
+			.speed = 1
+			sleep \play "fall"
+			sleep 0.1
+			.recovery = 0
+			sleep \play "standUp"
+
+	UnitAction\add "evade",
+		priority: 10
+		reaction: 10
+		recovery: 0
+		queued: true
+		available: -> true
+		create: =>
+			time = 0
+			with @playable
+				.speed = 1.0
+				time = \play "bstep"
+			once =>
+				dir = @faceRight and -1 or 1
+				cycle math.max(time, 0.4), -> @velocityX = 800 * dir
+				with @playable
+					.recovery = 0.3
+					.speed = 1.0
+					\play "idle"
+				sleep 0.3
+				true
+
+	UnitAction\add "rush",
+		priority: 10
+		reaction: 10
+		recovery: 0
+		queued: true
+		available: -> true
+		create: =>
+			time = 0
+			with @playable
+				.speed = 1.0
+				time = \play "fstep"
+			once =>
+				dir = @faceRight and 1 or -1
+				cycle math.max(time, 0.4), -> @velocityX = 800 * dir
+				with @playable
+					.recovery = 0.3
+					.speed = 1.0
+					\play "idle"
+				sleep 0.3
+				true
+
+	UnitAction\add "hit",
+		priority: 99
+		reaction: 3
+		recovery: 0.2
+		queued: false
+		available: -> true
+		create: => once ->
+			with @playable
+				.speed = 1
+				sleep \play "hit"
+
+	UnitAction\add "pistol",
+		priority: 3
+		reaction: 3
+		recovery: 0.2
+		queued: true
+		available: -> true
+		create: => once ->
+			with @playable
+				.speed = 1
+				sleep \play "pistol"
+
+	UnitAction\add "test",
+		priority: 3
+		reaction: 3
+		recovery: 0.1
+		queued: true
+		available: -> true
+		create: => once -> with @playable
+			.speed = 1
+			sleep \play Store.testAction
+
+	UnitAction\add "idle",
+		priority: 1
+		reaction: 2.0
+		recovery: 0.2
+		available: => @onSurface
+		create: => with @playable
+			.speed = 1.0
+			\play "idle", true
+			playIdleSpecial = coroutine.create -> while true
+				sleep 3
+				sleep \play "idle1"
+				\play "idle", true
+			@data.playIdleSpecial = playIdleSpecial
+			return =>
+				coroutine.resume playIdleSpecial
+				not @onSurface
+
+	UnitAction\add "prepare",
+		priority: 1
+		reaction: 2.0
+		recovery: 0.2
+		available: => @onSurface
+		create: => with @playable
+			.speed = 1.0
+			if .lastCompleted in [
+					"melee"
+					"pistol"
+					"bow"
+					"gun1"
+					"gun2"
+					"gun3"
+					"throw"
+					"parry"
+					"defense"
+					"comp"
+					"comm"
+					"hit"
+				]
+				.recovery = 0.0
+			\play "prepare", true
+			return => not @onSurface
+
+	UnitAction\add "fmove",
+		priority: 1
+		reaction: 2.0
+		recovery: 0.2
+		available: => @onSurface
+		create: =>
+			with @playable
+				.speed = 1
+				\play "fmove", true
+			(action)=>
+				:elapsedTime, :recovery = action
+				:move = @unitDef
+				moveSpeed = if elapsedTime < recovery
+					math.min elapsedTime / recovery, 1.0
+				else
+					1.0
+				@velocityX = moveSpeed * (@faceRight and move or -move)
+				not @onSurface
+
+	UnitAction\add "keepIdle",
+		priority: 100
+		reaction: 2.0
+		recovery: 0.2
+		available: -> true
+		create: =>
+			with @playable
+				.speed = 1
+				\play "idle", true
+			-> false
+
+	UnitAction\add "idle1",
+		priority: 1
+		reaction: 2.0
+		recovery: 0.2
+		available: -> true
+		queued: true
+		create: => once ->
+			with @playable
+				.speed = 1
+				sleep \play "idle1", false
+
+	UnitAction\add "keepMove",
+		priority: 100
+		reaction: 2.0
+		recovery: 0.2
+		available: -> true
+		create: =>
+			with @playable
+				.speed = 1
+				\play "fmove", true
+			-> false
+
+	UnitAction\add "bmove",
+		priority: 1
+		reaction: 2.0
+		recovery: 0.2
+		available: => @onSurface
+		create: =>
+			with @playable
+				.speed = 1
+				\play "bmove", true
+			(action)=>
+				:elapsedTime, :recovery = action
+				:move = @unitDef
+				moveSpeed = if elapsedTime < recovery
+					math.min elapsedTime / recovery, 1.0
+				else
+					1.0
+				@velocityX = moveSpeed * (@faceRight and -move or move) * 0.5
+				not @onSurface
+
+	UnitAction\add "jump",
+		priority: 3
+		reaction: 2.0
+		recovery: 0.1
+		queued: true
+		available: => @onSurface
+		create: =>
+			:velocityX = @
+			:jump = @unitDef
+			@velocity = Vec2 velocityX, jump
+			once =>
+				with @playable
+					.speed = 1
+					sleep \play "jump", false
+
+	UnitAction\add "fallOff",
+		priority: 2
+		reaction: -1
+		recovery: 0.3
+		available: => not @onSurface
+		create: =>
+			if @playable.current ~= "jumping"
+				with @playable
+					.speed = 1
+					\play "jumping", true
+			once =>
+				while true
+					if @onSurface
+						with @playable
+							.speed = 1
+							sleep \play "landing", false
+						coroutine.yield true
+					else
+						coroutine.yield false

@@ -1,0 +1,20 @@
+_ENV = Dora!
+if scriptPath := Path\getScriptPath ...
+	scriptPath = Path\getPath scriptPath
+	for path in *{
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		}
+		Content\insertSearchPath 1, path
+else return
+
+import "UI.LsdOSBack"
+import "UI.Settlement"
+
+Director.ui3D\addChild with LsdOSBack!
+	\alignLayout!
+Director.ui3D\addChild with Settlement!
+	\alignLayout!

@@ -1,0 +1,28 @@
+_ENV = Dora!
+import "UI.View.HUDMove"
+
+export default Class HUDMove,
+	__init: =>
+		playerGroup = Group {"player"}
+		keyboardEnabled = false
+		updatePlayerControl = (key, down, vpad) ->
+			if keyboardEnabled and vpad
+				keyboardEnabled = false
+			if player := playerGroup\find (e) -> e.player
+				player[key] = down
+		@gslot "HUD.DisplayMove", (visible) ->
+			@visible = visible
+			@perform Scale 0.3, 0, 1, Ease.OutBack
+		@schedule ->
+			return unless @visible
+			keyA = Keyboard\isKeyPressed "A"
+			keyD = Keyboard\isKeyPressed "D"
+			keyboardEnabled = true if keyA or keyD
+			return false unless keyboardEnabled
+			updatePlayerControl "keyLeft", keyA, false
+			updatePlayerControl "keyRight", keyD, false
+			false
+		@slot "Left", (down) ->
+			updatePlayerControl "keyLeft", down, true
+		@slot "Right", (down) ->
+			updatePlayerControl "keyRight", down, true

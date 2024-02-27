@@ -1,0 +1,29 @@
+<!-- @preview-file off -->
+<Dora>
+	<Import Module="UI.View.Shape.SolidRect"/>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Lua>local H <const> = 1563</Lua>
+	<AlignNode InUI="True" IsRoot="True">
+		<Node Name="box" Width="700" Height="50" Ref="True">
+			<SolidRect X="{ -100 }" Y="{ -75 }" Width="900" Height="200" Color="0x88000000"/>
+			<Sprite Name="frame" File="gearBox.clip|formation_pop_sep" X="{ $X }" Y="{ $Y }" ScaleX="0.74" ScaleY="0.74" Ref="True"/>
+			<ClipNode X="{ $X - 50 }" Y="{ $Y }" Width="650" Height="50">
+				<Stencil>
+					<SolidRect Width="650" Height="50"/>
+				</Stencil>
+				<Label Name="label" Text="" FontName="SourceHanSansCN-Regular"
+					FontSize="35" Color3="0xffffff" TextAlign="Left"
+					X="0" Y="25" AnchorX="0" Ref="True"/>
+			</ClipNode>
+		</Node>
+		<Slot Name="AlignLayout" Args="w, h">
+			<Yue>
+				scale = h / H
+				ratio = math.min w / 1000, 1.0
+				extraScale = math.max scale, ratio
+				box.scaleX = extraScale
+				box.scaleY = extraScale
+			</Yue>
+		</Slot>
+	</AlignNode>
+</Dora>

@@ -1,0 +1,22 @@
+<Dora>
+	<Import Module="UI.Control.Basic.AlignNode"/>
+	<AlignNode Name="rightTop"  HAlign="Right" VAlign="Top">
+		<ClipNode X="-105" Y="-75">
+			<Stencil>
+				<Sprite File="button.clip|img_1"/>
+			</Stencil>
+			<Node>
+				<Sprite File="button.clip|img_1" X="180"/>
+				<Sprite File="button.clip|img_1"/>
+				<Action>
+					<Move Name="move" Time="5" StartX="0" StopX="-180" StartY="0" StopY="0"/>
+				</Action>
+				<Slot Name="Enter" Perform="move" Loop="True"/>
+			</Node>
+		</ClipNode>
+		<Label
+			Text="LSD OS"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+			X="-215" Y="-124" AnchorX="0" AnchorY="0"/>
+	</AlignNode>
+</Dora>
