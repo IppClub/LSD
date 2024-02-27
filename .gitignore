@@ -47,11 +47,11 @@ build/
 ._.*
 xcuserdata/
 DerivedData/
-Assets/*.icns
-Assets/*.car
 
 # Ignore vim swaps
 *.swp
 
 # Ignore vscode file
 .vscode/
+
+Spine/
