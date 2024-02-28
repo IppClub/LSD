@@ -50,9 +50,9 @@ TextInput = Class ((args) ->
 			(pos) <- \convertToWindowSpace Vec2 -label.x + label.width, 0
 			Keyboard\updateIMEPosHint pos
 		startEditing = ->
-			if not .imeAttached
-				\attachIME!
-				updateIMEPos!
+			\detachIME!
+			\attachIME!
+			updateIMEPos!
 		.updateDisplayText = (_, txt) ->
 			textDisplay = txt
 			label.text = txt

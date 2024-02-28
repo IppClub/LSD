@@ -9,7 +9,6 @@ local Vec2 = dora.Vec2 -- 1
 local Director = dora.Director -- 1
 local Keyboard = dora.Keyboard -- 1
 local Node = dora.Node -- 1
-
 local AlignNode = require("UI.Control.Basic.AlignNode") -- 2
 local CircleButton = require("UI.Control.Basic.CircleButton") -- 3
 local Store = Data.store -- 5

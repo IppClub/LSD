@@ -79,10 +79,9 @@ local TextInput = Class((function(args) -- 5
 		end -- 49
 		local startEditing -- 52
 		startEditing = function() -- 52
-			if not _with_0.imeAttached then -- 53
-				_with_0:attachIME() -- 54
-				return updateIMEPos() -- 55
-			end -- 53
+			_with_0:detachIME() -- 53
+			_with_0:attachIME() -- 54
+			return updateIMEPos() -- 55
 		end -- 52
 		_with_0.updateDisplayText = function(_, txt) -- 56
 			textDisplay = txt -- 57
