@@ -15,4 +15,3 @@ import "UI.Training"
 
 Director.ui3D\addChild with Training!
 	\alignLayout!
-	

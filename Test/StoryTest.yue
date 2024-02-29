@@ -16,5 +16,6 @@ import "UI.Story"
 
 Director.ui3D\addChild with LsdOSBack!
 	\alignLayout!
-Director.ui3D\addChild with Story!
+Director.ui3D\addChild with Story "Tutorial/Dialog/followMe.yarn"
 	\alignLayout!
+	thread -> \showAsync!

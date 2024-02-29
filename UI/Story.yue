@@ -74,16 +74,16 @@ export default Class Story,
 		@reviewArea\slot "NoneScrollTapped", -> @reviewVisible = false
 		@_dialog = with Dialog!
 			.__notify = (event, key, value)->
-				if event == "Modified" and value ~= nil
+				if event == "Modified"
 					switch key
 						when "character"
 							@figure\removeAllChildren!
-							if value ~= ""
+							if value? and value ~= ""
 								@figure\addChild StoryFigure char: value
 						when "name"
-							@name.text = value
+							@name.text = value if value?
 						when "text"
-							@text.text = value
+							@text.text = value if value?
 				elseif event == "Updated"
 					@alignLayout!
 		@_reviews = {}
@@ -98,7 +98,7 @@ export default Class Story,
 		return if @_advancing
 		@_advancing = true
 		name, characterId = getCharName @_current
-		Cache\loadAsync "spine:#{characterId}Figure" if characterId ~= ""
+		Cache\loadAsync "spine:#{characterId}Figure" if characterId and characterId ~= ""
 		text = @_current.text
 		@_reviews[] = :name, :text
 		@_dialog.character = characterId

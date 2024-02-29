@@ -2,7 +2,7 @@
 local Path = dora.Path -- 1
 local Content = dora.Content -- 1
 local Director = dora.Director -- 1
-
+local thread = dora.thread -- 1
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2
@@ -30,7 +30,10 @@ Director.ui3D:addChild((function() -- 17
 	return _with_0 -- 17
 end)()) -- 17
 return Director.ui3D:addChild((function() -- 19
-	local _with_0 = Story() -- 19
+	local _with_0 = Story("Tutorial/Dialog/followMe.yarn") -- 19
 	_with_0:alignLayout() -- 20
+	thread(function() -- 21
+		return _with_0:showAsync() -- 21
+	end) -- 21
 	return _with_0 -- 19
-end)()) -- 20
+end)()) -- 21

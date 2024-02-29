@@ -153,18 +153,22 @@ _module_0 = Class(Story, { -- 22
 		do -- 75
 			local _with_0 = Dialog() -- 75
 			_with_0.__notify = function(event, key, value) -- 76
-				if event == "Modified" and value ~= nil then -- 77
+				if event == "Modified" then -- 77
 					if "character" == key then -- 79
 						self.figure:removeAllChildren() -- 80
-						if value ~= "" then -- 81
+						if (value ~= nil) and value ~= "" then -- 81
 							return self.figure:addChild(StoryFigure({ -- 82
 								char = value -- 82
 							})) -- 82
 						end -- 81
 					elseif "name" == key then -- 83
-						self.name.text = value -- 84
+						if (value ~= nil) then -- 84
+							self.name.text = value -- 84
+						end -- 84
 					elseif "text" == key then -- 85
-						self.text.text = value -- 86
+						if (value ~= nil) then -- 86
+							self.text.text = value -- 86
+						end -- 86
 					end -- 86
 				elseif event == "Updated" then -- 87
 					return self:alignLayout() -- 88
@@ -192,7 +196,7 @@ _module_0 = Class(Story, { -- 22
 		end -- 98
 		self._advancing = true -- 99
 		local name, characterId = getCharName(self._current) -- 100
-		if characterId ~= "" then -- 101
+		if characterId and characterId ~= "" then -- 101
 			Cache:loadAsync("spine:" .. tostring(characterId) .. "Figure") -- 101
 		end -- 101
 		local text = self._current.text -- 102

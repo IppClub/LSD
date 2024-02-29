@@ -18,9 +18,6 @@ else return
 require "Control"
 import "Utils" as :Set
 import "UI.HUDControl"
-import "Logic.MotherBase"
-
-MotherBase!
 
 Director.ui3D\addChild HUDControl!
 
@@ -613,40 +610,6 @@ createUnit = ->
 	with world.camera
 		.position = unit.position
 		.followTarget = unit
-
-	if scenes[currentScene] == "PreparationRoom"
-		world\turnOnLights!
-		world\makeUnitEnter unit
-	else
-		if not Group({"name", "player"})\find => @name == "liyena" and not @player
-			Entity
-				player: false
-				name: "liyena"
-				faceRight: true
-				position: Vec2 300, world.offset
-				order: -1
-				base: true
-			Entity
-				player: false
-				name: "moling"
-				faceRight: true
-				position: Vec2 300, world.offset
-				order: -2
-				base: true
-			Entity
-				player: false
-				name: "villywan"
-				faceRight: true
-				position: Vec2 300, world.offset
-				order: 1
-				base: true
-			Entity
-				player: false
-				name: "ayan"
-				faceRight: true
-				position: Vec2 300, world.offset
-				order: 2
-				base: true
 
 currentFile = 1
 
