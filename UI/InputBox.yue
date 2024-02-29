@@ -52,7 +52,7 @@ TextInput = Class ((args) ->
 		startEditing = ->
 			\detachIME!
 			\attachIME!
-			updateIMEPos!
+			thread -> updateIMEPos!
 		.updateDisplayText = (_, txt) ->
 			textDisplay = txt
 			label.text = txt

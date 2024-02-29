@@ -8,6 +8,7 @@ local sleep = dora.sleep -- 1
 local math = _G.math -- 1
 local Size = dora.Size -- 1
 local Keyboard = dora.Keyboard -- 1
+local thread = dora.thread -- 1
 local App = dora.App -- 1
 local property = dora.property -- 1
 local _module_0 = nil -- 1
@@ -81,7 +82,9 @@ local TextInput = Class((function(args) -- 5
 		startEditing = function() -- 52
 			_with_0:detachIME() -- 53
 			_with_0:attachIME() -- 54
-			return updateIMEPos() -- 55
+			return thread(function() -- 55
+				return updateIMEPos() -- 55
+			end) -- 55
 		end -- 52
 		_with_0.updateDisplayText = function(_, txt) -- 56
 			textDisplay = txt -- 57
