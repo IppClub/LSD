@@ -45,7 +45,7 @@ playOP = ->
 	start = 1
 	Cache\loadAsync "spine:PV1/PV1_#{start}"
 	for i = start, #PVInfo
-		continue if i in [9, 19]
+		continue if i in [8, 9, 19]
 		playEnded = false
 		nextViewLoaded = false
 		with playable = Playable "spine:PV1/PV1_#{i}"
