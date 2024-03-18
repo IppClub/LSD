@@ -30,7 +30,7 @@ local talkLine = Line() -- 19
 talkLine.color3 = Color3(0xffffff) -- 19
 talkArea:addChild(talkLine) -- 19
 talkLine:set({Vec2(92,340),Vec2(3166,340)},Color(0xffffffff)) -- 19
-local name = Label("SourceHanSansCN-Regular",50) -- 23
+local name = Label("SourceHanSansCN-Regular",55) -- 23
 name.anchor = Vec2(0,name.anchor.y) -- 23
 name.x = 97 -- 23
 name.y = 185 -- 23
@@ -46,7 +46,7 @@ local textArea = ScrollArea{y = 165, x = 1620, scrollBar = false, paddingX = 0} 
 talkArea:addChild(textArea) -- 28
 ui.textArea = textArea -- 28
 local view = textArea.view -- 29
-local text = Label("SourceHanSansCN-Regular",40) -- 30
+local text = Label("SourceHanSansCN-Regular",50) -- 30
 text.color3 = Color3(0xffffff) -- 30
 text.alignment = "Left" -- 30
 text.textWidth = 2368 -- 30

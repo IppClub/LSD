@@ -3,7 +3,7 @@ return function(args) -- 1
 local _ENV = Dora(args) -- 1
 local node = Node() -- 2
 node.size = Size(width,100) -- 2
-local nameLabel = Label("SourceHanSansCN-Regular",50) -- 3
+local nameLabel = Label("SourceHanSansCN-Regular",55) -- 3
 nameLabel.anchor = Vec2(0,1) -- 3
 nameLabel.x = 0 -- 3
 nameLabel.y = node.height -- 3
@@ -12,7 +12,7 @@ nameLabel.alignment = "Left" -- 3
 nameLabel.textWidth = 200 -- 3
 nameLabel.text = name -- 3
 node:addChild(nameLabel) -- 3
-local textLabel = Label("SourceHanSansCN-Regular",40) -- 7
+local textLabel = Label("SourceHanSansCN-Regular",50) -- 7
 textLabel.anchor = Vec2(0,1) -- 7
 textLabel.x = 250 -- 7
 textLabel.y = node.height -- 7

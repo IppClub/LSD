@@ -4,7 +4,7 @@
 		<Grid Name="back2" File="button.clip|prompt_chat_answer_2" X="{ $X }" Y="{ $Y }" GridX="1" GridY="2" Visible="False"/>
 		<Label Name="lb"
 			Text="{ text or '' }"
-			FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Left"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
 			X="55" Y="{ $Y }" AnchorX="0" TextWidth="717"/>
 		<Action>
 			<Sequence Name="scaleAction">

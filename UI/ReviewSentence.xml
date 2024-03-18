@@ -2,11 +2,11 @@
 	<Node Name="node" Width="{ width }" Height="100">
 		<Label Name="nameLabel"
 			Text="{ name }"
-			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+			FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
 			X="0" Y="{ $T }" AnchorX="0" AnchorY="1" TextWidth="200"/>
 		<Label Name="textLabel"
 			Text="{ text }"
-			FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
 			X="250" Y="{ $T }" TextWidth="{ width - 250 }" AnchorX="0" AnchorY="1"/>
 		<Yue>
 			height = math.max nameLabel.height, textLabel.height

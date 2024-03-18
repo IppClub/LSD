@@ -22,14 +22,14 @@
 			</Line>
 			<Label Name="name"
 				Text=""
-				FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
+				FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
 				X="97" Y="185" AnchorX="0" Ref="True"/>
 			<Node Name="confirm" TouchEnabled="True" Ref="True"/>
 			<ScrollArea Name="textArea" PaddingX="0" ScrollBar="False" X="1620" Y="165" Ref="True">
 				<Item Name="view">
 					<Label Name="text"
 						Text=""
-						FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
+						FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
 						TextWidth="2368" Ref="True"/>
 				</Item>
 			</ScrollArea>

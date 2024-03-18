@@ -13,7 +13,7 @@ back2.x = node.width*0.5 -- 4
 back2.y = node.height*0.5 -- 4
 back2.visible = false -- 4
 node:addChild(back2) -- 4
-local lb = Label("SourceHanSansCN-Regular",35) -- 5
+local lb = Label("SourceHanSansCN-Regular",50) -- 5
 lb.anchor = Vec2(0,lb.anchor.y) -- 5
 lb.x = 55 -- 5
 lb.y = node.height*0.5 -- 5
