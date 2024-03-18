@@ -12,12 +12,12 @@ local print = _G.print -- 1
 local tostring = _G.tostring -- 1
 local loop = dora.loop -- 1
 local sleep = dora.sleep -- 1
+local Delay = dora.Delay -- 1
+local Spawn = dora.Spawn -- 1
 local Label = dora.Label -- 1
 local Sequence = dora.Sequence -- 1
-local Spawn = dora.Spawn -- 1
 local Scale = dora.Scale -- 1
 local Ease = dora.Ease -- 1
-local Delay = dora.Delay -- 1
 local Opacity = dora.Opacity -- 1
 local Event = dora.Event -- 1
 local Vec2 = dora.Vec2 -- 1
@@ -28,7 +28,6 @@ local SetNextWindowSize = _module_0.SetNextWindowSize -- 1
 local Begin = _module_0.Begin -- 1
 local TextWrapped = _module_0.TextWrapped -- 1
 local Checkbox = _module_0.Checkbox -- 1
-
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2
@@ -68,6 +67,129 @@ do -- 25
 	s:play(animations[1], true) -- 30
 	spineShadow = s -- 25
 end -- 25
+local _anon_func_0 = function(spineShadow, Spine) -- 55
+	local _with_0 = Spine("coldweapon") -- 52
+	_with_0.look = "grenade" -- 53
+	_with_0.scaleX = 0.04 -- 54
+	_with_0.scaleY = 0.04 -- 55
+	return _with_0 -- 52
+end -- 52
+local _anon_func_1 = function(_with_0, Spine) -- 60
+	local _with_1 = Spine("coldweapon") -- 57
+	_with_1.look = "grenade" -- 58
+	_with_1.scaleX = 0.04 -- 59
+	_with_1.scaleY = 0.04 -- 60
+	return _with_1 -- 57
+end -- 57
+local _anon_func_2 = function(spineShadow, Spine) -- 67
+	local _with_0 = Spine("coldweapon") -- 64
+	_with_0.look = "comm" -- 65
+	_with_0.scaleX = 0.06 -- 66
+	_with_0.scaleY = 0.06 -- 67
+	return _with_0 -- 64
+end -- 64
+local _anon_func_3 = function(_with_0, Spine) -- 72
+	local _with_1 = Spine("coldweapon") -- 69
+	_with_1.look = "comm" -- 70
+	_with_1.scaleX = 0.06 -- 71
+	_with_1.scaleY = 0.06 -- 72
+	return _with_1 -- 69
+end -- 69
+local _anon_func_4 = function(spineShadow, Spine) -- 79
+	local _with_0 = Spine("coldweapon") -- 76
+	_with_0.look = "comp" -- 77
+	_with_0.scaleX = 0.1 -- 78
+	_with_0.scaleY = 0.1 -- 79
+	return _with_0 -- 76
+end -- 76
+local _anon_func_5 = function(_with_0, Spine) -- 84
+	local _with_1 = Spine("coldweapon") -- 81
+	_with_1.look = "comp" -- 82
+	_with_1.scaleX = 0.1 -- 83
+	_with_1.scaleY = 0.1 -- 84
+	return _with_1 -- 81
+end -- 81
+local _anon_func_6 = function(spineShadow, Spine) -- 91
+	local _with_0 = Spine("coldweapon") -- 88
+	_with_0.look = "shield" -- 89
+	_with_0.scaleX = 0.2 -- 90
+	_with_0.scaleY = 0.2 -- 91
+	return _with_0 -- 88
+end -- 88
+local _anon_func_7 = function(_with_0, Spine) -- 96
+	local _with_1 = Spine("coldweapon") -- 93
+	_with_1.look = "shield" -- 94
+	_with_1.scaleX = 0.2 -- 95
+	_with_1.scaleY = 0.2 -- 96
+	return _with_1 -- 93
+end -- 93
+local _anon_func_8 = function(_with_0, Spine, mname) -- 103
+	local _with_1 = Spine("coldweapon") -- 100
+	_with_1.look = mname -- 101
+	_with_1.scaleX = 0.2 -- 102
+	_with_1.scaleY = 0.2 -- 103
+	return _with_1 -- 100
+end -- 100
+local _anon_func_9 = function(_with_0, Spine, mname) -- 107
+	local _with_1 = Spine("coldweapon") -- 104
+	_with_1.look = mname -- 105
+	_with_1.scaleX = 0.2 -- 106
+	_with_1.scaleY = 0.2 -- 107
+	return _with_1 -- 104
+end -- 104
+local _anon_func_10 = function(spineShadow, Spine) -- 117
+	local _with_0 = Spine("coldweapon") -- 114
+	_with_0.look = "bow" -- 115
+	_with_0.scaleX = 0.2 -- 116
+	_with_0.scaleY = 0.2 -- 117
+	return _with_0 -- 114
+end -- 114
+local _anon_func_11 = function(_with_0, Spine) -- 122
+	local _with_1 = Spine("coldweapon") -- 119
+	_with_1.look = "bow" -- 120
+	_with_1.scaleX = 0.2 -- 121
+	_with_1.scaleY = 0.2 -- 122
+	return _with_1 -- 119
+end -- 119
+local _anon_func_12 = function(spineShadow, Spine, gname) -- 130
+	local _with_0 = Spine(gname) -- 127
+	_with_0.look = "PT" -- 128
+	_with_0.scaleX = 0.2 -- 129
+	_with_0.scaleY = 0.2 -- 130
+	return _with_0 -- 127
+end -- 127
+local _anon_func_13 = function(_with_0, Spine, gname) -- 135
+	local _with_1 = Spine(gname) -- 132
+	_with_1.look = "PT" -- 133
+	_with_1.scaleX = 0.2 -- 134
+	_with_1.scaleY = 0.2 -- 135
+	return _with_1 -- 132
+end -- 132
+local _anon_func_14 = function(_with_0, Spine, gname, gtype) -- 142
+	local _with_1 = Spine(gname) -- 139
+	_with_1.look = gtype -- 140
+	_with_1.scaleX = 0.2 -- 141
+	_with_1.scaleY = 0.2 -- 142
+	return _with_1 -- 139
+end -- 139
+local _anon_func_15 = function(_with_0, Spine, gname, gtype) -- 146
+	local _with_1 = Spine(gname) -- 143
+	_with_1.look = gtype -- 144
+	_with_1.scaleX = 0.2 -- 145
+	_with_1.scaleY = 0.2 -- 146
+	return _with_1 -- 143
+end -- 143
+local _anon_func_16 = function(_with_0, Label, name, Color, Sequence, Spawn, Scale, Ease, Delay, Opacity, Event, Vec2, x, y) -- 169
+	local _with_1 = Label("NotoSansHans-Regular", 30) -- 158
+	_with_1.text = name -- 159
+	_with_1.color = Color(0xff00ffff) -- 160
+	_with_1:perform(Sequence(Spawn(Scale(1, 0, 2, Ease.OutQuad), Sequence(Delay(0.5), Opacity(0.5, 1, 0))), Event("Stop"))) -- 161
+	_with_1.position = Vec2(x, y) -- 168
+	_with_1:slot("Stop", function() -- 169
+		return _with_1:removeFromParent() -- 169
+	end) -- 169
+	return _with_1 -- 158
+end -- 158
 local spine -- 32
 do -- 32
 	local _with_0 = Spine(spineStr) -- 32
@@ -98,69 +220,21 @@ do -- 32
 		return print(tostring(name) .. " end!") -- 49
 	end) -- 49
 	_with_0:schedule(loop(function() -- 50
-		spineShadow:setSlot("item", (function() -- 52
-			local _with_1 = Spine("coldweapon") -- 52
-			_with_1.look = "grenade" -- 53
-			_with_1.scaleX = 0.04 -- 54
-			_with_1.scaleY = 0.04 -- 55
-			return _with_1 -- 52
-		end)()) -- 52
+		spineShadow:setSlot("item", _anon_func_0(spineShadow, Spine)) -- 52
 		spineShadow:play("throw") -- 56
-		_with_0:setSlot("item", (function() -- 57
-			local _with_1 = Spine("coldweapon") -- 57
-			_with_1.look = "grenade" -- 58
-			_with_1.scaleX = 0.04 -- 59
-			_with_1.scaleY = 0.04 -- 60
-			return _with_1 -- 57
-		end)()) -- 57
+		_with_0:setSlot("item", _anon_func_1(_with_0, Spine)) -- 57
 		sleep(_with_0:play("throw")) -- 61
-		spineShadow:setSlot("comm", (function() -- 64
-			local _with_1 = Spine("coldweapon") -- 64
-			_with_1.look = "comm" -- 65
-			_with_1.scaleX = 0.06 -- 66
-			_with_1.scaleY = 0.06 -- 67
-			return _with_1 -- 64
-		end)()) -- 64
+		spineShadow:setSlot("comm", _anon_func_2(spineShadow, Spine)) -- 64
 		spineShadow:play("comm") -- 68
-		_with_0:setSlot("comm", (function() -- 69
-			local _with_1 = Spine("coldweapon") -- 69
-			_with_1.look = "comm" -- 70
-			_with_1.scaleX = 0.06 -- 71
-			_with_1.scaleY = 0.06 -- 72
-			return _with_1 -- 69
-		end)()) -- 69
+		_with_0:setSlot("comm", _anon_func_3(_with_0, Spine)) -- 69
 		sleep(_with_0:play("comm")) -- 73
-		spineShadow:setSlot("comp", (function() -- 76
-			local _with_1 = Spine("coldweapon") -- 76
-			_with_1.look = "comp" -- 77
-			_with_1.scaleX = 0.1 -- 78
-			_with_1.scaleY = 0.1 -- 79
-			return _with_1 -- 76
-		end)()) -- 76
+		spineShadow:setSlot("comp", _anon_func_4(spineShadow, Spine)) -- 76
 		spineShadow:play("comp") -- 80
-		_with_0:setSlot("comp", (function() -- 81
-			local _with_1 = Spine("coldweapon") -- 81
-			_with_1.look = "comp" -- 82
-			_with_1.scaleX = 0.1 -- 83
-			_with_1.scaleY = 0.1 -- 84
-			return _with_1 -- 81
-		end)()) -- 81
+		_with_0:setSlot("comp", _anon_func_5(_with_0, Spine)) -- 81
 		sleep(_with_0:play("comp")) -- 85
-		spineShadow:setSlot("shield", (function() -- 88
-			local _with_1 = Spine("coldweapon") -- 88
-			_with_1.look = "shield" -- 89
-			_with_1.scaleX = 0.2 -- 90
-			_with_1.scaleY = 0.2 -- 91
-			return _with_1 -- 88
-		end)()) -- 88
+		spineShadow:setSlot("shield", _anon_func_6(spineShadow, Spine)) -- 88
 		spineShadow:play("defence") -- 92
-		_with_0:setSlot("shield", (function() -- 93
-			local _with_1 = Spine("coldweapon") -- 93
-			_with_1.look = "shield" -- 94
-			_with_1.scaleX = 0.2 -- 95
-			_with_1.scaleY = 0.2 -- 96
-			return _with_1 -- 93
-		end)()) -- 93
+		_with_0:setSlot("shield", _anon_func_7(_with_0, Spine)) -- 93
 		sleep(_with_0:play("defence")) -- 97
 		local _list_0 = { -- 99
 			"sword", -- 99
@@ -169,40 +243,16 @@ do -- 32
 		} -- 99
 		for _index_0 = 1, #_list_0 do -- 99
 			local mname = _list_0[_index_0] -- 99
-			spineShadow:setSlot("melee", (function() -- 100
-				local _with_1 = Spine("coldweapon") -- 100
-				_with_1.look = mname -- 101
-				_with_1.scaleX = 0.2 -- 102
-				_with_1.scaleY = 0.2 -- 103
-				return _with_1 -- 100
-			end)()) -- 100
-			_with_0:setSlot("melee", (function() -- 104
-				local _with_1 = Spine("coldweapon") -- 104
-				_with_1.look = mname -- 105
-				_with_1.scaleX = 0.2 -- 106
-				_with_1.scaleY = 0.2 -- 107
-				return _with_1 -- 104
-			end)()) -- 104
+			spineShadow:setSlot("melee", _anon_func_8(_with_0, Spine, mname)) -- 100
+			_with_0:setSlot("melee", _anon_func_9(_with_0, Spine, mname)) -- 104
 			spineShadow:play("melee") -- 108
 			sleep(_with_0:play("melee")) -- 109
 			spineShadow:play("parry") -- 110
 			sleep(_with_0:play("parry")) -- 111
 		end -- 111
-		spineShadow:setSlot("bow", (function() -- 114
-			local _with_1 = Spine("coldweapon") -- 114
-			_with_1.look = "bow" -- 115
-			_with_1.scaleX = 0.2 -- 116
-			_with_1.scaleY = 0.2 -- 117
-			return _with_1 -- 114
-		end)()) -- 114
+		spineShadow:setSlot("bow", _anon_func_10(spineShadow, Spine)) -- 114
 		spineShadow:play("bow") -- 118
-		_with_0:setSlot("bow", (function() -- 119
-			local _with_1 = Spine("coldweapon") -- 119
-			_with_1.look = "bow" -- 120
-			_with_1.scaleX = 0.2 -- 121
-			_with_1.scaleY = 0.2 -- 122
-			return _with_1 -- 119
-		end)()) -- 119
+		_with_0:setSlot("bow", _anon_func_11(_with_0, Spine)) -- 119
 		sleep(_with_0:play("bow")) -- 123
 		local _list_1 = { -- 125
 			"kineticgun", -- 125
@@ -211,21 +261,9 @@ do -- 32
 		} -- 125
 		for _index_0 = 1, #_list_1 do -- 125
 			local gname = _list_1[_index_0] -- 125
-			spineShadow:setSlot("pistol", (function() -- 127
-				local _with_1 = Spine(gname) -- 127
-				_with_1.look = "PT" -- 128
-				_with_1.scaleX = 0.2 -- 129
-				_with_1.scaleY = 0.2 -- 130
-				return _with_1 -- 127
-			end)()) -- 127
+			spineShadow:setSlot("pistol", _anon_func_12(spineShadow, Spine, gname)) -- 127
 			spineShadow:play("pistol") -- 131
-			_with_0:setSlot("pistol", (function() -- 132
-				local _with_1 = Spine(gname) -- 132
-				_with_1.look = "PT" -- 133
-				_with_1.scaleX = 0.2 -- 134
-				_with_1.scaleY = 0.2 -- 135
-				return _with_1 -- 132
-			end)()) -- 132
+			_with_0:setSlot("pistol", _anon_func_13(_with_0, Spine, gname)) -- 132
 			sleep(_with_0:play("pistol")) -- 136
 			local _list_2 = { -- 138
 				"AR", -- 138
@@ -237,20 +275,8 @@ do -- 32
 			} -- 138
 			for _index_1 = 1, #_list_2 do -- 138
 				local gtype = _list_2[_index_1] -- 138
-				spineShadow:setSlot("gun", (function() -- 139
-					local _with_1 = Spine(gname) -- 139
-					_with_1.look = gtype -- 140
-					_with_1.scaleX = 0.2 -- 141
-					_with_1.scaleY = 0.2 -- 142
-					return _with_1 -- 139
-				end)()) -- 139
-				_with_0:setSlot("gun", (function() -- 143
-					local _with_1 = Spine(gname) -- 143
-					_with_1.look = gtype -- 144
-					_with_1.scaleX = 0.2 -- 145
-					_with_1.scaleY = 0.2 -- 146
-					return _with_1 -- 143
-				end)()) -- 143
+				spineShadow:setSlot("gun", _anon_func_14(_with_0, Spine, gname, gtype)) -- 139
+				_with_0:setSlot("gun", _anon_func_15(_with_0, Spine, gname, gtype)) -- 143
 				spineShadow:play("gun1") -- 147
 				sleep(_with_0:play("gun1")) -- 148
 				spineShadow:play("gun2") -- 149
@@ -270,17 +296,7 @@ do -- 32
 		do -- 157
 			local name = _with_0:containsPoint(x, y) -- 157
 			if name then -- 157
-				return _with_0:addChild((function() -- 158
-					local _with_1 = Label("NotoSansHans-Regular", 30) -- 158
-					_with_1.text = name -- 159
-					_with_1.color = Color(0xff00ffff) -- 160
-					_with_1:perform(Sequence(Spawn(Scale(1, 0, 2, Ease.OutQuad), Sequence(Delay(0.5), Opacity(0.5, 1, 0))), Event("Stop"))) -- 161
-					_with_1.position = Vec2(x, y) -- 168
-					_with_1:slot("Stop", function() -- 169
-						return _with_1:removeFromParent() -- 169
-					end) -- 169
-					return _with_1 -- 158
-				end)()) -- 169
+				return _with_0:addChild(_anon_func_16(_with_0, Label, name, Color, Sequence, Spawn, Scale, Ease, Delay, Opacity, Event, Vec2, x, y)) -- 169
 			end -- 157
 		end -- 157
 	end) -- 155

@@ -1,10 +1,10 @@
-local App <const> = require("App")
-local thread <const> = require("thread")
-local Node <const> = require("Node")
-local DrawNode <const> = require("DrawNode")
-local Color <const> = require("Color")
-local sleep <const> = require("sleep")
-local once <const> = require("once")
+local App = require("App")
+local thread = require("thread")
+local Node = require("Node")
+local DrawNode = require("DrawNode")
+local Color = require("Color")
+local sleep = require("sleep")
+local once = require("once")
 local Observer = require("Observer")
 local Entity = require("Entity")
 local Vec2 = require("Vec2")
@@ -25,7 +25,7 @@ local Interaction = require("UI.Interaction")
 return function()
 	Platformer.Data:setRelation(1, 2, "Enemy")
 
-	local Width <const>, Height <const>, MaxPath <const> = 100, 300, 2
+	local Width, Height, MaxPath = 100, 300, 2
 
 	Observer("Add", { "tutorial", "name", "position", "faceRight", "group" }):watch(function(entity, _tutorial, name, position, faceRight, group)
 		local unitDef = Dictionary()

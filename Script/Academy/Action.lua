@@ -9,6 +9,10 @@ local math = _G.math -- 1
 local coroutine = _G.coroutine -- 1
 local Vec2 = dora.Vec2 -- 1
 local _module_0 = nil -- 1
+local _anon_func_0 = function(_with_0) -- 130
+	local _val_0 = _with_0.lastCompleted -- 117
+	return "melee" == _val_0 or "pistol" == _val_0 or "bow" == _val_0 or "gun1" == _val_0 or "gun2" == _val_0 or "gun3" == _val_0 or "throw" == _val_0 or "parry" == _val_0 or "defense" == _val_0 or "comp" == _val_0 or "comm" == _val_0 or "hit" == _val_0 -- 117
+end -- 117
 _module_0 = function() -- 3
 	local Store = Data.store -- 4
 	UnitAction:add("fall", { -- 7
@@ -179,10 +183,7 @@ _module_0 = function() -- 3
 		create = function(self) -- 115
 			local _with_0 = self.playable -- 115
 			_with_0.speed = 1.0 -- 116
-			if (function() -- 117
-				local _val_0 = _with_0.lastCompleted -- 117
-				return "melee" == _val_0 or "pistol" == _val_0 or "bow" == _val_0 or "gun1" == _val_0 or "gun2" == _val_0 or "gun3" == _val_0 or "throw" == _val_0 or "parry" == _val_0 or "defense" == _val_0 or "comp" == _val_0 or "comm" == _val_0 or "hit" == _val_0 -- 117
-			end)() then -- 117
+			if _anon_func_0(_with_0) then -- 117
 				_with_0.recovery = 0.0 -- 131
 			end -- 117
 			_with_0:play("prepare", true) -- 132

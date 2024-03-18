@@ -2,7 +2,6 @@
 local Path = dora.Path -- 1
 local Content = dora.Content -- 1
 local Director = dora.Director -- 1
-
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2

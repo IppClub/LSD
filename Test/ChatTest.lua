@@ -3,7 +3,6 @@ local Path = dora.Path -- 1
 local Content = dora.Content -- 1
 local Director = dora.Director -- 1
 local print = _G.print -- 1
-
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2
@@ -27,6 +26,18 @@ local LsdOSBack = require("UI.LsdOSBack") -- 14
 local Interaction = require("UI.Interaction") -- 15
 local MessageBox = require("UI.MessageBox") -- 16
 local Bubble = require("UI.Bubble") -- 17
+local _anon_func_0 = function(_with_0, MessageBox) -- 28
+	local _with_1 = MessageBox() -- 27
+	_with_1.x = -600 -- 28
+	return _with_1 -- 27
+end -- 27
+local _anon_func_1 = function(_with_0, Bubble) -- 30
+	local _with_1 = Bubble({ -- 29
+		text = "聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字" -- 29
+	}) -- 29
+	_with_1.x = 600 -- 30
+	return _with_1 -- 29
+end -- 29
 return Director.ui3D:addChild((function() -- 19
 	local _with_0 = LsdOSBack() -- 19
 	_with_0.bg:addChild((function() -- 20
@@ -53,18 +64,8 @@ return Director.ui3D:addChild((function() -- 19
 		end) -- 26
 		return _with_1 -- 20
 	end)()) -- 20
-	_with_0.bg:addChild((function() -- 27
-		local _with_1 = MessageBox() -- 27
-		_with_1.x = -600 -- 28
-		return _with_1 -- 27
-	end)()) -- 27
-	_with_0.bg:addChild((function() -- 29
-		local _with_1 = Bubble({ -- 29
-			text = "聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字，聊天文字" -- 29
-		}) -- 29
-		_with_1.x = 600 -- 30
-		return _with_1 -- 29
-	end)()) -- 29
+	_with_0.bg:addChild(_anon_func_0(_with_0, MessageBox)) -- 27
+	_with_0.bg:addChild(_anon_func_1(_with_0, Bubble)) -- 29
 	_with_0:alignLayout() -- 31
 	return _with_0 -- 19
 end)()) -- 31

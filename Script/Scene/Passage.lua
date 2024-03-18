@@ -231,6 +231,13 @@ addLayer = function(world, def) -- 71
 	end -- 78
 	return layer -- 79
 end -- 71
+local _anon_func_0 = function(ClipNode, mask, createLayer, back, floor) -- 163
+	local _with_0 = ClipNode(mask) -- 160
+	_with_0:addChild(createLayer(back)) -- 161
+	_with_0:addChild(createLayer(floor)) -- 162
+	_with_0.order = back.order -- 163
+	return _with_0 -- 160
+end -- 160
 _module_0 = Class({ -- 82
 	width = property(function(self) -- 82
 		return self._width -- 82
@@ -363,13 +370,7 @@ _module_0 = Class({ -- 82
 				_with_0.z = frame.z -- 159
 				mask = _with_0 -- 152
 			end -- 152
-			self:addChild((function() -- 160
-				local _with_0 = ClipNode(mask) -- 160
-				_with_0:addChild(createLayer(back)) -- 161
-				_with_0:addChild(createLayer(floor)) -- 162
-				_with_0.order = back.order -- 163
-				return _with_0 -- 160
-			end)()) -- 160
+			self:addChild(_anon_func_0(ClipNode, mask, createLayer, back, floor)) -- 160
 		end -- 147
 		local LeftDoorSensor <const> = 0 -- 165
 		local RightDoorSensor <const> = 1 -- 166

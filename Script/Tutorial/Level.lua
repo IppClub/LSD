@@ -19,6 +19,13 @@ local TutorialAI = require("Tutorial.AI") -- 4
 local TutorialAction = require("Tutorial.Action").default -- 5
 local LoopTowerA = require("Scene.LoopTowerA") -- 6
 local Config = require("Data.Config") -- 7
+local _anon_func_0 = function(_with_0, Spine) -- 59
+	local _with_1 = Spine("kineticgun") -- 56
+	_with_1.look = "PT" -- 57
+	_with_1.scaleX = 0.2 -- 58
+	_with_1.scaleY = 0.2 -- 59
+	return _with_1 -- 56
+end -- 56
 _module_0 = function() -- 9
 	LoopTowerA:loadAsync() -- 10
 	local world = LoopTowerA() -- 11
@@ -102,13 +109,7 @@ _module_0 = function() -- 9
 				if "charF" == _exp_0 or "charM" == _exp_0 then -- 54
 					do -- 55
 						local _with_0 = self.unit.playable -- 55
-						_with_0:setSlot("pistol", (function() -- 56
-							local _with_1 = Spine("kineticgun") -- 56
-							_with_1.look = "PT" -- 57
-							_with_1.scaleX = 0.2 -- 58
-							_with_1.scaleY = 0.2 -- 59
-							return _with_1 -- 56
-						end)()) -- 56
+						_with_0:setSlot("pistol", _anon_func_0(_with_0, Spine)) -- 56
 					end -- 55
 					return true -- 60
 				end -- 60

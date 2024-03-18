@@ -14,7 +14,6 @@ local Begin = _module_0.Begin -- 1
 local Text = _module_0.Text -- 1
 local Separator = _module_0.Separator -- 1
 local Combo = _module_0.Combo -- 1
-
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2

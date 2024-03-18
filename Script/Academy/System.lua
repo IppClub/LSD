@@ -20,6 +20,33 @@ local Color = dora.Color -- 1
 local cycle = dora.cycle -- 1
 local SpriteEffect = dora.SpriteEffect -- 1
 local _module_0 = nil -- 1
+local _anon_func_0 = function(_with_1, moveEnter, unit) -- 79
+	if "center" == moveEnter then -- 77
+		return unit.faceRight -- 77
+	elseif "left" == moveEnter then -- 78
+		return true -- 78
+	elseif "right" == moveEnter then -- 79
+		return false -- 79
+	end -- 79
+end -- 76
+local _anon_func_1 = function(u, self, math, MaxPath) -- 146
+	local _exp_0 = self.order -- 146
+	if _exp_0 ~= nil then -- 146
+		return _exp_0 -- 146
+	else -- 146
+		return math.random(-MaxPath, MaxPath) -- 146
+	end -- 146
+end -- 146
+local _anon_func_2 = function(_with_1, Node, Size, GrabSize, parent) -- 151
+	local _with_0 = Node() -- 149
+	_with_0.size = Size(GrabSize, GrabSize) -- 150
+	_with_0:addTo(parent) -- 151
+	return _with_0 -- 149
+end -- 149
+local _anon_func_3 = function(u) -- 154
+	local _val_0 = u.decisionTree -- 154
+	return not ("AI:PlayerControl" == _val_0 or "AI:NPC" == _val_0) -- 154
+end -- 154
 _module_0 = function() -- 3
 	local Interaction = require("UI.Interaction") -- 4
 	local Set = require("Utils").Set -- 5
@@ -117,15 +144,7 @@ _module_0 = function() -- 3
 							Entity({ -- 74
 								player = true, -- 74
 								name = name, -- 75
-								faceRight = (function() -- 76
-									if "center" == moveEnter then -- 77
-										return unit.faceRight -- 77
-									elseif "left" == moveEnter then -- 78
-										return true -- 78
-									elseif "right" == moveEnter then -- 79
-										return false -- 79
-									end -- 79
-								end)(), -- 76
+								faceRight = _anon_func_0(_with_1, moveEnter, unit), -- 76
 								position = assert(world[moveEnter]), -- 80
 								base = true -- 81
 							}) -- 73
@@ -209,30 +228,15 @@ _module_0 = function() -- 3
 			local u = Unit(unitDef, world, self, position + Vec2(0, Height / 2)) -- 143
 			u.group = 1 -- 144
 			u.faceRight = faceRight -- 145
-			u.order = player and 0 or ((function() -- 146
-				local _exp_0 = self.order -- 146
-				if _exp_0 ~= nil then -- 146
-					return _exp_0 -- 146
-				else -- 146
-					return math.random(-MaxPath, MaxPath) -- 146
-				end -- 146
-			end)()) -- 146
+			u.order = player and 0 or (_anon_func_1(u, self, math, MaxPath)) -- 146
 			do -- 147
 				local _with_1 = u.playable -- 147
 				local parent = _with_1.parent -- 148
-				_with_1:moveToParent((function() -- 149
-					local _with_2 = Node() -- 149
-					_with_2.size = Size(GrabSize, GrabSize) -- 150
-					_with_2:addTo(parent) -- 151
-					return _with_2 -- 149
-				end)()) -- 149
+				_with_1:moveToParent(_anon_func_2(_with_1, Node, Size, GrabSize, parent)) -- 149
 				_with_1.position = Vec2(GrabSize / 2, GrabSize / 2 - Height / 2) -- 152
 			end -- 147
 			local isCommonAI = true -- 153
-			if (function() -- 154
-				local _val_0 = u.decisionTree -- 154
-				return not ("AI:PlayerControl" == _val_0 or "AI:NPC" == _val_0) -- 154
-			end)() then -- 154
+			if _anon_func_3(u) then -- 154
 				isCommonAI = false -- 155
 				if player then -- 156
 					world.camera.followTarget = unit -- 157

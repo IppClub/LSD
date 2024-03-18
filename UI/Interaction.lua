@@ -9,6 +9,13 @@ local Event = dora.Event -- 1
 local _module_0 = nil -- 1
 local InputButton = require("UI.InputButton") -- 2
 local Interaction = require("UI.View.Interaction") -- 3
+local _anon_func_0 = function(remove, Sequence, fadeOut, Event) -- 37
+	if remove then -- 37
+		return Sequence(fadeOut, Event("Remove")) -- 41
+	else -- 43
+		return fadeOut -- 43
+	end -- 37
+end -- 37
 _module_0 = Class(Interaction, { -- 10
 	__init = function(self, args) -- 10
 		local buttons = args.buttons -- 11
@@ -50,13 +57,7 @@ _module_0 = Class(Interaction, { -- 10
 		end -- 31
 		self.menu.enabled = false -- 32
 		local fadeOut = Spawn(Opacity(0.2, 1, 0), Y(0.2, 200, 220, Ease.InQuad)) -- 33
-		return self:perform((function() -- 37
-			if remove then -- 37
-				return Sequence(fadeOut, Event("Remove")) -- 41
-			else -- 43
-				return fadeOut -- 43
-			end -- 37
-		end)()) -- 43
+		return self:perform(_anon_func_0(remove, Sequence, fadeOut, Event)) -- 43
 	end -- 31
 }) -- 9
 return _module_0 -- 43

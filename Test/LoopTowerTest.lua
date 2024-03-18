@@ -5,9 +5,8 @@ local Director = dora.Director -- 1
 local Node = dora.Node -- 1
 local View = dora.View -- 1
 local math = _G.math -- 1
-local Sprite = dora.Sprite -- 1
 local Vec2 = dora.Vec2 -- 1
-
+local Sprite = dora.Sprite -- 1
 do -- 3
 	local scriptPath = Path:getScriptPath(...) -- 3
 	if scriptPath then -- 3
@@ -27,6 +26,15 @@ do -- 3
 		return -- 13
 	end -- 3
 end -- 3
+local _anon_func_0 = function(_with_0, Sprite, Vec2, View) -- 30
+	local _with_1 = Sprite("Image/loopTower.png") -- 25
+	_with_1.position = Vec2(0.5, 0.5) * View.size -- 26
+	_with_1.y = _with_1.y + 350 -- 27
+	local scale = View.size.height / 1563 -- 28
+	_with_1.scaleX = scale -- 29
+	_with_1.scaleY = scale -- 30
+	return _with_1 -- 25
+end -- 25
 return Director.entry:addChild((function() -- 15
 	local _with_0 = Node() -- 15
 	_with_0.scaleX = 1 -- 16
@@ -42,14 +50,6 @@ return Director.entry:addChild((function() -- 15
 			end -- 24
 		end -- 24
 	end -- 20
-	_with_0:addChild((function() -- 25
-		local _with_1 = Sprite("Image/loopTower.png") -- 25
-		_with_1.position = Vec2(0.5, 0.5) * View.size -- 26
-		_with_1.y = _with_1.y + 350 -- 27
-		local scale = View.size.height / 1563 -- 28
-		_with_1.scaleX = scale -- 29
-		_with_1.scaleY = scale -- 30
-		return _with_1 -- 25
-	end)()) -- 25
+	_with_0:addChild(_anon_func_0(_with_0, Sprite, Vec2, View)) -- 25
 	return _with_0 -- 15
 end)()) -- 30

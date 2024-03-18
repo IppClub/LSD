@@ -14,6 +14,13 @@ local Group = dora.Group -- 1
 local Reject = _module_1.Reject -- 1
 local Accept = _module_1.Accept -- 1
 local _module_0 = nil -- 1
+local _anon_func_0 = function(_with_0, Spine) -- 16
+	local _with_1 = Spine("empgun") -- 13
+	_with_1.look = "PT" -- 14
+	_with_1.scaleX = 0.2 -- 15
+	_with_1.scaleY = 0.2 -- 16
+	return _with_1 -- 13
+end -- 13
 _module_0 = function() -- 6
 	local Store = Data.store -- 7
 	local BT = dora.Platformer.Behavior -- 8
@@ -21,13 +28,7 @@ _module_0 = function() -- 6
 		BT.Con("raise gun", function(self) -- 11
 			do -- 12
 				local _with_0 = self.owner.playable -- 12
-				_with_0:setSlot("pistol", (function() -- 13
-					local _with_1 = Spine("empgun") -- 13
-					_with_1.look = "PT" -- 14
-					_with_1.scaleX = 0.2 -- 15
-					_with_1.scaleY = 0.2 -- 16
-					return _with_1 -- 13
-				end)()) -- 13
+				_with_0:setSlot("pistol", _anon_func_0(_with_0, Spine)) -- 13
 				_with_0.speed = 0.8 -- 17
 				_with_0:play("pistol") -- 18
 			end -- 12

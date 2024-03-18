@@ -6,7 +6,6 @@ local Vec2 = dora.Vec2 -- 1
 local Size = dora.Size -- 1
 local TargetAllow = _module_0.TargetAllow -- 1
 local Array = dora.Array -- 1
-
 local Store = Data.store -- 2
 do -- 7
 	local _with_0 = Dictionary() -- 7

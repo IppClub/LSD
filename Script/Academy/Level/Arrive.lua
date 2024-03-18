@@ -17,6 +17,10 @@ local AcademyAI = require("Academy.AI") -- 4
 local AcademySystem = require("Academy.System") -- 5
 local PreparationRoom = require("Scene.PreparationRoom") -- 6
 local Config = require("Data.Config") -- 7
+local _anon_func_0 = function(self) -- 47
+	local _val_0 = self.name -- 47
+	return "charF" == _val_0 or "charM" == _val_0 -- 47
+end -- 47
 _module_0 = function() -- 9
 	PreparationRoom:loadAsync() -- 10
 	local world = PreparationRoom() -- 11
@@ -58,10 +62,7 @@ _module_0 = function() -- 9
 		}) -- 44
 		if group.count > 0 then -- 45
 			group:each(function(self) -- 46
-				if (function() -- 47
-					local _val_0 = self.name -- 47
-					return "charF" == _val_0 or "charM" == _val_0 -- 47
-				end)() then -- 47
+				if _anon_func_0(self) then -- 47
 					world.camera.position = self.unit.position -- 48
 					return world:makeUnitEnter(self.unit, 1, 0) -- 49
 				else -- 51

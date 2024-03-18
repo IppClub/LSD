@@ -663,6 +663,68 @@ createScene = function() -- 454
 	Store.world = world -- 458
 	return Director.entry:addChild(world) -- 459
 end -- 454
+local _anon_func_0 = function(_with_1, Node, Size, grabSize, parent) -- 555
+	local _with_0 = Node() -- 547
+	_with_0.size = Size(grabSize, grabSize) -- 548
+	_with_0:addTo(parent) -- 555
+	return _with_0 -- 547
+end -- 547
+local _anon_func_1 = function(_with_0, Spine, scaleY) -- 567
+	local _with_1 = Spine("coldweapon") -- 564
+	_with_1.look = "grenade" -- 565
+	_with_1.scaleX = 0.04 -- 566
+	_with_1.scaleY = 0.04 * scaleY -- 567
+	return _with_1 -- 564
+end -- 564
+local _anon_func_2 = function(_with_0, Spine, scaleY) -- 571
+	local _with_1 = Spine("coldweapon") -- 568
+	_with_1.look = "comm" -- 569
+	_with_1.scaleX = 0.06 -- 570
+	_with_1.scaleY = 0.06 * scaleY -- 571
+	return _with_1 -- 568
+end -- 568
+local _anon_func_3 = function(_with_0, Spine, scaleY) -- 575
+	local _with_1 = Spine("coldweapon") -- 572
+	_with_1.look = "comp" -- 573
+	_with_1.scaleX = 0.1 -- 574
+	_with_1.scaleY = 0.1 * scaleY -- 575
+	return _with_1 -- 572
+end -- 572
+local _anon_func_4 = function(_with_0, Spine, scaleY) -- 579
+	local _with_1 = Spine("coldweapon") -- 576
+	_with_1.look = "shield" -- 577
+	_with_1.scaleX = 0.2 -- 578
+	_with_1.scaleY = 0.2 * scaleY -- 579
+	return _with_1 -- 576
+end -- 576
+local _anon_func_5 = function(_with_0, Spine, scaleY) -- 583
+	local _with_1 = Spine("coldweapon") -- 580
+	_with_1.look = "sword" -- 581
+	_with_1.scaleX = 0.2 -- 582
+	_with_1.scaleY = 0.2 * scaleY -- 583
+	return _with_1 -- 580
+end -- 580
+local _anon_func_6 = function(_with_0, Spine, scaleY) -- 587
+	local _with_1 = Spine("coldweapon") -- 584
+	_with_1.look = "bow" -- 585
+	_with_1.scaleX = 0.2 -- 586
+	_with_1.scaleY = 0.2 * scaleY -- 587
+	return _with_1 -- 584
+end -- 584
+local _anon_func_7 = function(_with_0, Spine, scaleY) -- 591
+	local _with_1 = Spine("kineticgun") -- 588
+	_with_1.look = "PT" -- 589
+	_with_1.scaleX = 0.2 -- 590
+	_with_1.scaleY = 0.2 * scaleY -- 591
+	return _with_1 -- 588
+end -- 588
+local _anon_func_8 = function(_with_0, Spine, scaleY) -- 595
+	local _with_1 = Spine("kineticgun") -- 592
+	_with_1.look = "AR" -- 593
+	_with_1.scaleX = 0.2 -- 594
+	_with_1.scaleY = 0.2 * scaleY -- 595
+	return _with_1 -- 592
+end -- 592
 local createUnit -- 472
 createUnit = function() -- 472
 	if unit then -- 473
@@ -800,12 +862,7 @@ createUnit = function() -- 472
 			local _with_1 = _with_0.playable -- 544
 			_with_1.look = looks[playable] or "" -- 545
 			local parent = _with_1.parent -- 546
-			_with_1:moveToParent((function() -- 547
-				local _with_2 = Node() -- 547
-				_with_2.size = Size(grabSize, grabSize) -- 548
-				_with_2:addTo(parent) -- 555
-				return _with_2 -- 547
-			end)()) -- 547
+			_with_1:moveToParent(_anon_func_0(_with_1, Node, Size, grabSize, parent)) -- 547
 			_with_1.position = Vec2(grabSize / 2, grabSize / 2 - 150) -- 556
 		end -- 544
 		unit = _with_0 -- 542
@@ -816,62 +873,14 @@ createUnit = function() -- 472
 	local scaleY = defaultFaceRight and 1.0 or -1.0 -- 561
 	do -- 563
 		local _with_0 = unit.playable -- 563
-		_with_0:setSlot("item", (function() -- 564
-			local _with_1 = Spine("coldweapon") -- 564
-			_with_1.look = "grenade" -- 565
-			_with_1.scaleX = 0.04 -- 566
-			_with_1.scaleY = 0.04 * scaleY -- 567
-			return _with_1 -- 564
-		end)()) -- 564
-		_with_0:setSlot("comm", (function() -- 568
-			local _with_1 = Spine("coldweapon") -- 568
-			_with_1.look = "comm" -- 569
-			_with_1.scaleX = 0.06 -- 570
-			_with_1.scaleY = 0.06 * scaleY -- 571
-			return _with_1 -- 568
-		end)()) -- 568
-		_with_0:setSlot("comp", (function() -- 572
-			local _with_1 = Spine("coldweapon") -- 572
-			_with_1.look = "comp" -- 573
-			_with_1.scaleX = 0.1 -- 574
-			_with_1.scaleY = 0.1 * scaleY -- 575
-			return _with_1 -- 572
-		end)()) -- 572
-		_with_0:setSlot("shield", (function() -- 576
-			local _with_1 = Spine("coldweapon") -- 576
-			_with_1.look = "shield" -- 577
-			_with_1.scaleX = 0.2 -- 578
-			_with_1.scaleY = 0.2 * scaleY -- 579
-			return _with_1 -- 576
-		end)()) -- 576
-		_with_0:setSlot("melee", (function() -- 580
-			local _with_1 = Spine("coldweapon") -- 580
-			_with_1.look = "sword" -- 581
-			_with_1.scaleX = 0.2 -- 582
-			_with_1.scaleY = 0.2 * scaleY -- 583
-			return _with_1 -- 580
-		end)()) -- 580
-		_with_0:setSlot("bow", (function() -- 584
-			local _with_1 = Spine("coldweapon") -- 584
-			_with_1.look = "bow" -- 585
-			_with_1.scaleX = 0.2 -- 586
-			_with_1.scaleY = 0.2 * scaleY -- 587
-			return _with_1 -- 584
-		end)()) -- 584
-		_with_0:setSlot("pistol", (function() -- 588
-			local _with_1 = Spine("kineticgun") -- 588
-			_with_1.look = "PT" -- 589
-			_with_1.scaleX = 0.2 -- 590
-			_with_1.scaleY = 0.2 * scaleY -- 591
-			return _with_1 -- 588
-		end)()) -- 588
-		_with_0:setSlot("gun", (function() -- 592
-			local _with_1 = Spine("kineticgun") -- 592
-			_with_1.look = "AR" -- 593
-			_with_1.scaleX = 0.2 -- 594
-			_with_1.scaleY = 0.2 * scaleY -- 595
-			return _with_1 -- 592
-		end)()) -- 592
+		_with_0:setSlot("item", _anon_func_1(_with_0, Spine, scaleY)) -- 564
+		_with_0:setSlot("comm", _anon_func_2(_with_0, Spine, scaleY)) -- 568
+		_with_0:setSlot("comp", _anon_func_3(_with_0, Spine, scaleY)) -- 572
+		_with_0:setSlot("shield", _anon_func_4(_with_0, Spine, scaleY)) -- 576
+		_with_0:setSlot("melee", _anon_func_5(_with_0, Spine, scaleY)) -- 580
+		_with_0:setSlot("bow", _anon_func_6(_with_0, Spine, scaleY)) -- 584
+		_with_0:setSlot("pistol", _anon_func_7(_with_0, Spine, scaleY)) -- 588
+		_with_0:setSlot("gun", _anon_func_8(_with_0, Spine, scaleY)) -- 592
 	end -- 563
 	local shadow -- 597
 	do -- 597

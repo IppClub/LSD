@@ -5,7 +5,6 @@ local Director = dora.Director -- 1
 local thread = dora.thread -- 1
 local sleep = dora.sleep -- 1
 local emit = dora.emit -- 1
-
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2
