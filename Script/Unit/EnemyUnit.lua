@@ -65,51 +65,49 @@ do -- 4
 	}) -- 32
 	Store["xiaotaotie"] = _with_0 -- 4
 end -- 4
-do -- 55
-	local _with_0 = Dictionary() -- 55
-	_with_0.linearAcceleration = Vec2(0, -15) -- 56
-	_with_0.bodyType = "Dynamic" -- 57
-	_with_0.scale = 1.0 -- 58
-	_with_0.density = 1.0 -- 59
-	_with_0.friction = 1.0 -- 60
-	_with_0.restitution = 0.0 -- 61
-	_with_0.playable = "spine:dataotie" -- 62
-	_with_0.defaultFaceRight = false -- 63
-	_with_0.size = Size(450, 450) -- 64
-	_with_0.sensity = 0.5 -- 65
-	_with_0.move = 300 -- 66
-	_with_0.jump = 800 -- 67
-	_with_0.detectDistance = 1200 -- 68
-	_with_0.hp = 5.0 -- 69
-	_with_0.decisionTree = "AI:DATAOTIE" -- 70
-	_with_0.usePreciseHit = false -- 71
-	_with_0.attackDelay = 0.5 -- 72
-	_with_0.attackSpeed = 1 -- 73
-	_with_0.attackRange = Size(260 + 84 / 2, 500) -- 74
-	_with_0.attackEffectDelay = 0.08 -- 75
-	_with_0.actions = Array({ -- 77
-		"idle", -- 77
-		"turn", -- 78
-		"fmove", -- 79
-		"jump", -- 80
-		"fallOff", -- 81
-		"cancel", -- 82
-		"keepIdle", -- 83
-		"keepMove", -- 84
-		"idle1", -- 85
-		"hit", -- 86
-		"lose", -- 87
-		"trample", -- 88
-		"rush2", -- 89
-		"shot", -- 90
-		"rush3", -- 91
-		"dizzy1", -- 92
-		"dizzy2", -- 93
-		"swing", -- 94
-		"pounce", -- 95
-		"rush", -- 96
-		"fmove1", -- 97
-		"dtdRush1" -- 98
-	}) -- 76
-	Store["dataotie"] = _with_0 -- 55
-end -- 55
+local _with_0 = Dictionary() -- 55
+_with_0.linearAcceleration = Vec2(0, -15) -- 56
+_with_0.bodyType = "Dynamic" -- 57
+_with_0.scale = 1.0 -- 58
+_with_0.density = 1.0 -- 59
+_with_0.friction = 1.0 -- 60
+_with_0.restitution = 0.0 -- 61
+_with_0.playable = "spine:dataotie" -- 62
+_with_0.defaultFaceRight = false -- 63
+_with_0.size = Size(450, 450) -- 64
+_with_0.sensity = 0.5 -- 65
+_with_0.move = 300 -- 66
+_with_0.jump = 800 -- 67
+_with_0.detectDistance = 1200 -- 68
+_with_0.hp = 5.0 -- 69
+_with_0.decisionTree = "AI:DATAOTIE" -- 70
+_with_0.usePreciseHit = false -- 71
+_with_0.attackDelay = 0.5 -- 72
+_with_0.attackSpeed = 1 -- 73
+_with_0.attackRange = Size(260 + 84 / 2, 500) -- 74
+_with_0.attackEffectDelay = 0.08 -- 75
+_with_0.actions = Array({ -- 77
+	"idle", -- 77
+	"turn", -- 78
+	"fmove", -- 79
+	"jump", -- 80
+	"fallOff", -- 81
+	"cancel", -- 82
+	"keepIdle", -- 83
+	"keepMove", -- 84
+	"idle1", -- 85
+	"hit", -- 86
+	"lose", -- 87
+	"trample", -- 88
+	"rush2", -- 89
+	"shot", -- 90
+	"rush3", -- 91
+	"dizzy1", -- 92
+	"dizzy2", -- 93
+	"swing", -- 94
+	"pounce", -- 95
+	"rush", -- 96
+	"fmove1", -- 97
+	"dtdRush1" -- 98
+}) -- 76
+Store["dataotie"] = _with_0 -- 55

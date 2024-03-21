@@ -233,11 +233,9 @@ _module_0 = Class({ -- 59
 	end), -- 78
 	__partial = function(self) -- 94
 		local _with_0 = PlatformWorld() -- 95
-		do -- 96
-			local _with_1 = _with_0.camera -- 96
-			_with_1.boundary = Rect(0, 0, W, H) -- 97
-			_with_1.followRatio = Vec2(0.03, 0.03) -- 98
-		end -- 96
+		local _with_1 = _with_0.camera -- 96
+		_with_1.boundary = Rect(0, 0, W, H) -- 97
+		_with_1.followRatio = Vec2(0.03, 0.03) -- 98
 		return _with_0 -- 95
 	end, -- 94
 	__init = function(self, highSpeed) -- 100

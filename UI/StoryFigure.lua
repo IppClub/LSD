@@ -45,13 +45,11 @@ do -- 15
 						spine.y = y -- 25
 					end -- 25
 				end -- 25
-				do -- 26
-					local changed -- 26
-					changed, scale = ImGui.DragFloat("Scale", scale, 0.01, -2, 2, "%.2f") -- 26
-					if changed then -- 26
-						spine.scaleX = scale -- 27
-						spine.scaleY = scale -- 27
-					end -- 26
+				local changed -- 26
+				changed, scale = ImGui.DragFloat("Scale", scale, 0.01, -2, 2, "%.2f") -- 26
+				if changed then -- 26
+					spine.scaleX = scale -- 27
+					spine.scaleY = scale -- 27
 				end -- 26
 			end) -- 27
 		end) -- 18

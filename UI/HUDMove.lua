@@ -17,13 +17,11 @@ _module_0 = Class(HUDMove, { -- 5
 			if keyboardEnabled and vpad then -- 9
 				keyboardEnabled = false -- 10
 			end -- 9
-			do -- 11
-				local player = playerGroup:find(function(e) -- 11
-					return e.player -- 11
-				end) -- 11
-				if player then -- 11
-					player[key] = down -- 12
-				end -- 11
+			local player = playerGroup:find(function(e) -- 11
+				return e.player -- 11
+			end) -- 11
+			if player then -- 11
+				player[key] = down -- 12
 			end -- 11
 		end -- 8
 		self:gslot("HUD.DisplayMove", function(visible) -- 13

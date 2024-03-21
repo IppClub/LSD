@@ -22,13 +22,11 @@ _module_0 = function() -- 6
 						return math.abs(self.x - unit.x) <= 200 and (self.x > unit.x) == self.faceRight -- 14
 					end -- 13
 				end -- 14
-				do -- 15
-					local unit = AI:getNearestUnit("Any") -- 15
-					if unit then -- 15
-						return math.abs(self.x - unit.x) <= 200 and (self.x > unit.x) == self.faceRight -- 16
-					else -- 18
-						return false -- 18
-					end -- 15
+				local unit = AI:getNearestUnit("Any") -- 15
+				if unit then -- 15
+					return math.abs(self.x - unit.x) <= 200 and (self.x > unit.x) == self.faceRight -- 16
+				else -- 18
+					return false -- 18
 				end -- 15
 			end), -- 11
 			Act("turn") -- 19

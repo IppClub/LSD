@@ -181,16 +181,12 @@ _module_0 = Class({ -- 45
 		do -- 89
 			local mask = self._layers.windowmask -- 89
 			mask:removeFromParent(false) -- 90
-			do -- 91
-				local clip = ClipNode(mask) -- 91
-				clip.order = mask.order -- 92
-				clip:addTo(self) -- 93
-				do -- 94
-					local _with_0 = self._layers.windowoutside -- 94
-					_with_0.transformTarget = _with_0.parent -- 95
-					_with_0:moveToParent(clip) -- 96
-				end -- 94
-			end -- 91
+			local clip = ClipNode(mask) -- 91
+			clip.order = mask.order -- 92
+			clip:addTo(self) -- 93
+			local _with_0 = self._layers.windowoutside -- 94
+			_with_0.transformTarget = _with_0.parent -- 95
+			_with_0:moveToParent(clip) -- 96
 		end -- 89
 		local RightDoorSensor <const> = 0 -- 98
 		local terrainDef -- 99

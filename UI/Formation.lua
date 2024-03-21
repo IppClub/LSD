@@ -238,13 +238,11 @@ playable6.fliped = true -- 106
 playable6:play("idle",true) -- 106
 mirror:addChild(playable6) -- 106
 do -- 106
-	do -- 108
-		local _with_0 = mirror:grab(1, 1) -- 108
-		_with_0:setColor(1, 1, Color(0x00ffffff)) -- 109
-		_with_0:setColor(2, 1, Color(0x00ffffff)) -- 110
-		_with_0:setColor(1, 2, Color(0x44ffffff)) -- 111
-		_with_0:setColor(2, 2, Color(0x44ffffff)) -- 112
-	end -- 108
+	local _with_0 = mirror:grab(1, 1) -- 108
+	_with_0:setColor(1, 1, Color(0x00ffffff)) -- 109
+	_with_0:setColor(2, 1, Color(0x00ffffff)) -- 110
+	_with_0:setColor(1, 2, Color(0x44ffffff)) -- 111
+	_with_0:setColor(2, 2, Color(0x44ffffff)) -- 112
 end -- 112
 local node1 = Node() -- 115
 node1.y = 250 -- 115

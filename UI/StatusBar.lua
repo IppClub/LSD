@@ -24,14 +24,12 @@ local StatusBar = Class({ -- 7
 		end -- 13
 		self._hp = value -- 14
 		if (value <= 0.25) ~= self._lowHp then -- 15
-			do -- 16
-				local _des_0 = not self._lowHp -- 16
-				if _des_0 then -- 16
-					self._lowHp = _des_0 -- 16
-					self._hpBar.color3 = Color3(0xff0000) -- 17
-				else -- 19
-					self._hpBar.color3 = Color3(getHPColor(self._isHostile)) -- 19
-				end -- 16
+			local _des_0 = not self._lowHp -- 16
+			if _des_0 then -- 16
+				self._lowHp = _des_0 -- 16
+				self._hpBar.color3 = Color3(0xff0000) -- 17
+			else -- 19
+				self._hpBar.color3 = Color3(getHPColor(self._isHostile)) -- 19
 			end -- 16
 		end -- 15
 		return self._hpBar:perform(ScaleX(1, self._hpBar.scaleX, value, Ease.OutExpo)) -- 20

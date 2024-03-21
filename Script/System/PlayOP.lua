@@ -179,57 +179,55 @@ playOP = function() -- 43
 		end -- 48
 		local playEnded = false -- 49
 		local nextViewLoaded = false -- 50
-		do -- 51
-			local playable = Playable("spine:PV1/PV1_" .. tostring(i)) -- 51
-			playable:play("animation", i == 1) -- 52
-			playable:gslot("AppSizeChanged", function() -- 53
-				return scaleView(playable, i) -- 53
-			end) -- 53
-			scaleView(playable, i) -- 54
-			if i + 1 <= #PVInfo then -- 55
-				playable:schedule(once(function() -- 56
-					Cache:loadAsync("spine:PV1/PV1_" .. tostring(i + 1)) -- 57
-					nextViewLoaded = true -- 58
-				end)) -- 56
-			else -- 60
-				nextViewLoaded = true -- 60
-			end -- 55
-			playable:addTo(Director.entry) -- 61
-			Cache:unload("PV1/PV1_" .. tostring(i) .. ".atlas") -- 62
-			Cache:unload("spine:PV1/PV1_" .. tostring(i)) -- 63
-			if i == 1 then -- 64
-				sleep(3) -- 65
-				local Story = require("UI.Story") -- 66
-				local story -- 67
-				do -- 67
-					local _with_0 = Story("Tutorial/Dialog/startUp.yarn") -- 67
-					_with_0:slot("Ended", function() -- 68
-						playEnded = true -- 68
-					end) -- 68
-					_with_0:showAsync() -- 69
-					_with_0:addTo(Director.ui3D) -- 70
-					story = _with_0 -- 67
-				end -- 67
-				wait(function() -- 71
-					return playEnded -- 71
-				end) -- 71
-				sleep(2) -- 72
-			else -- 74
-				playable:slot("end", function() -- 74
-					playEnded = true -- 74
-				end) -- 74
-				playable:slot("AnimationEnd", function() -- 75
-					playEnded = true -- 75
-				end) -- 75
-			end -- 64
-			wait(function() -- 76
-				return playEnded and nextViewLoaded -- 76
-			end) -- 76
-			if i + 1 <= #PVInfo then -- 77
-				playable:removeFromParent() -- 78
-				Cache:removeUnused("Texture") -- 79
-			end -- 77
-		end -- 51
+		local playable = Playable("spine:PV1/PV1_" .. tostring(i)) -- 51
+		playable:play("animation", i == 1) -- 52
+		playable:gslot("AppSizeChanged", function() -- 53
+			return scaleView(playable, i) -- 53
+		end) -- 53
+		scaleView(playable, i) -- 54
+		if i + 1 <= #PVInfo then -- 55
+			playable:schedule(once(function() -- 56
+				Cache:loadAsync("spine:PV1/PV1_" .. tostring(i + 1)) -- 57
+				nextViewLoaded = true -- 58
+			end)) -- 56
+		else -- 60
+			nextViewLoaded = true -- 60
+		end -- 55
+		playable:addTo(Director.entry) -- 61
+		Cache:unload("PV1/PV1_" .. tostring(i) .. ".atlas") -- 62
+		Cache:unload("spine:PV1/PV1_" .. tostring(i)) -- 63
+		if i == 1 then -- 64
+			sleep(3) -- 65
+			local Story = require("UI.Story") -- 66
+			local story -- 67
+			do -- 67
+				local _with_0 = Story("Tutorial/Dialog/startUp.yarn") -- 67
+				_with_0:slot("Ended", function() -- 68
+					playEnded = true -- 68
+				end) -- 68
+				_with_0:showAsync() -- 69
+				_with_0:addTo(Director.ui3D) -- 70
+				story = _with_0 -- 67
+			end -- 67
+			wait(function() -- 71
+				return playEnded -- 71
+			end) -- 71
+			sleep(2) -- 72
+		else -- 74
+			playable:slot("end", function() -- 74
+				playEnded = true -- 74
+			end) -- 74
+			playable:slot("AnimationEnd", function() -- 75
+				playEnded = true -- 75
+			end) -- 75
+		end -- 64
+		wait(function() -- 76
+			return playEnded and nextViewLoaded -- 76
+		end) -- 76
+		if i + 1 <= #PVInfo then -- 77
+			playable:removeFromParent() -- 78
+			Cache:removeUnused("Texture") -- 79
+		end -- 77
 		::_continue_0:: -- 48
 	end -- 79
 end -- 43

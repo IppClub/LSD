@@ -328,11 +328,9 @@ _module_0 = function() -- 3
 		end, -- 225
 		create = function(self) -- 226
 			if self.playable.current ~= "jumping" then -- 227
-				do -- 228
-					local _with_0 = self.playable -- 228
-					_with_0.speed = 1 -- 229
-					_with_0:play("jumping", true) -- 230
-				end -- 228
+				local _with_0 = self.playable -- 228
+				_with_0.speed = 1 -- 229
+				_with_0:play("jumping", true) -- 230
 			end -- 227
 			return once(function(self) -- 231
 				while true do -- 232

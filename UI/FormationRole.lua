@@ -46,11 +46,9 @@ clip.scaleY = 1 / scale -- 28
 clip.size = Size(504 * scale,1011 * scale) -- 28
 roleNode:addChild(clip) -- 28
 do -- 28
-	do -- 30
-		local _with_0 = clip:grab(1, 2) -- 30
-		_with_0:setColor(1, 3, Color(0x22ffffff)) -- 31
-		_with_0:setColor(2, 3, Color(0x22ffffff)) -- 32
-	end -- 30
+	local _with_0 = clip:grab(1, 2) -- 30
+	_with_0:setColor(1, 3, Color(0x22ffffff)) -- 31
+	_with_0:setColor(2, 3, Color(0x22ffffff)) -- 32
 end -- 32
 local node2 = Node() -- 34
 node2.scaleX = scale -- 34

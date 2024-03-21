@@ -202,10 +202,8 @@ _module_0 = Class({ -- 59
 	end, -- 100
 	__init = function(self) -- 105
 		for i = -MaxPath, MaxPath do -- 106
-			do -- 107
-				local _with_0 = self:getLayer(i) -- 107
-				_with_0.z = ZOffset - PathOffset * i -- 108
-			end -- 107
+			local _with_0 = self:getLayer(i) -- 107
+			_with_0.z = ZOffset - PathOffset * i -- 108
 		end -- 108
 		do -- 110
 			local _tbl_0 = { } -- 110
@@ -249,28 +247,26 @@ _module_0 = Class({ -- 59
 				elseif RightDoorSensor == sensorTag then -- 135
 					door, animation, route = self._layers.rightwall, "openR", "right" -- 136
 				end -- 136
-				do -- 137
-					local name, enter, targets = Map.getRoute(SceneName, route) -- 137
-					if name then -- 137
-						do -- 138
-							local _with_1 = body.entity -- 138
-							if body.velocityX == 0 then -- 139
-								_with_1.moveFromRight = route ~= "right" -- 139
-							else -- 139
-								_with_1.moveFromRight = body.velocityX < 0 -- 139
-							end -- 139
-							_with_1.moveRouteName = name -- 140
-							_with_1.moveEnter = enter -- 141
-							_with_1.moveTargets = Array(targets) -- 142
-						end -- 138
-						if #targets > 0 and not door.opened then -- 143
-							door.opened = true -- 145
-							door.recovery = 1 -- 146
-							door.speed = DoorSpeed -- 147
-							door:play(animation) -- 148
-							return door -- 144
-						end -- 143
-					end -- 137
+				local name, enter, targets = Map.getRoute(SceneName, route) -- 137
+				if name then -- 137
+					do -- 138
+						local _with_1 = body.entity -- 138
+						if body.velocityX == 0 then -- 139
+							_with_1.moveFromRight = route ~= "right" -- 139
+						else -- 139
+							_with_1.moveFromRight = body.velocityX < 0 -- 139
+						end -- 139
+						_with_1.moveRouteName = name -- 140
+						_with_1.moveEnter = enter -- 141
+						_with_1.moveTargets = Array(targets) -- 142
+					end -- 138
+					if #targets > 0 and not door.opened then -- 143
+						door.opened = true -- 145
+						door.recovery = 1 -- 146
+						door.speed = DoorSpeed -- 147
+						door:play(animation) -- 148
+						return door -- 144
+					end -- 143
 				end -- 137
 			end) -- 129
 			_with_0:slot("BodyLeave", function(body, sensorTag) -- 149

@@ -26,42 +26,40 @@ getCharName = function(current) -- 12
 		local _list_0 = current.marks -- 14
 		for _index_0 = 1, #_list_0 do -- 14
 			local mark = _list_0[_index_0] -- 14
-			do -- 15
-				local _type_0 = type(mark) -- 15
-				local _tab_0 = "table" == _type_0 or "userdata" == _type_0 -- 15
-				if _tab_0 then -- 15
-					local attr = mark.name -- 15
-					local name -- 15
-					do -- 15
-						local _obj_0 = mark.attrs -- 15
-						local _type_1 = type(_obj_0) -- 15
-						if "table" == _type_1 or "userdata" == _type_1 then -- 15
-							name = _obj_0.name -- 15
-						end -- 18
+			local _type_0 = type(mark) -- 15
+			local _tab_0 = "table" == _type_0 or "userdata" == _type_0 -- 15
+			if _tab_0 then -- 15
+				local attr = mark.name -- 15
+				local name -- 15
+				do -- 15
+					local _obj_0 = mark.attrs -- 15
+					local _type_1 = type(_obj_0) -- 15
+					if "table" == _type_1 or "userdata" == _type_1 then -- 15
+						name = _obj_0.name -- 15
 					end -- 18
-					local id -- 15
-					do -- 15
-						local _obj_0 = mark.attrs -- 15
-						local _type_1 = type(_obj_0) -- 15
-						if "table" == _type_1 or "userdata" == _type_1 then -- 15
-							id = _obj_0.id -- 15
-						end -- 18
-					end -- 18
-					if name == nil then -- 15
-						name = '' -- 15
-					end -- 15
-					if id == nil then -- 15
-						id = '' -- 15
-					end -- 15
-					if attr ~= nil then -- 15
-						if ("char" == attr or "Character" == attr) then -- 16
-							if id == "char" then -- 17
-								id = Config.char -- 17
-							end -- 17
-							return name, id -- 18
-						end -- 16
-					end -- 15
 				end -- 18
+				local id -- 15
+				do -- 15
+					local _obj_0 = mark.attrs -- 15
+					local _type_1 = type(_obj_0) -- 15
+					if "table" == _type_1 or "userdata" == _type_1 then -- 15
+						id = _obj_0.id -- 15
+					end -- 18
+				end -- 18
+				if name == nil then -- 15
+					name = '' -- 15
+				end -- 15
+				if id == nil then -- 15
+					id = '' -- 15
+				end -- 15
+				if attr ~= nil then -- 15
+					if ("char" == attr or "Character" == attr) then -- 16
+						if id == "char" then -- 17
+							id = Config.char -- 17
+						end -- 17
+						return name, id -- 18
+					end -- 16
+				end -- 15
 			end -- 18
 		end -- 18
 	end -- 13

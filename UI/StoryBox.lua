@@ -62,22 +62,20 @@ do -- 28
 		tt.y = offset + 41.5 + padding -- 35
 		box.height = 83 + offset + padding -- 36
 		tab.y = offset + padding -- 37
-		do -- 38
-			local _with_0 = bk -- 38
-			local yOffset = height + 30 -- 39
-			_with_0.y = 83 / 2 + padding -- 40
-			local x, y -- 41
-			do -- 41
-				local _obj_0 = _with_0:getPos(1, 1) -- 41
-				x, y = _obj_0.x, _obj_0.y -- 41
-			end -- 41
-			_with_0:setPos(1, 1, Vec2(x, y + yOffset)) -- 42
-			do -- 43
-				local _obj_0 = _with_0:getPos(2, 1) -- 43
-				x, y = _obj_0.x, _obj_0.y -- 43
-			end -- 43
-			_with_0:setPos(2, 1, Vec2(x, y + yOffset)) -- 44
-		end -- 38
+		local _with_0 = bk -- 38
+		local yOffset = height + 30 -- 39
+		_with_0.y = 83 / 2 + padding -- 40
+		local x, y -- 41
+		do -- 41
+			local _obj_0 = _with_0:getPos(1, 1) -- 41
+			x, y = _obj_0.x, _obj_0.y -- 41
+		end -- 41
+		_with_0:setPos(1, 1, Vec2(x, y + yOffset)) -- 42
+		do -- 43
+			local _obj_0 = _with_0:getPos(2, 1) -- 43
+			x, y = _obj_0.x, _obj_0.y -- 43
+		end -- 43
+		_with_0:setPos(2, 1, Vec2(x, y + yOffset)) -- 44
 	end -- 30
 end -- 44
 return box -- 29

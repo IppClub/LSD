@@ -12,7 +12,7 @@ local select = _G.select -- 1
 local _module_0 = nil -- 1
 local Config = require("Data.Config") -- 2
 local u8 = require("utf-8") -- 3
-local _anon_func_0 = function(tostring, select, ...) -- 24
+local _anon_func_0 = function(select, tostring, ...) -- 24
 	local _accum_0 = { } -- 24
 	local _len_0 = 1 -- 24
 	for i = 1, select('#', ...) do -- 24
@@ -57,7 +57,7 @@ local commands = setmetatable({ -- 6
 }, { -- 23
 	__index = function(_self, name) -- 23
 		return function(...) -- 23
-			return print("[command]: " .. tostring(name) .. "(" .. tostring(table.concat(_anon_func_0(tostring, select, ...), ', ')) .. ")") -- 24
+			return print("[command]: " .. tostring(name) .. "(" .. tostring(table.concat(_anon_func_0(select, tostring, ...), ', ')) .. ")") -- 24
 		end -- 24
 	end -- 23
 }) -- 5

@@ -498,55 +498,53 @@ growDesc.textWidth = 466 -- 260
 growDesc.text = "1、满足条件A\n2、满足条件B" -- 260
 pop:addChild(growDesc) -- 260
 do -- 264
-	do -- 266
-		local _exp_0 = App.platform -- 266
-		if "Windows" == _exp_0 or "macOS" == _exp_0 or "Linux" == _exp_0 then -- 267
-			local pos -- 268
-			local viewCDE -- 269
-			viewCDE = function(self) -- 269
-				if self.tag ~= "CDE" then -- 270
-					return -- 270
-				end -- 270
-				local localPos = self:convertToNodeSpace(pos) -- 271
-				if Rect(Vec2.zero, self.size):containsPoint(localPos) then -- 272
-					pop.position = pop.parent:convertToNodeSpace(pos) -- 273
-					pop.visible = true -- 274
-					return true -- 275
-				else -- 277
-					pop.visible = false -- 277
-				end -- 272
-			end -- 269
-			pop:schedule(function() -- 278
-				if not infoArea.visible then -- 279
-					return -- 279
-				end -- 279
-				local width, height -- 280
-				do -- 280
-					local _obj_0 = View.size -- 280
-					width, height = _obj_0.width, _obj_0.height -- 280
-				end -- 280
-				pos = nvg.TouchPos() * (width / App.visualSize.width) -- 281
-				pos = Vec2(pos.x, height - pos.y) -- 282
-				infoArea.view:eachChild(viewCDE) -- 283
-				return false -- 284
-			end) -- 278
-		else -- 286
-			if infoArea.visible then -- 286
-				infoArea.view:eachChild(function(self) -- 287
-					if self.tag ~= "CDE" then -- 288
-						return -- 288
-					end -- 288
-					self.touchEnabled = true -- 289
-					self:slot("TapBegan", function() -- 290
-						pop.position = pop.parent:convertToNodeSpace(self:convertToWorldSpace(Vec2(0.5, 0.5) * self.size)) -- 291
-						return pop:perform(Spawn(Show(), Opacity(0, 0, 1))) -- 292
-					end) -- 290
-					return self:slot("TapEnded", function() -- 293
-						return pop:perform(Sequence(Opacity(0.3, pop.opacity, 0), Hide())) -- 297
-					end) -- 297
-				end) -- 287
-			end -- 286
-		end -- 297
+	local _exp_0 = App.platform -- 266
+	if "Windows" == _exp_0 or "macOS" == _exp_0 or "Linux" == _exp_0 then -- 267
+		local pos -- 268
+		local viewCDE -- 269
+		viewCDE = function(self) -- 269
+			if self.tag ~= "CDE" then -- 270
+				return -- 270
+			end -- 270
+			local localPos = self:convertToNodeSpace(pos) -- 271
+			if Rect(Vec2.zero, self.size):containsPoint(localPos) then -- 272
+				pop.position = pop.parent:convertToNodeSpace(pos) -- 273
+				pop.visible = true -- 274
+				return true -- 275
+			else -- 277
+				pop.visible = false -- 277
+			end -- 272
+		end -- 269
+		pop:schedule(function() -- 278
+			if not infoArea.visible then -- 279
+				return -- 279
+			end -- 279
+			local width, height -- 280
+			do -- 280
+				local _obj_0 = View.size -- 280
+				width, height = _obj_0.width, _obj_0.height -- 280
+			end -- 280
+			pos = nvg.TouchPos() * (width / App.visualSize.width) -- 281
+			pos = Vec2(pos.x, height - pos.y) -- 282
+			infoArea.view:eachChild(viewCDE) -- 283
+			return false -- 284
+		end) -- 278
+	else -- 286
+		if infoArea.visible then -- 286
+			infoArea.view:eachChild(function(self) -- 287
+				if self.tag ~= "CDE" then -- 288
+					return -- 288
+				end -- 288
+				self.touchEnabled = true -- 289
+				self:slot("TapBegan", function() -- 290
+					pop.position = pop.parent:convertToNodeSpace(self:convertToWorldSpace(Vec2(0.5, 0.5) * self.size)) -- 291
+					return pop:perform(Spawn(Show(), Opacity(0, 0, 1))) -- 292
+				end) -- 290
+				return self:slot("TapEnded", function() -- 293
+					return pop:perform(Sequence(Opacity(0.3, pop.opacity, 0), Hide())) -- 297
+				end) -- 297
+			end) -- 287
+		end -- 286
 	end -- 297
 end -- 297
 local topControl = AlignNode{vAlign = "Top", hAlign = "Left"} -- 300

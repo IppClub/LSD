@@ -231,7 +231,7 @@ addLayer = function(world, def) -- 71
 	end -- 78
 	return layer -- 79
 end -- 71
-local _anon_func_0 = function(ClipNode, mask, createLayer, back, floor) -- 163
+local _anon_func_0 = function(ClipNode, back, createLayer, floor, mask) -- 163
 	local _with_0 = ClipNode(mask) -- 160
 	_with_0:addChild(createLayer(back)) -- 161
 	_with_0:addChild(createLayer(floor)) -- 162
@@ -252,13 +252,11 @@ _module_0 = Class({ -- 82
 		return Vec2(self.width - 100, self.offset) -- 85
 	end), -- 85
 	center = property(function(self) -- 86
-		do -- 87
-			local elevator = self._layers.elevatorDoor -- 87
-			if elevator then -- 87
-				return Vec2(elevator.x, self.offset) -- 88
-			else -- 90
-				return nil -- 90
-			end -- 87
+		local elevator = self._layers.elevatorDoor -- 87
+		if elevator then -- 87
+			return Vec2(elevator.x, self.offset) -- 88
+		else -- 90
+			return nil -- 90
 		end -- 87
 	end), -- 86
 	addShadowTo = function(self, unit) -- 92
@@ -332,10 +330,8 @@ _module_0 = Class({ -- 82
 		local HW <const> = W / 2 -- 138
 		self._width = W -- 139
 		for i = -MaxPath, MaxPath do -- 141
-			do -- 142
-				local _with_0 = self:getLayer(i) -- 142
-				_with_0.z = ZOffset - PathOffset * i -- 143
-			end -- 142
+			local _with_0 = self:getLayer(i) -- 142
+			_with_0.z = ZOffset - PathOffset * i -- 143
 		end -- 143
 		do -- 145
 			local _tbl_0 = { } -- 145
@@ -370,7 +366,7 @@ _module_0 = Class({ -- 82
 				_with_0.z = frame.z -- 159
 				mask = _with_0 -- 152
 			end -- 152
-			self:addChild(_anon_func_0(ClipNode, mask, createLayer, back, floor)) -- 160
+			self:addChild(_anon_func_0(ClipNode, back, createLayer, floor, mask)) -- 160
 		end -- 147
 		local LeftDoorSensor <const> = 0 -- 165
 		local RightDoorSensor <const> = 1 -- 166

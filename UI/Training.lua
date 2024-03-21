@@ -246,13 +246,11 @@ playable3.scaleY = 1.5 -- 103
 playable3:play("idle",true) -- 103
 mirror:addChild(playable3) -- 103
 do -- 103
-	do -- 105
-		local _with_0 = mirror:grab(1, 1) -- 105
-		_with_0:setColor(1, 1, Color(0x00ffffff)) -- 106
-		_with_0:setColor(2, 1, Color(0x00ffffff)) -- 107
-		_with_0:setColor(1, 2, Color(0x44ffffff)) -- 108
-		_with_0:setColor(2, 2, Color(0x44ffffff)) -- 109
-	end -- 105
+	local _with_0 = mirror:grab(1, 1) -- 105
+	_with_0:setColor(1, 1, Color(0x00ffffff)) -- 106
+	_with_0:setColor(2, 1, Color(0x00ffffff)) -- 107
+	_with_0:setColor(1, 2, Color(0x44ffffff)) -- 108
+	_with_0:setColor(2, 2, Color(0x44ffffff)) -- 109
 end -- 109
 local node1 = Node() -- 112
 node1.x = 852 -- 112

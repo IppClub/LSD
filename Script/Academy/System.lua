@@ -29,7 +29,7 @@ local _anon_func_0 = function(_with_1, moveEnter, unit) -- 79
 		return false -- 79
 	end -- 79
 end -- 76
-local _anon_func_1 = function(u, self, math, MaxPath) -- 146
+local _anon_func_1 = function(MaxPath, math, self, u) -- 146
 	local _exp_0 = self.order -- 146
 	if _exp_0 ~= nil then -- 146
 		return _exp_0 -- 146
@@ -37,7 +37,7 @@ local _anon_func_1 = function(u, self, math, MaxPath) -- 146
 		return math.random(-MaxPath, MaxPath) -- 146
 	end -- 146
 end -- 146
-local _anon_func_2 = function(_with_1, Node, Size, GrabSize, parent) -- 151
+local _anon_func_2 = function(GrabSize, Node, Size, _with_1, parent) -- 151
 	local _with_0 = Node() -- 149
 	_with_0.size = Size(GrabSize, GrabSize) -- 150
 	_with_0:addTo(parent) -- 151
@@ -101,62 +101,60 @@ _module_0 = function() -- 3
 					"FORBIDDEN" -- 45
 				} -- 45
 			end -- 45
-			do -- 46
-				local _with_1 = Interaction({ -- 46
-					text = moveRouteName, -- 46
-					buttons = buttons, -- 46
-					fliped = fliped -- 46
-				}) -- 46
-				_with_1.order = unit.world.children.last.order -- 47
-				_with_1.transformTarget = unit -- 48
-				_with_1:show() -- 49
-				if forbidden then -- 50
-					_with_1.menu.enabled = false -- 51
-				else -- 53
-					local name = self.name -- 53
-					_with_1:slot("Tapped", function(index) -- 54
-						local sceneName = moveTargets[index] -- 55
-						local worldClass = require("Scene." .. tostring(sceneName)) -- 56
-						return _with_1:schedule(once(function() -- 57
-							local startTime = App.runningTime -- 58
-							worldClass:loadAsync() -- 59
-							local deltaTime = App.runningTime - startTime -- 60
-							if deltaTime < 0.5 then -- 61
-								sleep(0.5 - deltaTime) -- 62
-							end -- 61
-							local oldWorld = Store.world -- 63
-							local world -- 64
-							do -- 64
-								local _with_2 = worldClass() -- 64
-								_with_2.visible = false -- 65
-								_with_2.camera.position = _with_2[moveEnter] -- 66
-								if "left" == moveEnter then -- 68
-									_with_2:openLeftDoor() -- 68
-								elseif "right" == moveEnter then -- 69
-									_with_2:openRightDoor() -- 69
-								elseif "center" == moveEnter then -- 70
-									_with_2:openCenterDoor() -- 70
-								end -- 70
-								_with_2:addTo(Director.entry) -- 71
-								world = _with_2 -- 64
-							end -- 64
-							Store.world = world -- 72
-							Entity({ -- 74
-								player = true, -- 74
-								name = name, -- 75
-								faceRight = _anon_func_0(_with_1, moveEnter, unit), -- 76
-								position = assert(world[moveEnter]), -- 80
-								base = true -- 81
-							}) -- 73
-							sleep() -- 97
-							world.visible = true -- 98
-							return oldWorld:removeFromParent() -- 99
-						end)) -- 99
-					end) -- 54
-				end -- 50
-				_with_1:addTo(unit.world) -- 100
-				self.interaction = _with_1 -- 46
-			end -- 46
+			local _with_1 = Interaction({ -- 46
+				text = moveRouteName, -- 46
+				buttons = buttons, -- 46
+				fliped = fliped -- 46
+			}) -- 46
+			_with_1.order = unit.world.children.last.order -- 47
+			_with_1.transformTarget = unit -- 48
+			_with_1:show() -- 49
+			if forbidden then -- 50
+				_with_1.menu.enabled = false -- 51
+			else -- 53
+				local name = self.name -- 53
+				_with_1:slot("Tapped", function(index) -- 54
+					local sceneName = moveTargets[index] -- 55
+					local worldClass = require("Scene." .. tostring(sceneName)) -- 56
+					return _with_1:schedule(once(function() -- 57
+						local startTime = App.runningTime -- 58
+						worldClass:loadAsync() -- 59
+						local deltaTime = App.runningTime - startTime -- 60
+						if deltaTime < 0.5 then -- 61
+							sleep(0.5 - deltaTime) -- 62
+						end -- 61
+						local oldWorld = Store.world -- 63
+						local world -- 64
+						do -- 64
+							local _with_2 = worldClass() -- 64
+							_with_2.visible = false -- 65
+							_with_2.camera.position = _with_2[moveEnter] -- 66
+							if "left" == moveEnter then -- 68
+								_with_2:openLeftDoor() -- 68
+							elseif "right" == moveEnter then -- 69
+								_with_2:openRightDoor() -- 69
+							elseif "center" == moveEnter then -- 70
+								_with_2:openCenterDoor() -- 70
+							end -- 70
+							_with_2:addTo(Director.entry) -- 71
+							world = _with_2 -- 64
+						end -- 64
+						Store.world = world -- 72
+						Entity({ -- 74
+							player = true, -- 74
+							name = name, -- 75
+							faceRight = _anon_func_0(_with_1, moveEnter, unit), -- 76
+							position = assert(world[moveEnter]), -- 80
+							base = true -- 81
+						}) -- 73
+						sleep() -- 97
+						world.visible = true -- 98
+						return oldWorld:removeFromParent() -- 99
+					end)) -- 99
+				end) -- 54
+			end -- 50
+			_with_1:addTo(unit.world) -- 100
+			self.interaction = _with_1 -- 46
 		end) -- 35
 	end -- 34
 	do -- 102
@@ -228,11 +226,11 @@ _module_0 = function() -- 3
 			local u = Unit(unitDef, world, self, position + Vec2(0, Height / 2)) -- 143
 			u.group = 1 -- 144
 			u.faceRight = faceRight -- 145
-			u.order = player and 0 or (_anon_func_1(u, self, math, MaxPath)) -- 146
+			u.order = player and 0 or (_anon_func_1(MaxPath, math, self, u)) -- 146
 			do -- 147
 				local _with_1 = u.playable -- 147
 				local parent = _with_1.parent -- 148
-				_with_1:moveToParent(_anon_func_2(_with_1, Node, Size, GrabSize, parent)) -- 149
+				_with_1:moveToParent(_anon_func_2(GrabSize, Node, Size, _with_1, parent)) -- 149
 				_with_1.position = Vec2(GrabSize / 2, GrabSize / 2 - Height / 2) -- 152
 			end -- 147
 			local isCommonAI = true -- 153
@@ -325,19 +323,17 @@ _module_0 = function() -- 3
 					if target then -- 202
 						do -- 203
 							local _with_2 = target.playable.parent:grab() -- 203
-							do -- 204
-								local _with_3 = SpriteEffect("builtin:vs_sprite", "builtin:fs_spriteoutlinecolor") -- 204
-								local color = Color(0x007ec0f8) -- 205
-								_with_3:get(1):set("u_linecolor", color) -- 206
-								target.playable:schedule(once(function() -- 207
-									return cycle(0.3, function(dt) -- 208
-										color.opacity = dt -- 209
-										return _with_3:get(1):set("u_linecolor", color) -- 210
-									end) -- 210
-								end)) -- 207
-								_with_3:get(1):set("u_lineoffset", Outline / GrabSize, Outline / GrabSize, Outline, 0.1) -- 211
-								_with_2.effect = _with_3 -- 204
-							end -- 204
+							local _with_3 = SpriteEffect("builtin:vs_sprite", "builtin:fs_spriteoutlinecolor") -- 204
+							local color = Color(0x007ec0f8) -- 205
+							_with_3:get(1):set("u_linecolor", color) -- 206
+							target.playable:schedule(once(function() -- 207
+								return cycle(0.3, function(dt) -- 208
+									color.opacity = dt -- 209
+									return _with_3:get(1):set("u_linecolor", color) -- 210
+								end) -- 210
+							end)) -- 207
+							_with_3:get(1):set("u_lineoffset", Outline / GrabSize, Outline / GrabSize, Outline, 0.1) -- 211
+							_with_2.effect = _with_3 -- 204
 						end -- 203
 						local nameText -- 212
 						do -- 212
@@ -348,51 +344,49 @@ _module_0 = function() -- 3
 								nameText = "人物" -- 212
 							end -- 212
 						end -- 212
-						do -- 213
-							local ui = Interaction({ -- 213
-								text = nameText, -- 213
-								buttons = { -- 214
-									{ -- 214
-										"对话", -- 214
-										"TALK" -- 214
-									}, -- 214
-									{ -- 215
-										"进行训练", -- 215
-										"TRAINING" -- 215
-									}, -- 215
-									{ -- 216
-										"个人信息", -- 216
-										"INFORMATION" -- 216
-									} -- 216
-								}, -- 213
-								fliped = target.x < unit.x -- 217
-							}) -- 213
-							ui.order = world.children.last.order -- 218
-							ui.transformTarget = target -- 219
-							ui:slot("Tapped", function(index) -- 220
-								if 1 == index then -- 222
-									return ui:schedule(once(function() -- 222
-										local startTime = App.runningTime -- 223
-										local deltaTime = App.runningTime - startTime -- 224
-										if deltaTime < 0.5 then -- 225
-											sleep(0.5 - deltaTime) -- 226
-										end -- 225
-										ui:hide(false) -- 227
-										local Story = require("UI.Story") -- 228
-										return Director.ui:addChild((function() -- 229
-											local _with_2 = Story() -- 229
-											_with_2:slot("Hide", function() -- 230
-												return ui:show() -- 230
-											end) -- 230
-											return _with_2 -- 229
-										end)()) -- 230
-									end)) -- 230
-								end -- 230
-							end) -- 220
-							ui:addTo(world) -- 231
-							ui:show() -- 232
-							target.entity.interaction = ui -- 213
-						end -- 213
+						local ui = Interaction({ -- 213
+							text = nameText, -- 213
+							buttons = { -- 214
+								{ -- 214
+									"对话", -- 214
+									"TALK" -- 214
+								}, -- 214
+								{ -- 215
+									"进行训练", -- 215
+									"TRAINING" -- 215
+								}, -- 215
+								{ -- 216
+									"个人信息", -- 216
+									"INFORMATION" -- 216
+								} -- 216
+							}, -- 213
+							fliped = target.x < unit.x -- 217
+						}) -- 213
+						ui.order = world.children.last.order -- 218
+						ui.transformTarget = target -- 219
+						ui:slot("Tapped", function(index) -- 220
+							if 1 == index then -- 222
+								return ui:schedule(once(function() -- 222
+									local startTime = App.runningTime -- 223
+									local deltaTime = App.runningTime - startTime -- 224
+									if deltaTime < 0.5 then -- 225
+										sleep(0.5 - deltaTime) -- 226
+									end -- 225
+									ui:hide(false) -- 227
+									local Story = require("UI.Story") -- 228
+									return Director.ui:addChild((function() -- 229
+										local _with_2 = Story() -- 229
+										_with_2:slot("Hide", function() -- 230
+											return ui:show() -- 230
+										end) -- 230
+										return _with_2 -- 229
+									end)()) -- 230
+								end)) -- 230
+							end -- 230
+						end) -- 220
+						ui:addTo(world) -- 231
+						ui:show() -- 232
+						target.entity.interaction = ui -- 213
 					end -- 202
 				end -- 187
 			end) -- 168

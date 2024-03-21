@@ -14,7 +14,7 @@ local Group = dora.Group -- 1
 local Reject = _module_1.Reject -- 1
 local Accept = _module_1.Accept -- 1
 local _module_0 = nil -- 1
-local _anon_func_0 = function(_with_0, Spine) -- 16
+local _anon_func_0 = function(Spine, _with_0) -- 16
 	local _with_1 = Spine("empgun") -- 13
 	_with_1.look = "PT" -- 14
 	_with_1.scaleX = 0.2 -- 15
@@ -28,7 +28,7 @@ _module_0 = function() -- 6
 		BT.Con("raise gun", function(self) -- 11
 			do -- 12
 				local _with_0 = self.owner.playable -- 12
-				_with_0:setSlot("pistol", _anon_func_0(_with_0, Spine)) -- 13
+				_with_0:setSlot("pistol", _anon_func_0(Spine, _with_0)) -- 13
 				_with_0.speed = 0.8 -- 17
 				_with_0:play("pistol") -- 18
 			end -- 12
@@ -53,13 +53,11 @@ _module_0 = function() -- 6
 						return math.abs(self.x - unit.x) <= 200 and (self.x > unit.x) == self.faceRight -- 32
 					end -- 31
 				end -- 32
-				do -- 33
-					local unit = AI:getNearestUnit("Any") -- 33
-					if unit then -- 33
-						return math.abs(self.x - unit.x) <= 200 and (self.x > unit.x) == self.faceRight -- 34
-					else -- 36
-						return false -- 36
-					end -- 33
+				local unit = AI:getNearestUnit("Any") -- 33
+				if unit then -- 33
+					return math.abs(self.x - unit.x) <= 200 and (self.x > unit.x) == self.faceRight -- 34
+				else -- 36
+					return false -- 36
 				end -- 33
 			end), -- 29
 			Act("turn") -- 37
@@ -112,13 +110,11 @@ _module_0 = function() -- 6
 			Sel({ -- 73
 				Seq({ -- 74
 					Con("not facing nearest enemy", function(self) -- 74
-						do -- 75
-							local unit = AI:getNearestUnit("Enemy") -- 75
-							if unit then -- 75
-								return (self.x > unit.x) == self.faceRight -- 76
-							else -- 78
-								return false -- 78
-							end -- 75
+						local unit = AI:getNearestUnit("Enemy") -- 75
+						if unit then -- 75
+							return (self.x > unit.x) == self.faceRight -- 76
+						else -- 78
+							return false -- 78
 						end -- 75
 					end), -- 74
 					Act("turn"), -- 79
@@ -163,13 +159,11 @@ _module_0 = function() -- 6
 			Sel({ -- 111
 				Seq({ -- 112
 					Con("not facing nearest enemy", function(self) -- 112
-						do -- 113
-							local unit = AI:getNearestUnit("Enemy") -- 113
-							if unit then -- 113
-								return (self.x > unit.x) == self.faceRight -- 114
-							else -- 116
-								return false -- 116
-							end -- 113
+						local unit = AI:getNearestUnit("Enemy") -- 113
+						if unit then -- 113
+							return (self.x > unit.x) == self.faceRight -- 114
+						else -- 116
+							return false -- 116
 						end -- 113
 					end), -- 112
 					Act("turn"), -- 117
@@ -249,13 +243,11 @@ _module_0 = function() -- 6
 		}), -- 183
 		Seq({ -- 188
 			Con("not facing nearest enemy", function(self) -- 188
-				do -- 189
-					local unit = AI:getNearestUnit("Enemy") -- 189
-					if unit then -- 189
-						return (self.x > unit.x) == self.faceRight -- 190
-					else -- 192
-						return false -- 192
-					end -- 189
+				local unit = AI:getNearestUnit("Enemy") -- 189
+				if unit then -- 189
+					return (self.x > unit.x) == self.faceRight -- 190
+				else -- 192
+					return false -- 192
 				end -- 189
 			end), -- 188
 			Act("turn"), -- 193
@@ -266,13 +258,11 @@ _module_0 = function() -- 6
 				return self.entity.keyLeft -- 197
 			end), -- 197
 			Act(function(self) -- 198
-				do -- 199
-					local unit = AI:getNearestUnit("Enemy") -- 199
-					if unit then -- 199
-						return self.x > unit.x and "fmove" or "bmove" -- 200
-					else -- 202
-						return "" -- 202
-					end -- 199
+				local unit = AI:getNearestUnit("Enemy") -- 199
+				if unit then -- 199
+					return self.x > unit.x and "fmove" or "bmove" -- 200
+				else -- 202
+					return "" -- 202
 				end -- 199
 			end) -- 198
 		}), -- 196
@@ -281,13 +271,11 @@ _module_0 = function() -- 6
 				return self.entity.keyRight -- 205
 			end), -- 205
 			Act(function(self) -- 206
-				do -- 207
-					local unit = AI:getNearestUnit("Enemy") -- 207
-					if unit then -- 207
-						return self.x <= unit.x and "fmove" or "bmove" -- 208
-					else -- 210
-						return "" -- 210
-					end -- 207
+				local unit = AI:getNearestUnit("Enemy") -- 207
+				if unit then -- 207
+					return self.x <= unit.x and "fmove" or "bmove" -- 208
+				else -- 210
+					return "" -- 210
 				end -- 207
 			end) -- 206
 		}), -- 204

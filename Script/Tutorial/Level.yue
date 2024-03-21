@@ -16,7 +16,7 @@ export default ->
 	Data\setRelation 1, 2, "Enemy"
 
 	Entity\clear!
-	Data.store\clear()
+	Data.store\clear!
 	Data.store.world = world
 	TutorialAction!
 	TutorialAI!
@@ -25,7 +25,7 @@ export default ->
 	chars =
 		* ['ninilite', 500, -2, true]
 		* [Config.char, 800, 0, false]
-	for {name, x, order, faceRight} in *chars
+	for [name, x, order, faceRight] in *chars
 		Entity
 			:name
 			:faceRight
@@ -44,19 +44,18 @@ export default ->
 			sleep 0.9
 			emit "MessageBox.Add", title: "系统", special: false, text: "代理日志更新，代理第1天；"
 
-	Group({"player", "name"})\each =>
+	Group(["player", "name"])\each =>
 		switch @name when "ninilite"
 			@decisionTree = "AI:NiniliteIntro"
 
 	threadLoop ->
-		group = Group({"player", "name", "unit"})
+		group = Group(["player", "name", "unit"])
 		if group.count > 0
 			group\each => switch @name when "charF", "charM"
 				with @unit.playable
 					\setSlot "pistol", with Spine "kineticgun"
 						.look = "PT"
-						.scaleX = 0.2
-						.scaleY = 0.2
+						.scaleX = .scaleY = 0.2
 				true
 			true
 
@@ -67,7 +66,7 @@ export default ->
 			\addTo Director.ui3D
 			\showAsync!
 			\slot "Ended", -> thread ->
-				Group({"player"})\each =>
+				Group(["player",])\each =>
 					if @name == "ninilite"
 						@unit.playable.speed = 1.0
 						@unit.decisionTree = "AI:NiniliteFight"
@@ -88,7 +87,7 @@ export default ->
 				import "System.PlayBubbleChat"
 				PlayBubbleChat "Tutorial/Dialog/evade.yarn"
 				moved = false
-				with Observer "Add", {"keyLeft", "player"}
+				with Observer "Add", ["keyLeft", "player"]
 					\watch (_entity, keyLeft) -> if keyLeft then thread ->
 						if not moved and Group(["monster",]).count > 0
 							moved = true
@@ -97,7 +96,7 @@ export default ->
 							PlayBubbleChat "Tutorial/Dialog/weapon.yarn"
 							emit "Tutorial.Weapon"
 						true
-				with Observer "AddOrChange", {"keyRight", "player"}
+				with Observer "AddOrChange", ["keyRight", "player"]
 					\watch (_entity, keyRight) -> if keyRight then thread ->
 						if not moved and Group(["monster",]).count > 0
 							moved = true

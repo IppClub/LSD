@@ -18,42 +18,40 @@ getCharName = function(current) -- 9
 		local _list_0 = current.marks -- 11
 		for _index_0 = 1, #_list_0 do -- 11
 			local mark = _list_0[_index_0] -- 11
-			do -- 12
-				local _type_0 = type(mark) -- 12
-				local _tab_0 = "table" == _type_0 or "userdata" == _type_0 -- 12
-				if _tab_0 then -- 12
-					local attr = mark.name -- 12
-					local name -- 12
-					do -- 12
-						local _obj_0 = mark.attrs -- 12
-						local _type_1 = type(_obj_0) -- 12
-						if "table" == _type_1 or "userdata" == _type_1 then -- 12
-							name = _obj_0.name -- 12
-						end -- 15
+			local _type_0 = type(mark) -- 12
+			local _tab_0 = "table" == _type_0 or "userdata" == _type_0 -- 12
+			if _tab_0 then -- 12
+				local attr = mark.name -- 12
+				local name -- 12
+				do -- 12
+					local _obj_0 = mark.attrs -- 12
+					local _type_1 = type(_obj_0) -- 12
+					if "table" == _type_1 or "userdata" == _type_1 then -- 12
+						name = _obj_0.name -- 12
 					end -- 15
-					local id -- 12
-					do -- 12
-						local _obj_0 = mark.attrs -- 12
-						local _type_1 = type(_obj_0) -- 12
-						if "table" == _type_1 or "userdata" == _type_1 then -- 12
-							id = _obj_0.id -- 12
-						end -- 15
-					end -- 15
-					if name == nil then -- 12
-						name = '' -- 12
-					end -- 12
-					if id == nil then -- 12
-						id = '' -- 12
-					end -- 12
-					if attr ~= nil then -- 12
-						if ("char" == attr or "Character" == attr) then -- 13
-							if id == "char" then -- 14
-								id = Config.char -- 14
-							end -- 14
-							return name, id -- 15
-						end -- 13
-					end -- 12
 				end -- 15
+				local id -- 12
+				do -- 12
+					local _obj_0 = mark.attrs -- 12
+					local _type_1 = type(_obj_0) -- 12
+					if "table" == _type_1 or "userdata" == _type_1 then -- 12
+						id = _obj_0.id -- 12
+					end -- 15
+				end -- 15
+				if name == nil then -- 12
+					name = '' -- 12
+				end -- 12
+				if id == nil then -- 12
+					id = '' -- 12
+				end -- 12
+				if attr ~= nil then -- 12
+					if ("char" == attr or "Character" == attr) then -- 13
+						if id == "char" then -- 14
+							id = Config.char -- 14
+						end -- 14
+						return name, id -- 15
+					end -- 13
+				end -- 12
 			end -- 15
 		end -- 15
 	end -- 10
@@ -71,28 +69,26 @@ _module_0 = function(file) -- 18
 			if "Text" == itemType then -- 23
 				local name, characterId = getCharName(result) -- 24
 				local text = result.text -- 25
-				do -- 26
-					local entity = unitGroup:find(function(self) -- 26
-						return self.name == characterId -- 26
-					end) -- 26
-					if entity then -- 26
-						local unit = entity.unit -- 27
-						do -- 28
-							local bubble = unit:getChildByTag("bubble") -- 28
-							if bubble then -- 28
-								bubble:removeFromParent() -- 29
-							end -- 28
+				local entity = unitGroup:find(function(self) -- 26
+					return self.name == characterId -- 26
+				end) -- 26
+				if entity then -- 26
+					local unit = entity.unit -- 27
+					do -- 28
+						local bubble = unit:getChildByTag("bubble") -- 28
+						if bubble then -- 28
+							bubble:removeFromParent() -- 29
 						end -- 28
-						unit:addChild(Bubble({ -- 30
-							text = text -- 30
-						})) -- 30
-						emit("MessageBox.Add", { -- 31
-							title = "对话", -- 31
-							special = false, -- 31
-							text = tostring(name) .. "：" .. tostring(text) -- 31
-						}) -- 31
-						sleep(math.max(1, 0.15 * u8.len(text))) -- 32
-					end -- 26
+					end -- 28
+					unit:addChild(Bubble({ -- 30
+						text = text -- 30
+					})) -- 30
+					emit("MessageBox.Add", { -- 31
+						title = "对话", -- 31
+						special = false, -- 31
+						text = tostring(name) .. "：" .. tostring(text) -- 31
+					}) -- 31
+					sleep(math.max(1, 0.15 * u8.len(text))) -- 32
 				end -- 26
 			else -- 34
 				return -- 34

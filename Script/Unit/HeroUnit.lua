@@ -129,62 +129,60 @@ do -- 64
 	}) -- 99
 	Store["charM"] = _with_0 -- 64
 end -- 64
-do -- 117
-	local _with_0 = Dictionary() -- 117
-	_with_0.linearAcceleration = Vec2(0, -15) -- 118
-	_with_0.bodyType = "Dynamic" -- 119
-	_with_0.scale = 1.0 -- 120
-	_with_0.density = 1.0 -- 121
-	_with_0.friction = 1.0 -- 122
-	_with_0.restitution = 0.0 -- 123
-	_with_0.playable = "spine:villywan" -- 124
-	_with_0.defaultFaceRight = true -- 125
-	_with_0.size = Size(100, 300) -- 126
-	_with_0.sensity = 0 -- 127
-	_with_0.move = 300 -- 128
-	_with_0.jump = 1200 -- 129
-	_with_0.detectDistance = 350 -- 130
-	_with_0.tag = "player" -- 131
-	_with_0.hp = 5.0 -- 133
-	_with_0.decisionTree = "AI:NPC" -- 134
-	_with_0.usePreciseHit = false -- 135
-	_with_0.attackDelay = 0.4 -- 136
-	_with_0.attackEffectDelay = 0.1 -- 137
-	_with_0.attackPower = Vec2(100, 100) -- 138
-	_with_0.attackTarget = "Single" -- 139
-	do -- 140
-		local config -- 141
-		do -- 141
-			local _with_1 = TargetAllow() -- 141
-			_with_1.terrainAllowed = true -- 142
-			_with_1:allow("Enemy", true) -- 143
-			config = _with_1 -- 141
-		end -- 141
-		_with_0.targetAllow = config:toValue() -- 144
-	end -- 144
-	_with_0.damageType = 0 -- 145
-	_with_0.defenceType = 0 -- 146
-	_with_0.bulletType = "Bullet_1" -- 147
-	_with_0.attackEffect = "" -- 148
-	_with_0.hitEffect = "" -- 149
-	_with_0.sndAttack = "" -- 150
-	_with_0.sndFallen = "" -- 151
-	_with_0.actions = Array({ -- 153
-		"idle", -- 153
-		"turn", -- 154
-		"fallOff", -- 155
-		"test", -- 156
-		"cancel", -- 157
-		"keepIdle", -- 158
-		"keepMove", -- 159
-		"idle1", -- 160
-		"rush", -- 161
-		"evade", -- 162
-		"jump", -- 163
-		"pistol", -- 164
-		"fall", -- 165
-		"fmove", -- 166
-		"bmove" -- 167
-	}) -- 152
-	Store["villywan"] = _with_0 -- 117
-end -- 117
+local _with_0 = Dictionary() -- 117
+_with_0.linearAcceleration = Vec2(0, -15) -- 118
+_with_0.bodyType = "Dynamic" -- 119
+_with_0.scale = 1.0 -- 120
+_with_0.density = 1.0 -- 121
+_with_0.friction = 1.0 -- 122
+_with_0.restitution = 0.0 -- 123
+_with_0.playable = "spine:villywan" -- 124
+_with_0.defaultFaceRight = true -- 125
+_with_0.size = Size(100, 300) -- 126
+_with_0.sensity = 0 -- 127
+_with_0.move = 300 -- 128
+_with_0.jump = 1200 -- 129
+_with_0.detectDistance = 350 -- 130
+_with_0.tag = "player" -- 131
+_with_0.hp = 5.0 -- 133
+_with_0.decisionTree = "AI:NPC" -- 134
+_with_0.usePreciseHit = false -- 135
+_with_0.attackDelay = 0.4 -- 136
+_with_0.attackEffectDelay = 0.1 -- 137
+_with_0.attackPower = Vec2(100, 100) -- 138
+_with_0.attackTarget = "Single" -- 139
+do -- 140
+	local config -- 141
+	do -- 141
+		local _with_1 = TargetAllow() -- 141
+		_with_1.terrainAllowed = true -- 142
+		_with_1:allow("Enemy", true) -- 143
+		config = _with_1 -- 141
+	end -- 141
+	_with_0.targetAllow = config:toValue() -- 144
+end -- 144
+_with_0.damageType = 0 -- 145
+_with_0.defenceType = 0 -- 146
+_with_0.bulletType = "Bullet_1" -- 147
+_with_0.attackEffect = "" -- 148
+_with_0.hitEffect = "" -- 149
+_with_0.sndAttack = "" -- 150
+_with_0.sndFallen = "" -- 151
+_with_0.actions = Array({ -- 153
+	"idle", -- 153
+	"turn", -- 154
+	"fallOff", -- 155
+	"test", -- 156
+	"cancel", -- 157
+	"keepIdle", -- 158
+	"keepMove", -- 159
+	"idle1", -- 160
+	"rush", -- 161
+	"evade", -- 162
+	"jump", -- 163
+	"pistol", -- 164
+	"fall", -- 165
+	"fmove", -- 166
+	"bmove" -- 167
+}) -- 152
+Store["villywan"] = _with_0 -- 117
