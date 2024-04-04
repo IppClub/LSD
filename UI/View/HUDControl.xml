@@ -71,12 +71,13 @@
 				</Node>
 			</Node>
 		</AlignNode>
-		<Slot Name="AlignLayout" Args="_w, h">
+		<Slot Name="AlignLayout" Args="w, h">
 			<Yue>
 				scale = h / H
-				for item in *{topControl, ltControl, leftControl, lbControl, rightControl, rbControl}
+				for item in *[ltControl, leftControl, lbControl, rightControl, rbControl]
 					item.scaleX = scale
 					item.scaleY = scale
+				topControl.scaleX = topControl.scaleY = w / 3000
 			</Yue>
 		</Slot>
 	</AlignNode>

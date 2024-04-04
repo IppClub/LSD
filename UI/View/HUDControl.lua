@@ -124,11 +124,10 @@ weapon:slot("TapEnded",function() -- 66
 emit("Skill.Ended") -- 67
 end) -- 67
 skillArea:alignItems(0) -- 70
-item1:slot("AlignLayout",function(_w, h) -- 74
+item1:slot("AlignLayout",function(w, h) -- 74
 do -- 74
 	local scale = h / H -- 76
 	local _list_0 = { -- 77
-		topControl, -- 77
 		ltControl, -- 77
 		leftControl, -- 77
 		lbControl, -- 77
@@ -140,7 +139,12 @@ do -- 74
 		item.scaleX = scale -- 78
 		item.scaleY = scale -- 79
 	end -- 79
-end -- 79
+	do -- 80
+		local _tmp_0 = w / 3000 -- 80
+		topControl.scaleX = _tmp_0 -- 80
+		topControl.scaleY = _tmp_0 -- 80
+	end -- 80
+end -- 80
 end) -- 75
 return item1 -- 75
 end
