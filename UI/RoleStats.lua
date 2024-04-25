@@ -516,7 +516,7 @@ do -- 264
 			end -- 272
 		end -- 269
 		pop:schedule(function() -- 278
-			if not infoArea.visible then -- 279
+			if not ui.infoArea.visible then -- 279
 				return -- 279
 			end -- 279
 			local width, height -- 280
@@ -526,12 +526,12 @@ do -- 264
 			end -- 280
 			pos = nvg.TouchPos() * (width / App.visualSize.width) -- 281
 			pos = Vec2(pos.x, height - pos.y) -- 282
-			infoArea.view:eachChild(viewCDE) -- 283
+			ui.infoArea.view:eachChild(viewCDE) -- 283
 			return false -- 284
 		end) -- 278
 	else -- 286
-		if infoArea.visible then -- 286
-			infoArea.view:eachChild(function(self) -- 287
+		if ui.infoArea.visible then -- 286
+			ui.infoArea.view:eachChild(function(self) -- 287
 				if self.tag ~= "CDE" then -- 288
 					return -- 288
 				end -- 288
@@ -593,8 +593,8 @@ do -- 312
 		item.scaleY = scale -- 322
 	end -- 322
 	aiArea:adjustSizeWithAlign("Auto", 0, Size(1168, H)) -- 323
-	infoArea:adjustSizeWithAlign("Auto", 0, Size(1042, H)) -- 324
-	storyArea:adjustSizeWithAlign("Auto", 0, Size(1071, H)) -- 325
+	ui.infoArea:adjustSizeWithAlign("Auto", 0, Size(1042, H)) -- 324
+	ui.storyArea:adjustSizeWithAlign("Auto", 0, Size(1071, H)) -- 325
 end -- 325
 end) -- 313
 return ui -- 313

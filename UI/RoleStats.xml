@@ -276,15 +276,15 @@
 							else
 								pop.visible = false
 						pop\schedule ->
-							return unless infoArea.visible
+							return unless ui.infoArea.visible
 							:width, :height = View.size
 							pos = nvg.TouchPos! * (width / App.visualSize.width)
 							pos = Vec2 pos.x, height - pos.y
-							infoArea.view\eachChild viewCDE
+							ui.infoArea.view\eachChild viewCDE
 							false
 					else
-						if infoArea.visible
-							infoArea.view\eachChild =>
+						if ui.infoArea.visible
+							ui.infoArea.view\eachChild =>
 								return if @tag ~= "CDE"
 								@touchEnabled = true
 								@slot "TapBegan", ->
@@ -321,8 +321,8 @@
 					item.scaleX = scale
 					item.scaleY = scale
 				aiArea\adjustSizeWithAlign "Auto", 0, Size 1168, H
-				infoArea\adjustSizeWithAlign "Auto", 0, Size 1042, H
-				storyArea\adjustSizeWithAlign "Auto", 0, Size 1071, H
+				ui.infoArea\adjustSizeWithAlign "Auto", 0, Size 1042, H
+				ui.storyArea\adjustSizeWithAlign "Auto", 0, Size 1071, H
 			</Yue>
 		</Slot>
 	</AlignNode>
