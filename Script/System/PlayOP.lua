@@ -1,13 +1,13 @@
 -- [yue]: Script/System/PlayOP.yue
-local View = dora.View -- 1
-local Director = dora.Director -- 1
-local Color = dora.Color -- 1
-local Cache = dora.Cache -- 1
+local View = Dora.View -- 1
+local Director = Dora.Director -- 1
+local Color = Dora.Color -- 1
+local Cache = Dora.Cache -- 1
 local tostring = _G.tostring -- 1
-local Playable = dora.Playable -- 1
-local once = dora.once -- 1
-local sleep = dora.sleep -- 1
-local wait = dora.wait -- 1
+local Playable = Dora.Playable -- 1
+local once = Dora.once -- 1
+local sleep = Dora.sleep -- 1
+local wait = Dora.wait -- 1
 local _module_0 = nil -- 1
 local PVInfo <const> = { -- 4
 	{ -- 4

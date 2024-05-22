@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 
 import "Academy.Action" as AcademyAction
 import "Academy.AI" as AcademyAI

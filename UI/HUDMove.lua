@@ -1,9 +1,9 @@
 -- [yue]: UI/HUDMove.yue
-local Class = dora.Class -- 1
-local Group = dora.Group -- 1
-local Scale = dora.Scale -- 1
-local Ease = dora.Ease -- 1
-local Keyboard = dora.Keyboard -- 1
+local Class = Dora.Class -- 1
+local Group = Dora.Group -- 1
+local Scale = Dora.Scale -- 1
+local Ease = Dora.Ease -- 1
+local Keyboard = Dora.Keyboard -- 1
 local _module_0 = nil -- 1
 local HUDMove = require("UI.View.HUDMove") -- 2
 _module_0 = Class(HUDMove, { -- 5

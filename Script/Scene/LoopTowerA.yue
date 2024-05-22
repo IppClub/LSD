@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 
 const SceneScale = 1.7
 const W = (11700 + 4000) / SceneScale

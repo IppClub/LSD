@@ -1,16 +1,16 @@
 -- [yue]: Script/Academy/Level/Arrive.yue
-local Director = dora.Director -- 1
-local Cache = dora.Cache -- 1
-local Entity = dora.Entity -- 1
-local _module_0 = dora.Platformer -- 1
+local Director = Dora.Director -- 1
+local Cache = Dora.Cache -- 1
+local Entity = Dora.Entity -- 1
+local _module_0 = Dora.Platformer -- 1
 local Data = _module_0.Data -- 1
-local Vec2 = dora.Vec2 -- 1
-local threadLoop = dora.threadLoop -- 1
-local Group = dora.Group -- 1
-local thread = dora.thread -- 1
-local sleep = dora.sleep -- 1
-local Opacity = dora.Opacity -- 1
-local emit = dora.emit -- 1
+local Vec2 = Dora.Vec2 -- 1
+local threadLoop = Dora.threadLoop -- 1
+local Group = Dora.Group -- 1
+local thread = Dora.thread -- 1
+local sleep = Dora.sleep -- 1
+local Opacity = Dora.Opacity -- 1
+local emit = Dora.emit -- 1
 local _module_0 = nil -- 1
 local AcademyAction = require("Academy.Action") -- 3
 local AcademyAI = require("Academy.AI") -- 4

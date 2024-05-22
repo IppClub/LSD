@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora
 
 if not DB\exist "Config", "lsd"
 	dbPath = Path Content.writablePath, "lsd.db"

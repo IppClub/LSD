@@ -1,4 +1,4 @@
-_ENV = Dora!
+_ENV = Dora
 import "utf-8" as u8
 import "UI.View.InputBox"
 

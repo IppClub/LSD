@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 import "UI.View.Shape.Rectangle"
 import "Academy.Map" as Map
 

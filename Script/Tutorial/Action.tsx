@@ -1,6 +1,6 @@
-import { BodyMoveType, cycle, Ease, Node, once, Opacity, sleep, Spine, thread, tolua, TypeName, Vec2 } from 'dora';
+import { BodyMoveType, cycle, Ease, Node, once, Opacity, sleep, Spine, thread, tolua, TypeName, Vec2 } from 'Dora';
 import { Unit, UnitAction, Data, BulletDef, Face, Bullet, TargetAllow, Relation } from 'Platformer'
-import { React, toNode } from 'dora-x';
+import { React, toNode } from 'DoraX';
 import * as Rectangle from 'UI/View/Shape/Rectangle';
 
 export default function(this: void) {
@@ -124,8 +124,8 @@ export default function(this: void) {
 				const pistol = owner.playable.getSlot("pistol");
 				if (pistol) {
 					const worldPos = pistol.convertToWorldSpace(Vec2(300, 0));
-					const pos = owner.parent.convertToNodeSpace(worldPos);
-					bullet.position = pos;
+					const pos = owner.parent?.convertToNodeSpace(worldPos);
+					if (pos) bullet.position = pos;
 				}
 			});
 			sleep(owner.playable.play("pistol"));
@@ -176,10 +176,10 @@ export default function(this: void) {
 				const pistol = owner.playable.getSlot("pistol");
 				if (pistol) {
 					let worldPos = pistol.convertToWorldSpace(Vec2(300, 0));
-					let pos = owner.parent.convertToNodeSpace(worldPos);
-					bullet.position = pos;
+					let pos = owner.parent?.convertToNodeSpace(worldPos);
+					if (pos) bullet.position = pos;
 					worldPos = pistol.convertToWorldSpace(Vec2.zero);
-					pos = owner.parent.convertToNodeSpace(worldPos);
+					pos = owner.parent?.convertToNodeSpace(worldPos) ?? Vec2.zero;
 					const casing = toNode(
 						<body
 							type={BodyMoveType.Dynamic}

@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 
 const W = 11520
 const HW = W / 2

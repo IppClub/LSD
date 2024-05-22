@@ -1,5 +1,5 @@
-_ENV = Dora dora.Platformer
-store:Store = Data
+_ENV = Dora Dora.Platformer
+store: Store = Data
 
 Store["xiaotaotie"] = with Dictionary!
 	.linearAcceleration = Vec2 0, -15

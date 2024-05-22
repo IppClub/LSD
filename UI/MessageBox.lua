@@ -1,6 +1,6 @@
 -- [yue]: UI/MessageBox.yue
-local Class = dora.Class -- 1
-local Size = dora.Size -- 1
+local Class = Dora.Class -- 1
+local Size = Dora.Size -- 1
 local _module_0 = nil -- 1
 local MessageBox = require("UI.View.MessageBox") -- 2
 local Message = require("UI.Message") -- 3

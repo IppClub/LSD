@@ -1,12 +1,12 @@
 -- [yue]: Test/LoopTowerTest.yue
-local Path = dora.Path -- 1
-local Content = dora.Content -- 1
-local Director = dora.Director -- 1
-local Node = dora.Node -- 1
-local View = dora.View -- 1
+local Path = Dora.Path -- 1
+local Content = Dora.Content -- 1
+local Director = Dora.Director -- 1
+local Node = Dora.Node -- 1
+local View = Dora.View -- 1
 local math = _G.math -- 1
-local Sprite = dora.Sprite -- 1
-local Vec2 = dora.Vec2 -- 1
+local Sprite = Dora.Sprite -- 1
+local Vec2 = Dora.Vec2 -- 1
 do -- 3
 	local scriptPath = Path:getScriptPath(...) -- 3
 	if scriptPath then -- 3

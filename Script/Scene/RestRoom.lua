@@ -1,19 +1,19 @@
 -- [yue]: Script/Scene/RestRoom.yue
-local Spine = dora.Spine -- 1
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local Vec2 = dora.Vec2 -- 1
-local Sprite = dora.Sprite -- 1
-local View = dora.View -- 1
-local _module_0 = dora.Platformer -- 1
+local Spine = Dora.Spine -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local Vec2 = Dora.Vec2 -- 1
+local Sprite = Dora.Sprite -- 1
+local View = Dora.View -- 1
+local _module_0 = Dora.Platformer -- 1
 local PlatformWorld = _module_0.PlatformWorld -- 1
-local Rect = dora.Rect -- 1
-local BodyDef = dora.BodyDef -- 1
-local Body = dora.Body -- 1
+local Rect = Dora.Rect -- 1
+local BodyDef = Dora.BodyDef -- 1
+local Body = Dora.Body -- 1
 local Data = _module_0.Data -- 1
-local Array = dora.Array -- 1
+local Array = Dora.Array -- 1
 local math = _G.math -- 1
-local Cache = dora.Cache -- 1
+local Cache = Dora.Cache -- 1
 local _module_0 = nil -- 1
 local Map = require("Academy.Map") -- 2
 local W <const> = 3640 -- 4
@@ -168,7 +168,7 @@ _module_0 = Class({ -- 55
 		end -- 86
 		self.camera.zoom = zoom -- 88
 	end, -- 82
-	__partial = function(self) -- 90
+	__partial = function(_self) -- 90
 		local _with_0 = PlatformWorld() -- 91
 		do -- 92
 			local _with_1 = _with_0.camera -- 92
@@ -300,7 +300,7 @@ _module_0 = Class({ -- 55
 			self.zoom = 0.61 + 0.39 * math.min(1.0, distance / 800) -- 175
 		end) -- 175
 	end, -- 97
-	loadAsync = function(self) -- 177
+	loadAsync = function(_self) -- 177
 		return Cache:loadAsync("spine:restRoom") -- 177
 	end -- 177
 }) -- 54

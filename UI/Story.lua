@@ -1,15 +1,15 @@
 -- [yue]: UI/Story.yue
 local type = _G.type -- 1
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local thread = dora.thread -- 1
-local Cache = dora.Cache -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local thread = Dora.thread -- 1
+local Cache = Dora.Cache -- 1
 local tostring = _G.tostring -- 1
-local sleep = dora.sleep -- 1
-local View = dora.View -- 1
-local Pass = dora.Pass -- 1
-local SpriteEffect = dora.SpriteEffect -- 1
-local emit = dora.emit -- 1
+local sleep = Dora.sleep -- 1
+local View = Dora.View -- 1
+local Pass = Dora.Pass -- 1
+local SpriteEffect = Dora.SpriteEffect -- 1
+local emit = Dora.emit -- 1
 local collectgarbage = _G.collectgarbage -- 1
 local _module_0 = nil -- 1
 local Story = require("UI.View.Story") -- 2

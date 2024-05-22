@@ -1,23 +1,23 @@
 -- [yue]: Script/Scene/Train.yue
-local Vec2 = dora.Vec2 -- 1
-local once = dora.once -- 1
-local cycle = dora.cycle -- 1
-local Spine = dora.Spine -- 1
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local Sprite = dora.Sprite -- 1
-local View = dora.View -- 1
+local Vec2 = Dora.Vec2 -- 1
+local once = Dora.once -- 1
+local cycle = Dora.cycle -- 1
+local Spine = Dora.Spine -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local Sprite = Dora.Sprite -- 1
+local View = Dora.View -- 1
 local math = _G.math -- 1
-local Opacity = dora.Opacity -- 1
-local sleep = dora.sleep -- 1
-local _module_0 = dora.Platformer -- 1
+local Opacity = Dora.Opacity -- 1
+local sleep = Dora.sleep -- 1
+local _module_0 = Dora.Platformer -- 1
 local PlatformWorld = _module_0.PlatformWorld -- 1
-local Rect = dora.Rect -- 1
-local BodyDef = dora.BodyDef -- 1
-local Body = dora.Body -- 1
+local Rect = Dora.Rect -- 1
+local BodyDef = Dora.BodyDef -- 1
+local Body = Dora.Body -- 1
 local Data = _module_0.Data -- 1
-local loop = dora.loop -- 1
-local Cache = dora.Cache -- 1
+local loop = Dora.loop -- 1
+local Cache = Dora.Cache -- 1
 local _module_0 = nil -- 1
 local SceneScale <const> = 1.7 -- 3
 local W <const> = 3840 / SceneScale -- 4
@@ -231,7 +231,7 @@ _module_0 = Class({ -- 59
 			layer.visible = true -- 92
 		end -- 92
 	end), -- 78
-	__partial = function(self) -- 94
+	__partial = function(_self) -- 94
 		local _with_0 = PlatformWorld() -- 95
 		local _with_1 = _with_0.camera -- 96
 		_with_1.boundary = Rect(0, 0, W, H) -- 97
@@ -279,7 +279,7 @@ _module_0 = Class({ -- 59
 			self.isUnderground = not self.isUnderground -- 128
 		end)) -- 128
 	end, -- 100
-	loadAsync = function(self) -- 130
+	loadAsync = function(_self) -- 130
 		return Cache:loadAsync("spine:train") -- 130
 	end -- 130
 }) -- 58

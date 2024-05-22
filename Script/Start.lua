@@ -1,10 +1,10 @@
 -- [yue]: Script/Start.yue
-local DB = dora.DB -- 1
-local Path = dora.Path -- 1
-local Content = dora.Content -- 1
+local DB = Dora.DB -- 1
+local Path = Dora.Path -- 1
+local Content = Dora.Content -- 1
 local tostring = _G.tostring -- 1
-local Director = dora.Director -- 1
-local once = dora.once -- 1
+local Director = Dora.Director -- 1
+local once = Dora.once -- 1
 if not DB:exist("Config", "lsd") then -- 3
 	local dbPath = Path(Content.writablePath, "lsd.db") -- 4
 	DB:exec("ATTACH DATABASE '" .. tostring(dbPath) .. "' AS lsd;") -- 5

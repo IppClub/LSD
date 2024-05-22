@@ -1,9 +1,9 @@
 -- [yue]: UI/StatusBar.yue
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local Color3 = dora.Color3 -- 1
-local ScaleX = dora.ScaleX -- 1
-local Ease = dora.Ease -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local Color3 = Dora.Color3 -- 1
+local ScaleX = Dora.ScaleX -- 1
+local Ease = Dora.Ease -- 1
 local _module_0 = nil -- 1
 local StatusBarView = require("UI.View.StatusBar").default -- 2
 local getHPColor -- 4

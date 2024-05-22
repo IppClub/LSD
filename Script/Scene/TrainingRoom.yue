@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 import "Academy.Map" as Map
 
 const W = 3840
@@ -102,7 +102,7 @@ export default Class
 			.zoom = zoom
 			.boundary = Rect 0, 0, W, H * actualZoom
 
-	__partial: =>
+	__partial: (_self) ->
 		with PlatformWorld!
 			.camera.followRatio = Vec2 0.03, 0.03
 			.tag = "TrainingRoom"
@@ -178,4 +178,4 @@ export default Class
 		@gslot "AppSizeChanged", -> @updateZoom!
 		@updateZoom!
 
-	loadAsync: => Cache\loadAsync "spine:trainingRoom"
+	loadAsync: (_self) -> Cache\loadAsync "spine:trainingRoom"

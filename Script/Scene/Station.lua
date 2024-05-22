@@ -1,18 +1,18 @@
 -- [yue]: Script/Scene/Station.yue
-local Vec2 = dora.Vec2 -- 1
-local Spine = dora.Spine -- 1
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local Sprite = dora.Sprite -- 1
-local View = dora.View -- 1
+local Vec2 = Dora.Vec2 -- 1
+local Spine = Dora.Spine -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local Sprite = Dora.Sprite -- 1
+local View = Dora.View -- 1
 local math = _G.math -- 1
-local _module_0 = dora.Platformer -- 1
+local _module_0 = Dora.Platformer -- 1
 local PlatformWorld = _module_0.PlatformWorld -- 1
-local Rect = dora.Rect -- 1
-local BodyDef = dora.BodyDef -- 1
-local Body = dora.Body -- 1
+local Rect = Dora.Rect -- 1
+local BodyDef = Dora.BodyDef -- 1
+local Body = Dora.Body -- 1
 local Data = _module_0.Data -- 1
-local Cache = dora.Cache -- 1
+local Cache = Dora.Cache -- 1
 local _module_0 = nil -- 1
 local W <const> = 11520 -- 3
 local HW <const> = W / 2 -- 4
@@ -115,7 +115,7 @@ _module_0 = Class({ -- 40
 		zoom = math.max(W / realWidth, H / realHeight) -- 61
 		self.camera.zoom = zoom / scale -- 62
 	end, -- 54
-	__partial = function(self) -- 64
+	__partial = function(_self) -- 64
 		local _with_0 = PlatformWorld() -- 65
 		do -- 66
 			local _with_1 = _with_0.camera -- 66
@@ -155,7 +155,7 @@ _module_0 = Class({ -- 40
 		end) -- 91
 		return self:updateZoom() -- 92
 	end, -- 71
-	loadAsync = function(self) -- 94
+	loadAsync = function(_self) -- 94
 		return Cache:loadAsync("spine:station") -- 94
 	end -- 94
 }) -- 39

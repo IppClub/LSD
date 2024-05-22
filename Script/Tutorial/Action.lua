@@ -1,15 +1,15 @@
 -- [tsx]: Action.tsx
 local ____exports = {} -- 1
-local ____dora = require("dora") -- 1
-local cycle = ____dora.cycle -- 1
-local Ease = ____dora.Ease -- 1
-local Node = ____dora.Node -- 1
-local once = ____dora.once -- 1
-local Opacity = ____dora.Opacity -- 1
-local sleep = ____dora.sleep -- 1
-local Spine = ____dora.Spine -- 1
-local tolua = ____dora.tolua -- 1
-local Vec2 = ____dora.Vec2 -- 1
+local ____Dora = require("Dora") -- 1
+local cycle = ____Dora.cycle -- 1
+local Ease = ____Dora.Ease -- 1
+local Node = ____Dora.Node -- 1
+local once = ____Dora.once -- 1
+local Opacity = ____Dora.Opacity -- 1
+local sleep = ____Dora.sleep -- 1
+local Spine = ____Dora.Spine -- 1
+local tolua = ____Dora.tolua -- 1
+local Vec2 = ____Dora.Vec2 -- 1
 local ____Platformer = require("Platformer") -- 2
 local Unit = ____Platformer.Unit -- 2
 local UnitAction = ____Platformer.UnitAction -- 2
@@ -18,9 +18,9 @@ local BulletDef = ____Platformer.BulletDef -- 2
 local Face = ____Platformer.Face -- 2
 local Bullet = ____Platformer.Bullet -- 2
 local TargetAllow = ____Platformer.TargetAllow -- 2
-local ____dora_2Dx = require("dora-x") -- 3
-local React = ____dora_2Dx.React -- 3
-local toNode = ____dora_2Dx.toNode -- 3
+local ____DoraX = require("DoraX") -- 3
+local React = ____DoraX.React -- 3
+local toNode = ____DoraX.toNode -- 3
 local Rectangle = require("UI.View.Shape.Rectangle") -- 4
 function ____exports.default() -- 6
     UnitAction:add( -- 7
@@ -157,8 +157,11 @@ function ____exports.default() -- 6
                     local pistol = owner.playable:getSlot("pistol") -- 124
                     if pistol then -- 124
                         local worldPos = pistol:convertToWorldSpace(Vec2(300, 0)) -- 126
-                        local pos = owner.parent:convertToNodeSpace(worldPos) -- 127
-                        bullet.position = pos -- 128
+                        local ____opt_2 = owner.parent -- 126
+                        local pos = ____opt_2 and ____opt_2:convertToNodeSpace(worldPos) -- 127
+                        if pos then -- 127
+                            bullet.position = pos -- 128
+                        end -- 128
                     end -- 128
                 end) -- 95
                 sleep(owner.playable:play("pistol")) -- 131
@@ -175,11 +178,11 @@ function ____exports.default() -- 6
             queued = true, -- 140
             create = function(owner) return once(function() -- 141
                 owner.playable:slot("attack"):set(function() -- 142
-                    local ____owner_data_aimAngle_2 = owner.data.aimAngle -- 143
-                    if ____owner_data_aimAngle_2 == nil then -- 143
-                        ____owner_data_aimAngle_2 = 0 -- 143
+                    local ____owner_data_aimAngle_4 = owner.data.aimAngle -- 143
+                    if ____owner_data_aimAngle_4 == nil then -- 143
+                        ____owner_data_aimAngle_4 = 0 -- 143
                     end -- 143
-                    local aimAngle = ____owner_data_aimAngle_2 -- 143
+                    local aimAngle = ____owner_data_aimAngle_4 -- 143
                     local bulletDef = BulletDef() -- 144
                     bulletDef.lifeTime = 10 -- 145
                     bulletDef.damageRadius = 0 -- 146
@@ -218,10 +221,14 @@ function ____exports.default() -- 6
                     local pistol = owner.playable:getSlot("pistol") -- 176
                     if pistol then -- 176
                         local worldPos = pistol:convertToWorldSpace(Vec2(300, 0)) -- 178
-                        local pos = owner.parent:convertToNodeSpace(worldPos) -- 179
-                        bullet.position = pos -- 180
+                        local ____opt_5 = owner.parent -- 178
+                        local pos = ____opt_5 and ____opt_5:convertToNodeSpace(worldPos) -- 179
+                        if pos then -- 179
+                            bullet.position = pos -- 180
+                        end -- 180
                         worldPos = pistol:convertToWorldSpace(Vec2.zero) -- 181
-                        pos = owner.parent:convertToNodeSpace(worldPos) -- 182
+                        local ____opt_7 = owner.parent -- 181
+                        pos = ____opt_7 and ____opt_7:convertToNodeSpace(worldPos) or Vec2.zero -- 182
                         local casing = toNode(React:createElement( -- 183
                             "body", -- 183
                             { -- 183

@@ -1,7 +1,7 @@
 -- [yue]: UI/HUDControl.yue
-local Class = dora.Class -- 1
-local Scale = dora.Scale -- 1
-local Ease = dora.Ease -- 1
+local Class = Dora.Class -- 1
+local Scale = Dora.Scale -- 1
+local Ease = Dora.Ease -- 1
 local _module_0 = nil -- 1
 local HUDControl = require("UI.View.HUDControl") -- 2
 _module_0 = Class(HUDControl, { -- 5

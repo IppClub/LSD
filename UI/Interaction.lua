@@ -1,11 +1,11 @@
 -- [yue]: UI/Interaction.yue
-local Class = dora.Class -- 1
-local Spawn = dora.Spawn -- 1
-local Opacity = dora.Opacity -- 1
-local Y = dora.Y -- 1
-local Ease = dora.Ease -- 1
-local Sequence = dora.Sequence -- 1
-local Event = dora.Event -- 1
+local Class = Dora.Class -- 1
+local Spawn = Dora.Spawn -- 1
+local Opacity = Dora.Opacity -- 1
+local Y = Dora.Y -- 1
+local Ease = Dora.Ease -- 1
+local Sequence = Dora.Sequence -- 1
+local Event = Dora.Event -- 1
 local _module_0 = nil -- 1
 local InputButton = require("UI.InputButton") -- 2
 local Interaction = require("UI.View.Interaction") -- 3

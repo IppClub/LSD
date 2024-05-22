@@ -1,4 +1,4 @@
-_ENV = Dora dora.ImGui
+_ENV = Dora Dora.ImGui
 if scriptPath := Path\getScriptPath ...
 	scriptPath = Path\getPath scriptPath
 	for path in *{

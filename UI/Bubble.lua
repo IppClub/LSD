@@ -1,10 +1,10 @@
 -- [yue]: UI/Bubble.yue
-local Class = dora.Class -- 1
-local once = dora.once -- 1
+local Class = Dora.Class -- 1
+local once = Dora.once -- 1
 local math = _G.math -- 1
 local utf8 = _G.utf8 -- 1
-local sleep = dora.sleep -- 1
-local Opacity = dora.Opacity -- 1
+local sleep = Dora.sleep -- 1
+local Opacity = Dora.Opacity -- 1
 local _module_0 = nil -- 1
 local Bubble = require("UI.View.Bubble") -- 3
 _module_0 = Class(Bubble, { -- 6

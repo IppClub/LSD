@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 
 const W = 11520
 const HW = W / 2
@@ -61,7 +61,7 @@ export default Class
 		zoom = math.max W / realWidth, H / realHeight
 		@camera.zoom = zoom / scale
 
-	__partial: =>
+	__partial: (_self) ->
 		with PlatformWorld!
 			with .camera
 				.boundary = Rect 0, 0, W, H
@@ -91,4 +91,4 @@ export default Class
 		@gslot "AppSizeChanged", -> @updateZoom!
 		@updateZoom!
 
-	loadAsync: => Cache\loadAsync "spine:station"
+	loadAsync: (_self) -> Cache\loadAsync "spine:station"

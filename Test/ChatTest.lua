@@ -1,7 +1,7 @@
 -- [yue]: Test/ChatTest.yue
-local Path = dora.Path -- 1
-local Content = dora.Content -- 1
-local Director = dora.Director -- 1
+local Path = Dora.Path -- 1
+local Content = Dora.Content -- 1
+local Director = Dora.Director -- 1
 local print = _G.print -- 1
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2

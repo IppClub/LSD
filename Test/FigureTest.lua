@@ -1,14 +1,14 @@
 -- [yue]: Test/FigureTest.yue
-local Path = dora.Path -- 1
-local Content = dora.Content -- 1
-local Director = dora.Director -- 1
-local Spine = dora.Spine -- 1
-local Node = dora.Node -- 1
-local App = dora.App -- 1
-local _module_0 = dora.ImGui -- 1
+local Path = Dora.Path -- 1
+local Content = Dora.Content -- 1
+local Director = Dora.Director -- 1
+local Spine = Dora.Spine -- 1
+local Node = Dora.Node -- 1
+local App = Dora.App -- 1
+local _module_0 = Dora.ImGui -- 1
 local SetNextWindowBgAlpha = _module_0.SetNextWindowBgAlpha -- 1
 local SetNextWindowPos = _module_0.SetNextWindowPos -- 1
-local Vec2 = dora.Vec2 -- 1
+local Vec2 = Dora.Vec2 -- 1
 local SetNextWindowSize = _module_0.SetNextWindowSize -- 1
 local Begin = _module_0.Begin -- 1
 local Text = _module_0.Text -- 1

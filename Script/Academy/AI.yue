@@ -1,6 +1,6 @@
 _ENV = Dora(
-	dora.Platformer
-	dora.Platformer.Decision
+	Dora.Platformer
+	Dora.Platformer.Decision
 )
 
 export default ->

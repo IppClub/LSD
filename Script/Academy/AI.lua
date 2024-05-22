@@ -1,7 +1,7 @@
 -- [yue]: Script/Academy/AI.yue
-local _module_0 = dora.Platformer -- 1
+local _module_0 = Dora.Platformer -- 1
 local Data = _module_0.Data -- 1
-local _module_1 = dora.Platformer.Decision -- 1
+local _module_1 = Dora.Platformer.Decision -- 1
 local Sel = _module_1.Sel -- 1
 local Seq = _module_1.Seq -- 1
 local Con = _module_1.Con -- 1

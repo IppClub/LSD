@@ -1,6 +1,6 @@
 // @preview-file off
-import { React, toNode, useRef } from 'dora-x';
-import { Color, Color3, DrawNode, Vec2 } from 'dora';
+import { React, toNode, useRef } from 'DoraX';
+import { Color, Color3, DrawNode, Vec2 } from 'Dora';
 
 interface BarProps {
 	y: number;

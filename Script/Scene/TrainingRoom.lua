@@ -1,18 +1,18 @@
 -- [yue]: Script/Scene/TrainingRoom.yue
-local Spine = dora.Spine -- 1
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local Vec2 = dora.Vec2 -- 1
-local Sprite = dora.Sprite -- 1
-local View = dora.View -- 1
-local Rect = dora.Rect -- 1
-local _module_0 = dora.Platformer -- 1
+local Spine = Dora.Spine -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local Vec2 = Dora.Vec2 -- 1
+local Sprite = Dora.Sprite -- 1
+local View = Dora.View -- 1
+local Rect = Dora.Rect -- 1
+local _module_0 = Dora.Platformer -- 1
 local PlatformWorld = _module_0.PlatformWorld -- 1
-local BodyDef = dora.BodyDef -- 1
-local Body = dora.Body -- 1
+local BodyDef = Dora.BodyDef -- 1
+local Body = Dora.Body -- 1
 local Data = _module_0.Data -- 1
-local Array = dora.Array -- 1
-local Cache = dora.Cache -- 1
+local Array = Dora.Array -- 1
+local Cache = Dora.Cache -- 1
 local _module_0 = nil -- 1
 local Map = require("Academy.Map") -- 2
 local W <const> = 3840 -- 4
@@ -247,7 +247,7 @@ _module_0 = Class({ -- 64
 		_with_0.boundary = Rect(0, 0, W, H * actualZoom) -- 103
 		return _with_0 -- 101
 	end, -- 91
-	__partial = function(self) -- 105
+	__partial = function(_self) -- 105
 		local _with_0 = PlatformWorld() -- 106
 		_with_0.camera.followRatio = Vec2(0.03, 0.03) -- 107
 		_with_0.tag = "TrainingRoom" -- 108
@@ -363,7 +363,7 @@ _module_0 = Class({ -- 64
 		end) -- 178
 		return self:updateZoom() -- 179
 	end, -- 110
-	loadAsync = function(self) -- 181
+	loadAsync = function(_self) -- 181
 		return Cache:loadAsync("spine:trainingRoom") -- 181
 	end -- 181
 }) -- 63

@@ -1,10 +1,10 @@
 -- [yue]: Script/System/PlayBubbleChat.yue
 local type = _G.type -- 1
-local Group = dora.Group -- 1
-local thread = dora.thread -- 1
-local emit = dora.emit -- 1
+local Group = Dora.Group -- 1
+local thread = Dora.thread -- 1
+local emit = Dora.emit -- 1
 local tostring = _G.tostring -- 1
-local sleep = dora.sleep -- 1
+local sleep = Dora.sleep -- 1
 local math = _G.math -- 1
 local _module_0 = nil -- 1
 local Bubble = require("UI.Bubble") -- 3

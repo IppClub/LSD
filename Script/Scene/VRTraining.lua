@@ -1,31 +1,31 @@
 -- [yue]: Script/Scene/VRTraining.yue
-local Vec2 = dora.Vec2 -- 1
+local Vec2 = Dora.Vec2 -- 1
 local math = _G.math -- 1
-local Content = dora.Content -- 1
+local Content = Dora.Content -- 1
 local table = _G.table -- 1
-local Spine = dora.Spine -- 1
-local Class = dora.Class -- 1
-local property = dora.property -- 1
-local View = dora.View -- 1
-local _module_0 = dora.Platformer -- 1
+local Spine = Dora.Spine -- 1
+local Class = Dora.Class -- 1
+local property = Dora.property -- 1
+local View = Dora.View -- 1
+local _module_0 = Dora.Platformer -- 1
 local PlatformWorld = _module_0.PlatformWorld -- 1
-local Rect = dora.Rect -- 1
-local Sequence = dora.Sequence -- 1
-local Opacity = dora.Opacity -- 1
+local Rect = Dora.Rect -- 1
+local Sequence = Dora.Sequence -- 1
+local Opacity = Dora.Opacity -- 1
 local utf8 = _G.utf8 -- 1
-local Label = dora.Label -- 1
-local Color3 = dora.Color3 -- 1
-local loop = dora.loop -- 1
-local Node = dora.Node -- 1
-local once = dora.once -- 1
-local sleep = dora.sleep -- 1
-local Show = dora.Show -- 1
-local Ease = dora.Ease -- 1
-local Hide = dora.Hide -- 1
-local BodyDef = dora.BodyDef -- 1
-local Body = dora.Body -- 1
+local Label = Dora.Label -- 1
+local Color3 = Dora.Color3 -- 1
+local loop = Dora.loop -- 1
+local Node = Dora.Node -- 1
+local once = Dora.once -- 1
+local sleep = Dora.sleep -- 1
+local Show = Dora.Show -- 1
+local Ease = Dora.Ease -- 1
+local Hide = Dora.Hide -- 1
+local BodyDef = Dora.BodyDef -- 1
+local Body = Dora.Body -- 1
 local Data = _module_0.Data -- 1
-local Cache = dora.Cache -- 1
+local Cache = Dora.Cache -- 1
 local _module_0 = nil -- 1
 local Struct = require("Utils").Struct -- 2
 local u8 = require("utf-8") -- 3
@@ -104,7 +104,7 @@ _module_0 = Class({ -- 58
 	offset = property(function() -- 59
 		return Offset -- 59
 	end), -- 59
-	addShadowTo = function(self) end, -- 61
+	addShadowTo = function(_self) end, -- 61
 	zoom = property(function(self) -- 63
 		return self._zoom -- 63
 	end, function(self, value) -- 64
@@ -124,7 +124,7 @@ _module_0 = Class({ -- 58
 		zoom = math.max(W / realWidth, H / realHeight) -- 74
 		self.camera.zoom = zoom -- 75
 	end, -- 68
-	__partial = function(self) -- 77
+	__partial = function(_self) -- 77
 		local _with_0 = PlatformWorld() -- 78
 		do -- 79
 			local _with_1 = _with_0.camera -- 79
@@ -275,7 +275,7 @@ _module_0 = Class({ -- 58
 		end) -- 188
 		return self:updateZoom() -- 189
 	end, -- 84
-	loadAsync = function(self) -- 191
+	loadAsync = function(_self) -- 191
 		return Cache:loadAsync("spine:VRTraining") -- 191
 	end -- 191
 }) -- 57

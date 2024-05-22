@@ -1,10 +1,10 @@
 -- [yue]: Test/ControlTest.yue
-local Path = dora.Path -- 1
-local Content = dora.Content -- 1
-local Director = dora.Director -- 1
-local thread = dora.thread -- 1
-local sleep = dora.sleep -- 1
-local emit = dora.emit -- 1
+local Path = Dora.Path -- 1
+local Content = Dora.Content -- 1
+local Director = Dora.Director -- 1
+local thread = Dora.thread -- 1
+local sleep = Dora.sleep -- 1
+local emit = Dora.emit -- 1
 do -- 2
 	local scriptPath = Path:getScriptPath(...) -- 2
 	if scriptPath then -- 2

@@ -1,5 +1,5 @@
 -- [yue]: Script/Scene/PassageA.yue
-local Class = dora.Class -- 1
+local Class = Dora.Class -- 1
 local _module_0 = nil -- 1
 local Passage = require("Scene.Passage") -- 2
 _module_0 = Class(Passage, { -- 4

@@ -1,16 +1,16 @@
 -- [yue]: UI/InputBox.yue
-local Class = dora.Class -- 1
-local Vec2 = dora.Vec2 -- 1
-local Line = dora.Line -- 1
-local Color = dora.Color -- 1
-local loop = dora.loop -- 1
-local sleep = dora.sleep -- 1
+local Class = Dora.Class -- 1
+local Vec2 = Dora.Vec2 -- 1
+local Line = Dora.Line -- 1
+local Color = Dora.Color -- 1
+local loop = Dora.loop -- 1
+local sleep = Dora.sleep -- 1
 local math = _G.math -- 1
-local Size = dora.Size -- 1
-local Keyboard = dora.Keyboard -- 1
-local thread = dora.thread -- 1
-local App = dora.App -- 1
-local property = dora.property -- 1
+local Size = Dora.Size -- 1
+local Keyboard = Dora.Keyboard -- 1
+local thread = Dora.thread -- 1
+local App = Dora.App -- 1
+local property = Dora.property -- 1
 local _module_0 = nil -- 1
 local u8 = require("utf-8") -- 2
 local InputBox = require("UI.View.InputBox") -- 3

@@ -1,11 +1,11 @@
 _ENV = Dora(
-	dora.Platformer
-	dora.Platformer.Decision
+	Dora.Platformer
+	Dora.Platformer.Decision
 )
 
 export default ->
 	store: Store = Data
-	BT = dora.Platformer.Behavior
+	BT = Dora.Platformer.Behavior
 
 	Store["AI:NiniliteIntro"] = Behave "intro", BT.Seq [
 		BT.Con "raise gun", =>

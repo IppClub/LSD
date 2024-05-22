@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 import "UI.Control.Basic.AlignNode"
 import "UI.Control.Basic.CircleButton"
 

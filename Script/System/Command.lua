@@ -1,10 +1,10 @@
 -- [yue]: Script/System/Command.yue
 local setmetatable = _G.setmetatable -- 1
 local coroutine = _G.coroutine -- 1
-local once = dora.once -- 1
-local sleep = dora.sleep -- 1
-local Director = dora.Director -- 1
-local emit = dora.emit -- 1
+local once = Dora.once -- 1
+local sleep = Dora.sleep -- 1
+local Director = Dora.Director -- 1
+local emit = Dora.emit -- 1
 local print = _G.print -- 1
 local tostring = _G.tostring -- 1
 local table = _G.table -- 1

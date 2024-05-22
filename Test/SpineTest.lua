@@ -1,17 +1,17 @@
 -- [yue]: Test/SpineTest.yue
-local Path = dora.Path -- 1
-local Content = dora.Content -- 1
-local Director = dora.Director -- 1
-local _module_0 = dora.Platformer -- 1
+local Path = Dora.Path -- 1
+local Content = Dora.Content -- 1
+local Director = Dora.Director -- 1
+local _module_0 = Dora.Platformer -- 1
 local Data = _module_0.Data -- 1
 local UnitAction = _module_0.UnitAction -- 1
-local once = dora.once -- 1
-local sleep = dora.sleep -- 1
-local cycle = dora.cycle -- 1
+local once = Dora.once -- 1
+local sleep = Dora.sleep -- 1
+local cycle = Dora.cycle -- 1
 local math = _G.math -- 1
 local coroutine = _G.coroutine -- 1
-local Vec2 = dora.Vec2 -- 1
-local _module_1 = dora.Platformer.Decision -- 1
+local Vec2 = Dora.Vec2 -- 1
+local _module_1 = Dora.Platformer.Decision -- 1
 local Sel = _module_1.Sel -- 1
 local Seq = _module_1.Seq -- 1
 local Con = _module_1.Con -- 1
@@ -19,19 +19,19 @@ local AI = _module_1.AI -- 1
 local Act = _module_1.Act -- 1
 local Reject = _module_1.Reject -- 1
 local tostring = _G.tostring -- 1
-local Group = dora.Group -- 1
-local Entity = dora.Entity -- 1
-local Spine = dora.Spine -- 1
+local Group = Dora.Group -- 1
+local Entity = Dora.Entity -- 1
+local Spine = Dora.Spine -- 1
 local pairs = _G.pairs -- 1
-local Dictionary = dora.Dictionary -- 1
-local Size = dora.Size -- 1
-local Array = dora.Array -- 1
+local Dictionary = Dora.Dictionary -- 1
+local Size = Dora.Size -- 1
+local Array = Dora.Array -- 1
 local table = _G.table -- 1
 local Unit = _module_0.Unit -- 1
-local Node = dora.Node -- 1
-local Sprite = dora.Sprite -- 1
-local App = dora.App -- 1
-local _module_2 = dora.ImGui -- 1
+local Node = Dora.Node -- 1
+local Sprite = Dora.Sprite -- 1
+local App = Dora.App -- 1
+local _module_2 = Dora.ImGui -- 1
 local SetNextWindowPos = _module_2.SetNextWindowPos -- 1
 local SetNextWindowSize = _module_2.SetNextWindowSize -- 1
 local Begin = _module_2.Begin -- 1
@@ -906,7 +906,7 @@ if #files > 0 then -- 617
 	for i = 1, #files do -- 618
 		if files[i] == "charF" then -- 619
 			playable = files[i] -- 620
-			currentFile = math.tointeger(i) -- 621
+			currentFile = math.floor(i) -- 621
 			break -- 622
 		end -- 619
 	end -- 622

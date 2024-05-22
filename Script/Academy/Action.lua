@@ -1,13 +1,13 @@
 -- [yue]: Script/Academy/Action.yue
-local _module_0 = dora.Platformer -- 1
+local _module_0 = Dora.Platformer -- 1
 local Data = _module_0.Data -- 1
 local UnitAction = _module_0.UnitAction -- 1
-local once = dora.once -- 1
-local sleep = dora.sleep -- 1
-local cycle = dora.cycle -- 1
+local once = Dora.once -- 1
+local sleep = Dora.sleep -- 1
+local cycle = Dora.cycle -- 1
 local math = _G.math -- 1
 local coroutine = _G.coroutine -- 1
-local Vec2 = dora.Vec2 -- 1
+local Vec2 = Dora.Vec2 -- 1
 local _module_0 = nil -- 1
 local _anon_func_0 = function(_with_0) -- 130
 	local _val_0 = _with_0.lastCompleted -- 117

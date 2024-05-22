@@ -1,4 +1,4 @@
-_ENV = Dora dora.Platformer
+_ENV = Dora Dora.Platformer
 import "Academy.Map" as Map
 
 const W = 3554
