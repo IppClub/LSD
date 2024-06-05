@@ -1,7 +1,7 @@
 # 《灵数奇缘》游戏项目
 
 <p align="center">
-  <img src='Image/logo.jpg' alt='LSD' width='500px'/>
+  <img src='Image/banner.jpg' alt='LSD' width='500px'/>
 </p>
 
 ------
