@@ -118,7 +118,7 @@ export default Class
 			\addTo @
 
 		@_zoom = 1.0
-		@gslot "AppSizeChanged", -> @updateZoom!
+		@gslot "AppChange", (settingName) -> if settingName == "Size" then @updateZoom!
 		@updateZoom!
 
 		@speed = highSpeed and 2.0 or 1.0

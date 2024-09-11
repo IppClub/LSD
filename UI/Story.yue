@@ -146,14 +146,14 @@ export default Class Story,
 			for _ = 1, 3
 				\add blurH
 				\add blurV
-		@gslot "AppSizeChanged", ->
+		@gslot "AppChange", (settingName) -> if settingName == "Size"
 			:width, :height = View.size
 			blurH\set "u_radius", width
 			blurV\set "u_radius", height
 		emit "Story.Display", true
 
 	hide: =>
-		@gslot "AppSizeChanged", nil
+		@gslot "AppChange", nil
 		@emit "Ended"
 		@removeFromParent!
 		viewScale = @_viewScale

@@ -25,7 +25,7 @@ export default Class Node,
 			viewSize = inUI and App.bufferSize or View.size
 			@size = viewSize
 			@_viewSize = viewSize
-			@gslot "AppSizeChanged", ->
+			@gslot "AppChange", (settingName) -> if settingName == "Size"
 				viewSize = @inUI and App.bufferSize or View.size
 				if @_viewSize ~= viewSize
 					@_viewSize = viewSize

@@ -1,4 +1,4 @@
--- [yue]: Script/Lib/UI/Control/Basic/AlignNode.yue
+-- [yue]: UI/Control/Basic/AlignNode.yue
 local Class = Dora.Class -- 1
 local Node = Dora.Node -- 1
 local Vec2 = Dora.Vec2 -- 1
@@ -35,17 +35,19 @@ _module_0 = Class(Node, { -- 12
 			local viewSize = inUI and App.bufferSize or View.size -- 25
 			self.size = viewSize -- 26
 			self._viewSize = viewSize -- 27
-			self:gslot("AppSizeChanged", function() -- 28
-				viewSize = self.inUI and App.bufferSize or View.size -- 29
-				if self._viewSize ~= viewSize then -- 30
-					self._viewSize = viewSize -- 31
-					self.size = viewSize -- 32
-					local width, height = viewSize.width, viewSize.height -- 33
-					self:emit("AlignLayout", width, height) -- 34
-					return self:eachChild(function(child) -- 35
-						return child:emit("AlignLayout", width, height) -- 36
-					end) -- 36
-				end -- 30
+			self:gslot("AppChange", function(settingName) -- 28
+				if settingName == "Size" then -- 28
+					viewSize = self.inUI and App.bufferSize or View.size -- 29
+					if self._viewSize ~= viewSize then -- 30
+						self._viewSize = viewSize -- 31
+						self.size = viewSize -- 32
+						local width, height = viewSize.width, viewSize.height -- 33
+						self:emit("AlignLayout", width, height) -- 34
+						return self:eachChild(function(child) -- 35
+							return child:emit("AlignLayout", width, height) -- 36
+						end) -- 36
+					end -- 30
+				end -- 28
 			end) -- 28
 			return self:slot("Enter", function() -- 37
 				local width, height -- 38

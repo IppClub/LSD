@@ -230,8 +230,10 @@ _module_0 = Class({ -- 45
 			end) -- 117
 		end -- 109
 		self._zoom = 1.0 -- 123
-		self:gslot("AppSizeChanged", function() -- 124
-			return self:updateZoom() -- 124
+		self:gslot("AppChange", function(settingName) -- 124
+			if settingName == "Size" then -- 124
+				return self:updateZoom() -- 124
+			end -- 124
 		end) -- 124
 		self:updateZoom() -- 125
 		local world = self -- 127
@@ -267,19 +269,21 @@ _module_0 = Class({ -- 45
 					end -- 150
 				end -- 150
 			end -- 146
-			node:gslot("AppSizeChanged", function() -- 151
-				zoom = Director.currentCamera.zoom -- 152
-				node.size = View.size * Vec2(1.0 / zoom, 1.0 / zoom) -- 153
-				h = node.size.height -- 154
-				node:grab(false) -- 155
-				local _with_0 = node:grab(20, 1) -- 156
-				for x = 1, 21 do -- 157
-					for y = 1, 2 do -- 158
-						local pos = _with_0:getPos(x, y) -- 159
-						_with_0:setPos(x, y, pos, math.sin(math.abs(x - 11) * math.pi / 200) * math.abs(x - 11) * h * 0.25) -- 160
+			node:gslot("AppChange", function(settingName) -- 151
+				if settingName == "Size" then -- 151
+					zoom = Director.currentCamera.zoom -- 152
+					node.size = View.size * Vec2(1.0 / zoom, 1.0 / zoom) -- 153
+					h = node.size.height -- 154
+					node:grab(false) -- 155
+					local _with_0 = node:grab(20, 1) -- 156
+					for x = 1, 21 do -- 157
+						for y = 1, 2 do -- 158
+							local pos = _with_0:getPos(x, y) -- 159
+							_with_0:setPos(x, y, pos, math.sin(math.abs(x - 11) * math.pi / 200) * math.abs(x - 11) * h * 0.25) -- 160
+						end -- 160
 					end -- 160
-				end -- 160
-				return _with_0 -- 156
+					return _with_0 -- 156
+				end -- 151
 			end) -- 151
 			world:moveToParent(node) -- 161
 			return node -- 131

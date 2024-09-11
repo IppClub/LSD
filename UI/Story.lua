@@ -281,19 +281,21 @@ _module_0 = Class(Story, { -- 22
 			end -- 148
 			View.postEffect = _with_0 -- 145
 		end -- 145
-		self:gslot("AppSizeChanged", function() -- 149
-			local width, height -- 150
-			do -- 150
-				local _obj_0 = View.size -- 150
-				width, height = _obj_0.width, _obj_0.height -- 150
-			end -- 150
-			blurH:set("u_radius", width) -- 151
-			return blurV:set("u_radius", height) -- 152
+		self:gslot("AppChange", function(settingName) -- 149
+			if settingName == "Size" then -- 149
+				local width, height -- 150
+				do -- 150
+					local _obj_0 = View.size -- 150
+					width, height = _obj_0.width, _obj_0.height -- 150
+				end -- 150
+				blurH:set("u_radius", width) -- 151
+				return blurV:set("u_radius", height) -- 152
+			end -- 149
 		end) -- 149
 		return emit("Story.Display", true) -- 153
 	end, -- 132
 	hide = function(self) -- 155
-		self:gslot("AppSizeChanged", nil) -- 156
+		self:gslot("AppChange", nil) -- 156
 		self:emit("Ended") -- 157
 		self:removeFromParent() -- 158
 		local viewScale = self._viewScale -- 159

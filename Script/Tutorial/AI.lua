@@ -14,7 +14,6 @@ local Group = Dora.Group -- 1
 local Reject = _module_1.Reject -- 1
 local Accept = _module_1.Accept -- 1
 local _module_0 = nil -- 1
-local _ENV = Dora(Dora.Platformer, Dora.Platformer.Decision) -- 1
 local _anon_func_0 = function(Spine, _with_0) -- 16
 	local _with_1 = Spine("empgun") -- 13
 	_with_1.look = "PT" -- 14

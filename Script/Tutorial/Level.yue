@@ -7,6 +7,7 @@ import "Scene.LoopTowerA"
 import "Data.Config"
 
 export default ->
+	Audio\playStream "Music/军事学园.mp3", true, 1
 	LoopTowerA\loadAsync!
 	world = LoopTowerA!
 	with Director.entry

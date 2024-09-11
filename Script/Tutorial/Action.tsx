@@ -2,6 +2,7 @@ import { BodyMoveType, cycle, Ease, Node, once, Opacity, sleep, Spine, thread, t
 import { Unit, UnitAction, Data, BulletDef, Face, Bullet, TargetAllow, Relation } from 'Platformer'
 import { React, toNode } from 'DoraX';
 import * as Rectangle from 'UI/View/Shape/Rectangle';
+import { LightStrip } from 'Tutorial/LightStrip';
 
 export default function(this: void) {
 	UnitAction.add("bmove", {
@@ -127,6 +128,7 @@ export default function(this: void) {
 					const pos = owner.parent?.convertToNodeSpace(worldPos);
 					if (pos) bullet.position = pos;
 				}
+				LightStrip(bullet.position, bullet, 0xff8dbef3);
 			});
 			sleep(owner.playable.play("pistol"));
 			return true;
@@ -185,7 +187,7 @@ export default function(this: void) {
 							type={BodyMoveType.Dynamic}
 							x={pos.x} y={pos.y} world={owner.world}
 							group={Data.groupHide} linearAcceleration={Vec2(0, -9.8)}
-							velocityX={math.random() * (owner.faceRight ? -100 : 100)}
+							velocityX={math.random() * (owner.faceRight ? -200 : 200)}
 							velocityY={math.random() * 300}
 							angle={math.random() * aimAngle}
 						>
@@ -202,6 +204,7 @@ export default function(this: void) {
 						casing.addTo(owner.world, owner.order);
 					}
 				}
+				LightStrip(bullet.position, bullet, 0xffffffff);
 				const playable = tolua.cast(owner.playable, TypeName.Spine);
 				if (playable) {
 					playable.schedule(once(() => {

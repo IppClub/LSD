@@ -228,7 +228,7 @@ export default Class
 					.speed = DoorSpeed
 					\play animation
 		@_zoom = 1.0
-		@gslot "AppSizeChanged", -> @updateZoom!
+		@gslot "AppChange", (settingName) -> if settingName == "Size" then @updateZoom!
 		@updateZoom!
 
 	loadAsync: -> Cache\loadAsync "spine:passage"

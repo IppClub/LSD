@@ -6,10 +6,12 @@ local Cache = Dora.Cache -- 1
 local tostring = _G.tostring -- 1
 local Playable = Dora.Playable -- 1
 local once = Dora.once -- 1
+local Audio = Dora.Audio -- 1
 local sleep = Dora.sleep -- 1
 local wait = Dora.wait -- 1
 local _module_0 = nil -- 1
-local PVInfo <const> = { -- 4
+local PVInfo -- 3
+PVInfo = { -- 4
 	{ -- 4
 		3003, -- 4
 		1688, -- 4
@@ -49,7 +51,7 @@ local PVInfo <const> = { -- 4
 		3018, -- 11
 		1706, -- 11
 		3.0000002384186, -- 11
-		1.0 -- 11
+		0.1 -- 11
 	}, -- 11
 	{ -- 12
 		3020, -- 12
@@ -174,15 +176,17 @@ playOP = function() -- 43
 	local start = 1 -- 45
 	Cache:loadAsync("spine:PV1/PV1_" .. tostring(start)) -- 46
 	for i = start, #PVInfo do -- 47
-		if (8 == i or 9 == i or 19 == i) then -- 48
+		if (9 == i or 19 == i) then -- 48
 			goto _continue_0 -- 48
 		end -- 48
 		local playEnded = false -- 49
 		local nextViewLoaded = false -- 50
 		local playable = Playable("spine:PV1/PV1_" .. tostring(i)) -- 51
 		playable:play("animation", i == 1) -- 52
-		playable:gslot("AppSizeChanged", function() -- 53
-			return scaleView(playable, i) -- 53
+		playable:gslot("AppChange", function(settingName) -- 53
+			if settingName == "Size" then -- 53
+				return scaleView(playable, i) -- 53
+			end -- 53
 		end) -- 53
 		scaleView(playable, i) -- 54
 		if i + 1 <= #PVInfo then -- 55
@@ -197,39 +201,41 @@ playOP = function() -- 43
 		Cache:unload("PV1/PV1_" .. tostring(i) .. ".atlas") -- 62
 		Cache:unload("spine:PV1/PV1_" .. tostring(i)) -- 63
 		if i == 1 then -- 64
-			sleep(3) -- 65
-			local Story = require("UI.Story") -- 66
-			local story -- 67
-			do -- 67
-				local _with_0 = Story("Tutorial/Dialog/startUp.yarn") -- 67
-				_with_0:slot("Ended", function() -- 68
-					playEnded = true -- 68
-				end) -- 68
-				_with_0:showAsync() -- 69
-				_with_0:addTo(Director.ui3D) -- 70
-				story = _with_0 -- 67
-			end -- 67
-			wait(function() -- 71
-				return playEnded -- 71
-			end) -- 71
-			sleep(2) -- 72
-		else -- 74
-			playable:slot("end", function() -- 74
-				playEnded = true -- 74
-			end) -- 74
-			playable:slot("AnimationEnd", function() -- 75
-				playEnded = true -- 75
-			end) -- 75
+			Audio:playStream("Music/L·S·Depart.mp3", true) -- 65
+			sleep(3) -- 66
+			local Story = require("UI.Story") -- 67
+			local story -- 68
+			do -- 68
+				local _with_0 = Story("Tutorial/Dialog/startUp.yarn") -- 68
+				_with_0:slot("Ended", function() -- 69
+					playEnded = true -- 69
+				end) -- 69
+				_with_0:showAsync() -- 70
+				_with_0:addTo(Director.ui3D) -- 71
+				story = _with_0 -- 68
+			end -- 68
+			wait(function() -- 72
+				return playEnded -- 72
+			end) -- 72
+			Audio:playStream("Music/L·S·DepartII.mp3", false, 1) -- 73
+			sleep(2) -- 74
+		else -- 76
+			playable:slot("end", function() -- 76
+				playEnded = true -- 76
+			end) -- 76
+			playable:slot("AnimationEnd", function() -- 77
+				playEnded = true -- 77
+			end) -- 77
 		end -- 64
-		wait(function() -- 76
-			return playEnded and nextViewLoaded -- 76
-		end) -- 76
-		if i + 1 <= #PVInfo then -- 77
-			playable:removeFromParent() -- 78
-			Cache:removeUnused("Texture") -- 79
-		end -- 77
+		wait(function() -- 78
+			return playEnded and nextViewLoaded -- 78
+		end) -- 78
+		if i + 1 <= #PVInfo then -- 79
+			playable:removeFromParent() -- 80
+			Cache:removeUnused("Texture") -- 81
+		end -- 79
 		::_continue_0:: -- 48
-	end -- 79
+	end -- 81
 end -- 43
-_module_0 = playOP -- 81
-return _module_0 -- 81
+_module_0 = playOP -- 83
+return _module_0 -- 83

@@ -121,7 +121,7 @@ export default Class
 					body.entity.enterExit = false
 
 		@_zoom = 1.0
-		@gslot "AppSizeChanged", -> @updateZoom!
+		@gslot "AppChange", (settingName) -> if settingName == "Size" then @updateZoom!
 		@updateZoom!
 		---[[
 		world = @
@@ -148,7 +148,7 @@ export default Class
 						for y = 1, 2
 							pos = \getPos x, y
 							\setPos x, y, pos, math.sin(math.abs(x - 11) * math.pi / 200) * math.abs(x - 11) * h * 0.25
-				\gslot "AppSizeChanged", ->
+				\gslot "AppChange", (settingName) -> if settingName == "Size" 
 					:zoom = Director.currentCamera
 					.size = View.size * Vec2 1.0 / zoom, 1.0 / zoom
 					h = .size.height

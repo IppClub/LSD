@@ -15,7 +15,7 @@ end) -- 6
 return Director.entry:schedule(once(function() -- 8
 	local Config = require("Data.Config") -- 9
 	Config:loadAsync() -- 10
-	Config.skipOP = 0 -- 11
+	Config.skipOP = 1 -- 11
 	Config.char = "charM" -- 12
 	Config.charName = "瑾" -- 13
 	Config.heroine = "于灵" -- 14

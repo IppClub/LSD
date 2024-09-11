@@ -8,7 +8,7 @@ Director.entry\slot "Cleanup", -> DB\exec "DETACH DATABASE lsd"
 Director.entry\schedule once ->
 	import "Data.Config"
 	Config\loadAsync!
-	Config.skipOP = 0
+	Config.skipOP = 1
 	Config.char = "charM"
 	Config.charName = "瑾"
 	Config.heroine = "于灵"

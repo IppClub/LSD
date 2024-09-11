@@ -369,8 +369,10 @@ _module_0 = Class({ -- 57
 		end -- 180
 		self._speed = 1.0 -- 225
 		self._zoom = 1.0 -- 226
-		self:gslot("AppSizeChanged", function() -- 227
-			return self:updateZoom() -- 227
+		self:gslot("AppChange", function(settingName) -- 227
+			if settingName == "Size" then -- 227
+				return self:updateZoom() -- 227
+			end -- 227
 		end) -- 227
 		return self:updateZoom() -- 228
 	end, -- 158

@@ -95,7 +95,7 @@ export default Class
 			\addTo @
 
 		@_zoom = 1.0
-		@gslot "AppSizeChanged", -> @updateZoom!
+		@gslot "AppChange", (settingName) -> if settingName == "Size" then @updateZoom!
 		@updateZoom!
 
 	loadAsync: (_) -> Cache\loadAsync "spine:abandonedCity"

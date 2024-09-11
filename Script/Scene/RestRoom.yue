@@ -13,7 +13,7 @@ const MaxPath = 2
 const DefaultZoom = 0.68
 const SceneName = "RestRoom"
 
-macro order = (value)->
+macro order = (value) ->
 	global globals = globals or {}
 	globals.layerId = if value then tonumber value
 	else globals.layerId - 1
@@ -162,7 +162,7 @@ export default Class
 			\addTo @
 
 		@_zoom = 1.0
-		@gslot "AppSizeChanged", -> @updateZoom!
+		@gslot "AppChange", (settingName) -> if settingName == "Size" then @updateZoom!
 		@updateZoom!
 		@schedule ->
 			:x = @camera.position

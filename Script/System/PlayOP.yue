@@ -8,7 +8,7 @@ const PVInfo = [
 	[3017, 1704, 5.3333334922791] -- 5
 	[3021, 1704, 5.0000004768372] -- 6
 	[3018, 1703, 2.8333334922791] -- 7
-	[3018, 1706, 3.0000002384186, 1.0] -- 8
+	[3018, 1706, 3.0000002384186, 0.1] -- 8
 	[3020, 1707, 3.0000002384186] -- 9
 	[1162, 656, 4.1666669845581] -- 10
 	[2999, 1687, 4.6666669845581] -- 11
@@ -45,12 +45,12 @@ playOP = ->
 	start = 1
 	Cache\loadAsync "spine:PV1/PV1_#{start}"
 	for i = start, #PVInfo
-		continue if i in [8, 9, 19]
+		continue if i in [9, 19]
 		playEnded = false
 		nextViewLoaded = false
 		with playable = Playable "spine:PV1/PV1_#{i}"
 			\play "animation", i == 1
-			\gslot "AppSizeChanged", -> scaleView playable, i
+			\gslot "AppChange", (settingName) -> if settingName == "Size" then scaleView playable, i
 			scaleView playable, i
 			if i + 1 <= #PVInfo
 				\schedule once ->
@@ -62,6 +62,7 @@ playOP = ->
 			Cache\unload "PV1/PV1_#{i}.atlas"
 			Cache\unload "spine:PV1/PV1_#{i}"
 			if i == 1
+				Audio\playStream "Music/L·S·Depart.mp3", true
 				sleep 3
 				import "UI.Story"
 				story = with Story "Tutorial/Dialog/startUp.yarn"
@@ -69,6 +70,7 @@ playOP = ->
 					\showAsync!
 					\addTo Director.ui3D
 				wait -> playEnded
+				Audio\playStream "Music/L·S·DepartII.mp3", false, 1
 				sleep 2
 			else
 				\slot "end", -> playEnded = true
