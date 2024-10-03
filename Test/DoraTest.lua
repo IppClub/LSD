@@ -68,127 +68,161 @@ do -- 25
 	spineShadow = s -- 25
 end -- 25
 local _anon_func_0 = function(Spine, spineShadow) -- 55
-	local _with_0 = Spine("coldweapon") -- 52
-	_with_0.look = "grenade" -- 53
-	_with_0.scaleX = 0.04 -- 54
-	_with_0.scaleY = 0.04 -- 55
-	return _with_0 -- 52
+	do -- 52
+		local _with_0 = Spine("coldweapon") -- 52
+		_with_0.look = "grenade" -- 53
+		_with_0.scaleX = 0.04 -- 54
+		_with_0.scaleY = 0.04 -- 55
+		return _with_0 -- 52
+	end -- 55
 end -- 52
 local _anon_func_1 = function(Spine, _with_0) -- 60
-	local _with_1 = Spine("coldweapon") -- 57
-	_with_1.look = "grenade" -- 58
-	_with_1.scaleX = 0.04 -- 59
-	_with_1.scaleY = 0.04 -- 60
-	return _with_1 -- 57
+	do -- 57
+		local _with_1 = Spine("coldweapon") -- 57
+		_with_1.look = "grenade" -- 58
+		_with_1.scaleX = 0.04 -- 59
+		_with_1.scaleY = 0.04 -- 60
+		return _with_1 -- 57
+	end -- 60
 end -- 57
 local _anon_func_2 = function(Spine, spineShadow) -- 67
-	local _with_0 = Spine("coldweapon") -- 64
-	_with_0.look = "comm" -- 65
-	_with_0.scaleX = 0.06 -- 66
-	_with_0.scaleY = 0.06 -- 67
-	return _with_0 -- 64
+	do -- 64
+		local _with_0 = Spine("coldweapon") -- 64
+		_with_0.look = "comm" -- 65
+		_with_0.scaleX = 0.06 -- 66
+		_with_0.scaleY = 0.06 -- 67
+		return _with_0 -- 64
+	end -- 67
 end -- 64
 local _anon_func_3 = function(Spine, _with_0) -- 72
-	local _with_1 = Spine("coldweapon") -- 69
-	_with_1.look = "comm" -- 70
-	_with_1.scaleX = 0.06 -- 71
-	_with_1.scaleY = 0.06 -- 72
-	return _with_1 -- 69
+	do -- 69
+		local _with_1 = Spine("coldweapon") -- 69
+		_with_1.look = "comm" -- 70
+		_with_1.scaleX = 0.06 -- 71
+		_with_1.scaleY = 0.06 -- 72
+		return _with_1 -- 69
+	end -- 72
 end -- 69
 local _anon_func_4 = function(Spine, spineShadow) -- 79
-	local _with_0 = Spine("coldweapon") -- 76
-	_with_0.look = "comp" -- 77
-	_with_0.scaleX = 0.1 -- 78
-	_with_0.scaleY = 0.1 -- 79
-	return _with_0 -- 76
+	do -- 76
+		local _with_0 = Spine("coldweapon") -- 76
+		_with_0.look = "comp" -- 77
+		_with_0.scaleX = 0.1 -- 78
+		_with_0.scaleY = 0.1 -- 79
+		return _with_0 -- 76
+	end -- 79
 end -- 76
 local _anon_func_5 = function(Spine, _with_0) -- 84
-	local _with_1 = Spine("coldweapon") -- 81
-	_with_1.look = "comp" -- 82
-	_with_1.scaleX = 0.1 -- 83
-	_with_1.scaleY = 0.1 -- 84
-	return _with_1 -- 81
+	do -- 81
+		local _with_1 = Spine("coldweapon") -- 81
+		_with_1.look = "comp" -- 82
+		_with_1.scaleX = 0.1 -- 83
+		_with_1.scaleY = 0.1 -- 84
+		return _with_1 -- 81
+	end -- 84
 end -- 81
 local _anon_func_6 = function(Spine, spineShadow) -- 91
-	local _with_0 = Spine("coldweapon") -- 88
-	_with_0.look = "shield" -- 89
-	_with_0.scaleX = 0.2 -- 90
-	_with_0.scaleY = 0.2 -- 91
-	return _with_0 -- 88
+	do -- 88
+		local _with_0 = Spine("coldweapon") -- 88
+		_with_0.look = "shield" -- 89
+		_with_0.scaleX = 0.2 -- 90
+		_with_0.scaleY = 0.2 -- 91
+		return _with_0 -- 88
+	end -- 91
 end -- 88
 local _anon_func_7 = function(Spine, _with_0) -- 96
-	local _with_1 = Spine("coldweapon") -- 93
-	_with_1.look = "shield" -- 94
-	_with_1.scaleX = 0.2 -- 95
-	_with_1.scaleY = 0.2 -- 96
-	return _with_1 -- 93
+	do -- 93
+		local _with_1 = Spine("coldweapon") -- 93
+		_with_1.look = "shield" -- 94
+		_with_1.scaleX = 0.2 -- 95
+		_with_1.scaleY = 0.2 -- 96
+		return _with_1 -- 93
+	end -- 96
 end -- 93
 local _anon_func_8 = function(Spine, _with_0, mname) -- 103
-	local _with_1 = Spine("coldweapon") -- 100
-	_with_1.look = mname -- 101
-	_with_1.scaleX = 0.2 -- 102
-	_with_1.scaleY = 0.2 -- 103
-	return _with_1 -- 100
+	do -- 100
+		local _with_1 = Spine("coldweapon") -- 100
+		_with_1.look = mname -- 101
+		_with_1.scaleX = 0.2 -- 102
+		_with_1.scaleY = 0.2 -- 103
+		return _with_1 -- 100
+	end -- 103
 end -- 100
 local _anon_func_9 = function(Spine, _with_0, mname) -- 107
-	local _with_1 = Spine("coldweapon") -- 104
-	_with_1.look = mname -- 105
-	_with_1.scaleX = 0.2 -- 106
-	_with_1.scaleY = 0.2 -- 107
-	return _with_1 -- 104
+	do -- 104
+		local _with_1 = Spine("coldweapon") -- 104
+		_with_1.look = mname -- 105
+		_with_1.scaleX = 0.2 -- 106
+		_with_1.scaleY = 0.2 -- 107
+		return _with_1 -- 104
+	end -- 107
 end -- 104
 local _anon_func_10 = function(Spine, spineShadow) -- 117
-	local _with_0 = Spine("coldweapon") -- 114
-	_with_0.look = "bow" -- 115
-	_with_0.scaleX = 0.2 -- 116
-	_with_0.scaleY = 0.2 -- 117
-	return _with_0 -- 114
+	do -- 114
+		local _with_0 = Spine("coldweapon") -- 114
+		_with_0.look = "bow" -- 115
+		_with_0.scaleX = 0.2 -- 116
+		_with_0.scaleY = 0.2 -- 117
+		return _with_0 -- 114
+	end -- 117
 end -- 114
 local _anon_func_11 = function(Spine, _with_0) -- 122
-	local _with_1 = Spine("coldweapon") -- 119
-	_with_1.look = "bow" -- 120
-	_with_1.scaleX = 0.2 -- 121
-	_with_1.scaleY = 0.2 -- 122
-	return _with_1 -- 119
+	do -- 119
+		local _with_1 = Spine("coldweapon") -- 119
+		_with_1.look = "bow" -- 120
+		_with_1.scaleX = 0.2 -- 121
+		_with_1.scaleY = 0.2 -- 122
+		return _with_1 -- 119
+	end -- 122
 end -- 119
 local _anon_func_12 = function(Spine, gname, spineShadow) -- 130
-	local _with_0 = Spine(gname) -- 127
-	_with_0.look = "PT" -- 128
-	_with_0.scaleX = 0.2 -- 129
-	_with_0.scaleY = 0.2 -- 130
-	return _with_0 -- 127
+	do -- 127
+		local _with_0 = Spine(gname) -- 127
+		_with_0.look = "PT" -- 128
+		_with_0.scaleX = 0.2 -- 129
+		_with_0.scaleY = 0.2 -- 130
+		return _with_0 -- 127
+	end -- 130
 end -- 127
 local _anon_func_13 = function(Spine, _with_0, gname) -- 135
-	local _with_1 = Spine(gname) -- 132
-	_with_1.look = "PT" -- 133
-	_with_1.scaleX = 0.2 -- 134
-	_with_1.scaleY = 0.2 -- 135
-	return _with_1 -- 132
+	do -- 132
+		local _with_1 = Spine(gname) -- 132
+		_with_1.look = "PT" -- 133
+		_with_1.scaleX = 0.2 -- 134
+		_with_1.scaleY = 0.2 -- 135
+		return _with_1 -- 132
+	end -- 135
 end -- 132
 local _anon_func_14 = function(Spine, _with_0, gname, gtype) -- 142
-	local _with_1 = Spine(gname) -- 139
-	_with_1.look = gtype -- 140
-	_with_1.scaleX = 0.2 -- 141
-	_with_1.scaleY = 0.2 -- 142
-	return _with_1 -- 139
+	do -- 139
+		local _with_1 = Spine(gname) -- 139
+		_with_1.look = gtype -- 140
+		_with_1.scaleX = 0.2 -- 141
+		_with_1.scaleY = 0.2 -- 142
+		return _with_1 -- 139
+	end -- 142
 end -- 139
 local _anon_func_15 = function(Spine, _with_0, gname, gtype) -- 146
-	local _with_1 = Spine(gname) -- 143
-	_with_1.look = gtype -- 144
-	_with_1.scaleX = 0.2 -- 145
-	_with_1.scaleY = 0.2 -- 146
-	return _with_1 -- 143
+	do -- 143
+		local _with_1 = Spine(gname) -- 143
+		_with_1.look = gtype -- 144
+		_with_1.scaleX = 0.2 -- 145
+		_with_1.scaleY = 0.2 -- 146
+		return _with_1 -- 143
+	end -- 146
 end -- 143
 local _anon_func_16 = function(Color, Delay, Ease, Event, Label, Opacity, Scale, Sequence, Spawn, Vec2, _with_0, name, x, y) -- 169
-	local _with_1 = Label("NotoSansHans-Regular", 30) -- 158
-	_with_1.text = name -- 159
-	_with_1.color = Color(0xff00ffff) -- 160
-	_with_1:perform(Sequence(Spawn(Scale(1, 0, 2, Ease.OutQuad), Sequence(Delay(0.5), Opacity(0.5, 1, 0))), Event("Stop"))) -- 161
-	_with_1.position = Vec2(x, y) -- 168
-	_with_1:slot("Stop", function() -- 169
-		return _with_1:removeFromParent() -- 169
-	end) -- 169
-	return _with_1 -- 158
+	do -- 158
+		local _with_1 = Label("NotoSansHans-Regular", 30) -- 158
+		_with_1.text = name -- 159
+		_with_1.color = Color(0xff00ffff) -- 160
+		_with_1:perform(Sequence(Spawn(Scale(1, 0, 2, Ease.OutQuad), Sequence(Delay(0.5), Opacity(0.5, 1, 0))), Event("Stop"))) -- 161
+		_with_1.position = Vec2(x, y) -- 168
+		_with_1:slot("Stop", function() -- 169
+			return _with_1:removeFromParent() -- 169
+		end) -- 169
+		return _with_1 -- 158
+	end -- 169
 end -- 158
 local spine -- 32
 do -- 32

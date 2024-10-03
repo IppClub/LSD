@@ -10,8 +10,10 @@ local coroutine = _G.coroutine -- 1
 local Vec2 = Dora.Vec2 -- 1
 local _module_0 = nil -- 1
 local _anon_func_0 = function(_with_0) -- 130
-	local _val_0 = _with_0.lastCompleted -- 117
-	return "melee" == _val_0 or "pistol" == _val_0 or "bow" == _val_0 or "gun1" == _val_0 or "gun2" == _val_0 or "gun3" == _val_0 or "throw" == _val_0 or "parry" == _val_0 or "defense" == _val_0 or "comp" == _val_0 or "comm" == _val_0 or "hit" == _val_0 -- 117
+	do -- 117
+		local _val_0 = _with_0.lastCompleted -- 117
+		return "melee" == _val_0 or "pistol" == _val_0 or "bow" == _val_0 or "gun1" == _val_0 or "gun2" == _val_0 or "gun3" == _val_0 or "throw" == _val_0 or "parry" == _val_0 or "defense" == _val_0 or "comp" == _val_0 or "comm" == _val_0 or "hit" == _val_0 -- 117
+	end -- 130
 end -- 117
 _module_0 = function() -- 3
 	local Store = Data.store -- 4
@@ -167,9 +169,11 @@ _module_0 = function() -- 3
 				end -- 104
 			end) -- 101
 			self.data.playIdleSpecial = playIdleSpecial -- 105
-			return function(self) -- 106
-				coroutine.resume(playIdleSpecial) -- 107
-				return not self.onSurface -- 108
+			do -- 106
+				return function(self) -- 106
+					coroutine.resume(playIdleSpecial) -- 107
+					return not self.onSurface -- 108
+				end -- 108
 			end -- 108
 		end -- 98
 	}) -- 93
@@ -187,8 +191,10 @@ _module_0 = function() -- 3
 				_with_0.recovery = 0.0 -- 131
 			end -- 117
 			_with_0:play("prepare", true) -- 132
-			return function(self) -- 133
-				return not self.onSurface -- 133
+			do -- 133
+				return function(self) -- 133
+					return not self.onSurface -- 133
+				end -- 133
 			end -- 133
 		end -- 115
 	}) -- 110

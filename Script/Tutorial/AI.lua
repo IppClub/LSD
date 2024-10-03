@@ -15,11 +15,13 @@ local Reject = _module_1.Reject -- 1
 local Accept = _module_1.Accept -- 1
 local _module_0 = nil -- 1
 local _anon_func_0 = function(Spine, _with_0) -- 16
-	local _with_1 = Spine("empgun") -- 13
-	_with_1.look = "PT" -- 14
-	_with_1.scaleX = 0.2 -- 15
-	_with_1.scaleY = 0.2 -- 16
-	return _with_1 -- 13
+	do -- 13
+		local _with_1 = Spine("empgun") -- 13
+		_with_1.look = "PT" -- 14
+		_with_1.scaleX = 0.2 -- 15
+		_with_1.scaleY = 0.2 -- 16
+		return _with_1 -- 13
+	end -- 16
 end -- 13
 _module_0 = function() -- 6
 	local Store = Data.store -- 7

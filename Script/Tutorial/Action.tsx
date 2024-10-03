@@ -1,4 +1,4 @@
-import { BodyMoveType, cycle, Ease, Node, once, Opacity, sleep, Spine, thread, tolua, TypeName, Vec2 } from 'Dora';
+import { BodyMoveType, cycle, Ease, Node, once, Opacity, sleep, Spine, tolua, TypeName, Vec2 } from 'Dora';
 import { Unit, UnitAction, Data, BulletDef, Face, Bullet, TargetAllow, Relation } from 'Platformer'
 import { React, toNode } from 'DoraX';
 import * as Rectangle from 'UI/View/Shape/Rectangle';
