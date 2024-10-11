@@ -165,7 +165,7 @@ function ____exports.default() -- 7
 							bullet.position = pos -- 129
 						end -- 129
 					end -- 129
-					LightStrip(bullet.position, bullet, 4287479539) -- 131
+					LightStrip(bullet.position, bullet, 3431841523) -- 131
 				end) -- 96
 				sleep(owner.playable:play("pistol")) -- 133
 				return true -- 134
@@ -213,208 +213,223 @@ function ____exports.default() -- 7
 					bullet.targetAllow = targetAllow:toValue() -- 170
 					bullet:slot( -- 171
 						"HitTarget", -- 171
-						function(bullet, target, pos) -- 171
+						function(bullet, target, pos, normal) -- 171
 							local entity = target.entity -- 172
 							target.data.hitFromRight = bullet.velocityX < 0 -- 173
 							entity.hp = entity.hp - 1 -- 174
-							bullet.hitStop = true -- 175
+							if target:isDoing("dizzy") then -- 174
+								bullet.hitStop = true -- 176
+							else -- 176
+								bullet.hitStop = false -- 178
+								local ____bullet_5 = bullet -- 179
+								local velocity = ____bullet_5.velocity -- 179
+								local proj = velocity:dot(normal) -- 180
+								local reflection = velocity:sub(normal:mul(2 * proj)) -- 181
+								bullet:emit("StopStrip") -- 182
+								bullet.velocity = reflection -- 183
+								LightStrip( -- 184
+									bullet.position:sub(Vec2(5, 5)), -- 184
+									bullet, -- 184
+									1728053247 -- 184
+								) -- 184
+							end -- 184
 						end -- 171
 					) -- 171
-					bullet:addTo(owner.world, owner.order) -- 177
-					local pistol = owner.playable:getSlot("pistol") -- 178
-					if pistol then -- 178
-						local worldPos = pistol:convertToWorldSpace(Vec2(300, 0)) -- 180
-						local ____opt_5 = owner.parent -- 180
-						local pos = ____opt_5 and ____opt_5:convertToNodeSpace(worldPos) -- 181
-						if pos then -- 181
-							bullet.position = pos -- 182
-						end -- 182
-						worldPos = pistol:convertToWorldSpace(Vec2.zero) -- 183
-						local ____opt_7 = owner.parent -- 183
-						pos = ____opt_7 and ____opt_7:convertToNodeSpace(worldPos) or Vec2.zero -- 184
-						local casing = toNode(React.createElement( -- 185
-							"body", -- 185
-							{ -- 185
-								type = "Dynamic", -- 185
-								x = pos.x, -- 185
-								y = pos.y, -- 185
-								world = owner.world, -- 185
-								group = Data.groupHide, -- 185
-								linearAcceleration = Vec2(0, -9.8), -- 185
-								velocityX = math.random() * (owner.faceRight and -200 or 200), -- 185
-								velocityY = math.random() * 300, -- 185
-								angle = math.random() * aimAngle -- 185
-							}, -- 185
-							React.createElement("rect-fixture", { -- 185
-								width = 20, -- 185
-								height = 10, -- 185
-								density = 26, -- 185
-								friction = 0.4, -- 185
-								restitution = 0.4 -- 185
-							}), -- 185
-							React.createElement("spine", {file = "Spine/kineticgun", look = "PTcasing", scaleX = 0.5, scaleY = 0.5}) -- 185
-						)) -- 185
-						if casing then -- 185
-							casing:schedule(once(function() -- 199
-								sleep(10) -- 200
-								sleep(casing:perform(Opacity(0.5, 1, 0))) -- 201
-								casing:removeFromParent() -- 202
-							end)) -- 199
-							casing:addTo(owner.world, owner.order) -- 204
-						end -- 204
-					end -- 204
-					LightStrip(bullet.position, bullet, 4294967295) -- 207
-					local playable = tolua.cast(owner.playable, "Spine") -- 208
-					if playable then -- 208
-						playable:schedule(once(function() -- 210
-							sleep(0.2) -- 211
-							cycle( -- 212
-								0.2, -- 212
-								function(time) -- 212
-									local angle = -(1 - Ease:func(Ease.OutSine, time)) * aimAngle -- 213
-									owner.data.aimAngle = angle -- 214
-									playable:setBoneRotation("aim", angle) -- 215
-								end -- 212
-							) -- 212
-						end)) -- 210
-					end -- 210
+					bullet:addTo(owner.world, owner.order) -- 187
+					local pistol = owner.playable:getSlot("pistol") -- 188
+					if pistol then -- 188
+						local worldPos = pistol:convertToWorldSpace(Vec2(300, 0)) -- 190
+						local ____opt_6 = owner.parent -- 190
+						local pos = ____opt_6 and ____opt_6:convertToNodeSpace(worldPos) -- 191
+						if pos then -- 191
+							bullet.position = pos -- 192
+						end -- 192
+						worldPos = pistol:convertToWorldSpace(Vec2.zero) -- 193
+						local ____opt_8 = owner.parent -- 193
+						pos = ____opt_8 and ____opt_8:convertToNodeSpace(worldPos) or Vec2.zero -- 194
+						local casing = toNode(React.createElement( -- 195
+							"body", -- 195
+							{ -- 195
+								type = "Dynamic", -- 195
+								x = pos.x, -- 195
+								y = pos.y, -- 195
+								world = owner.world, -- 195
+								group = Data.groupHide, -- 195
+								linearAcceleration = Vec2(0, -9.8), -- 195
+								velocityX = math.random() * (owner.faceRight and -200 or 200), -- 195
+								velocityY = math.random() * 300, -- 195
+								angle = math.random() * aimAngle -- 195
+							}, -- 195
+							React.createElement("rect-fixture", { -- 195
+								width = 20, -- 195
+								height = 10, -- 195
+								density = 26, -- 195
+								friction = 0.4, -- 195
+								restitution = 0.4 -- 195
+							}), -- 195
+							React.createElement("spine", {file = "Spine/kineticgun", look = "PTcasing", scaleX = 0.5, scaleY = 0.5}) -- 195
+						)) -- 195
+						if casing then -- 195
+							casing:schedule(once(function() -- 209
+								sleep(10) -- 210
+								sleep(casing:perform(Opacity(0.5, 1, 0))) -- 211
+								casing:removeFromParent() -- 212
+							end)) -- 209
+							casing:addTo(owner.world, owner.order) -- 214
+						end -- 214
+					end -- 214
+					LightStrip(bullet.position, bullet, 3439329279) -- 217
+					local playable = tolua.cast(owner.playable, "Spine") -- 218
+					if playable then -- 218
+						playable:schedule(once(function() -- 220
+							sleep(0.2) -- 221
+							cycle( -- 222
+								0.2, -- 222
+								function(time) -- 222
+									local angle = -(1 - Ease:func(Ease.OutSine, time)) * aimAngle -- 223
+									owner.data.aimAngle = angle -- 224
+									playable:setBoneRotation("aim", angle) -- 225
+								end -- 222
+							) -- 222
+						end)) -- 220
+					end -- 220
 				end) -- 144
-				local aim = owner:getChildByTag("aim") -- 220
-				local playable = tolua.cast(owner.playable, "Spine") -- 221
-				if aim and playable then -- 221
-					local angle = aim.angle -- 223
-					playable:schedule(once(function() -- 224
-						local fix = owner.faceRight and 1 or -1 -- 225
-						cycle( -- 226
-							0.2, -- 226
-							function(time) -- 226
-								local aimAngle = -Ease:func(Ease.OutSine, time) * fix * angle -- 227
-								owner.data.aimAngle = -aimAngle -- 228
-								playable:setBoneRotation("aim", aimAngle) -- 229
-							end -- 226
-						) -- 226
-					end)) -- 224
-				end -- 224
-				sleep(owner.playable:play("pistol")) -- 233
-				return true -- 234
+				local aim = owner:getChildByTag("aim") -- 230
+				local playable = tolua.cast(owner.playable, "Spine") -- 231
+				if aim and playable then -- 231
+					local angle = aim.angle -- 233
+					playable:schedule(once(function() -- 234
+						local fix = owner.faceRight and 1 or -1 -- 235
+						cycle( -- 236
+							0.2, -- 236
+							function(time) -- 236
+								local aimAngle = -Ease:func(Ease.OutSine, time) * fix * angle -- 237
+								owner.data.aimAngle = -aimAngle -- 238
+								playable:setBoneRotation("aim", aimAngle) -- 239
+							end -- 236
+						) -- 236
+					end)) -- 234
+				end -- 234
+				sleep(owner.playable:play("pistol")) -- 243
+				return true -- 244
 			end) end, -- 143
-			stop = function(owner) -- 236
-				local aimAngle = owner.data.aimAngle -- 237
-				if aimAngle then -- 237
-					local playable = tolua.cast(owner.playable, "Spine") -- 239
-					if playable then -- 239
-						playable:schedule(once(function() -- 241
-							cycle( -- 242
-								0.2, -- 242
-								function(time) -- 242
-									playable:setBoneRotation( -- 243
-										"aim", -- 243
-										-(1 - Ease:func(Ease.OutSine, time)) * aimAngle -- 243
-									) -- 243
-								end -- 242
-							) -- 242
-						end)) -- 241
-					end -- 241
-				end -- 241
-			end -- 236
-		} -- 236
-	) -- 236
-	UnitAction:add( -- 251
-		"hit", -- 251
-		{ -- 251
-			priority = 99, -- 252
-			reaction = 3, -- 253
-			recovery = 0.2, -- 254
-			create = function(owner) return once(function() -- 255
-				sleep(owner.playable:play("hit")) -- 256
-				return true -- 257
-			end) end -- 255
-		} -- 255
-	) -- 255
+			stop = function(owner) -- 246
+				local aimAngle = owner.data.aimAngle -- 247
+				if aimAngle then -- 247
+					local playable = tolua.cast(owner.playable, "Spine") -- 249
+					if playable then -- 249
+						playable:schedule(once(function() -- 251
+							cycle( -- 252
+								0.2, -- 252
+								function(time) -- 252
+									playable:setBoneRotation( -- 253
+										"aim", -- 253
+										-(1 - Ease:func(Ease.OutSine, time)) * aimAngle -- 253
+									) -- 253
+								end -- 252
+							) -- 252
+						end)) -- 251
+					end -- 251
+				end -- 251
+			end -- 246
+		} -- 246
+	) -- 246
 	UnitAction:add( -- 261
-		"dizzy", -- 261
+		"hit", -- 261
 		{ -- 261
 			priority = 99, -- 262
 			reaction = 3, -- 263
 			recovery = 0.2, -- 264
-			create = function(owner) -- 265
-				owner.playable:play("dizzy", true) -- 266
-				return function() return false end -- 267
-			end -- 265
+			create = function(owner) return once(function() -- 265
+				sleep(owner.playable:play("hit")) -- 266
+				return true -- 267
+			end) end -- 265
 		} -- 265
 	) -- 265
 	UnitAction:add( -- 271
-		"lose", -- 271
+		"dizzy", -- 271
 		{ -- 271
 			priority = 99, -- 272
 			reaction = 3, -- 273
 			recovery = 0.2, -- 274
-			create = function(owner) return once(function() -- 275
-				local time = owner.playable:play("lose") -- 276
-				sleep(time - 0.05) -- 277
-				owner.playable.speed = 0 -- 278
-				return true -- 279
-			end) end -- 275
+			create = function(owner) -- 275
+				owner.playable:play("dizzy", true) -- 276
+				return function() return false end -- 277
+			end -- 275
 		} -- 275
 	) -- 275
-	UnitAction:add( -- 283
-		"blow", -- 283
-		{ -- 283
-			reaction = 3, -- 284
-			recovery = 0.2, -- 285
-			priority = 3, -- 286
-			queued = true, -- 287
-			create = function(owner) -- 288
-				owner.playable:slot("attack"):set(function() -- 289
-					local senser = owner:getSensorByTag(Unit.AttackSensorTag) -- 290
-					senser.sensedBodies:each(function(item) -- 291
-						local unit = tolua.cast(item, "Platformer::Unit") -- 292
-						if unit and Data:isEnemy(unit.group, owner.group) and unit.x >= owner.x == owner.faceRight then -- 292
-							unit:applyLinearImpulse( -- 294
-								Vec2(unit.x < owner.x and -500 or 500, 0), -- 294
-								Vec2.zero -- 294
-							) -- 294
-							unit:start("cancal") -- 295
-							if unit.x < owner.x and not unit.faceRight then -- 295
-								unit:start("turn") -- 297
-							end -- 297
-							unit:start("hit") -- 299
-						end -- 299
-						return false -- 301
-					end) -- 291
-				end) -- 289
-				return once(function() -- 304
-					sleep(owner.playable:play("blow")) -- 305
-					return true -- 306
-				end) -- 304
-			end -- 288
-		} -- 288
-	) -- 288
-	UnitAction:add( -- 311
-		"fallOff", -- 311
-		{ -- 311
-			priority = 2, -- 312
-			reaction = -1, -- 313
-			recovery = 0.3, -- 314
-			queued = true, -- 315
-			available = function(owner) return not owner.onSurface end, -- 316
-			create = function(owner) -- 317
-				local playable = owner.playable -- 318
-				if playable.current ~= "jumping" then -- 318
-					playable:play("jumping", true) -- 320
-				end -- 320
-				return once(function() -- 322
-					while true do -- 322
-						if owner.onSurface then -- 322
-							sleep(playable:play("landing", false)) -- 325
-							coroutine.yield(true) -- 326
-						else -- 326
-							coroutine.yield(false) -- 328
-						end -- 328
-					end -- 328
-				end) -- 322
-			end -- 317
-		} -- 317
-	) -- 317
-end -- 317
-return ____exports -- 317
+	UnitAction:add( -- 281
+		"lose", -- 281
+		{ -- 281
+			priority = 99, -- 282
+			reaction = 3, -- 283
+			recovery = 0.2, -- 284
+			create = function(owner) return once(function() -- 285
+				local time = owner.playable:play("lose") -- 286
+				sleep(time - 0.05) -- 287
+				owner.playable.speed = 0 -- 288
+				return true -- 289
+			end) end -- 285
+		} -- 285
+	) -- 285
+	UnitAction:add( -- 293
+		"blow", -- 293
+		{ -- 293
+			reaction = 3, -- 294
+			recovery = 0.2, -- 295
+			priority = 3, -- 296
+			queued = true, -- 297
+			create = function(owner) -- 298
+				owner.playable:slot("attack"):set(function() -- 299
+					local senser = owner:getSensorByTag(Unit.AttackSensorTag) -- 300
+					senser.sensedBodies:each(function(item) -- 301
+						local unit = tolua.cast(item, "Platformer::Unit") -- 302
+						if unit and Data:isEnemy(unit.group, owner.group) and unit.x >= owner.x == owner.faceRight then -- 302
+							unit:applyLinearImpulse( -- 304
+								Vec2(unit.x < owner.x and -500 or 500, 0), -- 304
+								Vec2.zero -- 304
+							) -- 304
+							unit:start("cancal") -- 305
+							if unit.x < owner.x and not unit.faceRight then -- 305
+								unit:start("turn") -- 307
+							end -- 307
+							unit:start("hit") -- 309
+						end -- 309
+						return false -- 311
+					end) -- 301
+				end) -- 299
+				return once(function() -- 314
+					sleep(owner.playable:play("blow")) -- 315
+					return true -- 316
+				end) -- 314
+			end -- 298
+		} -- 298
+	) -- 298
+	UnitAction:add( -- 321
+		"fallOff", -- 321
+		{ -- 321
+			priority = 2, -- 322
+			reaction = -1, -- 323
+			recovery = 0.3, -- 324
+			queued = true, -- 325
+			available = function(owner) return not owner.onSurface end, -- 326
+			create = function(owner) -- 327
+				local playable = owner.playable -- 328
+				if playable.current ~= "jumping" then -- 328
+					playable:play("jumping", true) -- 330
+				end -- 330
+				return once(function() -- 332
+					while true do -- 332
+						if owner.onSurface then -- 332
+							sleep(playable:play("landing", false)) -- 335
+							coroutine.yield(true) -- 336
+						else -- 336
+							coroutine.yield(false) -- 338
+						end -- 338
+					end -- 338
+				end) -- 332
+			end -- 327
+		} -- 327
+	) -- 327
+end -- 327
+return ____exports -- 327

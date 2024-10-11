@@ -128,7 +128,7 @@ export default function(this: void) {
 					const pos = owner.parent?.convertToNodeSpace(worldPos);
 					if (pos) bullet.position = pos;
 				}
-				LightStrip(bullet.position, bullet, 0xff8dbef3);
+				LightStrip(bullet.position, bullet, 0xcc8dbef3);
 			});
 			sleep(owner.playable.play("pistol"));
 			return true;
@@ -153,7 +153,7 @@ export default function(this: void) {
 					if (spine) {
 						const node = Node();
 						node.addChild(spine);
-						spine.angle = owner.faceRight ? aimAngle : 180-aimAngle;
+						spine.angle = owner.faceRight ? aimAngle : 180 - aimAngle;
 						spine.scaleX = 0.5;
 						spine.scaleY = 0.5;
 						spine.look = "PTbullet";
@@ -168,11 +168,21 @@ export default function(this: void) {
 				targetAllow.allow(Relation.Enemy, true);
 				targetAllow.terrainAllowed = true;
 				bullet.targetAllow = targetAllow.toValue();
-				bullet.slot("HitTarget", (bullet: Bullet.Type, target: Unit.Type, pos: Vec2.Type) => {
+				bullet.slot("HitTarget", (bullet: Bullet.Type, target: Unit.Type, pos: Vec2.Type, normal: Vec2.Type) => {
 					const entity = target.entity as unknown as {hp: number, ap: number};
 					target.data.hitFromRight = bullet.velocityX < 0;
 					entity.hp -= 1;
-					bullet.hitStop = true;
+					if (target.isDoing("dizzy")) {
+						bullet.hitStop = true;
+					} else {
+						bullet.hitStop = false;
+						const {velocity} = bullet;
+						const proj = velocity.dot(normal);
+						const reflection = velocity.sub(normal.mul(2 * proj));
+						bullet.emit("StopStrip");
+						bullet.velocity = reflection;
+						LightStrip(bullet.position.sub(Vec2(5, 5)), bullet, 0x66ffffff);
+					}
 				});
 				bullet.addTo(owner.world, owner.order);
 				const pistol = owner.playable.getSlot("pistol");
@@ -204,7 +214,7 @@ export default function(this: void) {
 						casing.addTo(owner.world, owner.order);
 					}
 				}
-				LightStrip(bullet.position, bullet, 0xffffffff);
+				LightStrip(bullet.position, bullet, 0xccffffff);
 				const playable = tolua.cast(owner.playable, TypeName.Spine);
 				if (playable) {
 					playable.schedule(once(() => {

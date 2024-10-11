@@ -17,54 +17,61 @@ function ____exports.LightStrip(startPoint, targetNode, color) -- 4
 			target = nil -- 12
 		end -- 11
 	) -- 11
-	local stopPoint = target.position -- 14
-	local current = 0 -- 15
-	local step = 10 -- 16
-	local stepTime = 0.02 -- 17
-	local targetColor = Color(color) -- 18
-	local verts = {Vec2.zero, Vec2.zero, Vec2.zero, Vec2.zero} -- 19
-	node:schedule(function(deltaTime) -- 25
-		node:clear() -- 26
-		if target then -- 26
-			stopPoint = target.position -- 28
-		end -- 28
-		local distance = math.min( -- 30
-			1000, -- 30
-			stopPoint:distance(startPoint) -- 30
-		) -- 30
-		local angle = stopPoint:sub(startPoint).angle -- 31
-		node.angle = -math.deg(angle) + 90 -- 32
-		local i = 0 -- 33
-		local ended = true -- 34
-		do -- 34
-			local dist = 0 -- 35
-			while dist < distance do -- 35
-				local start = step * i -- 36
-				local stop = math.min(start + step, distance) -- 37
-				local duration = (i + 1) * stepTime -- 38
-				if current < duration then -- 38
-					ended = false -- 40
-				end -- 40
-				local alpha = 1 - current / duration -- 42
-				if alpha > 0 then -- 42
-					targetColor.opacity = alpha -- 44
-					verts[1] = Vec2(-step / 2, start) -- 45
-					verts[2] = Vec2(-step / 2, stop) -- 46
-					verts[3] = Vec2(step / 2, stop) -- 47
-					verts[4] = Vec2(step / 2, start) -- 48
-					node:drawPolygon(verts, targetColor) -- 49
-				end -- 49
-				i = i + 1 -- 51
-				dist = dist + step -- 35
-			end -- 35
-		end -- 35
-		if ended then -- 35
-			node:clear() -- 54
-			node:removeFromParent() -- 55
-			return true -- 56
-		end -- 56
-		current = current + deltaTime -- 58
-		return false -- 59
-	end) -- 25
+	targetNode:slot( -- 14
+		"StopStrip", -- 14
+		function() -- 14
+			target = nil -- 15
+		end -- 14
+	) -- 14
+	local stopPoint = target.position -- 17
+	local current = 0 -- 18
+	local step = 10 -- 19
+	local stepTime = 0.02 -- 20
+	local targetColor = Color(color) -- 21
+	local startOpacity = targetColor.opacity -- 22
+	local verts = {Vec2.zero, Vec2.zero, Vec2.zero, Vec2.zero} -- 23
+	node:schedule(function(deltaTime) -- 29
+		node:clear() -- 30
+		if target then -- 30
+			stopPoint = target.position -- 32
+		end -- 32
+		local distance = math.min( -- 34
+			1000, -- 34
+			stopPoint:distance(startPoint) -- 34
+		) -- 34
+		local angle = stopPoint:sub(startPoint).angle -- 35
+		node.angle = -math.deg(angle) + 90 -- 36
+		local i = 0 -- 37
+		local ended = true -- 38
+		do -- 38
+			local dist = 0 -- 39
+			while dist < distance do -- 39
+				local start = step * i -- 40
+				local stop = math.min(start + step, distance) -- 41
+				local duration = (i + 1) * stepTime -- 42
+				if current < duration then -- 42
+					ended = false -- 44
+				end -- 44
+				local alpha = 1 - current / duration -- 46
+				if alpha > 0 then -- 46
+					targetColor.opacity = alpha * startOpacity -- 48
+					verts[1] = Vec2(-step / 2, start) -- 49
+					verts[2] = Vec2(-step / 2, stop) -- 50
+					verts[3] = Vec2(step / 2, stop) -- 51
+					verts[4] = Vec2(step / 2, start) -- 52
+					node:drawPolygon(verts, targetColor) -- 53
+				end -- 53
+				i = i + 1 -- 55
+				dist = dist + step -- 39
+			end -- 39
+		end -- 39
+		if ended then -- 39
+			node:clear() -- 58
+			node:removeFromParent() -- 59
+			return true -- 60
+		end -- 60
+		current = current + deltaTime -- 62
+		return false -- 63
+	end) -- 29
 end -- 4
 return ____exports -- 4

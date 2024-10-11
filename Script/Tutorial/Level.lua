@@ -21,13 +21,11 @@ local TutorialAction = require("Tutorial.Action").default -- 5
 local LoopTowerA = require("Scene.LoopTowerA") -- 6
 local Config = require("Data.Config") -- 7
 local _anon_func_0 = function(Spine, _with_0) -- 59
-	do -- 57
-		local _with_1 = Spine("kineticgun") -- 57
-		_with_1.look = "PT" -- 58
-		_with_1.scaleX = 0.2 -- 59
-		_with_1.scaleY = 0.2 -- 59
-		return _with_1 -- 57
-	end -- 59
+	local _with_1 = Spine("kineticgun") -- 57
+	_with_1.look = "PT" -- 58
+	_with_1.scaleX = 0.2 -- 59
+	_with_1.scaleY = 0.2 -- 59
+	return _with_1 -- 57
 end -- 57
 _module_0 = function() -- 9
 	Audio:playStream("Music/军事学园.mp3", true, 1) -- 10

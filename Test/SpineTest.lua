@@ -660,84 +660,66 @@ createScene = function() -- 454
 	return Director.entry:addChild(world) -- 459
 end -- 454
 local _anon_func_0 = function(Node, Size, _with_1, grabSize, parent) -- 555
-	do -- 547
-		local _with_0 = Node() -- 547
-		_with_0.size = Size(grabSize, grabSize) -- 548
-		_with_0:addTo(parent) -- 555
-		return _with_0 -- 547
-	end -- 555
+	local _with_0 = Node() -- 547
+	_with_0.size = Size(grabSize, grabSize) -- 548
+	_with_0:addTo(parent) -- 555
+	return _with_0 -- 547
 end -- 547
 local _anon_func_1 = function(Spine, _with_0, scaleY) -- 567
-	do -- 564
-		local _with_1 = Spine("coldweapon") -- 564
-		_with_1.look = "grenade" -- 565
-		_with_1.scaleX = 0.04 -- 566
-		_with_1.scaleY = 0.04 * scaleY -- 567
-		return _with_1 -- 564
-	end -- 567
+	local _with_1 = Spine("coldweapon") -- 564
+	_with_1.look = "grenade" -- 565
+	_with_1.scaleX = 0.04 -- 566
+	_with_1.scaleY = 0.04 * scaleY -- 567
+	return _with_1 -- 564
 end -- 564
 local _anon_func_2 = function(Spine, _with_0, scaleY) -- 571
-	do -- 568
-		local _with_1 = Spine("coldweapon") -- 568
-		_with_1.look = "comm" -- 569
-		_with_1.scaleX = 0.06 -- 570
-		_with_1.scaleY = 0.06 * scaleY -- 571
-		return _with_1 -- 568
-	end -- 571
+	local _with_1 = Spine("coldweapon") -- 568
+	_with_1.look = "comm" -- 569
+	_with_1.scaleX = 0.06 -- 570
+	_with_1.scaleY = 0.06 * scaleY -- 571
+	return _with_1 -- 568
 end -- 568
 local _anon_func_3 = function(Spine, _with_0, scaleY) -- 575
-	do -- 572
-		local _with_1 = Spine("coldweapon") -- 572
-		_with_1.look = "comp" -- 573
-		_with_1.scaleX = 0.1 -- 574
-		_with_1.scaleY = 0.1 * scaleY -- 575
-		return _with_1 -- 572
-	end -- 575
+	local _with_1 = Spine("coldweapon") -- 572
+	_with_1.look = "comp" -- 573
+	_with_1.scaleX = 0.1 -- 574
+	_with_1.scaleY = 0.1 * scaleY -- 575
+	return _with_1 -- 572
 end -- 572
 local _anon_func_4 = function(Spine, _with_0, scaleY) -- 579
-	do -- 576
-		local _with_1 = Spine("coldweapon") -- 576
-		_with_1.look = "shield" -- 577
-		_with_1.scaleX = 0.2 -- 578
-		_with_1.scaleY = 0.2 * scaleY -- 579
-		return _with_1 -- 576
-	end -- 579
+	local _with_1 = Spine("coldweapon") -- 576
+	_with_1.look = "shield" -- 577
+	_with_1.scaleX = 0.2 -- 578
+	_with_1.scaleY = 0.2 * scaleY -- 579
+	return _with_1 -- 576
 end -- 576
 local _anon_func_5 = function(Spine, _with_0, scaleY) -- 583
-	do -- 580
-		local _with_1 = Spine("coldweapon") -- 580
-		_with_1.look = "sword" -- 581
-		_with_1.scaleX = 0.2 -- 582
-		_with_1.scaleY = 0.2 * scaleY -- 583
-		return _with_1 -- 580
-	end -- 583
+	local _with_1 = Spine("coldweapon") -- 580
+	_with_1.look = "sword" -- 581
+	_with_1.scaleX = 0.2 -- 582
+	_with_1.scaleY = 0.2 * scaleY -- 583
+	return _with_1 -- 580
 end -- 580
 local _anon_func_6 = function(Spine, _with_0, scaleY) -- 587
-	do -- 584
-		local _with_1 = Spine("coldweapon") -- 584
-		_with_1.look = "bow" -- 585
-		_with_1.scaleX = 0.2 -- 586
-		_with_1.scaleY = 0.2 * scaleY -- 587
-		return _with_1 -- 584
-	end -- 587
+	local _with_1 = Spine("coldweapon") -- 584
+	_with_1.look = "bow" -- 585
+	_with_1.scaleX = 0.2 -- 586
+	_with_1.scaleY = 0.2 * scaleY -- 587
+	return _with_1 -- 584
 end -- 584
 local _anon_func_7 = function(Spine, _with_0, scaleY) -- 591
-	do -- 588
-		local _with_1 = Spine("kineticgun") -- 588
-		_with_1.look = "PT" -- 589
-		_with_1.scaleX = 0.2 -- 590
-		_with_1.scaleY = 0.2 * scaleY -- 591
-		return _with_1 -- 588
-	end -- 591
+	local _with_1 = Spine("kineticgun") -- 588
+	_with_1.look = "PT" -- 589
+	_with_1.scaleX = 0.2 -- 590
+	_with_1.scaleY = 0.2 * scaleY -- 591
+	return _with_1 -- 588
 end -- 588
 local _anon_func_8 = function(Spine, _with_0, scaleY) -- 595
-	do -- 592
-		local _with_1 = Spine("kineticgun") -- 592
-		_with_1.look = "AR" -- 593
-		_with_1.scaleX = 0.2 -- 594
-		_with_1.scaleY = 0.2 * scaleY -- 595
-		return _with_1 -- 592
-	end -- 595
+	local _with_1 = Spine("kineticgun") -- 592
+	_with_1.look = "AR" -- 593
+	_with_1.scaleX = 0.2 -- 594
+	_with_1.scaleY = 0.2 * scaleY -- 595
+	return _with_1 -- 592
 end -- 592
 local createUnit -- 472
 createUnit = function() -- 472

@@ -21,39 +21,31 @@ local cycle = Dora.cycle -- 1
 local SpriteEffect = Dora.SpriteEffect -- 1
 local _module_0 = nil -- 1
 local _anon_func_0 = function(_with_1, moveEnter, unit) -- 79
-	do -- 76
-		if "center" == moveEnter then -- 77
-			return unit.faceRight -- 77
-		elseif "left" == moveEnter then -- 78
-			return true -- 78
-		elseif "right" == moveEnter then -- 79
-			return false -- 79
-		end -- 79
+	if "center" == moveEnter then -- 77
+		return unit.faceRight -- 77
+	elseif "left" == moveEnter then -- 78
+		return true -- 78
+	elseif "right" == moveEnter then -- 79
+		return false -- 79
 	end -- 79
 end -- 76
 local _anon_func_1 = function(MaxPath, math, self, u) -- 146
-	do -- 146
-		local _exp_0 = self.order -- 146
-		if _exp_0 ~= nil then -- 146
-			return _exp_0 -- 146
-		else -- 146
-			return math.random(-MaxPath, MaxPath) -- 146
-		end -- 146
+	local _exp_0 = self.order -- 146
+	if _exp_0 ~= nil then -- 146
+		return _exp_0 -- 146
+	else -- 146
+		return math.random(-MaxPath, MaxPath) -- 146
 	end -- 146
 end -- 146
 local _anon_func_2 = function(GrabSize, Node, Size, _with_1, parent) -- 151
-	do -- 149
-		local _with_0 = Node() -- 149
-		_with_0.size = Size(GrabSize, GrabSize) -- 150
-		_with_0:addTo(parent) -- 151
-		return _with_0 -- 149
-	end -- 151
+	local _with_0 = Node() -- 149
+	_with_0.size = Size(GrabSize, GrabSize) -- 150
+	_with_0:addTo(parent) -- 151
+	return _with_0 -- 149
 end -- 149
 local _anon_func_3 = function(u) -- 154
-	do -- 154
-		local _val_0 = u.decisionTree -- 154
-		return not ("AI:PlayerControl" == _val_0 or "AI:NPC" == _val_0) -- 154
-	end -- 154
+	local _val_0 = u.decisionTree -- 154
+	return not ("AI:PlayerControl" == _val_0 or "AI:NPC" == _val_0) -- 154
 end -- 154
 _module_0 = function() -- 3
 	local Interaction = require("UI.Interaction") -- 4
@@ -250,10 +242,8 @@ _module_0 = function() -- 3
 			end -- 154
 			world:addShadowTo(u) -- 158
 			u:addTo(world) -- 159
-			do -- 160
-				if not isCommonAI then -- 160
-					return -- 160
-				end -- 160
+			if not isCommonAI then -- 160
+				return -- 160
 			end -- 160
 			unit = u -- 143
 		end -- 143

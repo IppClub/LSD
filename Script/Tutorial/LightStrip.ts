@@ -11,11 +11,15 @@ export function LightStrip(this: void, startPoint: Vec2.Type, targetNode: Node.T
 	targetNode.slot(Slot.Cleanup, () => {
 		target = null;
 	});
+	targetNode.slot("StopStrip", () => {
+		target = null;
+	});
 	let stopPoint = target.position;
 	let current = 0;
 	const step = 10;
 	const stepTime = 0.02;
 	const targetColor = Color(color);
+	const startOpacity = targetColor.opacity;
 	const verts = [
 		Vec2.zero,
 		Vec2.zero,
@@ -41,7 +45,7 @@ export function LightStrip(this: void, startPoint: Vec2.Type, targetNode: Node.T
 			}
 			const alpha = 1.0 - (current / duration);
 			if (alpha > 0) {
-				targetColor.opacity = alpha;
+				targetColor.opacity = alpha * startOpacity;
 				verts[0] = Vec2(-step / 2, start);
 				verts[1] = Vec2(-step / 2, stop);
 				verts[2] = Vec2(step / 2, stop);
