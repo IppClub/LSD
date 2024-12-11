@@ -34,13 +34,13 @@ end)()) -- 17
 Director.ui3D:addChild(HUDControl()) -- 20
 return thread(function() -- 22
 	sleep(1) -- 23
-	emit("MessageBox", { -- 24
+	emit("MessageBox.Add", { -- 24
 		title = "社交", -- 24
 		special = false, -- 24
 		text = "你借调的学员默翎获得了3个赞" -- 24
 	}) -- 24
 	sleep(1) -- 25
-	return emit("MessageBox", { -- 26
+	return emit("MessageBox.Add", { -- 26
 		title = "系统", -- 26
 		special = true, -- 26
 		text = "你借调的学员默翎获得了3个赞" -- 26

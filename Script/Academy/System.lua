@@ -332,7 +332,7 @@ _module_0 = function() -- 3
 									return _with_3:get(1):set("u_linecolor", color) -- 210
 								end) -- 210
 							end)) -- 207
-							_with_3:get(1):set("u_lineoffset", Outline / GrabSize, Outline / GrabSize, Outline, 0.1) -- 211
+							_with_3:get(1):set("u_lineoffset", Outline, Outline, 0.1) -- 211
 							_with_2.effect = _with_3 -- 204
 						end -- 203
 						local nameText -- 212

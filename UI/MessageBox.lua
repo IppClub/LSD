@@ -11,23 +11,22 @@ _module_0 = Class(MessageBox, { -- 10
 	__init = function(self) -- 10
 		do -- 11
 			local _with_0 = Array() -- 11
-			_with_0.__notify = function(event, _index, item) -- 12
-				if "Added" == event then -- 14
-					return self.view:addChild(Message(item)) -- 15
-				elseif "Updated" == event then -- 16
-					self.area:adjustSizeWithAlign("Auto", 0, Size(700, 204)) -- 17
-					return self.area:scrollToPosY(0) -- 18
-				end -- 18
+			_with_0.__added = function(index, item) -- 12
+				return self.view:addChild(Message(item), index) -- 13
 			end -- 12
+			_with_0.__updated = function() -- 14
+				self.area:adjustSizeWithAlign("Auto", 0, Size(700, 204)) -- 15
+				return self.area:scrollToPosY(0) -- 16
+			end -- 14
 			self._messages = _with_0 -- 11
 		end -- 11
-		return self:gslot("MessageBox.Add", function(item) -- 19
-			return self._messages:insert(Item({ -- 21
-				title = item.title, -- 21
-				special = item.special, -- 22
-				text = item.text -- 23
-			})) -- 23
-		end) -- 23
+		return self:gslot("MessageBox.Add", function(item) -- 17
+			return self._messages:insert(Item({ -- 19
+				title = item.title, -- 19
+				special = item.special, -- 20
+				text = item.text -- 21
+			})) -- 21
+		end) -- 21
 	end -- 10
 }) -- 9
-return _module_0 -- 23
+return _module_0 -- 21

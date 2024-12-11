@@ -9,7 +9,7 @@ nameLabel.x = 0 -- 3
 nameLabel.y = node.height -- 3
 nameLabel.color3 = Color3(0xffffff) -- 3
 nameLabel.alignment = "Left" -- 3
-nameLabel.textWidth = 200 -- 3
+nameLabel.textWidth = 220 -- 3
 nameLabel.text = name -- 3
 node:addChild(nameLabel) -- 3
 local textLabel = Label("SourceHanSansCN-Regular",50) -- 7

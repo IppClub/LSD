@@ -150,164 +150,163 @@ _module_0 = Class(Story, { -- 22
 		end) -- 74
 		do -- 75
 			local _with_0 = Dialog() -- 75
-			_with_0.__notify = function(event, key, value) -- 76
-				if event == "Modified" then -- 77
-					if "character" == key then -- 79
-						self.figure:removeAllChildren() -- 80
-						if (value ~= nil) and value ~= "" then -- 81
-							return self.figure:addChild(StoryFigure({ -- 82
-								char = value -- 82
-							})) -- 82
-						end -- 81
-					elseif "name" == key then -- 83
-						if (value ~= nil) then -- 84
-							self.name.text = value -- 84
-						end -- 84
-					elseif "text" == key then -- 85
-						if (value ~= nil) then -- 86
-							self.text.text = value -- 86
-						end -- 86
-					end -- 86
-				elseif event == "Updated" then -- 87
-					return self:alignLayout() -- 88
-				end -- 77
+			_with_0.__modified = function(key, value) -- 76
+				if "character" == key then -- 77
+					self.figure:removeAllChildren() -- 78
+					if (value ~= nil) and value ~= "" then -- 79
+						return self.figure:addChild(StoryFigure({ -- 80
+							char = value -- 80
+						})) -- 80
+					end -- 79
+				elseif "name" == key then -- 81
+					if (value ~= nil) then -- 82
+						self.name.text = value -- 82
+					end -- 82
+				elseif "text" == key then -- 83
+					if (value ~= nil) then -- 84
+						self.text.text = value -- 84
+					end -- 84
+				end -- 84
 			end -- 76
+			_with_0.__updated = function() -- 85
+				return self:alignLayout() -- 85
+			end -- 85
 			self._dialog = _with_0 -- 75
 		end -- 75
-		self._reviews = { } -- 89
-		self.visible = false -- 90
+		self._reviews = { } -- 86
+		self.visible = false -- 87
 	end, -- 52
-	updateDialogAsync = function(self) -- 92
-		if self._preload then -- 93
-			local _list_0 = self._preload -- 94
-			for _index_0 = 1, #_list_0 do -- 94
-				local item = _list_0[_index_0] -- 94
-				Cache:loadAsync("spine:" .. tostring(item == 'char' and Config.char or item) .. "Figure") -- 95
-			end -- 95
-			self._preload = nil -- 96
-		end -- 93
-		if not self._current then -- 97
-			return -- 97
-		end -- 97
-		if self._advancing then -- 98
-			return -- 98
+	updateDialogAsync = function(self) -- 89
+		if self._preload then -- 90
+			local _list_0 = self._preload -- 91
+			for _index_0 = 1, #_list_0 do -- 91
+				local item = _list_0[_index_0] -- 91
+				Cache:loadAsync("spine:" .. tostring(item == 'char' and Config.char or item) .. "Figure") -- 92
+			end -- 92
+			self._preload = nil -- 93
+		end -- 90
+		if not self._current then -- 94
+			return -- 94
+		end -- 94
+		if self._advancing then -- 95
+			return -- 95
+		end -- 95
+		self._advancing = true -- 96
+		local name, characterId = getCharName(self._current) -- 97
+		if characterId and characterId ~= "" then -- 98
+			Cache:loadAsync("spine:" .. tostring(characterId) .. "Figure") -- 98
 		end -- 98
-		self._advancing = true -- 99
-		local name, characterId = getCharName(self._current) -- 100
-		if characterId and characterId ~= "" then -- 101
-			Cache:loadAsync("spine:" .. tostring(characterId) .. "Figure") -- 101
-		end -- 101
-		local text = self._current.text -- 102
-		do -- 103
-			local _obj_0 = self._reviews -- 103
-			_obj_0[#_obj_0 + 1] = { -- 103
-				name = name, -- 103
-				text = text -- 103
-			} -- 103
-		end -- 103
-		self._dialog.character = characterId -- 104
-		self._dialog.name = name -- 105
-		self._dialog.text = text -- 106
-		self.answerList:removeAllChildren() -- 107
-		if self._options then -- 108
-			self.continueIcon.visible = false -- 109
-			local count = #self._options -- 110
-			for i = 1, count do -- 111
-				local option = self._options[i] -- 112
-				name = getCharName(option) -- 113
-				local optionText -- 114
-				optionText = option.text -- 114
-				self.answerList:addChild((function() -- 115
-					local _with_0 = Answer({ -- 115
-						text = optionText -- 115
-					}) -- 115
-					_with_0:slot("Tapped", function() -- 116
-						_with_0.touchEnabled = false -- 117
-						return thread(function() -- 118
-							sleep(0.3) -- 119
-							do -- 120
-								local _obj_0 = self._reviews -- 120
-								_obj_0[#_obj_0 + 1] = { -- 120
-									name = name, -- 120
-									text = optionText -- 120
-								} -- 120
-							end -- 120
-							if self:advance(i) then -- 121
-								return thread(function() -- 122
-									return self:updateDialogAsync() -- 122
-								end) -- 122
-							else -- 124
-								return self:hide() -- 124
-							end -- 121
-						end) -- 124
-					end) -- 116
-					return _with_0 -- 115
-				end)()) -- 115
-			end -- 124
-			local size = self.answerList:alignItems(40) -- 125
-			self.answerList.size = size -- 126
-			self.answerList:alignItems(40) -- 127
-		else -- 129
-			self.continueIcon.visible = true -- 129
-		end -- 108
-		self._advancing = false -- 130
-	end, -- 92
-	showAsync = function(self) -- 132
-		self:updateDialogAsync() -- 133
-		self.visible = true -- 134
-		self._viewScale = View.scale -- 135
-		self._viewEffect = View.postEffect -- 136
-		View.scale = 4 * self._viewScale -- 137
-		local size = View.size -- 138
-		local blurH -- 139
+		local text = self._current.text -- 99
+		do -- 100
+			local _obj_0 = self._reviews -- 100
+			_obj_0[#_obj_0 + 1] = { -- 100
+				name = name, -- 100
+				text = text -- 100
+			} -- 100
+		end -- 100
+		self._dialog.character = characterId -- 101
+		self._dialog.name = name -- 102
+		self._dialog.text = text -- 103
+		self.answerList:removeAllChildren() -- 104
+		if self._options then -- 105
+			self.continueIcon.visible = false -- 106
+			local count = #self._options -- 107
+			for i = 1, count do -- 108
+				local option = self._options[i] -- 109
+				name = getCharName(option) -- 110
+				local optionText -- 111
+				optionText = option.text -- 111
+				self.answerList:addChild((function() -- 112
+					local _with_0 = Answer({ -- 112
+						text = optionText -- 112
+					}) -- 112
+					_with_0:slot("Tapped", function() -- 113
+						_with_0.touchEnabled = false -- 114
+						return thread(function() -- 115
+							sleep(0.3) -- 116
+							do -- 117
+								local _obj_0 = self._reviews -- 117
+								_obj_0[#_obj_0 + 1] = { -- 117
+									name = name, -- 117
+									text = optionText -- 117
+								} -- 117
+							end -- 117
+							if self:advance(i) then -- 118
+								return thread(function() -- 119
+									return self:updateDialogAsync() -- 119
+								end) -- 119
+							else -- 121
+								return self:hide() -- 121
+							end -- 118
+						end) -- 121
+					end) -- 113
+					return _with_0 -- 112
+				end)()) -- 112
+			end -- 121
+			local size = self.answerList:alignItems(40) -- 122
+			self.answerList.size = size -- 123
+			self.answerList:alignItems(40) -- 124
+		else -- 126
+			self.continueIcon.visible = true -- 126
+		end -- 105
+		self._advancing = false -- 127
+	end, -- 89
+	showAsync = function(self) -- 129
+		self:updateDialogAsync() -- 130
+		self.visible = true -- 131
+		self._viewScale = View.scale -- 132
+		self._viewEffect = View.postEffect -- 133
+		View.scale = 4 * self._viewScale -- 134
+		local size = View.size -- 135
+		local blurH -- 136
+		do -- 136
+			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurh") -- 136
+			_with_0.grabPass = true -- 137
+			_with_0:set("u_radius", size.width) -- 138
+			blurH = _with_0 -- 136
+		end -- 136
+		local blurV -- 139
 		do -- 139
-			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurh") -- 139
+			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurv") -- 139
 			_with_0.grabPass = true -- 140
-			_with_0:set("u_radius", size.width) -- 141
-			blurH = _with_0 -- 139
+			_with_0:set("u_radius", size.height) -- 141
+			blurV = _with_0 -- 139
 		end -- 139
-		local blurV -- 142
 		do -- 142
-			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurv") -- 142
-			_with_0.grabPass = true -- 143
-			_with_0:set("u_radius", size.height) -- 144
-			blurV = _with_0 -- 142
+			local _with_0 = SpriteEffect() -- 142
+			for _ = 1, 3 do -- 143
+				_with_0:add(blurH) -- 144
+				_with_0:add(blurV) -- 145
+			end -- 145
+			View.postEffect = _with_0 -- 142
 		end -- 142
-		do -- 145
-			local _with_0 = SpriteEffect() -- 145
-			for _ = 1, 3 do -- 146
-				_with_0:add(blurH) -- 147
-				_with_0:add(blurV) -- 148
-			end -- 148
-			View.postEffect = _with_0 -- 145
-		end -- 145
-		self:gslot("AppChange", function(settingName) -- 149
-			if settingName == "Size" then -- 149
-				local width, height -- 150
-				do -- 150
-					local _obj_0 = View.size -- 150
-					width, height = _obj_0.width, _obj_0.height -- 150
-				end -- 150
-				blurH:set("u_radius", width) -- 151
-				return blurV:set("u_radius", height) -- 152
-			end -- 149
-		end) -- 149
-		return emit("Story.Display", true) -- 153
-	end, -- 132
-	hide = function(self) -- 155
-		self:gslot("AppChange", nil) -- 156
-		self:emit("Ended") -- 157
-		self:removeFromParent() -- 158
-		local viewScale = self._viewScale -- 159
-		local viewEffect = self._viewEffect -- 160
-		return thread(function() -- 161
-			collectgarbage() -- 162
-			Cache:removeUnused() -- 163
-			emit("Story.Display", false) -- 164
-			View.scale = viewScale -- 165
-			sleep() -- 166
-			View.postEffect = viewEffect -- 167
-		end) -- 167
-	end -- 155
+		self:gslot("AppChange", function(settingName) -- 146
+			if settingName == "Size" then -- 146
+				local width, height -- 147
+				do -- 147
+					local _obj_0 = View.size -- 147
+					width, height = _obj_0.width, _obj_0.height -- 147
+				end -- 147
+				blurH:set("u_radius", width) -- 148
+				return blurV:set("u_radius", height) -- 149
+			end -- 146
+		end) -- 146
+		return emit("Story.Display", true) -- 150
+	end, -- 129
+	hide = function(self) -- 152
+		self:gslot("AppChange", nil) -- 153
+		self:emit("Ended") -- 154
+		self:removeFromParent() -- 155
+		local viewScale = self._viewScale -- 156
+		local viewEffect = self._viewEffect -- 157
+		return thread(function() -- 158
+			collectgarbage() -- 159
+			Cache:removeUnused() -- 160
+			emit("Story.Display", false) -- 161
+			View.scale = viewScale -- 162
+			sleep() -- 163
+			View.postEffect = viewEffect -- 164
+		end) -- 164
+	end -- 152
 }) -- 21
-return _module_0 -- 167
+return _module_0 -- 164

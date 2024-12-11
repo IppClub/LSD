@@ -27,7 +27,7 @@ export default Class Story,
 			@reviewBack.visible = value
 			@reviewArea.visible = value
 
-	advance: (option)=>
+	advance: (option) =>
 		action, result = @_runner\advance option
 		switch action when "Text"
 			if result.optionsFollowed
@@ -49,7 +49,7 @@ export default Class Story,
 		else
 			return false
 
-	__init: (dialogFile)=>
+	__init: (dialogFile) =>
 		@_runner = YarnRunner dialogFile, "Start", Config, Command
 		@advance!
 		@reviewVisible = false
@@ -73,19 +73,16 @@ export default Class Story,
 		@reviewBack\slot "Tapped", -> @reviewVisible = false
 		@reviewArea\slot "NoneScrollTapped", -> @reviewVisible = false
 		@_dialog = with Dialog!
-			.__notify = (event, key, value)->
-				if event == "Modified"
-					switch key
-						when "character"
-							@figure\removeAllChildren!
-							if value? and value ~= ""
-								@figure\addChild StoryFigure char: value
-						when "name"
-							@name.text = value if value?
-						when "text"
-							@text.text = value if value?
-				elseif event == "Updated"
-					@alignLayout!
+			.__modified = (key, value) -> switch key
+				when "character"
+					@figure\removeAllChildren!
+					if value? and value ~= ""
+						@figure\addChild StoryFigure char: value
+				when "name"
+					@name.text = value if value?
+				when "text"
+					@text.text = value if value?
+			.__updated = -> @alignLayout!
 		@_reviews = {}
 		@visible = false
 

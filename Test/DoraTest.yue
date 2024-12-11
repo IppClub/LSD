@@ -38,7 +38,7 @@ spine = with Spine spineStr
 		with \grab!
 			.effect = with SpriteEffect "builtin::vs_sprite", "builtin::fs_spriteoutlinecolor"
 				\get(1)\set "u_linecolor", Color 0xff00ffff
-				\get(1)\set "u_lineoffset", 5 / 400, 5 / 400, 5, 0.1
+				\get(1)\set "u_lineoffset", 5, 5, 0.1
 			\setColor 1, 2, Color 0x007ec0f8
 			\setColor 2, 2, Color 0x007ec0f8
 		\addChild spineShadow

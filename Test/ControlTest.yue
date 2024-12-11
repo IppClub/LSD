@@ -21,6 +21,6 @@ Director.ui3D\addChild HUDControl!
 
 thread ->
 	sleep 1
-	emit "MessageBox", title: "社交", special: false, text: "你借调的学员默翎获得了3个赞"
+	emit "MessageBox.Add", title: "社交", special: false, text: "你借调的学员默翎获得了3个赞"
 	sleep 1
-	emit "MessageBox", title: "系统", special: true, text: "你借调的学员默翎获得了3个赞"
+	emit "MessageBox.Add", title: "系统", special: true, text: "你借调的学员默翎获得了3个赞"

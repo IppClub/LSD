@@ -203,7 +203,7 @@ do -- 32
 			do -- 39
 				local _with_3 = SpriteEffect("builtin::vs_sprite", "builtin::fs_spriteoutlinecolor") -- 39
 				_with_3:get(1):set("u_linecolor", Color(0xff00ffff)) -- 40
-				_with_3:get(1):set("u_lineoffset", 5 / 400, 5 / 400, 5, 0.1) -- 41
+				_with_3:get(1):set("u_lineoffset", 5, 5, 0.1) -- 41
 				_with_2.effect = _with_3 -- 39
 			end -- 39
 			_with_2:setColor(1, 2, Color(0x007ec0f8)) -- 42

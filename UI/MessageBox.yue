@@ -9,13 +9,11 @@ Array = Struct.Array!
 export default Class MessageBox,
 	__init: =>
 		@_messages = with Array!
-			.__notify = (event, _index, item)->
-				switch event
-					when "Added"
-						@view\addChild Message item
-					when "Updated"
-						@area\adjustSizeWithAlign "Auto", 0, Size 700, 204
-						@area\scrollToPosY 0
+			.__added = (index, item) ->
+				@view\addChild Message(item), index
+			.__updated = ->
+				@area\adjustSizeWithAlign "Auto", 0, Size 700, 204
+				@area\scrollToPosY 0
 		@gslot "MessageBox.Add", (item)->
 			@_messages\insert Item
 				title: item.title

@@ -46,26 +46,25 @@ TextInput = Class ((args) ->
 		.hint = hint
 		\addChild cursor
 
-		updateIMEPos = ->
+		updateIMEPos = (next) ->
 			(pos) <- \convertToWindowSpace Vec2 -label.x + label.width, 0
 			Keyboard\updateIMEPosHint pos
+			next! if next
 		startEditing = ->
+			<- updateIMEPos
 			\detachIME!
 			\attachIME!
-			thread -> updateIMEPos!
+			updateIMEPos!
 		.updateDisplayText = (_, txt) ->
 			textDisplay = txt
 			label.text = txt
 
-		.imeAttached = false
 		\slot "AttachIME", ->
 			label.opacity = 1.0
-			.imeAttached = true
 			.keyboardEnabled = true
 			updateText textDisplay
 
 		\slot "DetachIME", ->
-			.imeAttached = false
 			.keyboardEnabled = false
 			cursor.visible = false
 			cursor\unschedule!

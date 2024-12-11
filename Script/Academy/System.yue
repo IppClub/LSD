@@ -208,7 +208,7 @@ export default ->
 											cycle 0.3, (dt) ->
 												color.opacity = dt
 												\get(1)\set "u_linecolor", color
-										\get(1)\set "u_lineoffset", Outline / GrabSize, Outline / GrabSize, Outline, 0.1
+										\get(1)\set "u_lineoffset", Outline, Outline, 0.1
 								nameText = names[target.entity.name] ?? "人物"
 								target.entity.interaction = with ui = Interaction text: nameText, buttons: {
 											{"对话", "TALK"}

@@ -3,7 +3,7 @@
 		<Label Name="nameLabel"
 			Text="{ name }"
 			FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
-			X="0" Y="{ $T }" AnchorX="0" AnchorY="1" TextWidth="200"/>
+			X="0" Y="{ $T }" AnchorX="0" AnchorY="1" TextWidth="220"/>
 		<Label Name="textLabel"
 			Text="{ text }"
 			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
