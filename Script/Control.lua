@@ -8,6 +8,7 @@ local math = _G.math -- 1
 local Vec2 = Dora.Vec2 -- 1
 local Director = Dora.Director -- 1
 local Keyboard = Dora.Keyboard -- 1
+local Controller = Dora.Controller -- 1
 local Node = Dora.Node -- 1
 local AlignNode = require("UI.Control.Basic.AlignNode") -- 2
 local CircleButton = require("UI.Control.Basic.CircleButton") -- 3
@@ -251,12 +252,12 @@ keyboardControl = function() -- 135
 	if not Store.keyboardEnabled then -- 136
 		return -- 136
 	end -- 136
-	updatePlayerControl("keyLeft", Keyboard:isKeyPressed("A")) -- 137
-	updatePlayerControl("keyRight", Keyboard:isKeyPressed("D")) -- 138
+	updatePlayerControl("keyLeft", Keyboard:isKeyPressed("A") or Controller:isButtonPressed(0, "dpleft")) -- 137
+	updatePlayerControl("keyRight", Keyboard:isKeyPressed("D") or Controller:isButtonPressed(0, "dpright")) -- 138
 	updatePlayerControl("keyBLeft", Keyboard:isKeyPressed("Q")) -- 139
 	updatePlayerControl("keyBRight", Keyboard:isKeyPressed("E")) -- 140
 	updatePlayerControl("keyUp", Keyboard:isKeyPressed("K")) -- 141
-	updatePlayerControl("keyShoot", Keyboard:isKeyPressed("J")) -- 142
+	updatePlayerControl("keyShoot", Keyboard:isKeyPressed("J") or Controller:isButtonPressed(0, "a")) -- 142
 	updatePlayerControl("keyRush", Keyboard:isKeyPressed("U")) -- 143
 	updatePlayerControl("keyEvade", Keyboard:isKeyPressed("I")) -- 144
 	updatePlayerControl("keyFall", Keyboard:isKeyPressed("O")) -- 145

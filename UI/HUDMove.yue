@@ -15,8 +15,8 @@ export default Class HUDMove,
 			@perform Scale 0.3, 0, 1, Ease.OutBack
 		@schedule ->
 			return unless @visible
-			keyA = Keyboard\isKeyPressed "A"
-			keyD = Keyboard\isKeyPressed "D"
+			keyA = Keyboard\isKeyPressed("A") or Controller\isButtonPressed 0, "dpleft"
+			keyD = Keyboard\isKeyPressed("D") or Controller\isButtonPressed 0, "dpright"
 			keyboardEnabled = true if keyA or keyD
 			return false unless keyboardEnabled
 			updatePlayerControl "keyLeft", keyA, false

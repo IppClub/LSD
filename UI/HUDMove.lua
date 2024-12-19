@@ -4,6 +4,7 @@ local Group = Dora.Group -- 1
 local Scale = Dora.Scale -- 1
 local Ease = Dora.Ease -- 1
 local Keyboard = Dora.Keyboard -- 1
+local Controller = Dora.Controller -- 1
 local _module_0 = nil -- 1
 local HUDMove = require("UI.View.HUDMove") -- 2
 _module_0 = Class(HUDMove, { -- 5
@@ -32,8 +33,8 @@ _module_0 = Class(HUDMove, { -- 5
 			if not self.visible then -- 17
 				return -- 17
 			end -- 17
-			local keyA = Keyboard:isKeyPressed("A") -- 18
-			local keyD = Keyboard:isKeyPressed("D") -- 19
+			local keyA = Keyboard:isKeyPressed("A") or Controller:isButtonPressed(0, "dpleft") -- 18
+			local keyD = Keyboard:isKeyPressed("D") or Controller:isButtonPressed(0, "dpright") -- 19
 			if keyA or keyD then -- 20
 				keyboardEnabled = true -- 20
 			end -- 20

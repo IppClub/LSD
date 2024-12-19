@@ -168,7 +168,7 @@ scaleView = function(self, index) -- 32
 	end -- 35
 	self.scaleX = scale -- 39
 	self.scaleY = scale -- 40
-	self.speed = time / target -- 41
+	self.speed = time * 1.25 / target -- 41
 end -- 32
 local playOP -- 43
 playOP = function() -- 43

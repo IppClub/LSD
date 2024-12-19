@@ -134,12 +134,12 @@ with AlignNode isRoot:true, inUI:true
 
 keyboardControl = ->
 	return unless Store.keyboardEnabled
-	updatePlayerControl "keyLeft", Keyboard\isKeyPressed "A"
-	updatePlayerControl "keyRight", Keyboard\isKeyPressed "D"
+	updatePlayerControl "keyLeft", Keyboard\isKeyPressed("A") or Controller\isButtonPressed(0, "dpleft")
+	updatePlayerControl "keyRight", Keyboard\isKeyPressed("D") or Controller\isButtonPressed(0, "dpright")
 	updatePlayerControl "keyBLeft", Keyboard\isKeyPressed "Q"
 	updatePlayerControl "keyBRight", Keyboard\isKeyPressed "E"
 	updatePlayerControl "keyUp", Keyboard\isKeyPressed "K"
-	updatePlayerControl "keyShoot", Keyboard\isKeyPressed "J"
+	updatePlayerControl "keyShoot", Keyboard\isKeyPressed("J") or Controller\isButtonPressed(0, "a")
 	updatePlayerControl "keyRush", Keyboard\isKeyPressed "U"
 	updatePlayerControl "keyEvade", Keyboard\isKeyPressed "I"
 	updatePlayerControl "keyFall", Keyboard\isKeyPressed "O"

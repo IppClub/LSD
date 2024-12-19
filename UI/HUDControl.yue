@@ -7,3 +7,8 @@ export default Class HUDControl,
 		@gslot "Tutorial.Weapon", ->
 			@weapon\perform Scale 0.3, 0, 1, Ease.OutBack
 			@weapon.visible = true
+		@weapon\schedule ->
+			if Keyboard\isKeyDown("J") or Controller\isButtonDown 0, "a"
+				emit "Skill.Began"
+			if Keyboard\isKeyUp("J") or Controller\isButtonUp 0, "a"
+				emit "Skill.Ended"

@@ -38,7 +38,7 @@ scaleView = (index) =>
 		w / width
 	@scaleX = scale
 	@scaleY = scale
-	@speed = time / target
+	@speed = time * 1.25 / target
 
 playOP = ->
 	Director.clearColor = Color 0x0
