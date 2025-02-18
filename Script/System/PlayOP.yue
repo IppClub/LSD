@@ -41,7 +41,7 @@ scaleView = (index) =>
 	@speed = time * 1.25 / target
 
 playOP = ->
-	Director.clearColor = Color 0x0
+	Director.clearColor = Color 0xff000000
 	start = 1
 	Cache\loadAsync "spine:PV1/PV1_#{start}"
 	for i = start, #PVInfo

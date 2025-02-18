@@ -89,13 +89,21 @@ export default Class Story,
 	updateDialogAsync: =>
 		if @_preload
 			for item in *@_preload
-				Cache\loadAsync "spine:#{item == 'char' and Config.char or item}Figure"
+				figureFile = switch item
+					when 'char' then "spine:#{Config.char}Figure"
+					when 'vivi' then "spine:vikaFigure"
+					else "spine:#{item}Figure"
+				Cache\loadAsync figureFile
 			@_preload = nil
 		return unless @_current
 		return if @_advancing
 		@_advancing = true
 		name, characterId = getCharName @_current
-		Cache\loadAsync "spine:#{characterId}Figure" if characterId and characterId ~= ""
+		figureFile = switch characterId
+			when 'char' then "spine:#{Config.char}Figure"
+			when 'vivi' then "spine:vikaFigure"
+			else "spine:#{characterId}Figure"
+		Cache\loadAsync figureFile if characterId and characterId ~= ""
 		text = @_current.text
 		@_reviews[] = :name, :text
 		@_dialog.character = characterId

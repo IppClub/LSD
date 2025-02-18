@@ -172,7 +172,7 @@ scaleView = function(self, index) -- 32
 end -- 32
 local playOP -- 43
 playOP = function() -- 43
-	Director.clearColor = Color(0x0) -- 44
+	Director.clearColor = Color(0xff000000) -- 44
 	local start = 1 -- 45
 	Cache:loadAsync("spine:PV1/PV1_" .. tostring(start)) -- 46
 	for i = start, #PVInfo do -- 47
