@@ -2,6 +2,7 @@
 local type = _G.type -- 1
 local Class = Dora.Class -- 1
 local property = Dora.property -- 1
+local print = _G.print -- 1
 local thread = Dora.thread -- 1
 local tostring = _G.tostring -- 1
 local Cache = Dora.Cache -- 1
@@ -104,225 +105,228 @@ _module_0 = Class(Story, { -- 22
 				end -- 47
 			end -- 47
 			return true -- 48
-		else -- 50
-			return false -- 50
-		end -- 50
+		elseif "Error" == action then -- 49
+			print(result) -- 50
+			return false -- 51
+		else -- 53
+			return false -- 53
+		end -- 53
 	end, -- 30
-	__init = function(self, dialogFile) -- 52
-		self._runner = YarnRunner(dialogFile, "Start", Config, Command) -- 53
-		self:advance() -- 54
-		self.reviewVisible = false -- 55
-		self._advancing = false -- 56
-		local nextSentence -- 57
-		nextSentence = function() -- 57
-			if self._advancing then -- 58
-				return -- 58
-			end -- 58
-			if self._options then -- 59
-				return -- 59
-			end -- 59
-			if self:advance() then -- 60
-				return thread(function() -- 61
-					return self:updateDialogAsync() -- 61
-				end) -- 61
-			else -- 63
-				return self:hide() -- 63
-			end -- 60
-		end -- 57
-		self:gslot("Story.Advance", function() -- 64
-			self._advancing = false -- 65
-			return nextSentence() -- 66
-		end) -- 64
-		self.confirm:slot("Tapped", nextSentence) -- 67
-		self.textArea:slot("NoneScrollTapped", nextSentence) -- 68
-		self.reviewButton:slot("Tapped", function() -- 69
-			if self._advancing then -- 70
-				return -- 70
-			end -- 70
-			self.reviewVisible = true -- 71
-			return self:alignLayout() -- 72
-		end) -- 69
-		self.reviewBack:slot("Tapped", function() -- 73
-			self.reviewVisible = false -- 73
-		end) -- 73
-		self.reviewArea:slot("NoneScrollTapped", function() -- 74
-			self.reviewVisible = false -- 74
-		end) -- 74
-		do -- 75
-			local _with_0 = Dialog() -- 75
-			_with_0.__modified = function(key, value) -- 76
-				if "character" == key then -- 77
-					self.figure:removeAllChildren() -- 78
-					if (value ~= nil) and value ~= "" then -- 79
-						return self.figure:addChild(StoryFigure({ -- 80
-							char = value -- 80
-						})) -- 80
-					end -- 79
-				elseif "name" == key then -- 81
-					if (value ~= nil) then -- 82
-						self.name.text = value -- 82
+	__init = function(self, dialogFile) -- 55
+		self._runner = YarnRunner(dialogFile, "Start", Config, Command) -- 56
+		self:advance() -- 57
+		self.reviewVisible = false -- 58
+		self._advancing = false -- 59
+		local nextSentence -- 60
+		nextSentence = function() -- 60
+			if self._advancing then -- 61
+				return -- 61
+			end -- 61
+			if self._options then -- 62
+				return -- 62
+			end -- 62
+			if self:advance() then -- 63
+				return thread(function() -- 64
+					return self:updateDialogAsync() -- 64
+				end) -- 64
+			else -- 66
+				return self:hide() -- 66
+			end -- 63
+		end -- 60
+		self:gslot("Story.Advance", function() -- 67
+			self._advancing = false -- 68
+			return nextSentence() -- 69
+		end) -- 67
+		self.confirm:slot("Tapped", nextSentence) -- 70
+		self.textArea:slot("NoneScrollTapped", nextSentence) -- 71
+		self.reviewButton:slot("Tapped", function() -- 72
+			if self._advancing then -- 73
+				return -- 73
+			end -- 73
+			self.reviewVisible = true -- 74
+			return self:alignLayout() -- 75
+		end) -- 72
+		self.reviewBack:slot("Tapped", function() -- 76
+			self.reviewVisible = false -- 76
+		end) -- 76
+		self.reviewArea:slot("NoneScrollTapped", function() -- 77
+			self.reviewVisible = false -- 77
+		end) -- 77
+		do -- 78
+			local _with_0 = Dialog() -- 78
+			_with_0.__modified = function(key, value) -- 79
+				if "character" == key then -- 80
+					self.figure:removeAllChildren() -- 81
+					if (value ~= nil) and value ~= "" then -- 82
+						return self.figure:addChild(StoryFigure({ -- 83
+							char = value -- 83
+						})) -- 83
 					end -- 82
-				elseif "text" == key then -- 83
-					if (value ~= nil) then -- 84
-						self.text.text = value -- 84
-					end -- 84
-				end -- 84
-			end -- 76
-			_with_0.__updated = function() -- 85
-				return self:alignLayout() -- 85
-			end -- 85
-			self._dialog = _with_0 -- 75
-		end -- 75
-		self._reviews = { } -- 86
-		self.visible = false -- 87
-	end, -- 52
-	updateDialogAsync = function(self) -- 89
-		if self._preload then -- 90
-			local _list_0 = self._preload -- 91
-			for _index_0 = 1, #_list_0 do -- 91
-				local item = _list_0[_index_0] -- 91
-				local figureFile -- 92
-				if 'char' == item then -- 93
-					figureFile = "spine:" .. tostring(Config.char) .. "Figure" -- 93
-				elseif 'vivi' == item then -- 94
-					figureFile = "spine:vikaFigure" -- 94
-				else -- 95
-					figureFile = "spine:" .. tostring(item) .. "Figure" -- 95
-				end -- 95
-				Cache:loadAsync(figureFile) -- 96
-			end -- 96
-			self._preload = nil -- 97
-		end -- 90
-		if not self._current then -- 98
-			return -- 98
-		end -- 98
-		if self._advancing then -- 99
-			return -- 99
-		end -- 99
-		self._advancing = true -- 100
-		local name, characterId = getCharName(self._current) -- 101
-		local figureFile -- 102
-		if 'char' == characterId then -- 103
-			figureFile = "spine:" .. tostring(Config.char) .. "Figure" -- 103
-		elseif 'vivi' == characterId then -- 104
-			figureFile = "spine:vikaFigure" -- 104
-		else -- 105
-			figureFile = "spine:" .. tostring(characterId) .. "Figure" -- 105
-		end -- 105
-		if characterId and characterId ~= "" then -- 106
-			Cache:loadAsync(figureFile) -- 106
-		end -- 106
-		local text = self._current.text -- 107
-		do -- 108
-			local _obj_0 = self._reviews -- 108
-			_obj_0[#_obj_0 + 1] = { -- 108
-				name = name, -- 108
-				text = text -- 108
-			} -- 108
+				elseif "name" == key then -- 84
+					if (value ~= nil) then -- 85
+						self.name.text = value -- 85
+					end -- 85
+				elseif "text" == key then -- 86
+					if (value ~= nil) then -- 87
+						self.text.text = value -- 87
+					end -- 87
+				end -- 87
+			end -- 79
+			_with_0.__updated = function() -- 88
+				return self:alignLayout() -- 88
+			end -- 88
+			self._dialog = _with_0 -- 78
+		end -- 78
+		self._reviews = { } -- 89
+		self.visible = false -- 90
+	end, -- 55
+	updateDialogAsync = function(self) -- 92
+		if self._preload then -- 93
+			local _list_0 = self._preload -- 94
+			for _index_0 = 1, #_list_0 do -- 94
+				local item = _list_0[_index_0] -- 94
+				local figureFile -- 95
+				if 'char' == item then -- 96
+					figureFile = "spine:" .. tostring(Config.char) .. "Figure" -- 96
+				elseif 'vivi' == item then -- 97
+					figureFile = "spine:vikaFigure" -- 97
+				else -- 98
+					figureFile = "spine:" .. tostring(item) .. "Figure" -- 98
+				end -- 98
+				Cache:loadAsync(figureFile) -- 99
+			end -- 99
+			self._preload = nil -- 100
+		end -- 93
+		if not self._current then -- 101
+			return -- 101
+		end -- 101
+		if self._advancing then -- 102
+			return -- 102
+		end -- 102
+		self._advancing = true -- 103
+		local name, characterId = getCharName(self._current) -- 104
+		local figureFile -- 105
+		if 'char' == characterId then -- 106
+			figureFile = "spine:" .. tostring(Config.char) .. "Figure" -- 106
+		elseif 'vivi' == characterId then -- 107
+			figureFile = "spine:vikaFigure" -- 107
+		else -- 108
+			figureFile = "spine:" .. tostring(characterId) .. "Figure" -- 108
 		end -- 108
-		self._dialog.character = characterId -- 109
-		self._dialog.name = name -- 110
-		self._dialog.text = text -- 111
-		self.answerList:removeAllChildren() -- 112
-		if self._options then -- 113
-			self.continueIcon.visible = false -- 114
-			local count = #self._options -- 115
-			for i = 1, count do -- 116
-				local option = self._options[i] -- 117
-				name = getCharName(option) -- 118
-				local optionText -- 119
-				optionText = option.text -- 119
-				self.answerList:addChild((function() -- 120
-					local _with_0 = Answer({ -- 120
-						text = optionText -- 120
-					}) -- 120
-					_with_0:slot("Tapped", function() -- 121
-						_with_0.touchEnabled = false -- 122
-						return thread(function() -- 123
-							sleep(0.3) -- 124
-							do -- 125
-								local _obj_0 = self._reviews -- 125
-								_obj_0[#_obj_0 + 1] = { -- 125
-									name = name, -- 125
-									text = optionText -- 125
-								} -- 125
-							end -- 125
-							if self:advance(i) then -- 126
-								return thread(function() -- 127
-									return self:updateDialogAsync() -- 127
-								end) -- 127
-							else -- 129
-								return self:hide() -- 129
-							end -- 126
-						end) -- 129
-					end) -- 121
-					return _with_0 -- 120
-				end)()) -- 120
-			end -- 129
-			local size = self.answerList:alignItems(40) -- 130
-			self.answerList.size = size -- 131
-			self.answerList:alignItems(40) -- 132
-		else -- 134
-			self.continueIcon.visible = true -- 134
-		end -- 113
-		self._advancing = false -- 135
-	end, -- 89
-	showAsync = function(self) -- 137
-		self:updateDialogAsync() -- 138
-		self.visible = true -- 139
-		self._viewScale = View.scale -- 140
-		self._viewEffect = View.postEffect -- 141
-		View.scale = 4 * self._viewScale -- 142
-		local size = View.size -- 143
-		local blurH -- 144
-		do -- 144
-			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurh") -- 144
-			_with_0.grabPass = true -- 145
-			_with_0:set("u_radius", size.width) -- 146
-			blurH = _with_0 -- 144
-		end -- 144
-		local blurV -- 147
+		if characterId and characterId ~= "" then -- 109
+			Cache:loadAsync(figureFile) -- 109
+		end -- 109
+		local text = self._current.text -- 110
+		do -- 111
+			local _obj_0 = self._reviews -- 111
+			_obj_0[#_obj_0 + 1] = { -- 111
+				name = name, -- 111
+				text = text -- 111
+			} -- 111
+		end -- 111
+		self._dialog.character = characterId -- 112
+		self._dialog.name = name -- 113
+		self._dialog.text = text -- 114
+		self.answerList:removeAllChildren() -- 115
+		if self._options then -- 116
+			self.continueIcon.visible = false -- 117
+			local count = #self._options -- 118
+			for i = 1, count do -- 119
+				local option = self._options[i] -- 120
+				name = getCharName(option) -- 121
+				local optionText -- 122
+				optionText = option.text -- 122
+				self.answerList:addChild((function() -- 123
+					local _with_0 = Answer({ -- 123
+						text = optionText -- 123
+					}) -- 123
+					_with_0:slot("Tapped", function() -- 124
+						_with_0.touchEnabled = false -- 125
+						return thread(function() -- 126
+							sleep(0.3) -- 127
+							do -- 128
+								local _obj_0 = self._reviews -- 128
+								_obj_0[#_obj_0 + 1] = { -- 128
+									name = name, -- 128
+									text = optionText -- 128
+								} -- 128
+							end -- 128
+							if self:advance(i) then -- 129
+								return thread(function() -- 130
+									return self:updateDialogAsync() -- 130
+								end) -- 130
+							else -- 132
+								return self:hide() -- 132
+							end -- 129
+						end) -- 132
+					end) -- 124
+					return _with_0 -- 123
+				end)()) -- 123
+			end -- 132
+			local size = self.answerList:alignItems(40) -- 133
+			self.answerList.size = size -- 134
+			self.answerList:alignItems(40) -- 135
+		else -- 137
+			self.continueIcon.visible = true -- 137
+		end -- 116
+		self._advancing = false -- 138
+	end, -- 92
+	showAsync = function(self) -- 140
+		self:updateDialogAsync() -- 141
+		self.visible = true -- 142
+		self._viewScale = View.scale -- 143
+		self._viewEffect = View.postEffect -- 144
+		View.scale = 4 * self._viewScale -- 145
+		local size = View.size -- 146
+		local blurH -- 147
 		do -- 147
-			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurv") -- 147
+			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurh") -- 147
 			_with_0.grabPass = true -- 148
-			_with_0:set("u_radius", size.height) -- 149
-			blurV = _with_0 -- 147
+			_with_0:set("u_radius", size.width) -- 149
+			blurH = _with_0 -- 147
 		end -- 147
+		local blurV -- 150
 		do -- 150
-			local _with_0 = SpriteEffect() -- 150
-			for _ = 1, 3 do -- 151
-				_with_0:add(blurH) -- 152
-				_with_0:add(blurV) -- 153
-			end -- 153
-			View.postEffect = _with_0 -- 150
+			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurv") -- 150
+			_with_0.grabPass = true -- 151
+			_with_0:set("u_radius", size.height) -- 152
+			blurV = _with_0 -- 150
 		end -- 150
-		self:gslot("AppChange", function(settingName) -- 154
-			if settingName == "Size" then -- 154
-				local width, height -- 155
-				do -- 155
-					local _obj_0 = View.size -- 155
-					width, height = _obj_0.width, _obj_0.height -- 155
-				end -- 155
-				blurH:set("u_radius", width) -- 156
-				return blurV:set("u_radius", height) -- 157
-			end -- 154
-		end) -- 154
-		return emit("Story.Display", true) -- 158
-	end, -- 137
-	hide = function(self) -- 160
-		self:gslot("AppChange", nil) -- 161
-		self:emit("Ended") -- 162
-		self:removeFromParent() -- 163
-		local viewScale = self._viewScale -- 164
-		local viewEffect = self._viewEffect -- 165
-		return thread(function() -- 166
-			collectgarbage() -- 167
-			Cache:removeUnused() -- 168
-			emit("Story.Display", false) -- 169
-			View.scale = viewScale -- 170
-			sleep() -- 171
-			View.postEffect = viewEffect -- 172
-		end) -- 172
-	end -- 160
+		do -- 153
+			local _with_0 = SpriteEffect() -- 153
+			for _ = 1, 3 do -- 154
+				_with_0:add(blurH) -- 155
+				_with_0:add(blurV) -- 156
+			end -- 156
+			View.postEffect = _with_0 -- 153
+		end -- 153
+		self:gslot("AppChange", function(settingName) -- 157
+			if settingName == "Size" then -- 157
+				local width, height -- 158
+				do -- 158
+					local _obj_0 = View.size -- 158
+					width, height = _obj_0.width, _obj_0.height -- 158
+				end -- 158
+				blurH:set("u_radius", width) -- 159
+				return blurV:set("u_radius", height) -- 160
+			end -- 157
+		end) -- 157
+		return emit("Story.Display", true) -- 161
+	end, -- 140
+	hide = function(self) -- 163
+		self:gslot("AppChange", nil) -- 164
+		self:emit("Ended") -- 165
+		self:removeFromParent() -- 166
+		local viewScale = self._viewScale -- 167
+		local viewEffect = self._viewEffect -- 168
+		return thread(function() -- 169
+			collectgarbage() -- 170
+			Cache:removeUnused() -- 171
+			emit("Story.Display", false) -- 172
+			View.scale = viewScale -- 173
+			sleep() -- 174
+			View.postEffect = viewEffect -- 175
+		end) -- 175
+	end -- 163
 }) -- 21
-return _module_0 -- 172
+return _module_0 -- 175

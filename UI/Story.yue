@@ -46,6 +46,9 @@ export default Class Story,
 				@_preload = preload
 				return @advance!
 			return true
+		when "Error"
+			print result
+			return false
 		else
 			return false
 
