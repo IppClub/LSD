@@ -1,21 +1,9 @@
-{
-	"header": {
-		"lastSavedUnix": "2024-02-04T08:31:30.773Z",
-		"language": "en-GB",
-		"documentType": "yarn",
-		"markupLanguage": "bbcode",
-		"filetypeVersion": "2"
-	},
-	"nodes": [
-		{
-			"title": "Start",
-			"tags": "",
-			"body": "[char id=char name=我/]不用太保守。",
-			"position": {
-				"x": 520,
-				"y": 280
-			},
-			"colorID": 0
-		}
-	]
-}
+// lastSavedUnix: 2025-04-07T09:05:24.717Z
+
+title: Start
+tags: 
+position: 520,280
+colorID: 0
+---
+[char id=char name=我/]不用太保守。
+===

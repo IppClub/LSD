@@ -1,21 +1,9 @@
-{
-	"header": {
-		"lastSavedUnix": "2024-02-04T08:15:25.462Z",
-		"language": "en-GB",
-		"documentType": "yarn",
-		"markupLanguage": "bbcode",
-		"filetypeVersion": "2"
-	},
-	"nodes": [
-		{
-			"title": "Start",
-			"tags": "",
-			"body": "[char id=ninilite name=妮妮莉特/]你有武器吗？",
-			"position": {
-				"x": 532,
-				"y": 299
-			},
-			"colorID": 0
-		}
-	]
-}
+// lastSavedUnix: 2025-04-07T09:07:45.577Z
+
+title: Start
+tags: 
+position: 532,299
+colorID: 0
+---
+[char id=ninilite name=妮妮莉特/]你有武器吗？
+===

@@ -9,17 +9,15 @@ lb:addChild(mask) -- 6
 lb:slot("AlignLayout",function(w, h) -- 7
 do -- 7
 	mask:removeFromParent() -- 10
-	do -- 11
-		local _with_0 = SolidRect({ -- 11
-			width = w, -- 11
-			height = h, -- 11
-			color = 0x66000000 -- 11
-		}) -- 11
-		mask = _with_0 -- 11
-		_with_0.touchEnabled = true -- 12
-		_with_0.swallowTouches = true -- 13
-		_with_0:addTo(lb) -- 14
-	end -- 11
+	local _with_0 = SolidRect({ -- 11
+		width = w, -- 11
+		height = h, -- 11
+		color = 0x66000000 -- 11
+	}) -- 11
+	mask = _with_0 -- 11
+	_with_0.touchEnabled = true -- 12
+	_with_0.swallowTouches = true -- 13
+	_with_0:addTo(lb) -- 14
 end -- 14
 end) -- 8
 do -- 16

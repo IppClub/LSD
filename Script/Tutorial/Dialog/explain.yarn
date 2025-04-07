@@ -1,21 +1,10 @@
-{
-	"header": {
-		"lastSavedUnix": "2024-02-22T10:10:36.950Z",
-		"language": "en-GB",
-		"documentType": "yarn",
-		"markupLanguage": "bbcode",
-		"filetypeVersion": "2"
-	},
-	"nodes": [
-		{
-			"title": "Start",
-			"tags": "",
-			"body": "[char id=ninilite name=妮妮莉特/]你的武器没法造成致命伤......\n[char id=ninilite name=妮妮莉特/]先等我把它打晕。",
-			"position": {
-				"x": 0,
-				"y": 0
-			},
-			"colorID": 0
-		}
-	]
-}
+// lastSavedUnix: 2025-04-07T09:05:32.595Z
+
+title: Start
+tags: 
+position: 50,50
+colorID: 0
+---
+[char id=ninilite name=妮妮莉特/]你的武器没法造成致命伤......
+[char id=ninilite name=妮妮莉特/]先等我把它打晕。
+===

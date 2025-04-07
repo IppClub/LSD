@@ -219,11 +219,9 @@ do -- 112
 		_with_0:adjustSizeWithAlign("Horizontal", 0, Size(memberWidth, 843)) -- 128
 	end -- 126
 	local tacticWidth = w / scale - 704 -- 129
-	do -- 130
-		local _with_0 = tacticArea -- 130
-		_with_0.x = 704 + tacticWidth / 2 -- 131
-		_with_0:adjustSizeWithAlign("Horizontal", 0, Size(tacticWidth, 739)) -- 132
-	end -- 130
+	local _with_0 = tacticArea -- 130
+	_with_0.x = 704 + tacticWidth / 2 -- 131
+	_with_0:adjustSizeWithAlign("Horizontal", 0, Size(tacticWidth, 739)) -- 132
 end -- 132
 end) -- 113
 return item1 -- 113

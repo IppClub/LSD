@@ -1,21 +1,9 @@
-{
-	"header": {
-		"lastSavedUnix": "2024-02-04T08:29:15.207Z",
-		"language": "en-GB",
-		"documentType": "yarn",
-		"markupLanguage": "bbcode",
-		"filetypeVersion": "2"
-	},
-	"nodes": [
-		{
-			"title": "Start",
-			"tags": "",
-			"body": "[char id=ninilite name=妮妮莉特/]别愣着，快躲开。",
-			"position": {
-				"x": 520,
-				"y": 280
-			},
-			"colorID": 0
-		}
-	]
-}
+// lastSavedUnix: 2025-04-07T09:05:10.279Z
+
+title: Start
+tags: 
+position: 520,280
+colorID: 0
+---
+[char id=ninilite name=妮妮莉特/]别愣着，快躲开。
+===
