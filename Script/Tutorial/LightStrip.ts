@@ -33,7 +33,7 @@ export function LightStrip(this: void, startPoint: Vec2.Type, targetNode: Node.T
 		}
 		const distance = math.min(1000, stopPoint.distance(startPoint));
 		const angle = stopPoint.sub(startPoint).angle;
-		node.angle = -math.deg(angle) + 90;
+		node.angle = -angle + 90;
 		let i = 0;
 		let ended = true;
 		for (let dist = 0; dist < distance; dist += step) {

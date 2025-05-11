@@ -40,7 +40,7 @@ function ____exports.LightStrip(startPoint, targetNode, color) -- 4
 			stopPoint:distance(startPoint) -- 34
 		) -- 34
 		local angle = stopPoint:sub(startPoint).angle -- 35
-		node.angle = -math.deg(angle) + 90 -- 36
+		node.angle = -angle + 90 -- 36
 		local i = 0 -- 37
 		local ended = true -- 38
 		do -- 38

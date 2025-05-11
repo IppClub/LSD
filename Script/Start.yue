@@ -1,6 +1,6 @@
 _ENV = Dora
 
-if not DB\exist "Config", "lsd"
+if not DB\existDB "lsd"
 	dbPath = Path Content.writablePath, "lsd.db"
 	DB\exec "ATTACH DATABASE '#{dbPath}' AS lsd;"
 Director.entry\slot "Cleanup", -> DB\exec "DETACH DATABASE lsd"

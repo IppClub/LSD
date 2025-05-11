@@ -256,8 +256,8 @@ function ____exports.default() -- 7
 								world = owner.world, -- 195
 								group = Data.groupHide, -- 195
 								linearAcceleration = Vec2(0, -9.8), -- 195
-								velocityX = math.random() * (owner.faceRight and -200 or 200), -- 195
-								velocityY = math.random() * 300, -- 195
+								velocityX = (math.random() + 1) * (owner.faceRight and -200 or 200), -- 195
+								velocityY = (math.random() + 1) * 300, -- 195
 								angle = math.random() * aimAngle -- 195
 							}, -- 195
 							React.createElement("rect-fixture", { -- 195

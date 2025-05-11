@@ -5,7 +5,7 @@ local Content = Dora.Content -- 1
 local tostring = _G.tostring -- 1
 local Director = Dora.Director -- 1
 local once = Dora.once -- 1
-if not DB:exist("Config", "lsd") then -- 3
+if not DB:existDB("lsd") then -- 3
 	local dbPath = Path(Content.writablePath, "lsd.db") -- 4
 	DB:exec("ATTACH DATABASE '" .. tostring(dbPath) .. "' AS lsd;") -- 5
 end -- 3

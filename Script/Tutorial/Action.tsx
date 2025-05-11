@@ -197,8 +197,8 @@ export default function(this: void) {
 							type={BodyMoveType.Dynamic}
 							x={pos.x} y={pos.y} world={owner.world}
 							group={Data.groupHide} linearAcceleration={Vec2(0, -9.8)}
-							velocityX={math.random() * (owner.faceRight ? -200 : 200)}
-							velocityY={math.random() * 300}
+							velocityX={(math.random() + 1) * (owner.faceRight ? -200 : 200)}
+							velocityY={(math.random() + 1) * 300}
 							angle={math.random() * aimAngle}
 						>
 							<rect-fixture width={20} height={10} density={26} friction={0.4} restitution={0.4}/>
