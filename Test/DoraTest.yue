@@ -22,7 +22,7 @@ animations = Spine\getAnimations spineStr
 looks = Spine\getLooks spineStr
 p animations, looks
 
-spineShadow = with s = Spine spineStr
+spineShadow = with s := Spine spineStr
 	.x = 200
 	.y = 190
 	.scaleY = -1.0

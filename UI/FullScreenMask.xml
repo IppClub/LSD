@@ -8,7 +8,7 @@
 			<Yue>
 				global mask
 				mask\removeFromParent!
-				with mask = SolidRect width: w, height: h, color: 0x66000000
+				with mask := SolidRect width: w, height: h, color: 0x66000000
 					.touchEnabled = true
 					.swallowTouches = true
 					\addTo lb

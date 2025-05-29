@@ -140,7 +140,7 @@ export default ->
 					* "keepMove"
 					* "idle1"
 			:world = Store
-			unit = with u = Unit unitDef, world, @, position + Vec2 0, Height / 2
+			unit = with u := Unit unitDef, world, @, position + Vec2 0, Height / 2
 				.group = 1
 				.faceRight = faceRight
 				.order = player and 0 or (@order ?? math.random -MaxPath, MaxPath)
@@ -210,7 +210,7 @@ export default ->
 												\get(1)\set "u_linecolor", color
 										\get(1)\set "u_lineoffset", Outline, Outline, 0.1
 								nameText = names[target.entity.name] ?? "人物"
-								target.entity.interaction = with ui = Interaction text: nameText, buttons: {
+								target.entity.interaction = with ui := Interaction text: nameText, buttons: {
 											{"对话", "TALK"}
 											{"进行训练", "TRAINING"}
 											{"个人信息", "INFORMATION"}

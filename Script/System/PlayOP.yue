@@ -48,7 +48,7 @@ playOP = ->
 		continue if i in [9, 19]
 		playEnded = false
 		nextViewLoaded = false
-		with playable = Playable "spine:PV1/PV1_#{i}"
+		with playable := Playable "spine:PV1/PV1_#{i}"
 			\play "animation", i == 1
 			\gslot "AppChange", (settingName) -> if settingName == "Size" then scaleView playable, i
 			scaleView playable, i

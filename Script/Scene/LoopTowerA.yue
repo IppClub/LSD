@@ -86,9 +86,9 @@ export default Class
 
 		@_layers = {def.look, addLayer @, def for def in *layerDefs}
 
-		with mask = @_layers.windowmask
+		with mask := @_layers.windowmask
 			\removeFromParent false
-			with clip = ClipNode mask
+			with clip := ClipNode mask
 				.order = mask.order
 				\addTo @
 				with @_layers.windowoutside
@@ -128,7 +128,7 @@ export default Class
 		world.scaleX = 1.33
 		world.scaleY = 1.33
 		world\slot "Enter", ->
-			with node = Node!
+			with node := Node!
 				\addTo world.parent
 				\schedule ->
 					:position, :zoom = Director.currentCamera
@@ -148,7 +148,7 @@ export default Class
 						for y = 1, 2
 							pos = \getPos x, y
 							\setPos x, y, pos, math.sin(math.abs(x - 11) * math.pi / 200) * math.abs(x - 11) * h * 0.25
-				\gslot "AppChange", (settingName) -> if settingName == "Size" 
+				\gslot "AppChange", (settingName) -> if settingName == "Size"
 					:zoom = Director.currentCamera
 					.size = View.size * Vec2 1.0 / zoom, 1.0 / zoom
 					h = .size.height
