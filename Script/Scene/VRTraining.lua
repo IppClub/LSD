@@ -206,7 +206,7 @@ _module_0 = Class({ -- 58
 						col = col + 1 -- 139
 					end -- 137
 					_accum_0[_len_0] = label -- 140
-					_len_0 = _len_0 + 1 -- 140
+					_len_0 = _len_0 + 1 -- 128
 				end -- 140
 				chars = _accum_0 -- 127
 			end -- 140

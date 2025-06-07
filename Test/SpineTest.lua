@@ -554,7 +554,7 @@ getAllFiles = function(path, exts) -- 380
 			goto _continue_0 -- 383
 		end -- 383
 		_accum_0[_len_0] = file -- 384
-		_len_0 = _len_0 + 1 -- 384
+		_len_0 = _len_0 + 1 -- 383
 		::_continue_0:: -- 383
 	end -- 384
 	return _accum_0 -- 384
@@ -751,10 +751,10 @@ createUnit = function() -- 472
 		for anim in pairs(targetAnims) do -- 484
 			if not anims[anim] then -- 485
 				_accum_0[_len_0] = anim -- 486
+				_len_0 = _len_0 + 1 -- 485
 			else -- 487
 				goto _continue_0 -- 487
 			end -- 485
-			_len_0 = _len_0 + 1 -- 487
 			::_continue_0:: -- 485
 		end -- 487
 		missingAnims = _accum_0 -- 484
@@ -765,10 +765,10 @@ createUnit = function() -- 472
 		for anim in pairs(anims) do -- 489
 			if not targetAnims[anim] then -- 490
 				_accum_0[_len_0] = anim -- 491
+				_len_0 = _len_0 + 1 -- 490
 			else -- 492
 				goto _continue_1 -- 492
 			end -- 490
-			_len_0 = _len_0 + 1 -- 492
 			::_continue_1:: -- 490
 		end -- 492
 		extraAnims = _accum_0 -- 489
@@ -835,10 +835,10 @@ createUnit = function() -- 472
 			local anim = testAnims[_index_0] -- 532
 			if anims[anim] then -- 533
 				_accum_0[_len_0] = anim -- 534
+				_len_0 = _len_0 + 1 -- 533
 			else -- 535
 				goto _continue_2 -- 535
 			end -- 533
-			_len_0 = _len_0 + 1 -- 535
 			::_continue_2:: -- 533
 		end -- 535
 		availableAnims = _accum_0 -- 532
