@@ -1,0 +1,2477 @@
+[
+  {
+    "id": "head",
+    "vertices": [
+      [
+        {
+          "key": "probe-head-0-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-0-0/probe-head-0-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-1-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-1-0/probe-head-1-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-2-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-2-0/probe-head-2-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-3-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-3-0/probe-head-3-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-4-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-4-0/probe-head-4-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-5-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-5-0/probe-head-5-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-6-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-6-0/probe-head-6-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-7-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-7-0/probe-head-7-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-8-0",
+          "weight": 0.888,
+          "lookupPath": "probe-head-8-0/probe-head-8-0"
+        },
+        {
+          "key": "probe-head-8-1",
+          "weight": 0.112,
+          "lookupPath": "probe-head-8-1/probe-head-8-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-9-0",
+          "weight": 0.896,
+          "lookupPath": "probe-head-9-0/probe-head-9-0"
+        },
+        {
+          "key": "probe-head-9-1",
+          "weight": 0.104,
+          "lookupPath": "probe-head-9-1/probe-head-9-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-10-0",
+          "weight": 0.856,
+          "lookupPath": "probe-head-10-0/probe-head-10-0"
+        },
+        {
+          "key": "probe-head-10-1",
+          "weight": 0.144,
+          "lookupPath": "probe-head-10-1/probe-head-10-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-11-0",
+          "weight": 0.92,
+          "lookupPath": "probe-head-11-0/probe-head-11-0"
+        },
+        {
+          "key": "probe-head-11-1",
+          "weight": 0.08,
+          "lookupPath": "probe-head-11-1/probe-head-11-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-12-0",
+          "weight": 0.936,
+          "lookupPath": "probe-head-12-0/probe-head-12-0"
+        },
+        {
+          "key": "probe-head-12-1",
+          "weight": 0.064,
+          "lookupPath": "probe-head-12-1/probe-head-12-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-13-0",
+          "weight": 0.96,
+          "lookupPath": "probe-head-13-0/probe-head-13-0"
+        },
+        {
+          "key": "probe-head-13-1",
+          "weight": 0.04,
+          "lookupPath": "probe-head-13-1/probe-head-13-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-14-0",
+          "weight": 0.928,
+          "lookupPath": "probe-head-14-0/probe-head-14-0"
+        },
+        {
+          "key": "probe-head-14-1",
+          "weight": 0.072,
+          "lookupPath": "probe-head-14-1/probe-head-14-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-15-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-15-0/probe-head-15-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-16-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-16-0/probe-head-16-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-17-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-17-0/probe-head-17-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-18-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-18-0/probe-head-18-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-19-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-19-0/probe-head-19-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-20-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-20-0/probe-head-20-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-21-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-21-0/probe-head-21-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-22-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-22-0/probe-head-22-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-23-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-23-0/probe-head-23-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-24-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-24-0/probe-head-24-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-25-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-25-0/probe-head-25-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-26-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-26-0/probe-head-26-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-27-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-27-0/probe-head-27-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-28-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-28-0/probe-head-28-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-29-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-29-0/probe-head-29-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-30-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-30-0/probe-head-30-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-31-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-31-0/probe-head-31-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-32-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-32-0/probe-head-32-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-33-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-33-0/probe-head-33-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-34-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-34-0/probe-head-34-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-35-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-35-0/probe-head-35-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-36-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-36-0/probe-head-36-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-37-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-37-0/probe-head-37-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-38-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-38-0/probe-head-38-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-39-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-39-0/probe-head-39-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-40-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-40-0/probe-head-40-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-41-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-41-0/probe-head-41-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-42-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-42-0/probe-head-42-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-43-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-43-0/probe-head-43-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-44-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-44-0/probe-head-44-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-45-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-45-0/probe-head-45-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-46-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-46-0/probe-head-46-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-47-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-47-0/probe-head-47-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-48-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-48-0/probe-head-48-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-49-0",
+          "weight": 0.84,
+          "lookupPath": "probe-head-49-0/probe-head-49-0"
+        },
+        {
+          "key": "probe-head-49-1",
+          "weight": 0.16,
+          "lookupPath": "probe-head-49-1/probe-head-49-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-50-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-50-0/probe-head-50-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-51-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-51-0/probe-head-51-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-52-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-52-0/probe-head-52-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-53-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-53-0/probe-head-53-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-54-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-54-0/probe-head-54-0"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "head-gem",
+    "vertices": [
+      [
+        {
+          "key": "probe-head-gem-0-0",
+          "weight": 0.824,
+          "lookupPath": "probe-head-gem-0-0/probe-head-gem-0-0"
+        },
+        {
+          "key": "probe-head-gem-0-1",
+          "weight": 0.176,
+          "lookupPath": "probe-head-gem-0-1/probe-head-gem-0-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-1-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-gem-1-0/probe-head-gem-1-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-2-0",
+          "weight": 0.992,
+          "lookupPath": "probe-head-gem-2-0/probe-head-gem-2-0"
+        },
+        {
+          "key": "probe-head-gem-2-1",
+          "weight": 0.008,
+          "lookupPath": "probe-head-gem-2-1/probe-head-gem-2-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-3-0",
+          "weight": 0.944,
+          "lookupPath": "probe-head-gem-3-0/probe-head-gem-3-0"
+        },
+        {
+          "key": "probe-head-gem-3-1",
+          "weight": 0.056,
+          "lookupPath": "probe-head-gem-3-1/probe-head-gem-3-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-4-0",
+          "weight": 1.0,
+          "lookupPath": "probe-head-gem-4-0/probe-head-gem-4-0"
+        },
+        {
+          "key": "probe-head-gem-4-1",
+          "weight": 0.0,
+          "lookupPath": "probe-head-gem-4-1/probe-head-gem-4-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-5-0",
+          "weight": 0.936,
+          "lookupPath": "probe-head-gem-5-0/probe-head-gem-5-0"
+        },
+        {
+          "key": "probe-head-gem-5-1",
+          "weight": 0.064,
+          "lookupPath": "probe-head-gem-5-1/probe-head-gem-5-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-6-0",
+          "weight": 0.952,
+          "lookupPath": "probe-head-gem-6-0/probe-head-gem-6-0"
+        },
+        {
+          "key": "probe-head-gem-6-1",
+          "weight": 0.048,
+          "lookupPath": "probe-head-gem-6-1/probe-head-gem-6-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-7-0",
+          "weight": 0.904,
+          "lookupPath": "probe-head-gem-7-0/probe-head-gem-7-0"
+        },
+        {
+          "key": "probe-head-gem-7-1",
+          "weight": 0.096,
+          "lookupPath": "probe-head-gem-7-1/probe-head-gem-7-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-8-0",
+          "weight": 0.872,
+          "lookupPath": "probe-head-gem-8-0/probe-head-gem-8-0"
+        },
+        {
+          "key": "probe-head-gem-8-1",
+          "weight": 0.128,
+          "lookupPath": "probe-head-gem-8-1/probe-head-gem-8-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-9-0",
+          "weight": 0.864,
+          "lookupPath": "probe-head-gem-9-0/probe-head-gem-9-0"
+        },
+        {
+          "key": "probe-head-gem-9-1",
+          "weight": 0.136,
+          "lookupPath": "probe-head-gem-9-1/probe-head-gem-9-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-10-0",
+          "weight": 0.896,
+          "lookupPath": "probe-head-gem-10-0/probe-head-gem-10-0"
+        },
+        {
+          "key": "probe-head-gem-10-1",
+          "weight": 0.104,
+          "lookupPath": "probe-head-gem-10-1/probe-head-gem-10-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-11-0",
+          "weight": 0.888,
+          "lookupPath": "probe-head-gem-11-0/probe-head-gem-11-0"
+        },
+        {
+          "key": "probe-head-gem-11-1",
+          "weight": 0.112,
+          "lookupPath": "probe-head-gem-11-1/probe-head-gem-11-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-head-gem-12-0",
+          "weight": 0.84,
+          "lookupPath": "probe-head-gem-12-0/probe-head-gem-12-0"
+        },
+        {
+          "key": "probe-head-gem-12-1",
+          "weight": 0.16,
+          "lookupPath": "probe-head-gem-12-1/probe-head-gem-12-1"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "back-front",
+    "vertices": [
+      [
+        {
+          "key": "probe-back-front-0-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-0-0/probe-back-front-0-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-1-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-1-0/probe-back-front-1-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-2-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-2-0/probe-back-front-2-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-3-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-3-0/probe-back-front-3-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-4-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-4-0/probe-back-front-4-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-5-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-5-0/probe-back-front-5-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-6-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-6-0/probe-back-front-6-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-7-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-7-0/probe-back-front-7-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-8-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-8-0/probe-back-front-8-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-9-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-9-0/probe-back-front-9-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-10-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-10-0/probe-back-front-10-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-11-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-11-0/probe-back-front-11-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-front-12-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-front-12-0/probe-back-front-12-0"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "back-rear",
+    "vertices": [
+      [
+        {
+          "key": "probe-back-rear-0-0",
+          "weight": 0.04,
+          "lookupPath": "probe-back-rear-0-0/probe-back-rear-0-0"
+        },
+        {
+          "key": "probe-back-rear-0-1",
+          "weight": 0.96,
+          "lookupPath": "probe-back-rear-0-1/probe-back-rear-0-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-1-0",
+          "weight": 0.032,
+          "lookupPath": "probe-back-rear-1-0/probe-back-rear-1-0"
+        },
+        {
+          "key": "probe-back-rear-1-1",
+          "weight": 0.968,
+          "lookupPath": "probe-back-rear-1-1/probe-back-rear-1-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-2-0",
+          "weight": 0.184,
+          "lookupPath": "probe-back-rear-2-0/probe-back-rear-2-0"
+        },
+        {
+          "key": "probe-back-rear-2-1",
+          "weight": 0.47654,
+          "lookupPath": "probe-back-rear-2-1/probe-back-rear-2-1"
+        },
+        {
+          "key": "probe-back-rear-2-2",
+          "weight": 0.33945,
+          "lookupPath": "probe-back-rear-2-2/probe-back-rear-2-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-3-0",
+          "weight": 0.328,
+          "lookupPath": "probe-back-rear-3-0/probe-back-rear-3-0"
+        },
+        {
+          "key": "probe-back-rear-3-1",
+          "weight": 0.63437,
+          "lookupPath": "probe-back-rear-3-1/probe-back-rear-3-1"
+        },
+        {
+          "key": "probe-back-rear-3-2",
+          "weight": 0.03763,
+          "lookupPath": "probe-back-rear-3-2/probe-back-rear-3-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-4-0",
+          "weight": 0.704,
+          "lookupPath": "probe-back-rear-4-0/probe-back-rear-4-0"
+        },
+        {
+          "key": "probe-back-rear-4-1",
+          "weight": 0.296,
+          "lookupPath": "probe-back-rear-4-1/probe-back-rear-4-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-5-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-rear-5-0/probe-back-rear-5-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-6-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-rear-6-0/probe-back-rear-6-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-7-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-rear-7-0/probe-back-rear-7-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-8-0",
+          "weight": 1.0,
+          "lookupPath": "probe-back-rear-8-0/probe-back-rear-8-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-9-0",
+          "weight": 0.904,
+          "lookupPath": "probe-back-rear-9-0/probe-back-rear-9-0"
+        },
+        {
+          "key": "probe-back-rear-9-1",
+          "weight": 0.096,
+          "lookupPath": "probe-back-rear-9-1/probe-back-rear-9-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-10-0",
+          "weight": 0.92,
+          "lookupPath": "probe-back-rear-10-0/probe-back-rear-10-0"
+        },
+        {
+          "key": "probe-back-rear-10-1",
+          "weight": 0.08,
+          "lookupPath": "probe-back-rear-10-1/probe-back-rear-10-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-11-0",
+          "weight": 0.76,
+          "lookupPath": "probe-back-rear-11-0/probe-back-rear-11-0"
+        },
+        {
+          "key": "probe-back-rear-11-1",
+          "weight": 0.24,
+          "lookupPath": "probe-back-rear-11-1/probe-back-rear-11-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-12-0",
+          "weight": 0.744,
+          "lookupPath": "probe-back-rear-12-0/probe-back-rear-12-0"
+        },
+        {
+          "key": "probe-back-rear-12-1",
+          "weight": 0.256,
+          "lookupPath": "probe-back-rear-12-1/probe-back-rear-12-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-13-0",
+          "weight": 0.42561,
+          "lookupPath": "probe-back-rear-13-0/probe-back-rear-13-0"
+        },
+        {
+          "key": "probe-back-rear-13-1",
+          "weight": 0.51882,
+          "lookupPath": "probe-back-rear-13-1/probe-back-rear-13-1"
+        },
+        {
+          "key": "probe-back-rear-13-2",
+          "weight": 0.05557,
+          "lookupPath": "probe-back-rear-13-2/probe-back-rear-13-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-14-0",
+          "weight": 0.16,
+          "lookupPath": "probe-back-rear-14-0/probe-back-rear-14-0"
+        },
+        {
+          "key": "probe-back-rear-14-1",
+          "weight": 0.56448,
+          "lookupPath": "probe-back-rear-14-1/probe-back-rear-14-1"
+        },
+        {
+          "key": "probe-back-rear-14-2",
+          "weight": 0.27552,
+          "lookupPath": "probe-back-rear-14-2/probe-back-rear-14-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-15-0",
+          "weight": 0.104,
+          "lookupPath": "probe-back-rear-15-0/probe-back-rear-15-0"
+        },
+        {
+          "key": "probe-back-rear-15-1",
+          "weight": 0.896,
+          "lookupPath": "probe-back-rear-15-1/probe-back-rear-15-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-16-0",
+          "weight": 0.104,
+          "lookupPath": "probe-back-rear-16-0/probe-back-rear-16-0"
+        },
+        {
+          "key": "probe-back-rear-16-1",
+          "weight": 0.896,
+          "lookupPath": "probe-back-rear-16-1/probe-back-rear-16-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-back-rear-17-0",
+          "weight": 0.072,
+          "lookupPath": "probe-back-rear-17-0/probe-back-rear-17-0"
+        },
+        {
+          "key": "probe-back-rear-17-1",
+          "weight": 0.928,
+          "lookupPath": "probe-back-rear-17-1/probe-back-rear-17-1"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "front-leg",
+    "vertices": [
+      [
+        {
+          "key": "probe-front-leg-0-0",
+          "weight": 0.09349,
+          "lookupPath": "probe-front-leg-0-0/probe-front-leg-0-0"
+        },
+        {
+          "key": "probe-front-leg-0-1",
+          "weight": 0.90651,
+          "lookupPath": "probe-front-leg-0-1/probe-front-leg-0-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-1-0",
+          "weight": 0.09669,
+          "lookupPath": "probe-front-leg-1-0/probe-front-leg-1-0"
+        },
+        {
+          "key": "probe-front-leg-1-1",
+          "weight": 0.90331,
+          "lookupPath": "probe-front-leg-1-1/probe-front-leg-1-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-2-0",
+          "weight": 0.11759,
+          "lookupPath": "probe-front-leg-2-0/probe-front-leg-2-0"
+        },
+        {
+          "key": "probe-front-leg-2-1",
+          "weight": 0.88241,
+          "lookupPath": "probe-front-leg-2-1/probe-front-leg-2-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-3-0",
+          "weight": 0.11709,
+          "lookupPath": "probe-front-leg-3-0/probe-front-leg-3-0"
+        },
+        {
+          "key": "probe-front-leg-3-1",
+          "weight": 0.88291,
+          "lookupPath": "probe-front-leg-3-1/probe-front-leg-3-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-4-0",
+          "weight": 1.0,
+          "lookupPath": "probe-front-leg-4-0/probe-front-leg-4-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-5-0",
+          "weight": 1.0,
+          "lookupPath": "probe-front-leg-5-0/probe-front-leg-5-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-6-0",
+          "weight": 1.0,
+          "lookupPath": "probe-front-leg-6-0/probe-front-leg-6-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-7-0",
+          "weight": 1.0,
+          "lookupPath": "probe-front-leg-7-0/probe-front-leg-7-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-8-0",
+          "weight": 0.64,
+          "lookupPath": "probe-front-leg-8-0/probe-front-leg-8-0"
+        },
+        {
+          "key": "probe-front-leg-8-1",
+          "weight": 0.36,
+          "lookupPath": "probe-front-leg-8-1/probe-front-leg-8-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-9-0",
+          "weight": 1.0,
+          "lookupPath": "probe-front-leg-9-0/probe-front-leg-9-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-10-0",
+          "weight": 0.112,
+          "lookupPath": "probe-front-leg-10-0/probe-front-leg-10-0"
+        },
+        {
+          "key": "probe-front-leg-10-1",
+          "weight": 0.56832,
+          "lookupPath": "probe-front-leg-10-1/probe-front-leg-10-1"
+        },
+        {
+          "key": "probe-front-leg-10-2",
+          "weight": 0.31968,
+          "lookupPath": "probe-front-leg-10-2/probe-front-leg-10-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-11-0",
+          "weight": 0.24348,
+          "lookupPath": "probe-front-leg-11-0/probe-front-leg-11-0"
+        },
+        {
+          "key": "probe-front-leg-11-1",
+          "weight": 0.52192,
+          "lookupPath": "probe-front-leg-11-1/probe-front-leg-11-1"
+        },
+        {
+          "key": "probe-front-leg-11-2",
+          "weight": 0.2346,
+          "lookupPath": "probe-front-leg-11-2/probe-front-leg-11-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-12-0",
+          "weight": 0.20752,
+          "lookupPath": "probe-front-leg-12-0/probe-front-leg-12-0"
+        },
+        {
+          "key": "probe-front-leg-12-1",
+          "weight": 0.62144,
+          "lookupPath": "probe-front-leg-12-1/probe-front-leg-12-1"
+        },
+        {
+          "key": "probe-front-leg-12-2",
+          "weight": 0.17104,
+          "lookupPath": "probe-front-leg-12-2/probe-front-leg-12-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-13-0",
+          "weight": 0.384,
+          "lookupPath": "probe-front-leg-13-0/probe-front-leg-13-0"
+        },
+        {
+          "key": "probe-front-leg-13-1",
+          "weight": 0.616,
+          "lookupPath": "probe-front-leg-13-1/probe-front-leg-13-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-14-0",
+          "weight": 0.4,
+          "lookupPath": "probe-front-leg-14-0/probe-front-leg-14-0"
+        },
+        {
+          "key": "probe-front-leg-14-1",
+          "weight": 0.216,
+          "lookupPath": "probe-front-leg-14-1/probe-front-leg-14-1"
+        },
+        {
+          "key": "probe-front-leg-14-2",
+          "weight": 0.384,
+          "lookupPath": "probe-front-leg-14-2/probe-front-leg-14-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-15-0",
+          "weight": 0.49401,
+          "lookupPath": "probe-front-leg-15-0/probe-front-leg-15-0"
+        },
+        {
+          "key": "probe-front-leg-15-1",
+          "weight": 0.50599,
+          "lookupPath": "probe-front-leg-15-1/probe-front-leg-15-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-16-0",
+          "weight": 0.69476,
+          "lookupPath": "probe-front-leg-16-0/probe-front-leg-16-0"
+        },
+        {
+          "key": "probe-front-leg-16-1",
+          "weight": 0.30524,
+          "lookupPath": "probe-front-leg-16-1/probe-front-leg-16-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-17-0",
+          "weight": 0.62773,
+          "lookupPath": "probe-front-leg-17-0/probe-front-leg-17-0"
+        },
+        {
+          "key": "probe-front-leg-17-1",
+          "weight": 0.37227,
+          "lookupPath": "probe-front-leg-17-1/probe-front-leg-17-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-18-0",
+          "weight": 0.67302,
+          "lookupPath": "probe-front-leg-18-0/probe-front-leg-18-0"
+        },
+        {
+          "key": "probe-front-leg-18-1",
+          "weight": 0.32698,
+          "lookupPath": "probe-front-leg-18-1/probe-front-leg-18-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-19-0",
+          "weight": 0.83866,
+          "lookupPath": "probe-front-leg-19-0/probe-front-leg-19-0"
+        },
+        {
+          "key": "probe-front-leg-19-1",
+          "weight": 0.16134,
+          "lookupPath": "probe-front-leg-19-1/probe-front-leg-19-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-20-0",
+          "weight": 0.85923,
+          "lookupPath": "probe-front-leg-20-0/probe-front-leg-20-0"
+        },
+        {
+          "key": "probe-front-leg-20-1",
+          "weight": 0.14077,
+          "lookupPath": "probe-front-leg-20-1/probe-front-leg-20-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-21-0",
+          "weight": 0.86052,
+          "lookupPath": "probe-front-leg-21-0/probe-front-leg-21-0"
+        },
+        {
+          "key": "probe-front-leg-21-1",
+          "weight": 0.13948,
+          "lookupPath": "probe-front-leg-21-1/probe-front-leg-21-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-22-0",
+          "weight": 0.86324,
+          "lookupPath": "probe-front-leg-22-0/probe-front-leg-22-0"
+        },
+        {
+          "key": "probe-front-leg-22-1",
+          "weight": 0.13676,
+          "lookupPath": "probe-front-leg-22-1/probe-front-leg-22-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-23-0",
+          "weight": 0.86492,
+          "lookupPath": "probe-front-leg-23-0/probe-front-leg-23-0"
+        },
+        {
+          "key": "probe-front-leg-23-1",
+          "weight": 0.13508,
+          "lookupPath": "probe-front-leg-23-1/probe-front-leg-23-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-24-0",
+          "weight": 0.86269,
+          "lookupPath": "probe-front-leg-24-0/probe-front-leg-24-0"
+        },
+        {
+          "key": "probe-front-leg-24-1",
+          "weight": 0.13731,
+          "lookupPath": "probe-front-leg-24-1/probe-front-leg-24-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-25-0",
+          "weight": 0.8349,
+          "lookupPath": "probe-front-leg-25-0/probe-front-leg-25-0"
+        },
+        {
+          "key": "probe-front-leg-25-1",
+          "weight": 0.1651,
+          "lookupPath": "probe-front-leg-25-1/probe-front-leg-25-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-26-0",
+          "weight": 0.77314,
+          "lookupPath": "probe-front-leg-26-0/probe-front-leg-26-0"
+        },
+        {
+          "key": "probe-front-leg-26-1",
+          "weight": 0.22686,
+          "lookupPath": "probe-front-leg-26-1/probe-front-leg-26-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-27-0",
+          "weight": 0.68462,
+          "lookupPath": "probe-front-leg-27-0/probe-front-leg-27-0"
+        },
+        {
+          "key": "probe-front-leg-27-1",
+          "weight": 0.31538,
+          "lookupPath": "probe-front-leg-27-1/probe-front-leg-27-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-28-0",
+          "weight": 0.5883,
+          "lookupPath": "probe-front-leg-28-0/probe-front-leg-28-0"
+        },
+        {
+          "key": "probe-front-leg-28-1",
+          "weight": 0.4117,
+          "lookupPath": "probe-front-leg-28-1/probe-front-leg-28-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-29-0",
+          "weight": 0.48054,
+          "lookupPath": "probe-front-leg-29-0/probe-front-leg-29-0"
+        },
+        {
+          "key": "probe-front-leg-29-1",
+          "weight": 0.51946,
+          "lookupPath": "probe-front-leg-29-1/probe-front-leg-29-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-30-0",
+          "weight": 0.33158,
+          "lookupPath": "probe-front-leg-30-0/probe-front-leg-30-0"
+        },
+        {
+          "key": "probe-front-leg-30-1",
+          "weight": 0.66842,
+          "lookupPath": "probe-front-leg-30-1/probe-front-leg-30-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-31-0",
+          "weight": 0.25474,
+          "lookupPath": "probe-front-leg-31-0/probe-front-leg-31-0"
+        },
+        {
+          "key": "probe-front-leg-31-1",
+          "weight": 0.74527,
+          "lookupPath": "probe-front-leg-31-1/probe-front-leg-31-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-32-0",
+          "weight": 0.1902,
+          "lookupPath": "probe-front-leg-32-0/probe-front-leg-32-0"
+        },
+        {
+          "key": "probe-front-leg-32-1",
+          "weight": 0.8098,
+          "lookupPath": "probe-front-leg-32-1/probe-front-leg-32-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-33-0",
+          "weight": 0.13424,
+          "lookupPath": "probe-front-leg-33-0/probe-front-leg-33-0"
+        },
+        {
+          "key": "probe-front-leg-33-1",
+          "weight": 0.86576,
+          "lookupPath": "probe-front-leg-33-1/probe-front-leg-33-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-34-0",
+          "weight": 0.09748,
+          "lookupPath": "probe-front-leg-34-0/probe-front-leg-34-0"
+        },
+        {
+          "key": "probe-front-leg-34-1",
+          "weight": 0.90252,
+          "lookupPath": "probe-front-leg-34-1/probe-front-leg-34-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-35-0",
+          "weight": 0.08111,
+          "lookupPath": "probe-front-leg-35-0/probe-front-leg-35-0"
+        },
+        {
+          "key": "probe-front-leg-35-1",
+          "weight": 0.91889,
+          "lookupPath": "probe-front-leg-35-1/probe-front-leg-35-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-36-0",
+          "weight": 0.08507,
+          "lookupPath": "probe-front-leg-36-0/probe-front-leg-36-0"
+        },
+        {
+          "key": "probe-front-leg-36-1",
+          "weight": 0.91493,
+          "lookupPath": "probe-front-leg-36-1/probe-front-leg-36-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-front-leg-37-0",
+          "weight": 0.10854,
+          "lookupPath": "probe-front-leg-37-0/probe-front-leg-37-0"
+        },
+        {
+          "key": "probe-front-leg-37-1",
+          "weight": 0.89146,
+          "lookupPath": "probe-front-leg-37-1/probe-front-leg-37-1"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "rear-leg",
+    "vertices": [
+      [
+        {
+          "key": "probe-rear-leg-0-0",
+          "weight": 1.0,
+          "lookupPath": "probe-rear-leg-0-0/probe-rear-leg-0-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-1-0",
+          "weight": 1.0,
+          "lookupPath": "probe-rear-leg-1-0/probe-rear-leg-1-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-2-0",
+          "weight": 0.88,
+          "lookupPath": "probe-rear-leg-2-0/probe-rear-leg-2-0"
+        },
+        {
+          "key": "probe-rear-leg-2-1",
+          "weight": 0.12,
+          "lookupPath": "probe-rear-leg-2-1/probe-rear-leg-2-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-3-0",
+          "weight": 0.936,
+          "lookupPath": "probe-rear-leg-3-0/probe-rear-leg-3-0"
+        },
+        {
+          "key": "probe-rear-leg-3-1",
+          "weight": 0.064,
+          "lookupPath": "probe-rear-leg-3-1/probe-rear-leg-3-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-4-0",
+          "weight": 1.0,
+          "lookupPath": "probe-rear-leg-4-0/probe-rear-leg-4-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-5-0",
+          "weight": 1.0,
+          "lookupPath": "probe-rear-leg-5-0/probe-rear-leg-5-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-6-0",
+          "weight": 1.0,
+          "lookupPath": "probe-rear-leg-6-0/probe-rear-leg-6-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-rear-leg-7-0",
+          "weight": 1.0,
+          "lookupPath": "probe-rear-leg-7-0/probe-rear-leg-7-0"
+        }
+      ]
+    ]
+  },
+  {
+    "id": "tail",
+    "vertices": [
+      [
+        {
+          "key": "probe-tail-0-0",
+          "weight": 0.25838,
+          "lookupPath": "probe-tail-0-0/probe-tail-0-0"
+        },
+        {
+          "key": "probe-tail-0-1",
+          "weight": 0.58962,
+          "lookupPath": "probe-tail-0-1/probe-tail-0-1"
+        },
+        {
+          "key": "probe-tail-0-2",
+          "weight": 0.152,
+          "lookupPath": "probe-tail-0-2/probe-tail-0-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-1-0",
+          "weight": 0.67006,
+          "lookupPath": "probe-tail-1-0/probe-tail-1-0"
+        },
+        {
+          "key": "probe-tail-1-1",
+          "weight": 0.00522,
+          "lookupPath": "probe-tail-1-1/probe-tail-1-1"
+        },
+        {
+          "key": "probe-tail-1-2",
+          "weight": 0.04339,
+          "lookupPath": "probe-tail-1-2/probe-tail-1-2"
+        },
+        {
+          "key": "probe-tail-1-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-1-3/probe-tail-1-3"
+        },
+        {
+          "key": "probe-tail-1-4",
+          "weight": 0.18532,
+          "lookupPath": "probe-tail-1-4/probe-tail-1-4"
+        },
+        {
+          "key": "probe-tail-1-5",
+          "weight": 0.096,
+          "lookupPath": "probe-tail-1-5/probe-tail-1-5"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-2-0",
+          "weight": 0.69126,
+          "lookupPath": "probe-tail-2-0/probe-tail-2-0"
+        },
+        {
+          "key": "probe-tail-2-1",
+          "weight": 0.10201,
+          "lookupPath": "probe-tail-2-1/probe-tail-2-1"
+        },
+        {
+          "key": "probe-tail-2-2",
+          "weight": 0.04794,
+          "lookupPath": "probe-tail-2-2/probe-tail-2-2"
+        },
+        {
+          "key": "probe-tail-2-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-2-3/probe-tail-2-3"
+        },
+        {
+          "key": "probe-tail-2-4",
+          "weight": 0.01479,
+          "lookupPath": "probe-tail-2-4/probe-tail-2-4"
+        },
+        {
+          "key": "probe-tail-2-5",
+          "weight": 0.144,
+          "lookupPath": "probe-tail-2-5/probe-tail-2-5"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-3-0",
+          "weight": 0.39813,
+          "lookupPath": "probe-tail-3-0/probe-tail-3-0"
+        },
+        {
+          "key": "probe-tail-3-1",
+          "weight": 0.44751,
+          "lookupPath": "probe-tail-3-1/probe-tail-3-1"
+        },
+        {
+          "key": "probe-tail-3-2",
+          "weight": 0.00235,
+          "lookupPath": "probe-tail-3-2/probe-tail-3-2"
+        },
+        {
+          "key": "probe-tail-3-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-3-3/probe-tail-3-3"
+        },
+        {
+          "key": "probe-tail-3-4",
+          "weight": 0.152,
+          "lookupPath": "probe-tail-3-4/probe-tail-3-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-4-0",
+          "weight": 0.10415,
+          "lookupPath": "probe-tail-4-0/probe-tail-4-0"
+        },
+        {
+          "key": "probe-tail-4-1",
+          "weight": 0.70432,
+          "lookupPath": "probe-tail-4-1/probe-tail-4-1"
+        },
+        {
+          "key": "probe-tail-4-2",
+          "weight": 0.07954,
+          "lookupPath": "probe-tail-4-2/probe-tail-4-2"
+        },
+        {
+          "key": "probe-tail-4-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-4-3/probe-tail-4-3"
+        },
+        {
+          "key": "probe-tail-4-4",
+          "weight": 0.112,
+          "lookupPath": "probe-tail-4-4/probe-tail-4-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-5-0",
+          "weight": 0.01031,
+          "lookupPath": "probe-tail-5-0/probe-tail-5-0"
+        },
+        {
+          "key": "probe-tail-5-1",
+          "weight": 0.58054,
+          "lookupPath": "probe-tail-5-1/probe-tail-5-1"
+        },
+        {
+          "key": "probe-tail-5-2",
+          "weight": 0.40912,
+          "lookupPath": "probe-tail-5-2/probe-tail-5-2"
+        },
+        {
+          "key": "probe-tail-5-3",
+          "weight": 3e-05,
+          "lookupPath": "probe-tail-5-3/probe-tail-5-3"
+        },
+        {
+          "key": "probe-tail-5-4",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-5-4/probe-tail-5-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-6-0",
+          "weight": 0.23439,
+          "lookupPath": "probe-tail-6-0/probe-tail-6-0"
+        },
+        {
+          "key": "probe-tail-6-1",
+          "weight": 0.7516,
+          "lookupPath": "probe-tail-6-1/probe-tail-6-1"
+        },
+        {
+          "key": "probe-tail-6-2",
+          "weight": 0.01401,
+          "lookupPath": "probe-tail-6-2/probe-tail-6-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-7-0",
+          "weight": 0.04491,
+          "lookupPath": "probe-tail-7-0/probe-tail-7-0"
+        },
+        {
+          "key": "probe-tail-7-1",
+          "weight": 0.62042,
+          "lookupPath": "probe-tail-7-1/probe-tail-7-1"
+        },
+        {
+          "key": "probe-tail-7-2",
+          "weight": 0.33467,
+          "lookupPath": "probe-tail-7-2/probe-tail-7-2"
+        },
+        {
+          "key": "probe-tail-7-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-7-3/probe-tail-7-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-8-0",
+          "weight": 0.55033,
+          "lookupPath": "probe-tail-8-0/probe-tail-8-0"
+        },
+        {
+          "key": "probe-tail-8-1",
+          "weight": 0.44967,
+          "lookupPath": "probe-tail-8-1/probe-tail-8-1"
+        },
+        {
+          "key": "probe-tail-8-2",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-8-2/probe-tail-8-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-9-0",
+          "weight": 0.02634,
+          "lookupPath": "probe-tail-9-0/probe-tail-9-0"
+        },
+        {
+          "key": "probe-tail-9-1",
+          "weight": 0.94102,
+          "lookupPath": "probe-tail-9-1/probe-tail-9-1"
+        },
+        {
+          "key": "probe-tail-9-2",
+          "weight": 0.03265,
+          "lookupPath": "probe-tail-9-2/probe-tail-9-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-10-0",
+          "weight": 0.56544,
+          "lookupPath": "probe-tail-10-0/probe-tail-10-0"
+        },
+        {
+          "key": "probe-tail-10-1",
+          "weight": 0.43456,
+          "lookupPath": "probe-tail-10-1/probe-tail-10-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-11-0",
+          "weight": 0.09599,
+          "lookupPath": "probe-tail-11-0/probe-tail-11-0"
+        },
+        {
+          "key": "probe-tail-11-1",
+          "weight": 0.90225,
+          "lookupPath": "probe-tail-11-1/probe-tail-11-1"
+        },
+        {
+          "key": "probe-tail-11-2",
+          "weight": 0.00175,
+          "lookupPath": "probe-tail-11-2/probe-tail-11-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-12-0",
+          "weight": 0.80904,
+          "lookupPath": "probe-tail-12-0/probe-tail-12-0"
+        },
+        {
+          "key": "probe-tail-12-1",
+          "weight": 0.19096,
+          "lookupPath": "probe-tail-12-1/probe-tail-12-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-13-0",
+          "weight": 0.19456,
+          "lookupPath": "probe-tail-13-0/probe-tail-13-0"
+        },
+        {
+          "key": "probe-tail-13-1",
+          "weight": 0.80544,
+          "lookupPath": "probe-tail-13-1/probe-tail-13-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-14-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-14-0/probe-tail-14-0"
+        },
+        {
+          "key": "probe-tail-14-1",
+          "weight": 0.01529,
+          "lookupPath": "probe-tail-14-1/probe-tail-14-1"
+        },
+        {
+          "key": "probe-tail-14-2",
+          "weight": 0.97738,
+          "lookupPath": "probe-tail-14-2/probe-tail-14-2"
+        },
+        {
+          "key": "probe-tail-14-3",
+          "weight": 0.00733,
+          "lookupPath": "probe-tail-14-3/probe-tail-14-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-15-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-15-0/probe-tail-15-0"
+        },
+        {
+          "key": "probe-tail-15-1",
+          "weight": 0.87275,
+          "lookupPath": "probe-tail-15-1/probe-tail-15-1"
+        },
+        {
+          "key": "probe-tail-15-2",
+          "weight": 0.12725,
+          "lookupPath": "probe-tail-15-2/probe-tail-15-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-16-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-16-0/probe-tail-16-0"
+        },
+        {
+          "key": "probe-tail-16-1",
+          "weight": 0.40345,
+          "lookupPath": "probe-tail-16-1/probe-tail-16-1"
+        },
+        {
+          "key": "probe-tail-16-2",
+          "weight": 0.59655,
+          "lookupPath": "probe-tail-16-2/probe-tail-16-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-17-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-17-0/probe-tail-17-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-18-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-18-0/probe-tail-18-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-19-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-19-0/probe-tail-19-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-20-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-20-0/probe-tail-20-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-21-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-21-0/probe-tail-21-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-22-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-22-0/probe-tail-22-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-23-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-23-0/probe-tail-23-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-24-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-24-0/probe-tail-24-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-25-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-25-0/probe-tail-25-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-26-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-26-0/probe-tail-26-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-27-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-27-0/probe-tail-27-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-28-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-28-0/probe-tail-28-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-29-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-29-0/probe-tail-29-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-30-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-30-0/probe-tail-30-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-31-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-31-0/probe-tail-31-0"
+        },
+        {
+          "key": "probe-tail-31-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-31-1/probe-tail-31-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-32-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-32-0/probe-tail-32-0"
+        },
+        {
+          "key": "probe-tail-32-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-32-1/probe-tail-32-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-33-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-33-0/probe-tail-33-0"
+        },
+        {
+          "key": "probe-tail-33-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-33-1/probe-tail-33-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-34-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-34-0/probe-tail-34-0"
+        },
+        {
+          "key": "probe-tail-34-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-34-1/probe-tail-34-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-35-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-35-0/probe-tail-35-0"
+        },
+        {
+          "key": "probe-tail-35-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-35-1/probe-tail-35-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-36-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-36-0/probe-tail-36-0"
+        },
+        {
+          "key": "probe-tail-36-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-36-1/probe-tail-36-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-37-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-37-0/probe-tail-37-0"
+        },
+        {
+          "key": "probe-tail-37-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-37-1/probe-tail-37-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-38-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-38-0/probe-tail-38-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-39-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-39-0/probe-tail-39-0"
+        },
+        {
+          "key": "probe-tail-39-1",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-39-1/probe-tail-39-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-40-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-40-0/probe-tail-40-0"
+        },
+        {
+          "key": "probe-tail-40-1",
+          "weight": 8e-05,
+          "lookupPath": "probe-tail-40-1/probe-tail-40-1"
+        },
+        {
+          "key": "probe-tail-40-2",
+          "weight": 0.99992,
+          "lookupPath": "probe-tail-40-2/probe-tail-40-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-41-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-41-0/probe-tail-41-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-42-0",
+          "weight": 0.01783,
+          "lookupPath": "probe-tail-42-0/probe-tail-42-0"
+        },
+        {
+          "key": "probe-tail-42-1",
+          "weight": 0.98217,
+          "lookupPath": "probe-tail-42-1/probe-tail-42-1"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-43-0",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-43-0/probe-tail-43-0"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-44-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-44-0/probe-tail-44-0"
+        },
+        {
+          "key": "probe-tail-44-1",
+          "weight": 0.4732,
+          "lookupPath": "probe-tail-44-1/probe-tail-44-1"
+        },
+        {
+          "key": "probe-tail-44-2",
+          "weight": 0.5268,
+          "lookupPath": "probe-tail-44-2/probe-tail-44-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-45-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-45-0/probe-tail-45-0"
+        },
+        {
+          "key": "probe-tail-45-1",
+          "weight": 0.92111,
+          "lookupPath": "probe-tail-45-1/probe-tail-45-1"
+        },
+        {
+          "key": "probe-tail-45-2",
+          "weight": 0.07889,
+          "lookupPath": "probe-tail-45-2/probe-tail-45-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-46-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-46-0/probe-tail-46-0"
+        },
+        {
+          "key": "probe-tail-46-1",
+          "weight": 0.02708,
+          "lookupPath": "probe-tail-46-1/probe-tail-46-1"
+        },
+        {
+          "key": "probe-tail-46-2",
+          "weight": 0.97291,
+          "lookupPath": "probe-tail-46-2/probe-tail-46-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-47-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-47-0/probe-tail-47-0"
+        },
+        {
+          "key": "probe-tail-47-1",
+          "weight": 0.85769,
+          "lookupPath": "probe-tail-47-1/probe-tail-47-1"
+        },
+        {
+          "key": "probe-tail-47-2",
+          "weight": 0.1423,
+          "lookupPath": "probe-tail-47-2/probe-tail-47-2"
+        },
+        {
+          "key": "probe-tail-47-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-47-3/probe-tail-47-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-48-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-48-0/probe-tail-48-0"
+        },
+        {
+          "key": "probe-tail-48-1",
+          "weight": 0.04792,
+          "lookupPath": "probe-tail-48-1/probe-tail-48-1"
+        },
+        {
+          "key": "probe-tail-48-2",
+          "weight": 0.95208,
+          "lookupPath": "probe-tail-48-2/probe-tail-48-2"
+        },
+        {
+          "key": "probe-tail-48-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-48-3/probe-tail-48-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-49-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-49-0/probe-tail-49-0"
+        },
+        {
+          "key": "probe-tail-49-1",
+          "weight": 0.5247,
+          "lookupPath": "probe-tail-49-1/probe-tail-49-1"
+        },
+        {
+          "key": "probe-tail-49-2",
+          "weight": 0.4753,
+          "lookupPath": "probe-tail-49-2/probe-tail-49-2"
+        },
+        {
+          "key": "probe-tail-49-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-49-3/probe-tail-49-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-50-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-50-0/probe-tail-50-0"
+        },
+        {
+          "key": "probe-tail-50-1",
+          "weight": 0.02075,
+          "lookupPath": "probe-tail-50-1/probe-tail-50-1"
+        },
+        {
+          "key": "probe-tail-50-2",
+          "weight": 0.91063,
+          "lookupPath": "probe-tail-50-2/probe-tail-50-2"
+        },
+        {
+          "key": "probe-tail-50-3",
+          "weight": 0.06862,
+          "lookupPath": "probe-tail-50-3/probe-tail-50-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-51-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-51-0/probe-tail-51-0"
+        },
+        {
+          "key": "probe-tail-51-1",
+          "weight": 0.46677,
+          "lookupPath": "probe-tail-51-1/probe-tail-51-1"
+        },
+        {
+          "key": "probe-tail-51-2",
+          "weight": 0.53323,
+          "lookupPath": "probe-tail-51-2/probe-tail-51-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-52-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-52-0/probe-tail-52-0"
+        },
+        {
+          "key": "probe-tail-52-1",
+          "weight": 0.00315,
+          "lookupPath": "probe-tail-52-1/probe-tail-52-1"
+        },
+        {
+          "key": "probe-tail-52-2",
+          "weight": 0.85892,
+          "lookupPath": "probe-tail-52-2/probe-tail-52-2"
+        },
+        {
+          "key": "probe-tail-52-3",
+          "weight": 0.13789,
+          "lookupPath": "probe-tail-52-3/probe-tail-52-3"
+        },
+        {
+          "key": "probe-tail-52-4",
+          "weight": 5e-05,
+          "lookupPath": "probe-tail-52-4/probe-tail-52-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-53-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-53-0/probe-tail-53-0"
+        },
+        {
+          "key": "probe-tail-53-1",
+          "weight": 0.05581,
+          "lookupPath": "probe-tail-53-1/probe-tail-53-1"
+        },
+        {
+          "key": "probe-tail-53-2",
+          "weight": 0.92802,
+          "lookupPath": "probe-tail-53-2/probe-tail-53-2"
+        },
+        {
+          "key": "probe-tail-53-3",
+          "weight": 0.01613,
+          "lookupPath": "probe-tail-53-3/probe-tail-53-3"
+        },
+        {
+          "key": "probe-tail-53-4",
+          "weight": 3e-05,
+          "lookupPath": "probe-tail-53-4/probe-tail-53-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-54-0",
+          "weight": 0.37059,
+          "lookupPath": "probe-tail-54-0/probe-tail-54-0"
+        },
+        {
+          "key": "probe-tail-54-1",
+          "weight": 0.6294,
+          "lookupPath": "probe-tail-54-1/probe-tail-54-1"
+        },
+        {
+          "key": "probe-tail-54-2",
+          "weight": 1e-05,
+          "lookupPath": "probe-tail-54-2/probe-tail-54-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-55-0",
+          "weight": 0.01642,
+          "lookupPath": "probe-tail-55-0/probe-tail-55-0"
+        },
+        {
+          "key": "probe-tail-55-1",
+          "weight": 0.79211,
+          "lookupPath": "probe-tail-55-1/probe-tail-55-1"
+        },
+        {
+          "key": "probe-tail-55-2",
+          "weight": 0.19145,
+          "lookupPath": "probe-tail-55-2/probe-tail-55-2"
+        },
+        {
+          "key": "probe-tail-55-3",
+          "weight": 2e-05,
+          "lookupPath": "probe-tail-55-3/probe-tail-55-3"
+        },
+        {
+          "key": "probe-tail-55-4",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-55-4/probe-tail-55-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-56-0",
+          "weight": 0.15983,
+          "lookupPath": "probe-tail-56-0/probe-tail-56-0"
+        },
+        {
+          "key": "probe-tail-56-1",
+          "weight": 0.81287,
+          "lookupPath": "probe-tail-56-1/probe-tail-56-1"
+        },
+        {
+          "key": "probe-tail-56-2",
+          "weight": 0.02729,
+          "lookupPath": "probe-tail-56-2/probe-tail-56-2"
+        },
+        {
+          "key": "probe-tail-56-3",
+          "weight": 1e-05,
+          "lookupPath": "probe-tail-56-3/probe-tail-56-3"
+        },
+        {
+          "key": "probe-tail-56-4",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-56-4/probe-tail-56-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-57-0",
+          "weight": 0.62731,
+          "lookupPath": "probe-tail-57-0/probe-tail-57-0"
+        },
+        {
+          "key": "probe-tail-57-1",
+          "weight": 0.36684,
+          "lookupPath": "probe-tail-57-1/probe-tail-57-1"
+        },
+        {
+          "key": "probe-tail-57-2",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-57-2/probe-tail-57-2"
+        },
+        {
+          "key": "probe-tail-57-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-57-3/probe-tail-57-3"
+        },
+        {
+          "key": "probe-tail-57-4",
+          "weight": 0.00585,
+          "lookupPath": "probe-tail-57-4/probe-tail-57-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-58-0",
+          "weight": 0.84929,
+          "lookupPath": "probe-tail-58-0/probe-tail-58-0"
+        },
+        {
+          "key": "probe-tail-58-1",
+          "weight": 0.07269,
+          "lookupPath": "probe-tail-58-1/probe-tail-58-1"
+        },
+        {
+          "key": "probe-tail-58-2",
+          "weight": 5e-05,
+          "lookupPath": "probe-tail-58-2/probe-tail-58-2"
+        },
+        {
+          "key": "probe-tail-58-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-58-3/probe-tail-58-3"
+        },
+        {
+          "key": "probe-tail-58-4",
+          "weight": 0.07797,
+          "lookupPath": "probe-tail-58-4/probe-tail-58-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-59-0",
+          "weight": 0.58752,
+          "lookupPath": "probe-tail-59-0/probe-tail-59-0"
+        },
+        {
+          "key": "probe-tail-59-1",
+          "weight": 0.00012,
+          "lookupPath": "probe-tail-59-1/probe-tail-59-1"
+        },
+        {
+          "key": "probe-tail-59-2",
+          "weight": 3e-05,
+          "lookupPath": "probe-tail-59-2/probe-tail-59-2"
+        },
+        {
+          "key": "probe-tail-59-3",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-59-3/probe-tail-59-3"
+        },
+        {
+          "key": "probe-tail-59-4",
+          "weight": 0.41233,
+          "lookupPath": "probe-tail-59-4/probe-tail-59-4"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-60-0",
+          "weight": 0.02182,
+          "lookupPath": "probe-tail-60-0/probe-tail-60-0"
+        },
+        {
+          "key": "probe-tail-60-1",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-60-1/probe-tail-60-1"
+        },
+        {
+          "key": "probe-tail-60-2",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-60-2/probe-tail-60-2"
+        },
+        {
+          "key": "probe-tail-60-3",
+          "weight": 0.97818,
+          "lookupPath": "probe-tail-60-3/probe-tail-60-3"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-61-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-61-0/probe-tail-61-0"
+        },
+        {
+          "key": "probe-tail-61-1",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-61-1/probe-tail-61-1"
+        },
+        {
+          "key": "probe-tail-61-2",
+          "weight": 1.0,
+          "lookupPath": "probe-tail-61-2/probe-tail-61-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-62-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-62-0/probe-tail-62-0"
+        },
+        {
+          "key": "probe-tail-62-1",
+          "weight": 0.904,
+          "lookupPath": "probe-tail-62-1/probe-tail-62-1"
+        },
+        {
+          "key": "probe-tail-62-2",
+          "weight": 0.096,
+          "lookupPath": "probe-tail-62-2/probe-tail-62-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-63-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-63-0/probe-tail-63-0"
+        },
+        {
+          "key": "probe-tail-63-1",
+          "weight": 0.792,
+          "lookupPath": "probe-tail-63-1/probe-tail-63-1"
+        },
+        {
+          "key": "probe-tail-63-2",
+          "weight": 0.208,
+          "lookupPath": "probe-tail-63-2/probe-tail-63-2"
+        }
+      ],
+      [
+        {
+          "key": "probe-tail-64-0",
+          "weight": 0.0,
+          "lookupPath": "probe-tail-64-0/probe-tail-64-0"
+        },
+        {
+          "key": "probe-tail-64-1",
+          "weight": 0.616,
+          "lookupPath": "probe-tail-64-1/probe-tail-64-1"
+        },
+        {
+          "key": "probe-tail-64-2",
+          "weight": 0.384,
+          "lookupPath": "probe-tail-64-2/probe-tail-64-2"
+        }
+      ]
+    ]
+  }
+]

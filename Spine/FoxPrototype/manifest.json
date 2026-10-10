@@ -1,0 +1,64 @@
+{
+  "status": "prototype; visual and deformation acceptance required",
+  "sourceAnimation": "ninilite original authored curves; translations retargeted by bone family",
+  "bones": 42,
+  "slots": 18,
+  "meshAttachments": 17,
+  "contactPoints": 2,
+  "animations": [
+    "idle",
+    "fmove",
+    "prepare"
+  ],
+  "reference": "Q-huli.png",
+  "gait": {
+    "facesRight": false,
+    "cycleSeconds": 1,
+    "stanceFraction": 0.55,
+    "stanceTravel": 105.6,
+    "stanceModelSpeed": 192,
+    "ankleGroundY": 57
+  },
+  "armWidths": {
+    "nearUpperArm": [
+      21.12,
+      26
+    ],
+    "farUpperArm": [
+      23.36,
+      27
+    ],
+    "nearForearm": [
+      33.88,
+      31
+    ],
+    "farForearm": [
+      36.52,
+      32
+    ]
+  },
+  "retainedPNGBytes": true,
+  "remaining": [
+    "native silhouette and motion review",
+    "rear hair region overlap",
+    "walking facial animation",
+    "joint weight refinement",
+    "start/stop/facing and scene acceptance"
+  ],
+  "runtimeUse": {
+    "scene": "ControlPod",
+    "asset": "fox-runtime.json",
+    "source": "Docs/artwork/fox-export/fox-chibi-spine.skel",
+    "animations": [
+      "idle",
+      "fmove",
+      "prepare"
+    ],
+    "artAcceptance": "Movement enabled by user request; further art refinement remains possible",
+    "packager": "Tools/install_fox_runtime.py",
+    "faceAnchors": [
+      "mouthCenter",
+      "mouthAxis"
+    ]
+  }
+}

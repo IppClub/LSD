@@ -1,264 +1,305 @@
 -- [yue]: Script/Academy/Map.yue
 local _module_0 = { } -- 1
 local Data = require("Platformer").Data -- 1
-local routes = { -- 5
-	LoopTowerInitial = { -- 6
-		name = "开场螺旋塔", -- 6
-		right = { -- 8
-			name = "右边门", -- 8
-			enter = "left", -- 9
-			targets = { -- 10
-				"PreparationRoom" -- 10
-			} -- 10
-		} -- 7
-	}, -- 5
-	PreparationRoom = { -- 13
-		name = "备战室", -- 13
-		left = { -- 15
-			name = "左边门", -- 15
-			enter = "right", -- 16
-			targets = { -- 17
-				"PassageA" -- 17
-			} -- 17
-		}, -- 14
-		right = { -- 19
-			name = "右边门", -- 19
-			enter = "left", -- 20
-			targets = { -- 21
-				"PassageB" -- 21
-			} -- 21
-		} -- 18
-	}, -- 12
-	OperationRoom = { -- 24
-		name = "指挥室", -- 24
-		left = { -- 26
-			name = "左边门", -- 26
-			enter = "right", -- 27
-			targets = { -- 28
-				"PassageC" -- 28
-			} -- 28
-		}, -- 25
-		right = { -- 30
-			name = "右边门", -- 30
-			enter = "left", -- 31
-			targets = { } -- 32
-		} -- 29
-	}, -- 23
-	RDRoom = { -- 35
-		name = "研发室", -- 35
-		left = { -- 37
-			name = "左边门", -- 37
-			enter = "right", -- 38
-			targets = { -- 39
-				"PassageD" -- 39
-			} -- 39
-		}, -- 36
-		right = { -- 41
-			name = "右边门", -- 41
-			enter = "", -- 42
-			targets = { } -- 43
-		} -- 40
-	}, -- 34
-	RestRoom = { -- 46
-		name = "休息室", -- 46
-		left = { -- 48
-			name = "左边门", -- 48
-			enter = "", -- 49
-			targets = { } -- 50
-		}, -- 47
-		right = { -- 52
-			name = "右边门", -- 52
-			enter = "left", -- 53
-			targets = { -- 54
-				"PassageA" -- 54
-			} -- 54
-		} -- 51
-	}, -- 45
-	TrainingRoom = { -- 57
-		name = "训练室", -- 57
-		left = { -- 59
-			name = "左边门", -- 59
-			enter = "right", -- 60
-			targets = { -- 61
-				"PassageB" -- 61
-			} -- 61
-		}, -- 58
-		right = { -- 63
-			name = "右边门", -- 63
-			enter = "", -- 64
-			targets = { } -- 65
-		} -- 62
-	}, -- 56
-	PassageA = { -- 68
-		name = "A区走廊", -- 68
-		left = { -- 70
-			name = "左边门", -- 70
-			enter = "right", -- 71
-			targets = { -- 72
-				"RestRoom" -- 72
-			} -- 72
-		}, -- 69
-		right = { -- 74
-			name = "右边门", -- 74
-			enter = "left", -- 75
-			targets = { -- 76
-				"PreparationRoom" -- 76
-			} -- 76
-		}, -- 73
-		center = { -- 78
-			name = "电梯", -- 78
-			enter = "center", -- 79
-			targets = { -- 80
-				"PassageC" -- 80
-			} -- 80
-		} -- 77
-	}, -- 67
-	PassageB = { -- 83
-		name = "B区走廊", -- 83
-		left = { -- 85
-			name = "左边门", -- 85
-			enter = "right", -- 86
-			targets = { -- 87
-				"PreparationRoom" -- 87
-			} -- 87
-		}, -- 84
-		right = { -- 89
-			name = "右边门", -- 89
-			enter = "left", -- 90
-			targets = { -- 91
-				"TrainingRoom" -- 91
-			} -- 91
-		}, -- 88
-		center = { -- 93
-			name = "电梯", -- 93
-			enter = "center", -- 94
-			targets = { -- 95
-				"PassageA", -- 95
-				"PassageC" -- 95
-			} -- 95
-		} -- 92
-	}, -- 82
-	PassageC = { -- 98
-		name = "C区走廊", -- 98
-		left = { -- 100
-			name = "左边门", -- 100
-			enter = "", -- 101
-			targets = { } -- 102
-		}, -- 99
-		right = { -- 104
-			name = "右边门", -- 104
-			enter = "left", -- 105
-			targets = { -- 106
-				"OperationRoom" -- 106
-			} -- 106
-		}, -- 103
-		center = { -- 108
-			name = "电梯", -- 108
-			enter = "center", -- 109
-			targets = { -- 110
-				"PassageA", -- 110
-				"PassageD" -- 110
-			} -- 110
-		} -- 107
-	}, -- 97
-	PassageD = { -- 113
-		name = "D区走廊", -- 113
-		left = { -- 115
-			name = "左边门", -- 115
-			enter = "", -- 116
-			targets = { } -- 117
-		}, -- 114
-		right = { -- 119
-			name = "右边门", -- 119
-			enter = "left", -- 120
-			targets = { -- 121
-				"RDRoom" -- 121
-			} -- 121
-		}, -- 118
-		center = { -- 123
-			name = "电梯", -- 123
-			enter = "center", -- 124
-			targets = { -- 125
-				"PassageC" -- 125
-			} -- 125
-		} -- 122
-	} -- 112
-} -- 4
-local states = { -- 128
-	{ -- 128
-		PreparationRoom = true, -- 128
-		PassageA = true, -- 129
-		RestRoom = true -- 130
+local DB = require("Dora").DB -- 2
+local routes = { -- 6
+	LoopTowerInitial = { -- 7
+		name = "开场螺旋塔", -- 7
+		right = { -- 9
+			name = "右边门", -- 9
+			enter = "left", -- 10
+			targets = { -- 11
+				"PreparationRoom" -- 11
+			} -- 11
+		} -- 8
+	}, -- 6
+	PreparationRoom = { -- 14
+		name = "备战室", -- 14
+		left = { -- 16
+			name = "左边门", -- 16
+			enter = "right", -- 17
+			targets = { -- 18
+				"PassageA" -- 18
+			} -- 18
+		}, -- 15
+		right = { -- 20
+			name = "右边门", -- 20
+			enter = "left", -- 21
+			targets = { -- 22
+				"PassageB" -- 22
+			} -- 22
+		} -- 19
+	}, -- 13
+	OperationRoom = { -- 25
+		name = "指挥室", -- 25
+		left = { -- 27
+			name = "左边门", -- 27
+			enter = "right", -- 28
+			targets = { -- 29
+				"PassageC" -- 29
+			} -- 29
+		}, -- 26
+		right = { -- 31
+			name = "右边门", -- 31
+			enter = "left", -- 32
+			targets = { } -- 33
+		} -- 30
+	}, -- 24
+	RDRoom = { -- 36
+		name = "研发室", -- 36
+		left = { -- 38
+			name = "左边门", -- 38
+			enter = "right", -- 39
+			targets = { -- 40
+				"PassageD" -- 40
+			} -- 40
+		}, -- 37
+		right = { -- 42
+			name = "右边门", -- 42
+			enter = "", -- 43
+			targets = { } -- 44
+		} -- 41
+	}, -- 35
+	RestRoom = { -- 47
+		name = "休息室", -- 47
+		left = { -- 49
+			name = "左边门", -- 49
+			enter = "", -- 50
+			targets = { } -- 51
+		}, -- 48
+		right = { -- 53
+			name = "右边门", -- 53
+			enter = "left", -- 54
+			targets = { -- 55
+				"PassageA" -- 55
+			} -- 55
+		} -- 52
+	}, -- 46
+	TrainingRoom = { -- 58
+		name = "训练室", -- 58
+		left = { -- 60
+			name = "左边门", -- 60
+			enter = "right", -- 61
+			targets = { -- 62
+				"PassageB" -- 62
+			} -- 62
+		}, -- 59
+		right = { -- 64
+			name = "右边门", -- 64
+			enter = "", -- 65
+			targets = { } -- 66
+		} -- 63
+	}, -- 57
+	PassageA = { -- 69
+		name = "A区走廊", -- 69
+		left = { -- 71
+			name = "左边门", -- 71
+			enter = "right", -- 72
+			targets = { -- 73
+				"RestRoom" -- 73
+			} -- 73
+		}, -- 70
+		right = { -- 75
+			name = "右边门", -- 75
+			enter = "left", -- 76
+			targets = { -- 77
+				"PreparationRoom" -- 77
+			} -- 77
+		}, -- 74
+		center = { -- 79
+			name = "电梯", -- 79
+			enter = "center", -- 80
+			targets = { -- 81
+				"PassageC" -- 81
+			} -- 81
+		} -- 78
+	}, -- 68
+	PassageB = { -- 84
+		name = "B区走廊", -- 84
+		left = { -- 86
+			name = "左边门", -- 86
+			enter = "right", -- 87
+			targets = { -- 88
+				"PreparationRoom" -- 88
+			} -- 88
+		}, -- 85
+		right = { -- 90
+			name = "右边门", -- 90
+			enter = "left", -- 91
+			targets = { -- 92
+				"TrainingRoom" -- 92
+			} -- 92
+		}, -- 89
+		center = { -- 94
+			name = "电梯", -- 94
+			enter = "center", -- 95
+			targets = { -- 96
+				"PassageA", -- 96
+				"PassageC" -- 96
+			} -- 96
+		} -- 93
+	}, -- 83
+	PassageC = { -- 99
+		name = "C区走廊", -- 99
+		left = { -- 101
+			name = "站台通道", -- 101
+			enter = "right", -- 102
+			targets = { -- 103
+				"Station" -- 103
+			} -- 103
+		}, -- 100
+		right = { -- 105
+			name = "右边门", -- 105
+			enter = "left", -- 106
+			targets = { -- 107
+				"OperationRoom" -- 107
+			} -- 107
+		}, -- 104
+		center = { -- 109
+			name = "电梯", -- 109
+			enter = "center", -- 110
+			targets = { -- 111
+				"PassageA", -- 111
+				"PassageD" -- 111
+			} -- 111
+		} -- 108
+	}, -- 98
+	PassageD = { -- 114
+		name = "D区走廊", -- 114
+		left = { -- 116
+			name = "左边门", -- 116
+			enter = "right", -- 117
+			targets = { -- 118
+				"LibraryRoom" -- 118
+			} -- 118
+		}, -- 115
+		right = { -- 120
+			name = "右边门", -- 120
+			enter = "left", -- 121
+			targets = { -- 122
+				"RDRoom" -- 122
+			} -- 122
+		}, -- 119
+		center = { -- 124
+			name = "电梯", -- 124
+			enter = "center", -- 125
+			targets = { -- 126
+				"PassageC" -- 126
+			} -- 126
+		} -- 123
+	}, -- 113
+	LibraryRoom = { -- 129
+		name = "资料室", -- 129
+		left = { -- 131
+			name = "左边门", -- 131
+			enter = "", -- 132
+			targets = { } -- 133
+		}, -- 130
+		right = { -- 135
+			name = "右边门", -- 135
+			enter = "left", -- 136
+			targets = { -- 137
+				"PassageD" -- 137
+			} -- 137
+		} -- 134
 	}, -- 128
-	{ -- 132
-		PassageB = true, -- 132
-		TrainingRoom = true -- 133
-	}, -- 132
-	{ -- 135
-		PassageC = true, -- 135
-		OperationRoom = true -- 136
-	}, -- 135
-	{ -- 138
-		PassageD = true, -- 138
-		RDRoom = true -- 139
-	} -- 138
-} -- 127
-local isAvailable -- 141
-isAvailable = function(name) -- 141
-	local level -- 142
-	do -- 142
-		local _exp_0 = Data.store.academyLevel -- 142
-		if _exp_0 ~= nil then -- 142
-			level = _exp_0 -- 142
-		else -- 142
-			level = #states -- 142
-		end -- 142
-	end -- 142
-	for i = 1, level do -- 143
-		if states[i][name] then -- 144
-			return true -- 145
-		end -- 144
-	end -- 143
-	return false -- 146
-end -- 141
-local getRoute -- 148
-getRoute = function(name, route) -- 148
-	do -- 149
-		local _des_0 -- 149
-		do -- 149
-			local _obj_0 = routes[name] -- 149
-			if _obj_0 ~= nil then -- 149
-				_des_0 = _obj_0[route] -- 149
-			end -- 149
-		end -- 149
-		if _des_0 then -- 149
-			local enter, targets -- 149
-			name, enter, targets = _des_0.name, _des_0.enter, _des_0.targets -- 149
-			do -- 150
-				local _accum_0 = { } -- 150
-				local _len_0 = 1 -- 150
-				for _index_0 = 1, #targets do -- 150
-					local target = targets[_index_0] -- 150
-					if isAvailable(target) then -- 150
-						_accum_0[_len_0] = target -- 150
-						_len_0 = _len_0 + 1 -- 150
-					end -- 150
-				end -- 150
-				targets = _accum_0 -- 150
-			end -- 150
-			return name, enter, targets -- 151
-		end -- 149
-	end -- 149
-	return nil, nil, nil -- 152
-end -- 148
-_module_0["getRoute"] = getRoute -- 148
-local getName -- 154
-getName = function(nameEN) -- 154
-	local _obj_0 = routes[nameEN] -- 154
-	if _obj_0 ~= nil then -- 154
-		return _obj_0.name -- 154
-	end -- 154
-	return nil -- 154
-end -- 154
-_module_0["getName"] = getName -- 154
+	Station = { -- 140
+		name = "地铁站台", -- 140
+		right = { -- 142
+			name = "学院通道", -- 142
+			enter = "left", -- 143
+			targets = { -- 144
+				"PassageC" -- 144
+			} -- 144
+		} -- 141
+	} -- 139
+} -- 5
+local states = { -- 147
+	{ -- 147
+		PreparationRoom = true, -- 147
+		PassageA = true, -- 148
+		RestRoom = true -- 149
+	}, -- 147
+	{ -- 151
+		PassageB = true, -- 151
+		TrainingRoom = true -- 152
+	}, -- 151
+	{ -- 154
+		PassageC = true, -- 154
+		OperationRoom = true -- 155
+	}, -- 154
+	{ -- 157
+		PassageD = true, -- 157
+		RDRoom = true, -- 158
+		LibraryRoom = true, -- 159
+		Station = true -- 160
+	} -- 157
+} -- 146
+local isAvailable -- 162
+isAvailable = function(name) -- 162
+	if name == "Station" then -- 163
+		if not (DB:existDB("lsd") and DB:exist("Game0StoryUnlocks", "lsd")) then -- 164
+			return false -- 164
+		end -- 164
+		local rows = DB:query("SELECT id FROM lsd.Game0StoryUnlocks WHERE id='archive-discovered'") -- 165
+		if not (rows and #rows > 0) then -- 166
+			return false -- 166
+		end -- 166
+	end -- 163
+	local level -- 167
+	do -- 167
+		local _exp_0 = Data.store.academyLevel -- 167
+		if _exp_0 ~= nil then -- 167
+			level = _exp_0 -- 167
+		else -- 167
+			level = #states -- 167
+		end -- 167
+	end -- 167
+	for i = 1, level do -- 168
+		if states[i][name] then -- 169
+			return true -- 170
+		end -- 169
+	end -- 168
+	return false -- 171
+end -- 162
+local getRoute -- 173
+getRoute = function(name, route) -- 173
+	do -- 174
+		local _des_0 -- 174
+		do -- 174
+			local _obj_0 = routes[name] -- 174
+			if _obj_0 ~= nil then -- 174
+				_des_0 = _obj_0[route] -- 174
+			end -- 174
+		end -- 174
+		if _des_0 then -- 174
+			local enter, targets -- 174
+			name, enter, targets = _des_0.name, _des_0.enter, _des_0.targets -- 174
+			do -- 175
+				local _accum_0 = { } -- 175
+				local _len_0 = 1 -- 175
+				for _index_0 = 1, #targets do -- 175
+					local target = targets[_index_0] -- 175
+					if isAvailable(target) then -- 175
+						_accum_0[_len_0] = target -- 175
+						_len_0 = _len_0 + 1 -- 175
+					end -- 175
+				end -- 175
+				targets = _accum_0 -- 175
+			end -- 175
+			return name, enter, targets -- 176
+		end -- 174
+	end -- 174
+	return nil, nil, nil -- 177
+end -- 173
+_module_0["getRoute"] = getRoute -- 173
+local getName -- 179
+getName = function(nameEN) -- 179
+	local _obj_0 = routes[nameEN] -- 179
+	if _obj_0 ~= nil then -- 179
+		return _obj_0.name -- 179
+	end -- 179
+	return nil -- 179
+end -- 179
+_module_0["getName"] = getName -- 179
 return _module_0 -- 1

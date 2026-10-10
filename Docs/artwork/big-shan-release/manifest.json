@@ -1,0 +1,12 @@
+{
+  "source": "Spine/dashanxiao.skel",
+  "sha256": "411ea6c4687e2fffdfd11cc6b8c304f35b9efdab6cab3c3e9e54c4f73cb02af0",
+  "exporter": "4.3.26",
+  "originalBonesAnimationsSlotsAttachmentsPreserved": true,
+  "purpose": "Front palm and 27 animated clipping-edge probes",
+  "palmUV": [
+    0.28,
+    0.7
+  ],
+  "addedPortalTracksOnly": true
+}

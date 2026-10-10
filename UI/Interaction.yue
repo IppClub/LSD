@@ -2,6 +2,7 @@ _ENV = Dora
 import global
 import "UI.InputButton"
 import "UI.View.Interaction"
+Fit = require "UI.FitInteraction"
 
 -- [signals]
 -- "Tapped", (buttonIndex)->
@@ -13,7 +14,7 @@ export default Class Interaction,
 		index = 1
 		for {text, textBG} in *buttons
 			buttonIndex = index
-			@menu\addChild with InputButton :text, :textBG
+			@menu\addChild with InputButton :text, textBG: textBG or ""
 				@menu.enabled = false
 				\slot "Tapped", -> @emit "Tapped", buttonIndex
 			index += 1
@@ -21,6 +22,10 @@ export default Class Interaction,
 		@menu.size = size
 		@menu\alignItems 5
 		@slot "Remove", -> @removeFromParent!
+		title = @children.first
+		Fit.title title, args.fliped
+		@screenBoundsTargets = {title, title.children.last, @menu}
+		require("UI.KeepOnScreen") @, @screenBoundsTargets
 
 	show: =>
 		@menu.enabled = true

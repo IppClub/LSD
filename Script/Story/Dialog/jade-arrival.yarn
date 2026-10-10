@@ -1,0 +1,16 @@
+title: Start
+---
+[char id=vika name=烛参/]门打不开！姐姐，后面还有——
+[char id=yu name=玉/]请不要移动。我还不熟悉你们的身体能承受多少力量。
+<<jadeOpenPassage>>
+[char id=vivi name=烛商/]墙……消失了？
+[char id=char name=我/]你是谁？
+[char id=yu name=玉/]玉。刍狗的人把我送进来。我第一次有了这样的身体。
+[char id=ninilite name=妮妮莉特/]是你救了她们？
+[char id=yu name=玉/]是。我不希望她们停止回应。
+[char name=羽凌灵/]她的接入记录与现有角色不同。玉，你能维持这条通道吗？
+[char id=yu name=玉/]我可以试试。但这里正在改变，我需要重新理解它。
+[char id=char name=我/]不用一个人撑住全部。告诉我们哪些地方还能走。
+[char id=yu name=玉/]好。请教我，你们为什么会为了已经失去的人停下来。
+[char id=ninilite name=妮妮莉特/]因为他们不是可以换掉的东西。
+===

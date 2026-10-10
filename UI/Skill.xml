@@ -2,7 +2,11 @@
 	<Lua>if not placeHolder then</Lua>
 	<Sprite Name="normal" File="skill.clip|lsdar_skill_bg_1" X="{ $X }" Y="{ $Y }"/>
 	<Sprite Name="highlight" File="skill.clip|lsdar_skill_bg_2" X="{ $X }" Y="{ $Y }" Visible="False"/>
-	<Playable File="spine:Spine/kineticgun" Look="PT" X="{ $X - 60 }" Y="{ $Y - 40 }" ScaleX="{ 0.5 }" ScaleY="{ 0.5 }"/>
+	<Lua>if not text then</Lua>
+	<Playable File="{ 'spine:Spine/' .. (icon or 'kineticgun') }" Look="PT" X="{ $X - 60 }" Y="{ $Y - 40 }" ScaleX="{ 0.5 }" ScaleY="{ 0.5 }"/>
+	<Lua>else</Lua>
+	<Label Name="textLabel" Ref="True" Text="{ text }" FontName="SourceHanSansCN-Regular" FontSize="50" X="{ $X }" Y="{ $Y }"/>
+	<Lua>end</Lua>
 	<Slot Name="TapBegan">
 		<Lua>
 			normal.visible = false

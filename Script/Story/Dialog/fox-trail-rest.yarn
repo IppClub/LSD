@@ -1,0 +1,19 @@
+title: Start
+---
+<<preload "char", "villywan">>
+[char name=大狐狸/]感觉你挺累了，要不要补充体力休息一下
+[char id=char name=我/]好
+<<foxFood>>
+<<foxVillyArrive>>
+[char id=villywan name=万薇莉/]滴一只威力万已上线
+[char id=char name=我/]吓死我了，你从哪冒出来的
+[char id=villywan name=万薇莉/]（无辜的语气）我一直跟着你们啊，你们居然没发现吗？是你警惕心太低还是我太聪明了呢？说明你们非常需要我哦
+[char id=char name=我/]你是桃源谷的人，我不希望你的行动会给桃源谷带来灾祸
+[char id=villywan name=万薇莉/]你不说，它不说，我不说，没人知道桃源谷的存在
+[char id=villywan name=万薇莉/]我好不容易溜出来玩，你就别赶我走了
+[char id=char name=我/]这么说，你阿爹阿娘还有族里的人都不知道你溜出来了？
+[char id=villywan name=万薇莉/]我留了一封信，说玩几天就回去
+[char id=char name=我/]简直是胡闹
+[char id=villywan name=万薇莉/]好了好了，你不是要找什么网断了的组织吗，我们快走吧，别在这浪费时间，你总不忍心把一个小女孩丢在荒郊野外吧
+[char name=大狐狸/]算了，一起过来吧
+===

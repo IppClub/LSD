@@ -18,8 +18,7 @@ local sprite3 = Sprite("button.clip|img_1") -- 10
 node1:addChild(sprite3) -- 10
 local move = Action(Move(5,Vec2(0,0),Vec2(-180,0))) -- 12
 node1:slot("Enter",function() -- 14
-node1:perform(move) -- 14
-node1:slot("ActionEnd",function(_action_) if _action_ == move then node1:perform(move) end end) -- 14
+if node1.running then node1:perform(move, true) end -- 14
 end) -- 14
 local label1 = Label("SourceHanSansCN-Regular",50) -- 17
 label1.anchor = Vec2(0,0) -- 17

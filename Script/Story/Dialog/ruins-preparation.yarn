@@ -1,0 +1,11 @@
+title: Start
+---
+<<preload "ninilite", "wuyun", "char">>
+[char id=char name=我/]今天中午我们要去地面的遗迹城市搜集一些名为断网组织的情报
+[char id=char name=我/]还有，阿岩不见了
+[char id=wuyun name=乌云、妮妮莉特/]什么？！
+[char id=char name=我/]我怀疑，是断网组织的人干的
+[char id=wuyun name=乌云/]断网组织是什么
+[char id=char name=我/]目前已知是扰乱这个世界秩序的一个组织，具体情报还需要进一步搜集
+[char id=ninilite name=妮妮莉特/]那我们尽快出发吧
+===

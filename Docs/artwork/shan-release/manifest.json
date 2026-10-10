@@ -1,0 +1,13 @@
+{
+  "scope": "Added palm points only to exported source; native animation durations and release pose checks passed. Not byte-identical binary conversion.",
+  "sourceVersion": "4.3.08",
+  "exportVersion": "4.3.26",
+  "originalBonesAnimationsSlotsAttachmentsPreserved": true,
+  "files": {
+    "Spine/xiaoshanxiao.skel": "c5c555a6cc24aaadf1a66f7edabbe0d2786a971969d19bc5019e55db49db93d0",
+    "Spine/xiaoshanxiao-release.skel": "2d8b7b1a51dcb3175433d08e0c855237cb8d8c1291feef22644b761d2a557347",
+    "Spine/xiaoshanxiao.atlas": "3e10a0610d486e9ea02be20186f67a65fe8b271086d5f8472784fea986131df5",
+    "Spine/xiaoshanxiao.png": "7d0f51d05e633409da73533b2620142de0982e743badb3739605dffebab0da14",
+    "Data/Combat/shan-release.json": "2df02c1dd193b6da0c71f5be82f8a800fe5e1084099e37a843e29fe429353fb1"
+  }
+}

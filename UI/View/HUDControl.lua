@@ -12,6 +12,7 @@ local _ENV = Dora(args) -- 1
 local item1 = AlignNode{isRoot = true, inUI = true} -- 11
 local topControl = AlignNode{vAlign = "Top", hAlign = "Center"} -- 12
 item1:addChild(topControl) -- 12
+item1.topControl = topControl -- 12
 local sprite1 = Sprite("ar.clip|lsdar_bossblood_1") -- 13
 sprite1.y = -102.5 -- 13
 sprite1.visible = false -- 13
@@ -59,40 +60,42 @@ item1:addChild(lbControl) -- 32
 local node3 = Node() -- 33
 node3.angleY = -20 -- 33
 lbControl:addChild(node3) -- 33
-local item8 = MessageBox{y = 530, x = 414} -- 34
-node3:addChild(item8) -- 34
-local item9 = HUDMove{visible = false, y = 230, x = 414} -- 35
-node3:addChild(item9) -- 35
+local message = MessageBox{y = 530, x = 414} -- 34
+node3:addChild(message) -- 34
+item1.message = message -- 34
+local move = HUDMove{visible = false, y = 230, x = 414} -- 35
+node3:addChild(move) -- 35
+item1.move = move -- 35
 local rightControl = AlignNode{vAlign = "Center", hAlign = "Right"} -- 38
 item1:addChild(rightControl) -- 38
 local node4 = Node() -- 39
 node4.angleY = 20 -- 39
 node4.visible = false -- 39
 rightControl:addChild(node4) -- 39
-local item10 = HeadBox{y = 580, x = -223} -- 40
-node4:addChild(item10) -- 40
-local item11 = HeadBox{selected = true, y = 580 - 170, x = -223} -- 41
-node4:addChild(item11) -- 41
-local item12 = HeadBox{y = 580 - 170 * 2, x = -223} -- 42
-node4:addChild(item12) -- 42
-local item13 = HeadBox{y = 580 - 170 * 3, x = -223} -- 43
-node4:addChild(item13) -- 43
+local item8 = HeadBox{y = 580, x = -223} -- 40
+node4:addChild(item8) -- 40
+local item9 = HeadBox{selected = true, y = 580 - 170, x = -223} -- 41
+node4:addChild(item9) -- 41
+local item10 = HeadBox{y = 580 - 170 * 2, x = -223} -- 42
+node4:addChild(item10) -- 42
+local item11 = HeadBox{y = 580 - 170 * 3, x = -223} -- 43
+node4:addChild(item11) -- 43
 local node5 = Node() -- 44
 node5.x = -518 -- 44
 node5.y = 612 -- 44
 node4:addChild(node5) -- 44
-local item14 = CmdButtonS{text = "共享视野"} -- 45
-node5:addChild(item14) -- 45
-local item15 = CmdButtonS{y = -105, action = "follow", text = "跟随"} -- 46
-node5:addChild(item15) -- 46
-local item16 = CmdButtonS{y = -105 * 2, action = "cover", selected = true, text = "掩护"} -- 47
-node5:addChild(item16) -- 47
-local item17 = CmdButtonS{y = -105 * 3, action = "assemble", text = "集结"} -- 48
-node5:addChild(item17) -- 48
-local item18 = CmdButtonS{y = -105 * 4, action = "fight", text = "进攻"} -- 49
-node5:addChild(item18) -- 49
-local item19 = CmdButtonS{y = -105 * 5, action = "retreat", text = "撤退"} -- 50
-node5:addChild(item19) -- 50
+local item12 = CmdButtonS{text = "共享视野"} -- 45
+node5:addChild(item12) -- 45
+local item13 = CmdButtonS{y = -105, action = "follow", text = "跟随"} -- 46
+node5:addChild(item13) -- 46
+local item14 = CmdButtonS{y = -105 * 2, action = "cover", selected = true, text = "掩护"} -- 47
+node5:addChild(item14) -- 47
+local item15 = CmdButtonS{y = -105 * 3, action = "assemble", text = "集结"} -- 48
+node5:addChild(item15) -- 48
+local item16 = CmdButtonS{y = -105 * 4, action = "fight", text = "进攻"} -- 49
+node5:addChild(item16) -- 49
+local item17 = CmdButtonS{y = -105 * 5, action = "retreat", text = "撤退"} -- 50
+node5:addChild(item17) -- 50
 local rbControl = AlignNode{vAlign = "Bottom", hAlign = "Right"} -- 54
 item1:addChild(rbControl) -- 54
 local node6 = Node() -- 55
@@ -104,17 +107,18 @@ skillArea.x = -580 -- 56
 skillArea.y = 365 -- 56
 skillArea.size = Size(888,592) -- 56
 node6:addChild(skillArea) -- 56
-local item20 = Skill{placeHolder = true, visible = false} -- 57
-skillArea:addChild(item20) -- 57
-local item21 = Skill{placeHolder = true, visible = false} -- 58
-skillArea:addChild(item21) -- 58
-local item22 = Skill{placeHolder = true, visible = false} -- 59
-skillArea:addChild(item22) -- 59
-local item23 = Skill{placeHolder = true, visible = false} -- 60
-skillArea:addChild(item23) -- 60
-local item24 = Skill{placeHolder = true, visible = false} -- 61
-skillArea:addChild(item24) -- 61
-local weapon = Skill{visible = false} -- 62
+item1.skillArea = skillArea -- 56
+local item18 = Skill{placeHolder = true, visible = false} -- 57
+skillArea:addChild(item18) -- 57
+local item19 = Skill{placeHolder = true, visible = false} -- 58
+skillArea:addChild(item19) -- 58
+local item20 = Skill{placeHolder = true, visible = false} -- 59
+skillArea:addChild(item20) -- 59
+local item21 = Skill{placeHolder = true, visible = false} -- 60
+skillArea:addChild(item21) -- 60
+local item22 = Skill{placeHolder = true, visible = false} -- 61
+skillArea:addChild(item22) -- 61
+local weapon = Skill{icon = weaponIcon or 'kineticgun', visible = false} -- 62
 skillArea:addChild(weapon) -- 62
 item1.weapon = weapon -- 62
 weapon:slot("TapBegan",function() -- 63

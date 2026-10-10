@@ -1,0 +1,10 @@
+title: Start
+---
+<<preload "ninilite", "char">>
+[char id=ninilite name=妮妮莉特/]这里就是遗弃城市。地面没有学院的屏障，辅助机得一直工作。
+[char id=char name=我/]先核实怪物活动，再找能带回去的线索。我们不离开彼此的视野。
+[char id=ninilite name=妮妮莉特/]采集辅助机会在我们之间展开维生场。金粉在消耗，相距越远，用得越快。
+[char id=char name=我/]沿路收集金粉，必要时靠拢机器恢复。不能把所有补给耗在赶路上。
+[char id=ninilite name=妮妮莉特/]我保留了我们训练的方法。学院里记录的大多是普通怪物，遇到没见过的情况还要一起判断。
+[char id=char name=我/]先从右边的街道侦察；如果状况不对，就回到左侧列车。
+===

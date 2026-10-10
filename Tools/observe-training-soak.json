@@ -1,0 +1,5 @@
+{
+  "mode": "lua",
+  "code": "local D=require('Dora');local r=package.loaded['_lsd_training_soak_state'];assert(r,'Training soak handle missing');print(D.json.encode({status=r.status,runId=r.runId,phase=r.phase,currentCycle=r.currentCycle,completedCycles=#r.cycles,elapsed=r.elapsed,heartbeatAge=D.App.runningTime-r.heartbeat,error=r.error,lastCycle=r.cycles[#r.cycles]}))",
+  "timeoutSeconds": 5
+}

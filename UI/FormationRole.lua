@@ -12,6 +12,10 @@ ninilite = {x = 108, y = -60.5, scale = 0.42}, -- 12
 wuyun = {x = 306, y = -608.5, scale = 0.48}, -- 13
 sunborn = {x = 565, y = 9.5, scale = 0.44}, -- 14
 } -- 15
+-- Unknown roles fall back to a neutral placement instead of crashing.
+local function def(name) -- 16
+	return figureDefs[name] or {x = 240, y = -300, scale = 0.4} -- 16
+end -- 16
 return function(args) -- 1
 local _ENV = Dora(args) -- 1
 local node1 = Node() -- 17
@@ -56,10 +60,10 @@ node2.scaleY = scale -- 34
 clip:addChild(node2) -- 34
 if editing then -- 35
 local playable = Playable('spine:' .. role .. 'Figure') -- 36
-playable.x = figureDefs[role].x -- 36
-playable.y = figureDefs[role].y -- 36
-playable.scaleX = figureDefs[role].scale -- 36
-playable.scaleY = figureDefs[role].scale -- 36
+playable.x = def(role).x -- 36
+playable.y = def(role).y -- 36
+playable.scaleX = def(role).scale -- 36
+playable.scaleY = def(role).scale -- 36
 playable.speed = 0.5 -- 36
 playable:play("idle",true) -- 36
 node2:addChild(playable) -- 36
@@ -99,10 +103,10 @@ do -- 42
 end -- 42
 else -- 60
 local playable1 = Playable('spine:' .. role .. 'Figure') -- 61
-playable1.x = figureDefs[role].x -- 61
-playable1.y = figureDefs[role].y -- 61
-playable1.scaleX = figureDefs[role].scale -- 61
-playable1.scaleY = figureDefs[role].scale -- 61
+playable1.x = def(role).x -- 61
+playable1.y = def(role).y -- 61
+playable1.scaleX = def(role).scale -- 61
+playable1.scaleY = def(role).scale -- 61
 playable1.speed = 0.5 -- 61
 playable1:play("idle",true) -- 61
 node2:addChild(playable1) -- 61

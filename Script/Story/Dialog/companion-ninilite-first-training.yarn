@@ -1,0 +1,8 @@
+title: Start
+---
+<<preload "ninilite", "char">>
+[char id=ninilite name=妮妮莉特/]先看看通讯里的安排，再去训练室准备训练成果吧。
+[char id=char name=我/]训练室怎么走？
+[char id=ninilite name=妮妮莉特/]从备战室右门出去，穿过B区，再走右门就是训练室。虚拟训练场的入口也在那里。
+[char id=char name=我/]好。到时候我先示范，再看看你在试战中怎么运用。
+===

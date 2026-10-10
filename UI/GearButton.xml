@@ -9,13 +9,15 @@
 			<Stencil>
 				<Sprite File="gearBox.clip|prop_equipperd_2"/>
 			</Stencil>
-			<Node>
+			<Node Name="node2">
 				<Sprite File="gearBox.clip|prop_equipperd_2" X="170" ScaleX="1.01"/>
 				<Sprite File="gearBox.clip|prop_equipperd_2" ScaleX="1.01"/>
 				<Action>
 					<Move Name="move" Time="3" StartX="0" StopX="-170" StartY="0" StopY="0"/>
 				</Action>
-				<Slot Name="Enter" Perform="move" Loop="True"/>
+				<Slot Name="Enter">
+			<Lua>if node2.running then node2:perform(move, true) end</Lua>
+		</Slot>
 			</Node>
 		</ClipNode>
 	</Node>

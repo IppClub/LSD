@@ -22,7 +22,7 @@ sprite2.x = 0 -- 7
 sprite2.y = 0 -- 7
 sprite2.scaleX = -1 -- 7
 node2:addChild(sprite2) -- 7
-local clip = MovingText{offsetY = 25, textBG = "TARGET"} -- 8
+local clip = MovingText{offsetY = 25, textBG = ''} -- 8
 node2:addChild(clip) -- 8
 local mask = clip.mask -- 9
 local sprite3 = Sprite("button.clip|prompt_chat_name") -- 10
@@ -40,7 +40,7 @@ sprite5.anchor = Vec2(0,0) -- 16
 sprite5.x = node2.width -- 16
 sprite5.y = 0 -- 16
 node2:addChild(sprite5) -- 16
-local clip = MovingText{offsetY = 25, textBG = "TARGET"} -- 17
+local clip = MovingText{offsetY = 25, textBG = ''} -- 17
 node2:addChild(clip) -- 17
 local mask = clip.mask -- 18
 local sprite6 = Sprite("button.clip|prompt_chat_name") -- 19

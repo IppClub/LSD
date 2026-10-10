@@ -1,0 +1,16 @@
+title: Start
+---
+<<preload "ninilite", "char", "wuyun">>
+[char id=ninilite name=妮妮莉特/]我想先去休息，待在凌灵气息比较重的地方。你们不可以来打扰我哦。
+[char id=char name=我/]安心休息吧，我不会允许别人打扰你的。
+[char id=wuyun name=乌云/]小扎西应该需要休息了。
+[char id=char name=我/]你是怎么知道我的身份的？你说话的方式，像是来自另一个地方。
+[char id=wuyun name=乌云/]我有我的法子，说出来你可能不信。我也不知晓自己来自何方，但是上天在帮助我。
+[char id=char name=我/]对于上面世界的存在，你不会觉得我可恨吗？
+[char id=wuyun name=乌云/]并不。我相信有我自己的意志，不受外物影响的意志，像是冰雪下面的青石一样。
+[char id=char name=我/]或许像你这样的人，无论身处何处都是强大的。
+[char id=wuyun name=乌云/]强不强大其实不重要。我只希望在这里安静活下去，如果你们不嫌弃的话……
+[char id=char name=我/]这里有什么让你留恋的东西？
+[char id=wuyun name=乌云/]也许对每个人来说，这些意义都不一样。
+[char id=char name=我/]那就先留下来。明天，我们再一起寻找答案。
+===

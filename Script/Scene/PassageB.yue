@@ -3,5 +3,5 @@ import global
 import "Scene.Passage"
 export default Class Passage,
 	__init: =>
-		@__base.__init @, "PassageB", 1, false
+		@__base.__init @, "PassageB", 1, true
 		@tag = "PassageB"

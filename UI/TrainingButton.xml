@@ -1,5 +1,5 @@
 <Dora>
-	<Node Width="201" Height="201">
+	<Node Name="node1" Width="201" Height="201">
 		<Sprite File="gearBox.clip|prop_bg_1" X="{ $X }" Y="{ $Y }" Visible="{ not selected }"/>
 		<Sprite File="gearBox.clip|prop_bg_4" X="{ $X }" Y="{ $Y }" Visible="{ selected }"/>
 		<Sprite Name="light" File="gearBox.clip|prop_bg_3" X="{ $X }" Y="{ $Y }" Visible="{ selected }"/>
@@ -9,6 +9,8 @@
 				<Opacity Time="0.5" Start="1" Stop="0"/>
 			</Sequence>
 		</Action>
-		<Slot Name="Enter" Perform="glow" Target="light" Loop="True"/>
+		<Slot Name="Enter">
+			<Lua>if node1.running then light:perform(glow, true) end</Lua>
+		</Slot>
 	</Node>
 </Dora>

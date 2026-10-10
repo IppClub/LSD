@@ -1,0 +1,10 @@
+title: Start
+---
+[char name=乌云/]哈哈哈，刚才的战斗真是精彩，你确实很强，不过，这也不能改变什么
+[char name=乌云/]因为，我发现，有了纹记，发射炮可以自行启动
+<<roofOpenVortex>>
+[char name=我、妮妮莉特/]糟糕
+[char name=乌云/]再见了，小扎西们
+<<roofWuyunDeparture>>
+[char name=我/]我们快走
+===

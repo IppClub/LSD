@@ -96,17 +96,19 @@ export default ->
 		reaction: 2.0
 		recovery: 0.2
 		available: => @onSurface
-		create: => with @playable
-			.speed = 1.0
-			\play "idle", true
-			playIdleSpecial = coroutine.create -> while true
-				sleep 3
-				sleep \play "idle1"
+		create: =>
+			@velocityX = 0
+			with @playable
+				.speed = 1.0
 				\play "idle", true
-			@data.playIdleSpecial = playIdleSpecial
-			return =>
-				coroutine.resume playIdleSpecial
-				not @onSurface
+				playIdleSpecial = coroutine.create -> while true
+					sleep 3
+					sleep \play "idle1"
+					\play "idle", true
+				@data.playIdleSpecial = playIdleSpecial
+				return =>
+					coroutine.resume playIdleSpecial
+					not @onSurface
 
 	UnitAction\add "prepare",
 		priority: 1
@@ -139,17 +141,15 @@ export default ->
 		recovery: 0.2
 		available: => @onSurface
 		create: =>
+			-- Movement responds immediately; recovery blends only the animation.
+			:move = @unitDef
+			@velocityX = (@faceRight and move or -move)
 			with @playable
 				.speed = 1
 				\play "fmove", true
-			(action)=>
-				:elapsedTime, :recovery = action
+			=>
 				:move = @unitDef
-				moveSpeed = if elapsedTime < recovery
-					math.min elapsedTime / recovery, 1.0
-				else
-					1.0
-				@velocityX = moveSpeed * (@faceRight and move or -move)
+				@velocityX = (@faceRight and move or -move)
 				not @onSurface
 
 	UnitAction\add "keepIdle",

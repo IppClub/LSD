@@ -1,0 +1,32 @@
+title: Start
+---
+<<preload "char", "ninilite", "wuyun", "sunborn", "villywan", "vika", "vivi", "moyu", "moling", "liyena">>
+[char id=char name=我/]我回来了
+[char id=ninilite name=妮妮莉特/]太好了，你知道这几天外面我们有多担心你吗，基地找了你好久都没有线索
+[char id=wuyun name=乌云/]你总算回来了，你再不回来，我就要被妮妮莉特的眼泪淹死了
+[char id=char name=我/]哈哈，我没事，抱歉让大家担心了
+[char id=char name=我/]林睿哲，这是自愿加入的两位新成员，这只狐狸的亲族被断网组织杀害了，希望加入我们帮助行动：
+[char id=sunborn name=林睿哲/]欢迎狐狸，邀请你加入基地侦察队伍，以后就把这里当成自己的家吧
+[char name=狐狸/]谢谢
+[char id=char name=我/]至于这位，万薇莉小朋友，是我路上捡来的
+[char id=villywan name=万薇莉/]你。。。。。。哼，我才不是什么小朋友，是威力万小能手，你们基地的计算机代码，刚刚路过的时候我扫一眼就记住了，不信我背给你听
+[char id=sunborn name=林睿哲/]捡得不错，威力万小朋友就来我们计算机操作室吧
+[char id=villywan name=万薇莉/]。。。。。。（不过很快万薇莉就在编程和代码中找到了快乐）
+[char id=sunborn name=林睿哲/]烛参烛商二位，加入能源护送和研发吧，相信你们作为科研工作者后代的能力，也祝愿你们能早日解救你们的父母
+[char id=vika name=烛参/]我希望进行战斗，我要早点见到父母
+[char id=sunborn name=林睿哲/]能源和战斗一样重要，能源运输中不可避免会遇上怪物，同样需要有人战斗和保护，我只是希望你们能真正发挥所长，提高整个基地的效率，断网组织早日攻破，你们的父母也可以早日解救，这也是你们的父母希望看到的，对吗
+[char id=vika name=烛参/]还算公正合理的人员安排
+[char id=vivi name=烛商/]我听姐姐的
+[char id=sunborn name=林睿哲/]医者仁心，二位医者我自不必多言，德艺双馨，你们比我更明白医者的使命
+[char id=moyu name=半夏/]（难得严肃）定将尽心尽力
+[char id=moyu name=半夏/]（秒变笑脸，没心没肺）当然林睿哲要是有什么不舒服可以随时来找我啊，我很欢迎的
+[char id=sunborn name=林睿哲/]李叶娜，侧翼攻击和防守就交给你们了，相处多年，相信你们
+[char id=liyena name=李叶娜/]是，首领
+[char id=liyena name=李叶娜/]三位主攻队成员，接下来的战斗就辛苦你们率领了
+[char id=ninilite name=妮妮莉特/]真希望一切都快点好起来，早点见到主人
+[char id=wuyun name=乌云/]愿蓝色圣湖赐予我们祝福
+[char id=sunborn name=林睿哲/]不要忘记你的特殊使命
+[char id=char name=我/]不必多费心提醒
+[char id=sunborn name=林睿哲/]各位，希望大家各司其职，齐心对抗断网组织，守护我们的家园安定，我希望后世的人能够幸福生活，是因为曾经有守护者不曾出卖过家园
+[char name=众人/]定档竭尽全力
+===

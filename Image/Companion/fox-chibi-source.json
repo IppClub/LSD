@@ -1,0 +1,9 @@
+{
+  "source": "LSD-doc/docs/source/img/Q/Q-huli.png",
+  "artist": "双程",
+  "sha256": "def7c4d8ffb07708eed665e1e5f8345e84ed0d1f5e61c359b94b0c0029164eff",
+  "form": "九尾狐 Q版",
+  "status": "Original unmodified illustration retained for portrait and reference use. Movement scenes use the corrected Spine rig via Script/Story/FoxCompanion.lua.",
+  "animatedRuntime": "Spine/FoxPrototype/fox-runtime.json|Spine/FoxPrototype/fox-chibi-spine.atlas",
+  "animationRecord": "Docs/artwork/fox-spine-plan.md"
+}

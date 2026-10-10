@@ -11,6 +11,7 @@
 		-- local curTab = 1
 	</Lua>
 	<AlignNode Name="phone" InUI="True" IsRoot="True">
+        <Lua>if storyMode then phone:cleanup(); return require("UI.StoryJournal")(args) end</Lua>
 
 		<AlignNode Name="screenArea" HAlign="Center" VAlign="Center">
 

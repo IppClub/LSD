@@ -1,0 +1,22 @@
+title: Start
+---
+<<preload "moyu", "moling", "wuyun", "ninilite", "char">>
+[char id=moyu name=半夏/]看吧，我就说你肯定有需要我帮助的一天，而且还这么快
+[char id=moling name=忍冬/]乌鸦嘴，净给我添麻烦
+[char id=wuyun name=乌云/]乌鸦？这名字听起来好熟悉
+[char id=char name=我/]别发呆，快过来帮忙
+[char id=moyu name=半夏/]她中的是沼泽花妖的毒素，这是一种能用声音蛊惑并袭击人的怪物
+[char id=moyu name=半夏/]还好受伤不严重，稍微治疗一下就可以痊愈
+[char id=moyu name=半夏/]只是好奇你们怎么全身而退的，虽然花妖攻击力不强，但是一般被蛊惑心智后就难以脱身了
+[char id=char name=我/]乌云用歌谣让我们清醒的
+[char id=moling name=忍冬/]哦？
+[char id=wuyun name=乌云/]以前看过一些卷轴，有些了解怎么对付
+[char id=moling name=忍冬/]卷轴？
+[char id=wuyun name=乌云/]嗯，以前在草原看的一些民族奇闻志异，不过现在估计都没什么人看了，没想到居然有一天派上了用场
+[char id=moyu name=半夏/]我也要看
+[char id=wuyun name=乌云/]呃，呵呵，这个先不急，先治好妮妮莉特才是最重要的
+[char id=moyu name=半夏/]把药水上在伤口处就可以了，然后服用一些颗粒，刚刚姐姐已经做了毒素处理，估计明天就可以痊愈了
+[char id=moling name=忍冬/]完事，走了
+[char id=moyu name=半夏/]啊？这么快，那我们先告辞了，下次见，拜拜
+[char id=char name=我/]真让人头大啊
+===

@@ -1,0 +1,574 @@
+[
+  {
+    "source": "/Users/Jin/Downloads/加粗道具/道具 加粗 EMP枪 拆.psd",
+    "sha256": "3aee56f23ae9a36068720e2dfede704101c88de0a804cba567170e9e36836468",
+    "size": [
+      1835,
+      3361
+    ],
+    "preview": "source-1.png",
+    "layers": [
+      {
+        "name": "背景",
+        "visible": true,
+        "group": false,
+        "bounds": [
+          0,
+          -169,
+          1835,
+          3623
+        ]
+      },
+      {
+        "name": "EMP 捕捉枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          80,
+          2520,
+          1321,
+          2867
+        ]
+      },
+      {
+        "name": "EMP 霰弹枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          99,
+          2088,
+          1291,
+          2424
+        ]
+      },
+      {
+        "name": "EMP 机枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          94,
+          1566,
+          1367,
+          1963
+        ]
+      },
+      {
+        "name": "EMP 狙击枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          74,
+          1147,
+          1706,
+          1519
+        ]
+      },
+      {
+        "name": "EMP 突击步枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          84,
+          750,
+          1343,
+          1109
+        ]
+      },
+      {
+        "name": "EMP 微冲",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          118,
+          373,
+          853,
+          673
+        ]
+      },
+      {
+        "name": "EMP 手枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          110,
+          99,
+          514,
+          314
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/Users/Jin/Downloads/加粗道具/道具 加粗 实弹枪 拆.psd",
+    "sha256": "baa4d227e26aa07d9c199878fe038aa8512068f020613413491b12e5d6da0aa5",
+    "size": [
+      1835,
+      2959
+    ],
+    "preview": "source-2.png",
+    "layers": [
+      {
+        "name": "背景",
+        "visible": true,
+        "group": false,
+        "bounds": [
+          0,
+          -169,
+          1835,
+          3623
+        ]
+      },
+      {
+        "name": "麻醉",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          80,
+          2438,
+          1712,
+          2846
+        ]
+      },
+      {
+        "name": "霰弹",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          97,
+          2071,
+          1292,
+          2422
+        ]
+      },
+      {
+        "name": "轻机枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          89,
+          1538,
+          1587,
+          1959
+        ]
+      },
+      {
+        "name": "狙击",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          80,
+          1097,
+          1712,
+          1505
+        ]
+      },
+      {
+        "name": "突击",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          92,
+          689,
+          1340,
+          1090
+        ]
+      },
+      {
+        "name": "微冲",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          78,
+          374,
+          847,
+          650
+        ]
+      },
+      {
+        "name": "手枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          99,
+          78,
+          534,
+          310
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/Users/Jin/Downloads/加粗道具/道具 加粗 激光冷兵器&道具.psd",
+    "sha256": "b5a7d425a4300e2d9d6db093496ac80d6dbae6caecf308d07665876f59c499b2",
+    "size": [
+      3600,
+      3314
+    ],
+    "preview": "source-3.png",
+    "layers": [
+      {
+        "name": "图层 0",
+        "visible": true,
+        "group": false,
+        "bounds": [
+          0,
+          0,
+          3600,
+          3314
+        ]
+      },
+      {
+        "name": "雷",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          2634,
+          1775,
+          3232,
+          2951
+        ]
+      },
+      {
+        "name": "电脑",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          207,
+          2286,
+          1547,
+          2898
+        ]
+      },
+      {
+        "name": "手机",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          1679,
+          2013,
+          2276,
+          2962
+        ]
+      },
+      {
+        "name": "弓箭",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          177,
+          178,
+          909,
+          1661
+        ]
+      },
+      {
+        "name": "铲",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          1046,
+          214,
+          1318,
+          1604
+        ]
+      },
+      {
+        "name": "斧",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          1459,
+          512,
+          1957,
+          1491
+        ]
+      },
+      {
+        "name": "刀",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          2096,
+          265,
+          2293,
+          1564
+        ]
+      },
+      {
+        "name": "盾",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          2552,
+          572,
+          3197,
+          1518
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/Users/Jin/Downloads/加粗道具/道具 加粗 激光枪.psd",
+    "sha256": "1194067796d7a8d0de2dcdb62e81ee2c79e3efebf7862d2603a119d86e7e4fa0",
+    "size": [
+      1835,
+      2909
+    ],
+    "preview": "source-4.png",
+    "layers": [
+      {
+        "name": "背景",
+        "visible": true,
+        "group": false,
+        "bounds": [
+          0,
+          -169,
+          1835,
+          3623
+        ]
+      },
+      {
+        "name": "电子麻醉枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          71,
+          2463,
+          1480,
+          2853
+        ]
+      },
+      {
+        "name": "霰弹枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          91,
+          2072,
+          1299,
+          2410
+        ]
+      },
+      {
+        "name": "轻机枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          86,
+          1504,
+          1581,
+          1949
+        ]
+      },
+      {
+        "name": "狙击",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          80,
+          1106,
+          1711,
+          1515
+        ]
+      },
+      {
+        "name": "步枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          69,
+          689,
+          1342,
+          1085
+        ]
+      },
+      {
+        "name": "微冲",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          78,
+          381,
+          862,
+          647
+        ]
+      },
+      {
+        "name": "手枪",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          99,
+          78,
+          532,
+          357
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/Users/Jin/Downloads/加粗道具/道具 加粗 第二批小道具.psd",
+    "sha256": "63fa6742f5837b01d35087c0503ec91514ddf44191d46c248ac68abeb43f05bd",
+    "size": [
+      2354,
+      1350
+    ],
+    "preview": "source-5.png",
+    "layers": [
+      {
+        "name": "跳跃",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          559,
+          149,
+          917,
+          688
+        ]
+      },
+      {
+        "name": "速度",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          992,
+          133,
+          1278,
+          691
+        ]
+      },
+      {
+        "name": "灵活",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          109,
+          159,
+          476,
+          678
+        ]
+      },
+      {
+        "name": "臂环",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          1474,
+          67,
+          2206,
+          549
+        ]
+      },
+      {
+        "name": "全息电脑",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          1010,
+          698,
+          2244,
+          1273
+        ]
+      },
+      {
+        "name": "鸭鸭",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          127,
+          773,
+          1408,
+          1206
+        ]
+      }
+    ]
+  },
+  {
+    "source": "/Users/Jin/Downloads/加粗道具/道具 加粗 箱子.psd",
+    "sha256": "e5de810464b45d0aeb33d1a3967730ba17ef9064ad7769df9c87cc9d039d66a2",
+    "size": [
+      2442,
+      920
+    ],
+    "preview": "source-6.png",
+    "layers": [
+      {
+        "name": "图层 0",
+        "visible": true,
+        "group": false,
+        "bounds": [
+          0,
+          -1554,
+          3600,
+          1760
+        ]
+      },
+      {
+        "name": " 未知武器箱",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          108,
+          116,
+          2235,
+          846
+        ]
+      },
+      {
+        "name": "实体武器箱",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          117,
+          130,
+          2250,
+          846
+        ]
+      },
+      {
+        "name": "EMP武器箱",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          115,
+          82,
+          2244,
+          836
+        ]
+      },
+      {
+        "name": "激光武器箱",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          112,
+          100,
+          2254,
+          837
+        ]
+      },
+      {
+        "name": "小武器",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          1817,
+          431,
+          2093,
+          664
+        ]
+      },
+      {
+        "name": "长武器",
+        "visible": true,
+        "group": true,
+        "bounds": [
+          513,
+          485,
+          1106,
+          714
+        ]
+      }
+    ]
+  }
+]

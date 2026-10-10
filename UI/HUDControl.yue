@@ -8,8 +8,27 @@ export default Class HUDControl,
 		@gslot "Tutorial.Weapon", ->
 			@weapon\perform Scale 0.3, 0, 1, Ease.OutBack
 			@weapon.visible = true
+		pendingShot, pendingRelease = false, false
+		clearInput = ->
+			pendingShot, pendingRelease = false, false
+			emit "Skill.Ended", true
+		isActive = (require "UI.InputAvailability").bind @, clearInput
+		wasActive = true
+		@slot "Cleanup", clearInput
+		@keyboardEnabled = true
+		@slot "KeyDown", (key) ->
+			pendingShot = true if key == "J" and isActive! and @weapon.visible
+		@slot "KeyUp", (key) ->
+			pendingRelease = true if key == "J" and isActive! and @weapon.visible
 		@weapon\schedule ->
-			if Keyboard\isKeyDown("J") or Controller\isButtonDown 0, "a"
+			unless isActive! and @weapon.visible
+				clearInput! if wasActive
+				wasActive = false
+				return false
+			wasActive = true
+			if pendingShot or Keyboard\isKeyDown("J") or Controller\isButtonDown 0, "a"
 				emit "Skill.Began"
-			if Keyboard\isKeyUp("J") or Controller\isButtonUp 0, "a"
+			if pendingRelease or Keyboard\isKeyUp("J") or Controller\isButtonUp 0, "a"
 				emit "Skill.Ended"
+			pendingShot, pendingRelease = false, false
+			false

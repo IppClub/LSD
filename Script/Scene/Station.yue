@@ -9,6 +9,8 @@ const Offset = 100
 const PathOffset = Vec2 50, -25
 const MaxPath = 2
 const DefaultZoom = 1.0
+const AcademyExitSensor = 1001
+import "Academy.Map" as Map
 
 macro order = (value)->
 	global globals = globals or {}
@@ -40,6 +42,9 @@ addLayer = (world, def)->
 export default Class
 	sceneWidth: property -> W
 	offset: property -> Offset
+	right: property -> Vec2 W - 220, Offset
+	-- The platform has an open academy passage, not an animated room door.
+	openRightDoor: => true
 
 	addShadowTo: (unit)=>
 		with Sprite "Image/shadow.png"
@@ -82,14 +87,32 @@ export default Class
 			\attachPolygon Vec2(HW, H), W, 10, 0, 1, 1, 0
 			\attachPolygon Vec2(0, HH), 10, H, 0, 1, 1, 0
 			\attachPolygon Vec2(W, HH), 10, H, 0, 1, 1, 0
+			\attachPolygonSensor AcademyExitSensor, Vec2(W - 90, 175), 180, 350
 			.position = Vec2 0, Offset
 
 		with Body terrainDef, @, Vec2.zero
 			.group = Data.groupTerrain
 			\addTo @
+			\slot "BodyEnter", (body, sensorTag) ->
+				return unless sensorTag == AcademyExitSensor and body.entity and body.entity.player
+				if name, enter, targets := Map.getRoute "Station", "right"
+					with body.entity
+						.moveFromRight = false
+						.moveRouteName = name
+						.moveEnter = enter
+						.moveTargets = Array targets
+			\slot "BodyLeave", (body, sensorTag) ->
+				return unless sensorTag == AcademyExitSensor and body.entity and body.entity.player
+				with body.entity
+					.moveFromRight = nil
+					.moveRouteName = nil
+					.moveEnter = nil
+					.moveTargets = nil
 
 		@_zoom = 1.0
 		@gslot "AppChange", (settingName) -> if settingName == "Size" then @updateZoom!
 		@updateZoom!
 
-	loadAsync: (_self) -> Cache\loadAsync "spine:station"
+	loadAsync: (_self) ->
+		Cache\loadAsync "spine:station"
+		Cache\loadAsync "spine:ninilite"

@@ -72,8 +72,7 @@ continueIcon.y = 94 -- 49
 rightBottom:addChild(continueIcon) -- 49
 ui.continueIcon = continueIcon -- 49
 continueIcon:slot("Enter",function() -- 50
-continueIcon:perform(move) -- 50
-continueIcon:slot("ActionEnd",function(_action_) if _action_ == move then continueIcon:perform(move) end end) -- 50
+if continueIcon.running then continueIcon:perform(move, true) end -- 51
 end) -- 50
 local rightTop = AlignNode{vAlign = "Top", hAlign = "Right"} -- 53
 ui:addChild(rightTop) -- 53
@@ -117,23 +116,29 @@ do -- 77
 	local reviewW = w / scale - 160 * 2 -- 81
 	local reviewH = h / scale - 208 - 370 -- 82
 	reviewArea.y = -208 - reviewH / 2 -- 83
-	reviewArea.view:removeAllChildren() -- 84
-	local _list_0 = ui._reviews -- 85
-	for _index_0 = 1, #_list_0 do -- 85
-		local _des_0 = _list_0[_index_0] -- 85
-		local name, text = _des_0.name, _des_0.text -- 85
-		reviewArea.view:addChild(ReviewSentence({ -- 86
-			width = reviewW, -- 86
-			name = name, -- 86
-			text = text -- 86
-		})) -- 86
-	end -- 85
-	reviewArea.view:addChild(ReviewSentence({ -- 87
-		width = reviewW, -- 87
-		name = "", -- 87
-		text = "\n" -- 87
-	})) -- 87
-	reviewArea:adjustSizeWithAlign("Auto", 0, Size(reviewW, reviewH)) -- 88
+	-- 每句台词都会触发整树 AlignLayout；内容版本与尺寸未变时跳过回顾列表重建。
+	if not (ui._reviewKey == (ui._reviewRevision or 0) and ui._reviewW == reviewW and ui._reviewH == reviewH) then
+		ui._reviewKey = (ui._reviewRevision or 0)
+		ui._reviewW = reviewW
+		ui._reviewH = reviewH
+		reviewArea.view:removeAllChildren() -- 84
+		local _list_0 = ui._reviews -- 85
+		for _index_0 = 1, #_list_0 do -- 85
+			local _des_0 = _list_0[_index_0] -- 85
+			local name, text = _des_0.name, _des_0.text -- 85
+			reviewArea.view:addChild(ReviewSentence({ -- 86
+				width = reviewW, -- 86
+				name = name, -- 86
+				text = text -- 86
+			})) -- 86
+		end -- 85
+		reviewArea.view:addChild(ReviewSentence({ -- 87
+			width = reviewW, -- 87
+			name = "", -- 87
+			text = "\n" -- 87
+		})) -- 87
+		reviewArea:adjustSizeWithAlign("Auto", 0, Size(reviewW, reviewH)) -- 88
+	end
 	local offset = (w / 2) / scale - 150 -- 89
 	leftLabel1.x = -offset -- 90
 	rightLabel1.x = offset -- 91

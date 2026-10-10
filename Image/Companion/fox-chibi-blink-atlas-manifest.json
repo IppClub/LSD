@@ -1,0 +1,51 @@
+{
+  "tool": "builtin imagegen",
+  "status": "candidate eye patches; formal companion unchanged",
+  "parts": [
+    {
+      "phase": "half",
+      "clip": "Image/Companion/fox-chibi-blink-half-atlas-v1.clip|head",
+      "source": "fox-chibi-blink-half-atlas-v1.png",
+      "sha256": "b95493ea8b98d871b3cec002eb21bb6f53623b573baf8b04b687c0e1649a333b",
+      "rect": [
+        8,
+        25,
+        404,
+        425
+      ],
+      "prompt": "fox-chibi-blink-half-atlas-prompt.txt"
+    },
+    {
+      "phase": "closed",
+      "clip": "Image/Companion/fox-chibi-blink-closed-atlas-v1.clip|head",
+      "source": "fox-chibi-blink-closed-atlas-v1.png",
+      "sha256": "1d073408e2a6a45891c7c4cba76c8a2af1e37d563c8608318541d8890976caa8",
+      "rect": [
+        8,
+        25,
+        404,
+        425
+      ],
+      "prompt": "fox-chibi-blink-closed-atlas-prompt.txt"
+    }
+  ],
+  "registration": {
+    "rect": [
+      78,
+      274,
+      184,
+      60
+    ],
+    "headLocalPosition": [
+      70,
+      116
+    ],
+    "headOriginalRect": [
+      8,
+      25,
+      404,
+      425
+    ],
+    "policy": "Native eye-only clip; whole generated head rejected for silhouette drift. No PNG editing."
+  }
+}

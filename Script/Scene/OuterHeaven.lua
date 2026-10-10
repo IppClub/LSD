@@ -168,6 +168,7 @@ _module_0 = Class({ -- 65
 	width = property(function() -- 65
 		return W -- 65
 	end), -- 65
+	sceneWidth = property(function() return W end),
 	offset = property(function() -- 66
 		return Offset -- 66
 	end), -- 66

@@ -1,31 +1,90 @@
--- [yue]: Script/Start.yue
-local _ENV = Dora -- 1
-local DB <const> = DB -- 2
-local Path <const> = Path -- 2
-local Content <const> = Content -- 2
-local tostring <const> = tostring -- 2
-local Director <const> = Director -- 2
-local once <const> = once -- 2
-local require <const> = require -- 2
-if not DB:existDB("lsd") then -- 4
-	local dbPath = Path(Content.writablePath, "lsd.db") -- 5
-	DB:exec("ATTACH DATABASE '" .. tostring(dbPath) .. "' AS lsd;") -- 6
-end -- 4
-Director.entry:slot("Cleanup", function() -- 7
-	return DB:exec("DETACH DATABASE lsd") -- 7
-end) -- 7
-return Director.entry:schedule(once(function() -- 9
-	local Config = require("Data.Config") -- 10
-	Config:loadAsync() -- 11
-	Config.skipOP = 0 -- 12
-	Config.char = "charM" -- 13
-	Config.charName = "瑾" -- 14
-	Config.heroine = "于灵" -- 15
-	if Config.skipOP == nil or Config.skipOP == 0 then -- 17
-		Config.skipOP = 1 -- 18
-		local PlayOP = require("System.PlayOP") -- 19
-		PlayOP() -- 20
-	end -- 17
-	local TutorialLevel = require("Tutorial.Level") -- 22
-	return TutorialLevel() -- 23
-end)) -- 9
+local _ENV = Dora
+local DB <const> = DB
+local Path <const> = Path
+local Content <const> = Content
+local tostring <const> = tostring
+local Director <const> = Director
+local once <const> = once
+local require <const> = require
+if not DB:existDB("lsd") then
+	local dbPath = Path(Content.writablePath, "lsd.db")
+	DB:exec("ATTACH DATABASE '" .. tostring(dbPath) .. "' AS lsd;")
+end
+Director.entry:slot("Cleanup", function()
+	if DB:existDB("lsd") then
+		return DB:exec("DETACH DATABASE lsd")
+	end
+end)
+return Director.entry:schedule(once(function()
+	local Config = require("Data.Config")
+	Config:loadAsync()
+	if Config.char == nil then
+		Config.char = "charM"
+	end
+	if Config.charName == nil then
+		Config.charName = "匿名玩家"
+	end
+	if Config.heroine == nil then
+		Config.heroine = "于灵"
+	end
+	local tutorialDone = Config.tutorialCompleted == 1 or Config.tutorialCompleted == true
+	if not tutorialDone and (Config.skipOP == nil or Config.skipOP == 0) then
+		local PlayOP = require("System.PlayOP")
+		PlayOP()
+		Config.skipOP = 1
+	end
+	if tutorialDone then
+		local storyService = require("Story.Service").open()
+		local facts = storyService and storyService:summary()
+		if facts and facts.completed["final-betrayal"] then
+			local mission, err = require("Mission.Service").open()
+			if not (mission and mission:recoverAsync()) then
+				require("UI.ResumeProblem")(err or "MISSION_RECOVERY_FAILED")
+				return
+			end
+			local hub
+			hub, err = require("Ending.Hub").openAsync("records")
+			if not hub then
+				require("UI.ResumeProblem")(err)
+			end
+			return
+		end
+		local chapterThreeScene = facts and require("Story.ChapterThreeResume").scene(facts)
+		if chapterThreeScene then
+			local mission, err = require("Mission.Service").open()
+			if not (mission and mission:recoverAsync()) then
+				require("UI.ResumeProblem")(err or "MISSION_RECOVERY_FAILED")
+				return
+			end
+			require("Academy.Navigation").returnToRoomAsync(chapterThreeScene)
+			return
+		end
+		local infiltrationOptions, resumeError = nil, nil
+		if facts then
+			infiltrationOptions, resumeError = require("Story.InfiltrationStore").resumeOptions(facts)
+		end
+		if resumeError then
+			require("UI.ResumeProblem")(resumeError)
+			return
+		end
+		local foxOptions = infiltrationOptions or facts and require("Story.FoxTrailResume").options(facts)
+		if foxOptions then
+			require("Mission.Service").open():recoverAsync()
+			require("Academy.Navigation").returnToRoomAsync(foxOptions.scene, foxOptions)
+			return
+		end
+		if facts and facts.mission.unlocks["ruins-diversion-complete"] and not facts.completed["fox-trail-return"] then
+			require("Mission.Service").open():recoverAsync()
+			require("Academy.Navigation").returnToRoomAsync("OuterHeaven", {
+				spawn = 1800,
+				valleyVisit = true
+			})
+			return
+		end
+		local ArriveLevel = require("Academy.Level.Arrive")
+		return ArriveLevel()
+	else
+		local TutorialLevel = require("Tutorial.Level")
+		return TutorialLevel()
+	end
+end))

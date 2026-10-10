@@ -1,0 +1,19 @@
+title: Start
+---
+[char name=我/]快说，你们组织的指挥中心在哪里，你们组织有什么目的
+[char name=研发人员/]救······
+<<researcherCover>>
+[char name=乌云/]（动手堵住研发人员的嘴）
+[char name=我/]警告你，别发出太大声响，不然直接丢你喂狐狸
+[char name=我/]快说
+<<researcherRelease>>
+[char name=研发人员/]组织的目的是高层的事，我们这些负责听从命令的也不知道
+<<researcherFoxWarning>>
+[char name=狐狸/]（呲牙咧嘴，露出尖牙）
+[char name=研发人员/]我说的是真的
+[char name=研发人员/]指挥中心在那边的控制舱，乘阶梯旋转而上到达第七层
+<<researcherSlap>>
+[char name=我/]（扇晕研发人员然后丢一边）我们走
+[char name=乌云/]我留在这里盯着这个人，然后看看其他情况，你们快去控制舱
+[char name=我/]好，你多加小心，有问题随时和我们联系
+===

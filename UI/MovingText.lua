@@ -35,8 +35,7 @@ te3.text = textBG or '' -- 14
 node:addChild(te3) -- 14
 local move = Action(Move(te1.width * 0.01,Vec2(0,offsetY or 35),Vec2(-te1.width - 10,offsetY or 35))) -- 19
 node:slot("Enter",function() -- 21
-node:perform(move) -- 21
-node:slot("ActionEnd",function(_action_) if _action_ == move then node:perform(move) end end) -- 21
+if node.running then node:perform(move, true) end -- 21
 end) -- 21
 return clipNode1 -- 21
 end

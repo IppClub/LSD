@@ -1,0 +1,12 @@
+title: Start
+---
+<<preload "char", "ninilite", "wuyun", "vika", "vivi">>
+[char id=char name=我/]你真是。。。。。。。为什么连梦境和现实都分不清了呢
+[char id=wuyun name=乌云/]（感慨的语气）梦里相逢人未识，若知是梦何须醒
+[char id=vivi name=烛商/]（看向正在回收数据的我）你在做什么
+[char id=char name=我/]回收阿岩的数据，不然让他的身体在这里腐朽、意识化为怨念吗
+[char id=vivi name=烛商/]回收？听起来不像是什么好词语，你快说，你到底对阿岩哥哥做了什么
+[char id=ninilite name=妮妮莉特/]好了好了，先冷静一下，阿岩哥哥不会希望我们吵架的，现在怎么办
+[char id=char name=我/]回基地，地面很不安全，逝者的数据很容易引来坏东西，这两个小家伙也带上
+[char id=wuyun name=乌云与妮妮莉特/]好
+===

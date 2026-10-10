@@ -4,20 +4,59 @@ import global
 if not DB\existDB "lsd"
 	dbPath = Path Content.writablePath, "lsd.db"
 	DB\exec "ATTACH DATABASE '#{dbPath}' AS lsd;"
-Director.entry\slot "Cleanup", -> DB\exec "DETACH DATABASE lsd"
+Director.entry\slot "Cleanup", ->
+	DB\exec "DETACH DATABASE lsd" if DB\existDB "lsd"
 
 Director.entry\schedule once ->
 	import "Data.Config"
 	Config\loadAsync!
-	Config.skipOP = 0
-	Config.char = "charM"
-	Config.charName = "瑾"
-	Config.heroine = "于灵"
+	Config.char = "charM" if Config.char == nil
+	Config.charName = "匿名玩家" if Config.charName == nil
+	Config.heroine = "于灵" if Config.heroine == nil
 
-	if Config.skipOP == nil or Config.skipOP == 0
-		Config.skipOP = 1
+	tutorialDone = Config.tutorialCompleted == 1 or Config.tutorialCompleted == true
+
+	if not tutorialDone and (Config.skipOP == nil or Config.skipOP == 0)
 		import "System.PlayOP"
 		PlayOP!
+		Config.skipOP = 1
 
-	import "Tutorial.Level" as TutorialLevel
-	TutorialLevel!
+	if tutorialDone
+		storyService = require("Story.Service").open!
+		facts = storyService and storyService\summary!
+		if facts and facts.completed["final-betrayal"]
+			mission, err = require("Mission.Service").open!
+			unless mission and mission\recoverAsync!
+				require("UI.ResumeProblem") err or "MISSION_RECOVERY_FAILED"
+				return
+			hub, err = require("Ending.Hub").openAsync "records"
+			require("UI.ResumeProblem") err unless hub
+			return
+		chapterThreeScene = facts and require("Story.ChapterThreeResume").scene facts
+		if chapterThreeScene
+			mission, err = require("Mission.Service").open!
+			unless mission and mission\recoverAsync!
+				require("UI.ResumeProblem") err or "MISSION_RECOVERY_FAILED"
+				return
+			require("Academy.Navigation").returnToRoomAsync chapterThreeScene
+			return
+		infiltrationOptions, resumeError = nil, nil
+		if facts
+			infiltrationOptions, resumeError = require("Story.InfiltrationStore").resumeOptions facts
+		if resumeError
+			require("UI.ResumeProblem") resumeError
+			return
+		foxOptions = infiltrationOptions or facts and require("Story.FoxTrailResume").options facts
+		if foxOptions
+			require("Mission.Service").open!\recoverAsync!
+			require("Academy.Navigation").returnToRoomAsync foxOptions.scene, foxOptions
+			return
+		if facts and facts.mission.unlocks["ruins-diversion-complete"] and not facts.completed["fox-trail-return"]
+			require("Mission.Service").open!\recoverAsync!
+			require("Academy.Navigation").returnToRoomAsync "OuterHeaven", spawn: 1800, valleyVisit: true
+			return
+		import "Academy.Level.Arrive" as ArriveLevel
+		ArriveLevel!
+	else
+		import "Tutorial.Level" as TutorialLevel
+		TutorialLevel!

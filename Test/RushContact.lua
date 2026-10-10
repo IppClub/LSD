@@ -1,0 +1,10 @@
+package.path='/Users/Jin/Workspace/Dora/LSD/Script/?.lua;'..package.path
+local R=require('Enemy.RushContact')
+assert(R.hit({x=180,y=0},{x=80,y=0},100,300,true))
+assert(R.hit({x=180,y=0},{x=-180,y=0},100,300,true))
+assert(R.hit({x=-180,y=0},{x=-80,y=0},100,300,false))
+assert(not R.hit({x=180,y=301},{x=-180,y=301},100,300,true))
+assert(not R.hit({x=-180,y=0},{x=-80,y=0},100,300,true))
+assert(not R.hit({x=180,y=0},{x=110,y=0},100,300,true))
+assert(R.hit({x=80,y=0},{x=80,y=0},100,300,true))
+print('PASS relative front contact, cross-frame crossing, reverse facing, vertical miss, behind rejection, short miss, initial overlap')

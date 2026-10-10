@@ -1,0 +1,14 @@
+title: Start
+---
+<<preload "ninilite", "wuyun", "char">>
+[char id=wuyun name=乌云/]确定是在遗迹城市吗，我记得上次我们去找的时候什么也没有
+[char id=ninilite name=妮妮莉特/]等一等，这个断网组织，我以前好像看过一些资料
+[char id=wuyun name=乌云和我/]你怎么不早说
+[char id=ninilite name=妮妮莉特/]我的数据不稳定嘛！很多东西只能时断时续地想起来
+[char id=char name=我/]你能回忆起来有哪些关于这个组织的资料
+[char id=ninilite name=妮妮莉特/]我想想，主人说，这个组织经常进行各种实验，会操纵各种怪物，好像是刻意要扰乱这个世界的安定
+[char id=ninilite name=妮妮莉特/]他们的实验也很奇怪，总是在从人们身上提取各种各样的数据
+[char id=char name=我/]还有吗
+[char id=ninilite name=妮妮莉特/]想不起来了
+[char id=char name=我/]还是先到地面看看情况吧，去找找阿岩
+===

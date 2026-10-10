@@ -1,31 +1,60 @@
--- [yue]: UI/HUDControl.yue
-local _module_0 = nil -- 1
-local _ENV = Dora -- 1
-local require <const> = require -- 2
-local Class <const> = Class -- 2
-local Scale <const> = Scale -- 2
-local Ease <const> = Ease -- 2
-local Keyboard <const> = Keyboard -- 2
-local Controller <const> = Controller -- 2
-local emit <const> = emit -- 2
-local HUDControl = require("UI.View.HUDControl") -- 3
-_module_0 = Class(HUDControl, { -- 6
-	__init = function(self) -- 6
-		self:gslot("Story.Display", function(visible) -- 7
-			self.visible = not visible -- 7
-		end) -- 7
-		self:gslot("Tutorial.Weapon", function() -- 8
-			self.weapon:perform(Scale(0.3, 0, 1, Ease.OutBack)) -- 9
-			self.weapon.visible = true -- 10
-		end) -- 8
-		return self.weapon:schedule(function() -- 11
-			if Keyboard:isKeyDown("J") or Controller:isButtonDown(0, "a") then -- 12
-				emit("Skill.Began") -- 13
-			end -- 12
-			if Keyboard:isKeyUp("J") or Controller:isButtonUp(0, "a") then -- 14
-				return emit("Skill.Ended") -- 15
-			end -- 14
-		end) -- 11
-	end -- 6
-}) -- 5
-return _module_0 -- 1
+local _module_0 = nil
+local _ENV = Dora
+local require <const> = require
+local Class <const> = Class
+local Scale <const> = Scale
+local Ease <const> = Ease
+local emit <const> = emit
+local Keyboard <const> = Keyboard
+local Controller <const> = Controller
+local HUDControl = require("UI.View.HUDControl")
+_module_0 = Class(HUDControl, {
+	__init = function(self)
+		self:gslot("Story.Display", function(visible)
+			self.visible = not visible
+		end)
+		self:gslot("Tutorial.Weapon", function()
+			self.weapon:perform(Scale(0.3, 0, 1, Ease.OutBack))
+			self.weapon.visible = true
+		end)
+		local pendingShot, pendingRelease = false, false
+		local clearInput
+		clearInput = function()
+			pendingShot, pendingRelease = false, false
+			return emit("Skill.Ended", true)
+		end
+		local isActive = (require("UI.InputAvailability")).bind(self, clearInput)
+		local wasActive = true
+		self:slot("Cleanup", clearInput)
+		self.keyboardEnabled = true
+		self:slot("KeyDown", function(key)
+			if key == "J" and isActive() and self.weapon.visible then
+				pendingShot = true
+			end
+		end)
+		self:slot("KeyUp", function(key)
+			if key == "J" and isActive() and self.weapon.visible then
+				pendingRelease = true
+			end
+		end)
+		return self.weapon:schedule(function()
+			if not (isActive() and self.weapon.visible) then
+				if wasActive then
+					clearInput()
+				end
+				wasActive = false
+				return false
+			end
+			wasActive = true
+			if pendingShot or Keyboard:isKeyDown("J") or Controller:isButtonDown(0, "a") then
+				emit("Skill.Began")
+			end
+			if pendingRelease or Keyboard:isKeyUp("J") or Controller:isButtonUp(0, "a") then
+				emit("Skill.Ended")
+			end
+			pendingShot, pendingRelease = false, false
+			return false
+		end)
+	end
+})
+return _module_0

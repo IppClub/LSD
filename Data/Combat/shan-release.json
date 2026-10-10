@@ -1,0 +1,116 @@
+{
+  "front": {
+    "slot": "qianzhuaxia",
+    "uv": [
+      0.65,
+      0.72
+    ],
+    "refs": [
+      {
+        "key": "release-front-0/release-front-0",
+        "weight": 0.5687118787191772
+      },
+      {
+        "key": "release-front-1/release-front-1",
+        "weight": 0.002181468036713839
+      },
+      {
+        "key": "release-front-2/release-front-2",
+        "weight": 0.06142255219895141
+      },
+      {
+        "key": "release-front-3/release-front-3",
+        "weight": 0.04407013010059415
+      },
+      {
+        "key": "release-front-4/release-front-4",
+        "weight": 0.06078590415892967
+      },
+      {
+        "key": "release-front-5/release-front-5",
+        "weight": 0.09454466418204632
+      },
+      {
+        "key": "release-front-6/release-front-6",
+        "weight": 0.08026759766576676
+      },
+      {
+        "key": "release-front-7/release-front-7",
+        "weight": 2.992752353141694e-05
+      },
+      {
+        "key": "release-front-8/release-front-8",
+        "weight": 1.6724204326380056e-05
+      },
+      {
+        "key": "release-front-9/release-front-9",
+        "weight": 0.044661547542957765
+      },
+      {
+        "key": "release-front-10/release-front-10",
+        "weight": 0.04172160846663622
+      },
+      {
+        "key": "release-front-11/release-front-11",
+        "weight": 0.001592320296127448
+      }
+    ]
+  },
+  "rear": {
+    "slot": "houzhuaxia",
+    "uv": [
+      0.65,
+      0.72
+    ],
+    "refs": [
+      {
+        "key": "release-rear-0/release-rear-0",
+        "weight": 0.28258887382249204
+      },
+      {
+        "key": "release-rear-1/release-rear-1",
+        "weight": 0.06629641146285681
+      },
+      {
+        "key": "release-rear-2/release-rear-2",
+        "weight": 0.025826467102123538
+      },
+      {
+        "key": "release-rear-3/release-rear-3",
+        "weight": 0.10524489325689741
+      },
+      {
+        "key": "release-rear-4/release-rear-4",
+        "weight": 4.799566456443698e-06
+      },
+      {
+        "key": "release-rear-5/release-rear-5",
+        "weight": 0.021954052822564914
+      },
+      {
+        "key": "release-rear-6/release-rear-6",
+        "weight": 0.0027517554983092695
+      },
+      {
+        "key": "release-rear-7/release-rear-7",
+        "weight": 0.0010720029088505437
+      },
+      {
+        "key": "release-rear-8/release-rear-8",
+        "weight": 0.004368502292506532
+      },
+      {
+        "key": "release-rear-9/release-rear-9",
+        "weight": 0.4408387511643424
+      },
+      {
+        "key": "release-rear-10/release-rear-10",
+        "weight": 0.04291498077700575
+      },
+      {
+        "key": "release-rear-11/release-rear-11",
+        "weight": 0.006143308892050823
+      }
+    ]
+  }
+}

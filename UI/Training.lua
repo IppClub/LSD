@@ -38,7 +38,7 @@ label1.y = 600 -- 28
 label1.color3 = Color3(0x0) -- 28
 label1.alignment = "Left" -- 28
 label1.spacing = 20 -- 28
-label1.text = "默羽" -- 28
+label1.text = "半夏" -- 28
 figure:addChild(label1) -- 28
 local sprite1 = Sprite("button.clip|article_tab_bg") -- 31
 sprite1.anchor = Vec2(0,sprite1.anchor.y) -- 31

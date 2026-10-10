@@ -1,58 +1,126 @@
--- [yue]: UI/HUDMove.yue
-local _module_0 = nil -- 1
-local _ENV = Dora -- 1
-local require <const> = require -- 2
-local Class <const> = Class -- 2
-local Group <const> = Group -- 2
-local Scale <const> = Scale -- 2
-local Ease <const> = Ease -- 2
-local Keyboard <const> = Keyboard -- 2
-local Controller <const> = Controller -- 2
-local HUDMove = require("UI.View.HUDMove") -- 3
-_module_0 = Class(HUDMove, { -- 6
-	__init = function(self) -- 6
-		local playerGroup = Group({ -- 7
-			"player" -- 7
-		}) -- 7
-		local keyboardEnabled = false -- 8
-		local updatePlayerControl -- 9
-		updatePlayerControl = function(key, down, vpad) -- 9
-			if keyboardEnabled and vpad then -- 10
-				keyboardEnabled = false -- 11
-			end -- 10
-			local player = playerGroup:find(function(e) -- 12
-				return e.player -- 12
-			end) -- 12
-			if player then -- 12
-				player[key] = down -- 13
-			end -- 12
-		end -- 9
-		self:gslot("HUD.DisplayMove", function(visible) -- 14
-			self.visible = visible -- 15
-			return self:perform(Scale(0.3, 0, 1, Ease.OutBack)) -- 16
-		end) -- 14
-		self:schedule(function() -- 17
-			if not self.visible then -- 18
-				return -- 18
-			end -- 18
-			local keyA = Keyboard:isKeyPressed("A") or Controller:isButtonPressed(0, "dpleft") -- 19
-			local keyD = Keyboard:isKeyPressed("D") or Controller:isButtonPressed(0, "dpright") -- 20
-			if keyA or keyD then -- 21
-				keyboardEnabled = true -- 21
-			end -- 21
-			if not keyboardEnabled then -- 22
-				return false -- 22
-			end -- 22
-			updatePlayerControl("keyLeft", keyA, false) -- 23
-			updatePlayerControl("keyRight", keyD, false) -- 24
-			return false -- 25
-		end) -- 17
-		self:slot("Left", function(down) -- 26
-			return updatePlayerControl("keyLeft", down, true) -- 27
-		end) -- 26
-		return self:slot("Right", function(down) -- 28
-			return updatePlayerControl("keyRight", down, true) -- 29
-		end) -- 28
-	end -- 6
-}) -- 5
-return _module_0 -- 1
+local _module_0 = nil
+local _ENV = Dora
+local require <const> = require
+local Class <const> = Class
+local Group <const> = Group
+local Scale <const> = Scale
+local Ease <const> = Ease
+local Keyboard <const> = Keyboard
+local Controller <const> = Controller
+local HUDMove = require("UI.View.HUDMove")
+_module_0 = Class(HUDMove, {
+	__init = function(self)
+		local playerGroup = Group({
+			"player"
+		})
+		local keyboardEnabled = false
+		local pendingLeft, pendingRight = false, false
+		local vpadLeft, vpadRight = false, false
+		local lastLeft, lastRight = false, false
+		local pendingVpadLeft, pendingVpadRight = false, false
+		local isActive
+		isActive = function()
+			return true
+		end
+		self.keyboardEnabled = true
+		self:slot("KeyDown", function(key)
+			if not isActive() then
+				return
+			end
+			if key == "A" then
+				pendingLeft = true
+			end
+			if key == "D" then
+				pendingRight = true
+			end
+		end)
+		local updatePlayerControl
+		updatePlayerControl = function(key, down, vpad)
+			if keyboardEnabled and vpad then
+				keyboardEnabled = false
+			end
+			if vpad then
+				if key == "keyLeft" then
+					vpadLeft = down
+					if down then
+						pendingVpadLeft = true
+					end
+				else
+					vpadRight = down
+					if down then
+						pendingVpadRight = true
+					end
+				end
+				return
+			end
+			if key == "keyLeft" then
+				lastLeft = down
+			else
+				lastRight = down
+			end
+			do
+				local callback = self.onMove
+				if callback then
+					callback(key, down)
+					return
+				end
+			end
+			local player = playerGroup:find(function(e)
+				return e.player
+			end)
+			if player then
+				player[key] = down
+			end
+		end
+		local clearInput
+		clearInput = function()
+			pendingLeft, pendingRight = false, false
+			pendingVpadLeft, pendingVpadRight = false, false
+			vpadLeft, vpadRight = false, false
+			keyboardEnabled = false
+			if lastLeft then
+				updatePlayerControl("keyLeft", false, false)
+			end
+			if lastRight then
+				return updatePlayerControl("keyRight", false, false)
+			end
+		end
+		isActive = (require("UI.InputAvailability")).bind(self, clearInput)
+		self:slot("Cleanup", clearInput)
+		self:gslot("HUD.DisplayMove", function(visible)
+			self.visible = visible
+			return self:perform(Scale(0.3, 0, 1, Ease.OutBack))
+		end)
+		self:schedule(function()
+			if not isActive() then
+				clearInput()
+				return false
+			end
+			local keyA = pendingLeft or Keyboard:isKeyPressed("A") or Controller:isButtonPressed(0, "dpleft")
+			local keyD = pendingRight or Keyboard:isKeyPressed("D") or Controller:isButtonPressed(0, "dpright")
+			pendingLeft, pendingRight = false, false
+			if keyA or keyD then
+				keyboardEnabled = true
+			end
+			if not keyboardEnabled then
+				keyA = vpadLeft or pendingVpadLeft
+				keyD = vpadRight or pendingVpadRight
+			end
+			pendingVpadLeft, pendingVpadRight = false, false
+			updatePlayerControl("keyLeft", keyA, false)
+			updatePlayerControl("keyRight", keyD, false)
+			return false
+		end)
+		self:slot("Left", function(down)
+			if isActive() then
+				return updatePlayerControl("keyLeft", down, true)
+			end
+		end)
+		return self:slot("Right", function(down)
+			if isActive() then
+				return updatePlayerControl("keyRight", down, true)
+			end
+		end)
+	end
+})
+return _module_0

@@ -1,0 +1,8 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: style-transfer. Create revised production sprite atlas for the Buddha Guard robot in the supplied first image. Exact canvas 1536x1024, transparent background, six separate parts in same 3-column 2-row cells of 512x512. Image 1 is edit target and exact layout reference. Image 2 is authoritative CHIBI style and palette reference (Yu). Image 3 is original robot identity reference. Preserve six cell identities, positions, attachment orientations and clean separable silhouettes. Top left: entire armless floating torso including head, red-brown saddle and two thrusters, NO ARMS. Top middle upper arm; top right forearm; bottom left open upright hand; bottom middle upward cupped supporting hand; bottom right halo. Major change: robot head much larger and rounder, shorter face and neck, head including curls approx 40 percent of armless body height; serene CLOSED EYES, white porcelain robot Buddha face, gold curls and spire retained. Short compact torso. Match Yu hand-drawn chibi linework, soft flat cel-shaded cream-white armor, pale peach/apricot gold trim, muted lavender-gray shadows and charcoal joints. Remove saturated yellow-orange gold, realistic shiny metal, densely detailed cables. Keep robot recognizable mechanical Buddha, not a human child, no legs, no extra ornaments. Halo thin understated pale gold without bloom. Actual transparent pixels between parts, no painted background or checkerboard, no labels. Keep each part safely within its own 512 cell with margins. Do not include Yu in output.",
+  "asset": "../buddha-guard-chibi-v3.png",
+  "status": "candidate; native visual review required",
+  "source": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 玉.psd",
+  "runtimeInstalled": false
+}

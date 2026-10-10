@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "source": "Docs/artwork/buddha-guard-chibi-v3.png",
+      "runtime": "Image/Rescue/buddha-guard-chibi.png",
+      "sha256": "0b98715b869453333d8d2e50ac685ff35fbe645f42b5173f6f49e178969d2340"
+    },
+    {
+      "source": "Docs/artwork/yu-riding/riding-candidate.json",
+      "runtime": "Spine/StoryActions/yu-riding.json",
+      "sha256": "f2367f2c6ae42eed5e5e28ab76d1ed08b63086b51a847cef55271c67578c98f4"
+    }
+  ],
+  "visualAcceptancePending": true
+}

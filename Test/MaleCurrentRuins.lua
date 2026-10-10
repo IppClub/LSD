@@ -1,0 +1,113 @@
+-- Earned factory victory copy; original Start/doors, full treatment and next-day messages.
+local D=require("Dora")
+local root=D.Path:getPath(D.Path:getScriptPath(...))
+for _,p in ipairs({root,D.Path(root,"Script"),D.Path(root,"Spine"),D.Path(root,"Image"),D.Path(root,"Font")}) do D.Content:insertSearchPath(1,p) end
+local id=tostring(os.time()); local out=D.Path(root,"Test","male-current-ruins-route-result.txt"); D.Content:save(out,"LSD_MALE_CURRENT_RUINS_ROUTE_RUNNING runId="..id.."\n")
+D.thread(function()
+ local ok,result=xpcall(function()
+  local source=assert(D.Content:load(D.Path(root,"Test","male-current-factory-recovery-resume-fixture.txt")))
+  assert(D.Path:getPath(source)==D.Content.writablePath and D.Path:getFilename(source):match("^lsd%-male%-current%-factory%-recovery%-route%-qa%-%d+%.db$"))
+  local db=D.Path(D.Content.writablePath,"lsd-male-current-ruins-route-qa-"..id..".db")
+  assert(not D.DB:existDB("lsd") and not D.Content:exist(db) and D.Content:copyAsync(source,db))
+  assert(D.DB:exec("ATTACH DATABASE '"..db:gsub("'","''").."' AS lsd")>=0)
+  D.Director.entry:slot("Cleanup",function() if D.DB:existDB("lsd") then D.DB:exec("DETACH DATABASE lsd") end end)
+  local function world() return D.Platformer.Data.store.world end
+  local function player() return D.Group({"player","unit"}):find(function(e) return e.player and e.unit.world==world() end) end
+  local function wait(f,t,msg) local deadline=D.App.runningTime+(t or 15); while not f() do assert(D.App.runningTime<deadline,msg or "Recovery route wait"); D.sleep(0.04) end end
+  require("Start"); wait(function() return world() and world().tag=="PreparationRoom" and player() and not player().busy end,30)
+  local story=assert(require("Story.Service").open())
+  local function models() return D.json.encode({D.DB:query("SELECT slot,payload FROM lsd.Game0Training ORDER BY slot"),D.DB:query("SELECT slot,payload FROM lsd.Game0Training_wuyun ORDER BY slot")},false,true) end
+  local unchanged=models(); local before=require("Factory.Health").load(); assert(before[2]==100 and story:summary().completed["ruins-station"])
+  assert(not story:canRead("ayan-diary",world().tag))
+  local function move(x)
+   local e=assert(player());local hud;D.Director.ui3D.children:each(function(n)if n.move and n.skillArea then hud=n end end);assert(hud)
+   local side=e.unit.x<x and 'Right' or 'Left';hud.move:emit(side,true)
+   local deadline=D.App.runningTime+45
+   while math.abs(e.unit.x-x)>35 do
+    if D.App.runningTime>=deadline then hud.move:emit(side,false);error('Factory physical walk stalled x='..e.unit.x..' target='..x)end
+    D.sleep(.02)
+   end
+   hud.move:emit(side,false);D.sleep(.5)
+  end
+  local function door(side,target)
+   local old=world(); move(side=="center" and old.center.x or side=="left" and 110 or old.sceneWidth-110)
+   local e=assert(player()); local index; assert(e.moveTargets)
+   for i=1,e.moveTargets.count do if e.moveTargets:get(i)==target then index=i end end
+   assert(index and e.interaction.menu.enabled); e.interaction:emit("Tapped",index); wait(function() return world()~=old and world().tag==target and player() end); D.sleep(0.3)
+  end
+  local function dialogue(node,count,expected)
+   wait(function() return world().storyFlow and world().storyFlow.id==node and world().storyFlow.view.visible end,20,node)
+   local f=world().storyFlow; local deadline=D.App.runningTime+60
+   while f.phase=="dialogue" or f.phase=="saving" do assert(D.App.runningTime<deadline,"Recovery Yarn stalled "..node); if not f.view._advancing then f.view.confirm:emit("Tapped") end; D.sleep(0.08) end
+   assert(f.phase==(expected or "complete") and #f.view._reviews==count,"Incomplete recovery Yarn "..node.." "..f.phase.." rows="..#f.view._reviews)
+   return f
+  end
+  door("left","PassageA"); door("center","PassageC"); door("left","Station")
+  move(world().sceneWidth-1800); wait(function() return world():getChildByTag("boardingTerminal").menu.enabled end)
+  world():getChildByTag("boardingTerminal"):emit("Tapped",1); wait(function() return world().tag=="TrainA" end)
+  move(world().sceneWidth-170); wait(function() return world():getChildByTag("groundDeploymentTerminal").menu.enabled end)
+  world():getChildByTag("groundDeploymentTerminal"):emit("Tapped",3)
+  wait(function() return world().groundDeployment and world().groundDeployment.phase=="briefing" end)
+  local deployment=world().groundDeployment; assert(deployment.team and deployment.formation.learner and deployment.formation.wuyun)
+  deployment.view.startButton:emit("Tapped"); wait(function() return world().tag=="AbandonedCity" and world().ruinsSearch and world().ruinsExpedition and world().ruinsExpedition.phase=="exploring" end,30)
+  local c=world().ruinsExpedition; assert(c.stage==1 and c.body and c.bodyPose.completedAt and not world().groundExpedition)
+  local remote,why=require("Story.Flow").openAsync("ruins-twins",world()); assert(not remote and why=="DISCOVERY_LOCATION_REQUIRED")
+  local lens=assert(require("Ground.NightLens").openAsync(world())); assert(lens.locations[2].x==6200 and lens.locations[3].x==8500)
+  lens.view.archiveButton:emit("Tapped"); assert(not world().nightLensTarget,"Unconfirmed Ayan direction leaked")
+  lens.view.researchButton:emit("Tapped"); assert(world().nightLensTarget.id=="signal"); lens.view.closeButton:emit("Tapped")
+  move(6200); wait(function() return c.twins.menu.enabled end)
+  c.twins:emit("Tapped",1); local f=dialogue("ruins-twins",41)
+  local hit=assert(c.confrontation); assert(hit.blocked and hit.actualTarget=="mentor" and hit.hpBefore==hit.hpAfter and hit.attackAt>hit.startedAt and hit.hitAt>hit.attackAt and hit.completedAt-hit.startedAt>=1.19)
+  assert(hit.guardAt and hit.guardCompletedAt and hit.guardCompletedAt-hit.startedAt>=hit.guardDuration-0.06)
+  wait(function() return f.phase=="complete" and c.stage==2 end)
+  local mid=D.Path(D.Content.writablePath,"lsd-male-current-ruins-twins-qa-"..id..".db"); assert(D.Content:copyAsync(db,mid)); D.Content:save(D.Path(root,"Test","male-current-ruins-mid-resume-fixture.txt"),mid)
+  move(8500); wait(function() return c.found.menu.enabled end)
+  for _,name in ipairs({"vika","vivi"}) do assert(c.escorted[name].walked>1000,"Twins were not physically escorted") end
+  c.found:emit("Tapped",1); dialogue("ayan-found",7); wait(function() return c.stage==3 end)
+  assert(story:summary().unlocks["ayan-diary-found"] and not story:summary().completed["ayan-recovery"] and c.body)
+  wait(function() return c.recovery.menu.enabled end); c.recovery:emit("Tapped",1); wait(function() return world().companionPanel and world().companionPanel.phase=="information" end)
+  local profile=world().companionPanel; profile.view.stationButton:emit("Tapped"); dialogue("ayan-diary",7)
+  wait(function() return world().companionPanel.phase=="information" end); world().companionPanel.view.closeButton:emit("Tapped")
+  wait(function() return c.recovery.menu.enabled end)
+  c.recovery:emit("Tapped",2); f=dialogue("ayan-recovery",8)
+  wait(function() return f.phase=="complete" and c.stage==4 and c.dataRecovery and c.dataRecovery.completedAt and not c.body and not player().busy end)
+  assert(c.support.gold>0 and c.support.collected["ruins-gold-4"],"Actual route did not collect life-support supplies")
+  assert(c.dataRecovery.completedAt-c.dataRecovery.startedAt>=1.39 and not c.diary.visible)
+  for _,reward in ipairs({"ruins-twins-met","ayan-diary-found","ayan-diary-read","ayan-data-recovered"}) do assert(#D.DB:query("SELECT id FROM lsd.Game0StoryUnlocks WHERE id=?",{reward})==1) end
+  assert(models()==unchanged and #D.DB:query("SELECT source FROM lsd.Game0StorySupplies WHERE amount=1")==6)
+  D.Content:save(D.Path(root,"Test","male-current-ruins-resume-fixture.txt"),db)
+  move(8800)
+  wait(function() return world().ruinsExpedition and world().ruinsExpedition.phase=='exploring' and world().ruinsExpedition.returnRoute.menu.enabled end,30)
+  world().ruinsExpedition.returnRoute:emit('Tapped',1)
+  wait(function() return world().storyFlow and world().storyFlow.id=='ruins-ambush' and world().storyFlow.view.visible end)
+  local f=world().storyFlow
+  while f.phase=='dialogue' or f.phase=='saving' do if not f.view._advancing then f.view.confirm:emit('Tapped') end;D.sleep(.08) end
+  assert(f.phase=='complete' and #f.view._reviews==5)
+  wait(function() return D.Platformer.Data.store.world.pursuitLevel end,30)
+  local c=D.Platformer.Data.store.world.pursuitLevel;local b=c.battle
+  wait(function() return b.mentor.onSurface end)
+  local hud=assert(D.Director.ui3D:getChildByTag('pursuit-hud'))
+  hud.weapon:emit('TapBegan');wait(function() return b.mentorHits>0 and not b.mentor:isDoing('groundMentorShot') end)
+  c.toolButtons.flare:emit('TapBegan')
+  c.toolButtons.smoke:emit('TapBegan')
+  assert(b.message=='当前动作尚未结束，请稍后使用道具。' and b.toolUses.smoke==0,'Busy tool input was not explained or interrupted animation')
+  wait(function() return b.toolAnimations.flare==1 and b.flareHits>0 and not b.mentor:isDoing('pursuitTool') end)
+  c.toolButtons.smoke:emit('TapBegan');wait(function() return b.toolAnimations.smoke==1 and not b.mentor:isDoing('pursuitTool') end)
+  assert(not b.message,'Successful tool retained busy message')
+  hud.move:emit('Right',true)
+  wait(function() return b.phase~='playing' and b.phase~='saving' end,40)
+  assert(b.phase=='won',b.reason..' HP='..b.mentorHP..' x='..b.mentor.x)
+  wait(function() return c.result end)
+  assert(not c.result.baseButton.visible and not c.result.baseButton.touchEnabled,'Victory exposes misleading return/retry controls')
+  do local button=c.result.againButton;local buffer=D.App.bufferSize;local low=button:convertToWorldSpace(D.Vec2.zero)+D.Vec2(buffer.width/2,buffer.height/2);local high=button:convertToWorldSpace(D.Vec2(button.width,button.height))+D.Vec2(buffer.width/2,buffer.height/2);assert(low.x>=0 and low.y>=0 and high.x<=buffer.width and high.y<=buffer.height,'Continue button clipped')end
+  for _,e in ipairs(b.escorts) do assert(e.walked>1000 and e.unit.x<=require('Ruins.Pursuit').safeX,'Escort did not walk to safety') end
+  assert(story:summary().mission.unlocks['ruins-diversion-complete'])
+  assert(models()==unchanged,'Pursuit changed learned models')
+  D.Content:save(D.Path(root,'Test','male-current-pursuit-resume-fixture.txt'),db)
+  print('MALE_CURRENT_PURSUIT_REPORT '..D.json.encode(b.report,false,true))
+  D.App:saveScreenshot(D.Path(root,'Docs/evidence/2026-10-04/male-current-ruins.tga'));D.sleep(.2)
+  D.Content:save(D.Path(root,'Docs/evidence/2026-10-04/male-current-pursuit-report.json'),D.json.encode(b.report,false,true))
+  return "PASS continuousRuinsIntoAmbush=true fullToolActions=true busyFeedbackClears=true actualFourEscortEscape=true actualStart=true earnedRecoveryCopy=true physicalStationTrainRoute=true originalFormationThree=true distinctRuinsDeployment=true actualSignalLensAndWalk=true firstRemoteRejected=true originalTwins41=true realProjectileShieldBlock=true fullProceduralTwinPulse=true fullOriginalFireGuard=true saveFaultInjected=false physicalBothTwinsEscort=true originalAyanFound7=true realFullLosePose=true characterStoryTwoDiary7=true originalRecovery8=true dataSavedBeforeVisual=true actualDataStream=true rewardsOnce=true modelsUnchanged=true suppliesPreserved=true"
+ end,debug.traceback)
+ local report="LSD_MALE_CURRENT_RUINS_ROUTE_"..(ok and result or "FAIL "..tostring(result)).." runId="..id; print(report); D.Content:save(out,report.."\n")
+end)

@@ -18,6 +18,8 @@
 		<Action>
 			<Move Name="move" Time="{ te1.width * 0.01 }" StartX="0" StartY="{ offsetY or 35 }" StopX="{ -te1.width - 10 }" StopY="{ offsetY or 35 }"/>
 		</Action>
-		<Slot Name="Enter" Perform="move" Loop="True"/>
+		<Slot Name="Enter">
+			<Lua>if node.running then node:perform(move, true) end</Lua>
+		</Slot>
 	</Node>
 </ClipNode>

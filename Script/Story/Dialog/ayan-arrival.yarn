@@ -1,0 +1,15 @@
+title: Start
+---
+<<preload "ayan", "char">>
+[char id=char name=我/]嘶……
+[char id=ayan name=阿岩/]对不起，对不起！我低头想事情，没看见您。您没事吧？
+[char id=char name=我/]没什么。这里是幽兰草学院训练室吗？地图指向这里。
+[char id=ayan name=阿岩/]没错。请问您是？
+[char id=char name=我/]我是 {$charName}，林睿哲邀请我来这里。
+[char id=ayan name=阿岩/]原来就是您啊！他嘱咐我来接您，失敬，失敬。
+[char id=char name=我/]不用这么客气。请问你是……
+[char id=ayan name=阿岩/]学院新任建筑师。今天轮到我值班，首领便让我来接应您。
+[char id=ayan name=阿岩/]这是我的员工证件，有他的亲笔签名。他还在忙，过一会儿就来。
+[char id=char name=我/]那就麻烦你带我参观训练场了。
+[char id=ayan name=阿岩/]好，请跟着我。您可以慢慢走，我会等您。
+===

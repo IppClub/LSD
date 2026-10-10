@@ -1,0 +1,22 @@
+{
+  "asset": "Image/Rescue/buddha-guard-parts.png",
+  "sha256": "2d946c5e9c5565dbe6d914caf7b684472862b6ce8c8eba31d15343f5635cd0f9",
+  "originalDesign": {
+    "project": "LSD-doc",
+    "path": "docs/source/img/design/character/yu-buddha-d.jpg",
+    "artist": "周大西",
+    "sha256": "759515050db2b017741f24ac3b91c60144ddbcd8aaa5eb786ac228e82a24d769"
+  },
+  "production": {
+    "method": "AI-assisted derivative parts atlas, followed by code rigging and animation",
+    "date": "2026-10-04",
+    "promptRecord": "Docs/artwork/buddha-guard/README.md",
+    "derivedAtlas": "Docs/artwork/buddha-guard/parts-v2.png",
+    "notOriginalArtistDelivery": true
+  },
+  "usage": [
+    "Script/Rescue/BuddhaPrototype.lua",
+    "Script/Rescue/BuddhaWardView.lua"
+  ],
+  "status": "Used for shield presentation; seated riding and weapon attack animations remain incomplete."
+}

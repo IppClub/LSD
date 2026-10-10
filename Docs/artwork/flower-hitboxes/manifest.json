@@ -1,0 +1,28 @@
+{
+  "status": "factory-runtime",
+  "sourceSha256": "0e9f635962ecce4d962d516e3bd7c4409ee4bb85f1879340cd1556654bda883f",
+  "runtimeSourceVersion": "4.3.08",
+  "exportVersion": "4.3.26",
+  "parts": 5,
+  "hullVertices": 840,
+  "animations": 15,
+  "notes": [
+    "32 separate authored hulls share five logical AP pools; gaps are not bridged",
+    "Outer petal tendrils, central roots and bottom skirt now included; hair, face overlays and head ornaments remain decorative",
+    "Priority breaks coincident contact ties: head 40, petals 30, roots 20, core 10; first ray intersection otherwise wins",
+    "15 original animation tracks, including seed draw-order tracks, preserved",
+    "Original atlas/PNG retained; failed partial image extraction discarded",
+    "AP70 and test weapons in native fixture are verification values, not final balance",
+    "Factory production armor integrated; 59-second full route passed, held-out tactics and learning schema migration still pending"
+  ],
+  "meshPieces": 32,
+  "sampling": "bone-affine-basis-packed-v2",
+  "basisBones": 209,
+  "basisPoints": 627,
+  "samplingMeanMs": 3.070318698883055,
+  "runtimeSkeleton": "Spine/dahuayao-hitboxes.skel",
+  "runtimeRegions": "Data/Combat/flower-regions.json",
+  "runtimeSha256": "54b0cd14644260e4abe430abf7f7d1bdc3c6e135dd2eb07646d944bea8bd05ce",
+  "basisSlots": 209,
+  "samplingEvidence": "Docs/evidence/2026-10-05/flower-packed-probes-native-result.json"
+}

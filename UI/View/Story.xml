@@ -47,7 +47,9 @@
 				</Sequence>
 			</Action>
 			<Sprite Name="continueIcon" File="button.clip|prompt_chat_continue" X="-163" Y="94" Ref="True">
-				<Slot Name="Enter" Perform="move" Loop="True"/>
+				<Slot Name="Enter">
+					<Lua>if continueIcon.running then continueIcon:perform(move, true) end</Lua>
+				</Slot>
 			</Sprite>
 		</AlignNode>
 		<AlignNode Name="rightTop" HAlign="Right" VAlign="Top">
@@ -81,11 +83,16 @@
 				reviewW = w / scale - 160 * 2
 				reviewH = h / scale - 208 - 370
 				reviewArea.y = -208 - reviewH / 2
-				reviewArea.view\removeAllChildren!
-				for {:name, :text} in *ui._reviews
-					reviewArea.view\addChild ReviewSentence width: reviewW, :name, :text
-				reviewArea.view\addChild ReviewSentence width: reviewW, name: "", text: "\n"
-				reviewArea\adjustSizeWithAlign "Auto", 0, Size reviewW, reviewH
+				-- 每句台词都会触发整树 AlignLayout；内容版本与尺寸未变时跳过回顾列表重建。
+				unless ui._reviewKey == (ui._reviewRevision or 0) and ui._reviewW == reviewW and ui._reviewH == reviewH
+					ui._reviewKey = (ui._reviewRevision or 0)
+					ui._reviewW = reviewW
+					ui._reviewH = reviewH
+					reviewArea.view\removeAllChildren!
+					for {:name, :text} in *ui._reviews
+						reviewArea.view\addChild ReviewSentence width: reviewW, :name, :text
+					reviewArea.view\addChild ReviewSentence width: reviewW, name: "", text: "\n"
+					reviewArea\adjustSizeWithAlign "Auto", 0, Size reviewW, reviewH
 				offset = (w  / 2) / scale - 150
 				leftLabel1.x = -offset
 				rightLabel1.x = offset

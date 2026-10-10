@@ -1,0 +1,20 @@
+title: Start
+---
+[char id=char name=我/]羽凌灵，我们到出口了。能接上吗？
+<<finalFreezeClock>>
+[char id=ninilite name=妮妮莉特/]通讯的时间……一直没有变。
+[char id=sunborn name=林睿哲/]不会有新的回答了。至少现在不会。
+[char id=char name=我/]你知道发生了什么？
+[char id=sunborn name=林睿哲/]我知道，这个世界不能再把自己的命运交给无法预测的人。
+[char id=char name=我/]我们刚把人从里面带出来。
+[char id=sunborn name=林睿哲/]你每一次选择，都能让这里发生我们无法解释的变化。我需要的是能够延续的世界。
+[char id=ninilite name=妮妮莉特/]所以你要对救了大家的人动手？
+[char id=sunborn name=林睿哲/]如果必须留下一个人来决定什么值得继续，那个人不能站在世界之外。
+<<finalBetrayalStrike>>
+[char id=ninilite name=妮妮莉特/]不要！
+[char id=char name=我/]妮妮……别过来。
+[char id=ninilite name=妮妮莉特/]你答应过不会把我一个人留下。我也不会。
+[char id=char name=我/]我还在这里。
+[char id=ninilite name=妮妮莉特/]那就回应我。哪怕只能再说一句。
+[char id=char name=我/]我听得到。
+===

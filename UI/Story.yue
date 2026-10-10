@@ -1,7 +1,7 @@
 _ENV = Dora
 import global
 import "UI.View.Story"
-import "UI.StoryFigure"
+import "UI.StoryPortrait"
 import "UI.Answer"
 import "Utils" as :Struct
 import "YarnRunner"
@@ -57,18 +57,34 @@ export default Class Story,
 		@_runner = YarnRunner dialogFile, "Start", Config, Command
 		@advance!
 		@reviewVisible = false
-		@_advancing = false
+		-- A first command keeps ownership until its Story.Advance event.
+		@_advancing = @_current == nil
 		nextSentence = ->
 			return if @_advancing
 			return if @_options
 			if @advance!
-				thread -> @updateDialogAsync!
+				return unless @_current -- command owns advancement until Story.Advance
+				-- Reserve this line before the async refresh is scheduled.
+				@_advancing = true
+				thread ->
+					@_advancing = false
+					@updateDialogAsync!
 			else
 				@hide!
 		@gslot "Story.Advance", ->
 			@_advancing = false
 			nextSentence!
 		@confirm\slot "Tapped", nextSentence
+		-- One advance per physical press; a held key must not skip dialogue.
+		pressed = {}
+		@keyboardEnabled = true
+		@slot "KeyDown", (key) ->
+			return unless key == "Return" or key == "Space"
+			return if pressed[key]
+			pressed[key] = true
+			return unless @visible and not @reviewVisible
+			nextSentence!
+		@slot "KeyUp", (key) -> pressed[key] = nil
 		@textArea\slot "NoneScrollTapped", nextSentence
 		@reviewButton\slot "Tapped", ->
 			return if @_advancing
@@ -81,35 +97,36 @@ export default Class Story,
 				when "character"
 					@figure\removeAllChildren!
 					if value? and value ~= ""
-						@figure\addChild StoryFigure char: value
+						@figure\addChild StoryPortrait char: value
 				when "name"
 					@name.text = value if value?
 				when "text"
 					@text.text = value if value?
 			.__updated = -> @alignLayout!
 		@_reviews = {}
+		@_reviewRevision = 0
 		@visible = false
+
+	-- 回顾列表按句全量重建，封顶避免超长对话的内存与重建成本无界增长。
+	pushReview: (name, text) =>
+		@_reviewRevision = (@_reviewRevision or 0) + 1
+		@_reviews[] = :name, :text
+		table.remove @_reviews, 1 if #@_reviews > 150
 
 	updateDialogAsync: =>
 		if @_preload
 			for item in *@_preload
-				figureFile = switch item
-					when 'char' then "spine:#{Config.char}Figure"
-					when 'vivi' then "spine:vikaFigure"
-					else "spine:#{item}Figure"
-				Cache\loadAsync figureFile
+				figureFile = StoryPortrait.asset item
+				Cache\loadAsync figureFile if figureFile
 			@_preload = nil
 		return unless @_current
 		return if @_advancing
 		@_advancing = true
 		name, characterId = getCharName @_current
-		figureFile = switch characterId
-			when 'char' then "spine:#{Config.char}Figure"
-			when 'vivi' then "spine:vikaFigure"
-			else "spine:#{characterId}Figure"
-		Cache\loadAsync figureFile if characterId and characterId ~= ""
+		figureFile = StoryPortrait.asset characterId
+		Cache\loadAsync figureFile if figureFile
 		text = @_current.text
-		@_reviews[] = :name, :text
+		@pushReview name, text
 		@_dialog.character = characterId
 		@_dialog.name = name
 		@_dialog.text = text
@@ -119,14 +136,14 @@ export default Class Story,
 			count = #@_options
 			for i = 1, count
 				option = @_options[i]
-				name = getCharName option
+				local optionName = getCharName option
 				local optionText = option.text
 				@answerList\addChild with Answer text: optionText
 					\slot "Tapped", ->
 						.touchEnabled = false
 						thread ->
 							sleep 0.3
-							@_reviews[] = :name, text: optionText
+							@pushReview optionName, optionText
 							if @advance i
 								thread -> @updateDialogAsync!
 							else

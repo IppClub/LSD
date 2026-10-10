@@ -1,0 +1,43 @@
+{
+  "front": {
+    "slot": "qianbixia",
+    "uv": [
+      0.28,
+      0.7
+    ],
+    "refs": [
+      {
+        "key": "release-front-0/release-front-0",
+        "weight": 0.5650142926415158
+      },
+      {
+        "key": "release-front-1/release-front-1",
+        "weight": 0.2230063973449078
+      },
+      {
+        "key": "release-front-2/release-front-2",
+        "weight": 0.01124155944641561
+      },
+      {
+        "key": "release-front-3/release-front-3",
+        "weight": 4.817706013611859e-05
+      },
+      {
+        "key": "release-front-4/release-front-4",
+        "weight": 0.028287963809924297
+      },
+      {
+        "key": "release-front-5/release-front-5",
+        "weight": 0.024885458937810922
+      },
+      {
+        "key": "release-front-6/release-front-6",
+        "weight": 0.14512737152754024
+      },
+      {
+        "key": "release-front-7/release-front-7",
+        "weight": 0.0023887792317492133
+      }
+    ]
+  }
+}

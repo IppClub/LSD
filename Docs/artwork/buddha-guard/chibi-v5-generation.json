@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: precise-object-edit. Production animation parts sheet based ONLY on the top-left Buddha robot in supplied image. Output 1024x1024 transparent PNG with TWO separated pieces side by side, no other pieces. LEFT HALF x=0..511: isolated complete head including spire, large simplified golden curls, porcelain white face, closed serene eyes, both ear mechanisms; remove torso, leave a short neck peg under chin. Head occupies x=55..465, y=80..760; broad chibi head, retain exact identity and soft flat apricot gold/ivory/lavender palette. RIGHT HALF x=512..1023: isolated HEADLESS ARMLESS mechanical torso, full neck socket visible, same white-and-gold armor, reddish saddle and two lower thrusters, six clear attachment sockets (three on each side) for external arms. Torso within x=550..990,y=200..840. Remove all head and hair from torso. No arms, hands or halo on this new sheet. Keep original three-quarter viewpoint facing viewer's right and graphic flat outlined style, no new ornamentation, no glossy gradients. Actual clean transparent background, no glow/shadow/backdrop, no labels. At least 30 pixels empty gap between the two parts; neither part clipped.",
+  "asset": "../buddha-guard-head-torso-v5.png",
+  "runtimeAssets": [
+    "Image/Rescue/buddha-guard-head-torso-v5.png",
+    "Image/Rescue/buddha-guard-limbs-v5.png"
+  ],
+  "runtimeInstalled": true,
+  "visualAcceptancePending": true,
+  "source": "../buddha-guard-chibi-v4.png",
+  "notes": "Head and torso independently scaled. Limbs remain v4. V3 preserved. Engine visual comparison and carrier lifecycle required."
+}

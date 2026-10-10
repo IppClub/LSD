@@ -1,0 +1,42 @@
+{
+  "status": "hit/restrained integrated; knockout/unconscious visual candidates",
+  "unchangedSections": [
+    "bones",
+    "slots",
+    "constraints",
+    "skins",
+    "events"
+  ],
+  "originalAnimationsPreserved": true,
+  "sourceHashes": {
+    "Spine/shujuyuan.skel": "c8cab7e949027595e7f420a01ace35bd3afcc1de0a92badbabf3d18b4009db39",
+    "Spine/shujuyuan.atlas": "fe1764ff1d67ed71cc39f9e093cba5a1ccbc3cf384113dc6251fb7aed8a88279",
+    "Spine/shujuyuan.png": "860db53e3dad7e8dc973a1bd6d7e5de2b770595712c01032531be426adcfec5f"
+  },
+  "animations": {
+    "hit": {
+      "seconds": 0.64,
+      "loop": false
+    },
+    "restrained": {
+      "seconds": 2,
+      "loop": true
+    },
+    "knockout": {
+      "seconds": 1.35,
+      "loop": false,
+      "integrated": false
+    },
+    "unconscious": {
+      "seconds": 2.4,
+      "loop": true,
+      "integrated": false
+    }
+  },
+  "pending": [
+    "knockout full-scene contact and motion acceptance",
+    "Wuyun mouth-cover interaction",
+    "interrogation and knockout story integration",
+    "full chapter playthrough"
+  ]
+}

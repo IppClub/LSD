@@ -1,0 +1,45 @@
+title: Start
+---
+<<preload "char", "ninilite", "wuyun", "vika", "vivi">>
+[char id=char name=我/]根据夜光镜收到的信号定位，应该就是这里
+[char id=vika name=烛参/]什么人，敢靠近这里
+[char id=ninilite name=妮妮莉特/]火焰防护！
+[char id=char name=我/]请等一下，我们并没有恶意，是接收到一个求救信号过来的，指示的地点是在这里
+[char id=char name=我/]请问一下你们是否看到有人遇到危险
+[char id=vivi name=烛商/]求救信号？你指的是这个奇怪的东西发出的红色光线吗
+[char id=vivi name=烛商/]我刚刚正在研究它，正打算把它拆了看看里面有什么东西
+[char id=vika name=烛参/]谁让你擅自出来的，我不是让你先呆在后面别冒冒失失出来吗
+[char id=vivi name=烛商/]我为什么要听你的
+[char id=char name=我/]额，你们先别吵架，我想问一下你们手上的求救器是从哪里来的？你们又是从哪里来的
+[char id=vivi name=烛商/]我们。。。。。。
+[char id=vika name=烛参/]你倒是先说说你们是从哪来的
+[char id=char name=我/]我是林睿哲领导的地下城成员之一，名叫{$charName}，这两位也是成员之一，妮妮莉特和乌云
+[char id=char name=我/]我们日常负责和怪物战斗、救助有需要的人，保护地下城的安全
+[char id=char name=我/]看，这是我们的工作证件
+[char id=vika name=烛参/]听起来是有模有样的，林睿哲这个人我倒是听说过，不过，我怎么能确定你不是在编造一套陈词、别有用心呢
+[char id=wuyun name=乌云/]这小不点怎么说起话来一副官腔似的
+[char id=vivi name=烛商/]（抱住妮妮莉特）姐姐真漂亮
+[char id=vika name=烛参/]喂，谁才是你姐姐
+[char id=ninilite name=妮妮莉特/]谢谢小可爱，你叫什么名字啊，今年多大了，为什么要跑到这么危险的地方啊，你的爸爸妈妈呢？
+[char id=ninilite name=妮妮莉特/]你和旁边那个小妹妹长得好像，是双胞胎吗
+[char id=vivi name=烛商/]嗯，我们是双胞胎姐妹，我叫烛商，那个坏脾气的家伙是我姐姐烛参，我们都是12岁
+[char id=vivi name=烛商/]我们的爸爸妈妈是很厉害的科研工作者，但是不久前他们被一个叫做断网组织的坏蛋抓走了
+[char id=vivi name=烛商/]我们从学校逃出来，打算找到他们、救他们出来
+[char id=wuyun name=乌云/]就你们两个小不点，去救父母？你们不怕被怪物吃掉吗
+[char id=wuyun name=乌云/]小孩子怎么可以逃学呢
+[char id=vika name=烛参/]怪物？你指的是那一堆尸体吗？刚刚被我和这个胳膊肘往外拐的妹妹拿来练手，我正打算拿来生火呢
+[char id=vika name=烛参/]就学校那点填鸭东西，我们几天就掌握了，还不够我们塞牙缝呢
+[char id=vika name=烛参/]学校的人坏得很，看我们爸爸妈妈没消息了，一个劲儿地虐待我们，要不是爸爸妈妈说要尊重长辈，我恨不得将他们扒皮抽筋
+[char id=ninilite name=妮妮莉特/]那你手上这个的求救器又从哪里拿的呀
+[char id=vivi name=烛商/]是我们遇到的一位哥哥给的，他说，要是我们遇到危险了可以用，不过烛商很好奇，就拿来拆着玩，不小心碰到了启动按键
+[char id=ninilite name=妮妮莉特/]（扶额头）以后可不要随便乱碰按钮了哦，
+[char id=ninilite name=妮妮莉特/]可以告诉妮妮莉特姐姐，那个哥哥长什么样子，还能记得起来吗
+[char id=vivi name=烛商/]我想想，他有着棕色头发，手背上有一些伤疤和茧子，还带着两个背包，好像装着锤子和地图什么的
+[char id=char name=我/]那你能不能告诉我们，他离开多久了，大概往哪个方向去了
+[char id=vivi name=烛商/]大概离开一两天左右，往那边去了
+[char id=char name=我/]（对妮妮莉特和乌云）事不宜迟，我们快跟过去
+[char id=char name=我/]你们两个呢，还不快过来，这里太危险了
+[char id=vika name=烛参/]真是奇怪，非亲非故，我为什么要听你们的
+[char id=vika name=烛参/]（妮妮莉特和乌云一人拉一个向目标方向跑去）
+[char id=vika name=烛参/]诶，太过分了
+===

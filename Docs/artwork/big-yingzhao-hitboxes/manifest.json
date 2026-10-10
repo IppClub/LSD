@@ -1,0 +1,20 @@
+{
+  "status": "geometry-parity-and-native-adapter-verified",
+  "sourceSha256": "d47f26201c1f3dfeb7df120059ac7f813eba5aefb64a0924debd3a6278e3ea90",
+  "derivedSha256": "0dbfb76279532866a9b7e63311664d7b8d5630167b90e237a188806f19b1c80e",
+  "meshPieces": 41,
+  "parts": [
+    "arms",
+    "flank",
+    "forelegs",
+    "head",
+    "hindlegs",
+    "torso"
+  ],
+  "basisSlots": 42,
+  "deformExcluded": "yanbai eye white during lose; original track preserved",
+  "sourceExportVersion": "4.3.26",
+  "parityEvidence": "parity-result.txt",
+  "nativeEvidence": "/private/tmp/lsd-big-yingzhao-armor-overlay-20261006",
+  "limitations": "Formal projectile encounter, learning observations and economy balance remain pending."
+}

@@ -1,0 +1,43 @@
+-- Real spell direction/cooldown, and first-win rewards survive a stronger replay.
+local D=require("Dora")
+local root=D.Path:getPath(D.Path:getScriptPath(...))
+for _,p in ipairs({root,D.Path(root,"Script"),D.Path(root,"Spine"),D.Path(root,"Image"),D.Path(root,"Font")}) do D.Content:insertSearchPath(1,p) end
+local id=tostring(os.time()); local out=D.Path(root,"Test","wind-fire-rules-result.txt"); D.Content:save(out,"LSD_WIND_FIRE_RULES_RUNNING runId="..id.."\n")
+D.thread(function()
+ local ok,result=xpcall(function()
+  local source=assert(D.Content:load(D.Path(root,"Test","wuyun-training-resume-fixture.txt")))
+  assert(D.Path:getPath(source)==D.Content.writablePath and D.Path:getFilename(source):match("^lsd%-wuyun%-training%-qa%-%d+%.db$"))
+  local db=D.Path(D.Content.writablePath,"lsd-wind-fire-rules-qa-"..id..".db")
+  assert(not D.DB:existDB("lsd") and not D.Content:exist(db) and D.Content:copyAsync(source,db))
+  assert(D.DB:exec("ATTACH DATABASE '"..db:gsub("'","''").."' AS lsd")>=0)
+  D.Director.entry:slot("Cleanup",function() if D.DB:existDB("lsd") then D.DB:exec("DETACH DATABASE lsd") end end)
+  require("Data.Config"):loadAsync()
+  local p=require("Training.Progress"); local w=p.forCharacter("wuyun"); assert(p.load() and w.load())
+  local models={ninilite=p.adopted,wuyun=w.adopted}; local s=assert(require("Mission.Service").open()); local formation={mentor=true,learner="ninilite",wuyun=true}
+  local function wait(f,t) local deadline=D.App.runningTime+(t or 20); while not f() do assert(D.App.runningTime<deadline,"Wind fire rules timed out"); D.sleep(0.01) end end
+  local first=assert(s:beginAsync("c0-m03",models,formation)); local b=require("Ground.EnergyBattle").createAsync(s,first)
+  assert(b:command("fire") and b:command("wind"))
+  wait(function() for _,log in ipairs(b.magic.logs) do if log.skill=="fire" and log.completedAt then return true end end end)
+  wait(function() return not b.magic:busy("fire") end)
+  local accepted,why=b:command("fire"); assert(not accepted and why=="COOLDOWN","Cooldown allowed recast: "..tostring(why).." "..D.json.encode(b.magic.logs))
+  wait(function() return #b.magic.logs==2 and b.magic.logs[1].completedAt and b.magic.logs[2].completedAt end)
+  assert(b.magic.fireHits>0 and b.magic.synergyHits==0 and b.central.enemyHP==24,"Wrong-facing wind enhanced fire")
+  while b.phase=="playing" or b.phase=="saving" do b:command("shoot"); D.sleep(0.1) end
+  assert(b.phase=="won" and b.report.rewardMultiplier==1 and s:summary().rewards["energy-site-secured"]==1)
+  -- Recreate pre-extension reward table from the earned first win, then migrate it.
+  assert(D.DB:exec("DROP TABLE lsd.Game0MissionRewards")>=0)
+  s=assert(require("Mission.Service").open()); assert(s:summary().rewards["energy-site-secured"]==1,"Old win failed migration")
+  local second=assert(s:beginAsync("c0-m03",models,formation)); b=require("Ground.EnergyBattle").createAsync(s,second)
+  wait(function() b:command("right"); return b.mentor.x>=6160 end,8)
+  b:command("stop"); b:command("left"); D.sleep(0.04); b:command("stop")
+  wait(function() return b.coverBlocks>0 end,8)
+  assert(b:command("wind") and b:command("fire"))
+  wait(function() return b.phase=="won" end,15)
+  assert(b.report.rewardMultiplier==2 and b.magic.synergyHits>0)
+  assert(s:summary().rewards["energy-site-secured"]==1,"Replay increased first reward")
+  assert(#D.DB:query("SELECT id FROM lsd.Game0MissionRewards")==1)
+  assert(s:finishAsync(second,"won",b.report) and s:summary().rewards["energy-site-secured"]==1)
+  return "PASS wrongDirectionNoSynergy=true actualFireHit=true cooldown=true legacyEarnedWinMigration=true strongerReplayNoExtraReward=true repeatedCommitOnce=true"
+ end,debug.traceback)
+ local report="LSD_WIND_FIRE_RULES_"..(ok and result or "FAIL "..tostring(result)).." runId="..id; print(report); D.Content:save(out,report.."\n")
+end)

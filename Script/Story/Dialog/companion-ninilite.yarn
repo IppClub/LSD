@@ -1,0 +1,8 @@
+title: Start
+---
+<<preload "ninilite", "char">>
+[char id=ninilite name=妮妮莉特/]下一次你打算怎么教我？我可不会因为换了队友，就忘记我们以前一起练过的动作。
+[char id=char name=我/]训练成果会分别保留。先看已采用模型的实战表现，需要改进时再示范。
+[char id=ninilite name=妮妮莉特/]那就去训练室。你要认真看我怎么打，不要只盯着胜利次数。
+[char id=char name=我/]好。生命、用时和每一次选择，我们一起看。
+===

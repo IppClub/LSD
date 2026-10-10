@@ -1,0 +1,23 @@
+package.path='Script/?.lua;'..package.path
+local L=require('Economy.Ledger')
+local loadout={{actor='mentor',item='kinetic',quantity=60},{actor='ninilite',item='emp',quantity=30}}
+local q=assert(L.quote(loadout));assert(q.total==245 and q.deployment==5)
+assert(not L.new('a',loadout,244,100))
+local a=assert(L.new('a',loadout,500,100))
+assert(L.consume(a,'shot-1','mentor','kinetic',1,'mentor'))
+local ok,why=L.consume(a,'shot-1','mentor','kinetic',1,'mentor');assert(ok and why=='ALREADY_RECORDED' and a.spent==7)
+assert(not L.consume(a,'shot-1','mentor','kinetic',2,'mentor'))
+assert(L.consume(a,'stolen-1','mentor','kinetic',2,'enemy-1'))
+assert(a.stock['mentor:kinetic'].remaining==57)
+local rich=assert(L.settle(a,'won'));assert(rich.cost==11 and rich.net==89 and rich.refund==234 and rich.balanceAfter==589)
+assert(#rich.lines==2 and rich.lines[1].used==3 and rich.lines[1].usedByOthers==2 and rich.lines[1].cost==8 and rich.lines[1].refund==114)
+assert(rich.lines[2].cost==3 and rich.lines[2].refund==120)
+local cost,refund=0,0;for _,line in ipairs(rich.lines)do cost=cost+line.cost;refund=refund+line.refund end;assert(cost==rich.cost and refund==rich.refund)
+assert(L.settle(a,'won')==rich);assert(not L.settle(a,'failed'));assert(not L.consume(a,'late','mentor','kinetic',1,'mentor'))
+local b=assert(L.new('b',loadout,500,100));assert(L.consume(b,'burst','mentor','kinetic',60,'mentor'));assert(L.consume(b,'emp','ninilite','emp',30,'ninilite'))
+assert(not L.consume(b,'empty','mentor','kinetic',1,'mentor'))
+local loss=assert(L.settle(b,'won'));assert(loss.net==-145 and loss.balanceAfter==355 and loss.refund==0)
+for _,status in ipairs({'failed','aborted'})do local c=assert(L.new(status,loadout,500,100));assert(L.consume(c,'shot','mentor','kinetic',1,'mentor'));local r=assert(L.settle(c,status));assert(r.income==0 and r.cost==7 and r.net==-7 and r.balanceAfter==493)end
+assert(not L.quote({{actor='mentor',item='kinetic',quantity=-1}}))
+assert(not L.quote({loadout[1],loadout[1]}))
+print('PASS economy: positive/negative victory, failure/withdrawal, refunds, stolen ammo, idempotency, budget and empty-stock gates')

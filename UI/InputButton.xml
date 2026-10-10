@@ -11,6 +11,7 @@
 			Text="{ text or '' }"
 			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
 			X="35" Y="41.5" AnchorX="0"/>
+		<Lua>require("UI.FitInteraction").button(btn)</Lua>
 		<Action>
 			<Sequence Name="scaleAction">
 				<Scale Time="0.08" Start="1" Stop="0.8"/>

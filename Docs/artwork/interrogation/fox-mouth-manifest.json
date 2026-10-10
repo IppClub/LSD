@@ -1,0 +1,18 @@
+{
+  "asset": "Image/Companion/fox-snarl-mouth-v1.png",
+  "method": "image_gen transparent expression overlay",
+  "reference": "Image/Companion/Q-huli.png",
+  "selectedGeneration": "exec-844cccc6-d9b8-4fe7-b036-b6c509bbd832.png",
+  "originalArtModified": false,
+  "parentNode": "original-art",
+  "position": [
+    263,
+    445
+  ],
+  "spriteDisplaySize": [
+    110,
+    50
+  ],
+  "duration": 1.2,
+  "scope": "Interrogation facial expression only; not approval of full fox animation"
+}

@@ -20,8 +20,7 @@ light.visible = selected -- 5
 node1:addChild(light) -- 5
 local glow = Action(Sequence(Opacity(0.5,0,1),Opacity(0.5,1,0))) -- 7
 node1:slot("Enter",function() -- 12
-light:perform(glow) -- 12
-light:slot("ActionEnd",function(_action_) if _action_ == glow then light:perform(glow) end end) -- 12
+if node1.running then light:perform(glow, true) end -- 12
 end) -- 12
 return node1 -- 12
 end

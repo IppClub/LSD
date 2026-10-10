@@ -1,0 +1,18 @@
+{
+  "size": [
+    1254,
+    1254
+  ],
+  "opaquePixelsAtSplitAndEdges": {
+    "0": 0,
+    "626": 0,
+    "627": 0,
+    "1253": 0
+  },
+  "assets": {
+    "Image/Rescue/buddha-guard-head-torso-v5.png": "7de46c692969076b2ad7e4b19298a17547d48e1849b8bd624399bb7f54afd18d",
+    "Image/Rescue/buddha-guard-limbs-v5.png": "6f618f7770da0bd4545fd34f31c084b4950865518fa57c8e1e7f5221db8d57e0",
+    "Script/Rescue/BuddhaChibiStyle.lua": "171bf0848c7dbc10527c6b3500cee8333b51fad0131bb4fa186714a0c1a48748",
+    "Script/Rescue/BuddhaPrototype.lua": "4011affff4c1b45fface3fe5a274c5090c97fe26c90db0c50efe154463a798dc"
+  }
+}

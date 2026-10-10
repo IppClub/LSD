@@ -8,9 +8,9 @@ import "Scene.LoopTowerA"
 import "Data.Config"
 
 export default ->
-	Audio\playStream "Music/军事学园.mp3", true, 1
 	LoopTowerA\loadAsync!
 	world = LoopTowerA!
+	(require "System.Music").play world, "Music/军事学园.mp3"
 	with Director.entry
 		\removeAllChildren!
 		Cache\removeUnused "Texture"
@@ -39,7 +39,14 @@ export default ->
 
 	import "UI.HUDControl"
 
-	Director.ui3D\addChild with HUDControl!
+	hud = HUDControl!
+	Director.ui3D\addChild with hud
+		(require "UI.AimHint").attach hud, ->
+			player = Group({"player", "unit"})\find (e)-> e.player and e.unit.world == world
+			return false, false, false unless player
+			held = player.keySkill == true
+			_, precision = (require "Tutorial.AimSweep").angle App.runningTime - (player.unit.data.aimStartedAt or App.runningTime)
+			held, held and precision, true
 		\schedule once ->
 			sleep 0.1
 			emit "MessageBox.Add", title: "系统", special: false, text: "已上线/79.03.27.09.24；"
@@ -50,14 +57,19 @@ export default ->
 		switch @name when "ninilite"
 			@decisionTree = "AI:NiniliteIntro"
 
+	-- System.tl 的同名挂枪 Group:each 在模块导入时执行，早于实体创建；
+	-- 这里按单位只挂一次，避免每帧重建 Spine。
+	equipped = setmetatable {}, __mode: "k"
 	threadLoop ->
 		group = Group(["player", "name", "unit"])
 		if group.count > 0
 			group\each => switch @name when "charF", "charM"
-				with @unit.playable
-					\setSlot "pistol", with Spine "kineticgun"
-						.look = "PT"
-						.scaleX = .scaleY = 0.2
+				unless equipped[@unit]
+					equipped[@unit] = true
+					with @unit.playable
+						\setSlot "pistol", with Spine "kineticgun"
+							.look = "PT"
+							.scaleX = .scaleY = 0.2
 				true
 			true
 
@@ -89,7 +101,7 @@ export default ->
 				import "System.PlayBubbleChat"
 				PlayBubbleChat "Tutorial/Dialog/evade.yarn"
 				moved = false
-				with Observer "Add", ["keyLeft", "player"]
+				with Observer "AddOrChange", ["keyLeft", "player"]
 					\watch (_entity, keyLeft) -> if keyLeft then thread ->
 						if not moved and Group(["monster",]).count > 0
 							moved = true

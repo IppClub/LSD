@@ -1,0 +1,1 @@
+{"mode": "lua", "code": "local D=require('Dora');local r=assert(package.loaded['_lsd_training_memory_diagnostic_state'],'Diagnostic handle missing');print(D.json.encode({status=r.status,runId=r.runId,phase=r.phase,completedCycles=r.completedCycles,elapsed=r.elapsed,heartbeatAge=D.App.runningTime-r.heartbeat,lastCycle=r.lastCycle,error=r.error}))", "timeoutSeconds": 5}

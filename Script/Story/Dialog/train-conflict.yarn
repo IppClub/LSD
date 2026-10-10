@@ -1,0 +1,16 @@
+title: Start
+---
+<<preload "ninilite", "char", "liyena">>
+[char name=李队队员/]生面孔？知道上一个站在这女人旁边的人是谁吗？她现在居然也能用外骨骼了。
+[char id=char name=我/]比起自我介绍，我更想知道你们阴阳怪气的台本是谁写的。
+[char id=ninilite name=妮妮莉特/]羽凌灵没有把这里当作游戏。她一直在保护这里的人……
+[char name=李队队员/]所以我们还得感谢她？感谢她想和你过家家才有了我们？
+[char id=char name=我/]够了。你可以怀疑她，却不能用这些话羞辱妮妮莉特。我们正要调查发生了什么。
+[char id=liyena name=李叶娜/]够了，你们两个惹事的家伙！离开这里。
+[char id=ninilite name=妮妮莉特/]李叶娜……
+[char id=liyena name=李叶娜/]你还打算继续委屈下去吗？现在羽凌灵不在这里。要么挥拳，要么躲着。
+[char id=char name=我/]我会保护她，但保护不是替她决定所有事情。我们在学院训练出的办法，也不是拿来争吵的。
+[char id=liyena name=李叶娜/]地面不会因为你说得好听就手下留情。记住这一点。
+[char id=ninilite name=妮妮莉特/]我知道……但我还是想弄清楚。她为什么要帮大家，大家又为什么这样对她。
+[char id=char name=我/]通讯器亮了，是羽凌灵的回信。先读完，再决定调查的下一步。
+===

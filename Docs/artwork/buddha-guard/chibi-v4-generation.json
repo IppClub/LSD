@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "prompts": [
+    "Use case: style-transfer. Edit Image 1, the existing Buddha robot sprite atlas, to match Image 2, Yu's authoritative hand-drawn chibi art. Image 3 is original Buddha identity reference. Output EXACT 1536x1024 atlas on actual transparent background. Preserve the six part cells and ALL existing arm/hand/halo silhouettes, sizes, orientations and positions so skeletal attachments remain valid: columns x=0..511,512..1023,1024..1535; top row y=0..575 (armless torso, upper arm, forearm); bottom row y=576..1023 (open hand, cupped support hand, halo). ONLY redraw style/colors throughout and reshape head inside top-left torso. Torso below chin including shoulder sockets, saddle and thrusters remains exact same position/size. Enlarge head width about 15 percent, short round face with serene closed eyes, larger cranium, reduce tiny hair curl count to broader readable clusters, keep crown within canvas. Match Yu: warm apricot-gold trim, ivory armor, subdued blue-violet cel shadows, strong slightly hand-drawn dark outlines; simplified two-tone flat cel shading, no shiny glossy highlights, no realistic gradients, no bevels, no 3D plastic look. Keep deep charcoal mechanical joints and muted reddish saddle. Use readable bold simple shapes matching Yu. Preserve recognizable Buddhist robot identity, six arms assembled externally; draw NO attached arms on torso. No Yu character in output. No backdrop, glow, cast shadow, labels, watermark or extra pieces. Clean true alpha transparency everywhere outside parts, including hole in halo.",
+    "Precise-object-edit of this 1536x1024 transparent game sprite atlas. Preserve artwork style/colors and all 6 part identities. Fix cell overflow ONLY. The left torso currently overflows x=512 and y=576; shrink the ENTIRE top-left torso around center (256,288) to 88% size so full silhouette including thrusters and crown stays within x=30..480,y=20..555. Keep upper arm and forearm same. Bottom-right halo currently crosses above y=576; shrink halo to 90% around (1280,800) so its full shape lies x=1070..1490,y=600..1000. Open hand and cupped hand same. Empty areas genuinely alpha transparent; no glow or background. Exact canvas 1536x1024. No other changes."
+  ],
+  "asset": "../buddha-guard-chibi-v4.png",
+  "runtimeInstalled": false,
+  "status": "native comparison candidate; visual revision required",
+  "issues": [
+    "Head scale change insufficient after cell containment adjustment",
+    "Lower arm attachment registration needs further visual calibration"
+  ],
+  "nativeRunId": 1791101687
+}

@@ -8,6 +8,15 @@ local App <const> = App -- 10
 local View <const> = View -- 10
 local load <const> = load -- 10
 local tostring <const> = tostring -- 10
+local alignFuncCache = { } -- 12
+local alignFunc <const> = function(src) -- 13
+	local cached = alignFuncCache[src] -- 14
+	if not cached then -- 15
+		cached = load("local _ENV = " .. "Dora(...)\nreturn " .. tostring(src)) -- 16
+		alignFuncCache[src] = cached -- 17
+	end -- 15
+	return cached -- 18
+end -- 12
 _module_0 = Class(Node, { -- 13
 	__init = function(self, args) -- 13
 		local isRoot, inUI, hAlign, vAlign, alignOffset, alignWidth, alignHeight -- 14
@@ -74,11 +83,11 @@ _module_0 = Class(Node, { -- 13
 				} -- 50
 				local oldSize = self.size -- 51
 				if self.alignWidth then -- 52
-					local widthFunc = load("local _ENV = " .. "Dora(...)\nreturn " .. tostring(self.alignWidth)) -- 53
+					local widthFunc = alignFunc(self.alignWidth) -- 53
 					self.width = widthFunc(env) -- 54
 				end -- 52
 				if self.alignHeight then -- 55
-					local heightFunc = load("local _ENV = " .. "Dora(...)\nreturn " .. tostring(self.alignHeight)) -- 56
+					local heightFunc = alignFunc(self.alignHeight) -- 56
 					self.height = heightFunc(env) -- 57
 				end -- 55
 				do -- 58

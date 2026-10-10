@@ -1,0 +1,12 @@
+title: Start
+---
+<<preload "ninilite", "char">>
+[char id=char name=我/]这里是军事学院的研发室？
+[char id=ninilite name=妮妮莉特/]嗯。以前大家在这里研发武器。羽凌灵离开后，他们也走了，不过还有不少设施能用。
+[char id=ninilite name=妮妮莉特/]这是用来联系的通讯器。作战时，你负责判断目标，我会按训练中学到的动作行动。
+[char id=char name=我/]所以训练里的示范，会改变你下一次出战时的决定？
+[char id=ninilite name=妮妮莉特/]是的。我的外骨骼预设还不完善，人格也不是同一套参数能兼容的。
+[char id=ninilite name=妮妮莉特/]如果示范让我一味后退，遇到怪物我可能也只会退缩。我们得先试战，再决定要不要采用。
+[char id=char name=我/]那就一起检查训练成果。保护你，也需要听懂你需要什么。
+[char id=ninilite name=妮妮莉特/]训练室在B区。指挥室在C区，通讯恢复以后，我们再找羽凌灵留下的资料。
+===

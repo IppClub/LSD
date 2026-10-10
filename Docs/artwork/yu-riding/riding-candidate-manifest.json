@@ -1,0 +1,15 @@
+{
+  "status": "AUTHORING_CANDIDATE_NOT_RUNTIME",
+  "animations": {
+    "sit": 0.8,
+    "ride": 2,
+    "stand": 0.8
+  },
+  "approach": "Original leg and foot IK, unchanged limb scales; weighted skirt joint offsets",
+  "requires": [
+    "native silhouette and foot orientation review",
+    "palms-to-pelvis contact binding",
+    "full finite animation and recovery validation"
+  ],
+  "runtimeInstalled": false
+}

@@ -1,0 +1,6 @@
+title: Start
+---
+<<preload "char", "villywan">>
+[char name=大狐狸/]嘘，已到达，别发出声音
+<<foxSurvey>>
+===

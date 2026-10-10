@@ -46,8 +46,7 @@ sprite8.scaleX = 1.01 -- 14
 node2:addChild(sprite8) -- 14
 local move = Action(Move(3,Vec2(0,0),Vec2(-170,0))) -- 16
 node2:slot("Enter",function() -- 18
-node2:perform(move) -- 18
-node2:slot("ActionEnd",function(_action_) if _action_ == move then node2:perform(move) end end) -- 18
+if node2.running then node2:perform(move, true) end -- 18
 end) -- 18
 return node1 -- 18
 end

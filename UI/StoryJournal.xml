@@ -1,0 +1,34 @@
+<Dora>
+ <Import Module="UI.Control.Basic.AlignNode"/>
+ <Import Module="UI.View.Shape.SolidRect"/>
+ <Import Module="UI.PhoneMessageTab"/>
+ <Import Module="UI.PropButton"/>
+ <Import Module="UI.FullScreenMask"/>
+ <AlignNode Name="journal" InUI="True" IsRoot="True">
+  <FullScreenMask/>
+  <AlignNode Name="panel" HAlign="Center" VAlign="Center">
+   <SolidRect X="-1470" Y="-665" Width="2940" Height="1330" Color="0xef101b28"/>
+   <Sprite File="phone.clip|phone_bg" X="-950" ScaleX="0.8" ScaleY="0.8"/>
+   <Label Text="{ panelTitle or '通讯与调查' }" FontName="SourceHanSansCN-Regular" FontSize="62" X="-950" Y="520"/>
+   <PhoneMessageTab Name="mailButton" Ref="True" X="-950" Y="310" Username="{ row1Title or '羽凌灵' }" Avatar="phone.clip|phone_icon_com_3" Msg="{ row1Status or mailStatus or '' }" ScaleX="0.8" ScaleY="0.8"/>
+   <PhoneMessageTab Name="researchButton" Ref="True" X="-950" Y="155" Username="{ row2Title or '妮妮莉特' }" Avatar="phone.clip|phone_icon_com_3" Msg="{ row2Status or researchStatus or '' }" ScaleX="0.8" ScaleY="0.8"/>
+   <PhoneMessageTab Name="archiveButton" Ref="True" X="-950" Y="0" Username="{ row3Title or '暗格资料' }" Avatar="phone.clip|phone_icon_collect_3" Msg="{ row3Status or archiveStatus or '' }" ScaleX="0.8" ScaleY="0.8"/>
+   <PhoneMessageTab Name="stationButton" Ref="True" X="-950" Y="-155" Username="{ row4Title or '站台部署' }" Avatar="phone.clip|phone_icon_collect_3" Msg="{ row4Status or stationStatus or '' }" ScaleX="0.8" ScaleY="0.8"/>
+   <Lua>for _,button in ipairs({mailButton,researchButton,archiveButton,stationButton}) do
+    button.scaleX=0.8; button.scaleY=0.8
+    -- The legacy tab paints around (0,0); move art inside its actual touch bounds.
+    local offset=Vec2(button.width/2,button.height/2)
+    button.children:each(function(child) child.position=child.position+offset end)
+   end</Lua>
+   <Lua>mailButton.visible=row1Visible~=false; researchButton.visible=row2Visible~=false; archiveButton.visible=row3Visible~=false; stationButton.visible=row4Visible~=false</Lua>
+   <PropButton Name="previousButton" Ref="True" Text="上一页" X="-1140" Y="-400" ScaleX="0.8" ScaleY="0.8"/>
+   <PropButton Name="nextButton" Ref="True" Text="下一页" X="-730" Y="-400" ScaleX="0.8" ScaleY="0.8"/>
+   <Label Name="pageLabel" Ref="True" Text="{ pageText or '记录 1 / 1' }" FontName="SourceHanSansCN-Regular" FontSize="36" X="-950" Y="-505"/>
+   <Label Name="detail" Ref="True" Text="{ journalText or '' }" FontName="SourceHanSansCN-Regular" FontSize="43" TextWidth="1620" TextAlign="Left" AnchorX="0" AnchorY="1" X="-380" Y="510"/>
+   <PropButton Name="closeButton" Ref="True" Text="{ closeText or '关闭通讯' }" X="950" Y="-530"/>
+  </AlignNode>
+  <Slot Name="AlignLayout" Args="w, h">
+   <Lua>local scale=math.min(h/1563,w/3100); panel.scaleX=scale; panel.scaleY=scale</Lua>
+  </Slot>
+ </AlignNode>
+</Dora>

@@ -1,0 +1,29 @@
+{
+  "source": "fox-chibi-blink-heads-v1.png",
+  "sha256": "9c72471430bdd7f00effe8bc93ee8035d02718a29e91fe5c7e6b5f172a7911d1",
+  "sourceCanvas": [
+    1774,
+    887
+  ],
+  "parts": [
+    {
+      "name": "half",
+      "rect": [
+        24,
+        48,
+        843,
+        794
+      ]
+    },
+    {
+      "name": "closed",
+      "rect": [
+        888,
+        32,
+        872,
+        809
+      ]
+    }
+  ],
+  "status": "blink pose variants: native registration and silhouette acceptance required"
+}

@@ -1,0 +1,40 @@
+{
+  "status": "withdrawn: user rejected floating joints and reversed facing; historical numeric checks did not validate artwork attachment",
+  "reference": "Q-huli.png",
+  "learnedFrom": [
+    "ninilite",
+    "wuyun",
+    "charF"
+  ],
+  "parts": 15,
+  "externalParts": "fox-chibi-rear-hair-manifest.json",
+  "frames": {
+    "idle": 120,
+    "move": 60,
+    "prepare": 120
+  },
+  "recovery": 0.2,
+  "footPlant": "two-bone IK to separate foot with fixed idle ground contact and 60 percent stance",
+  "stanceDistance": 180,
+  "stanceSeconds": 0.6,
+  "speedAtWorldVelocity200AndHeight300": 1.5533333333333332,
+  "stepClockKeyFrames": [
+    0,
+    15,
+    30,
+    45,
+    60
+  ],
+  "stepEventAttributeFrames": [
+    30,
+    60
+  ],
+  "stepContactFrames": [
+    15,
+    45
+  ],
+  "remaining": [
+    "further front-hair and clothing deformation polish",
+    "full Game0 acceptance"
+  ]
+}

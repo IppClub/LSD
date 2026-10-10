@@ -1,5 +1,6 @@
 <Dora>
 	<Import Module="UI.Control.Basic.AlignNode"/>
+	<Import Module="UI.View.Shape.SolidRect"/>
 	<Import Module="UI.FormationRole"/>
 	<Import Module="UI.GearBox"/>
 	<Import Module="UI.LsdOS"/>
@@ -20,14 +21,39 @@
 					<Item Tag="logo" Visible="False"/>
 					<Item Tag="formation_head_line">
 						<Label Name="title"
-							Text="2-3地底的喧嚣"
+							Text="{ missionTitle or '2-3地底的喧嚣' }"
 							FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Center"
 							Spacing="20" X ="1333" Y="-8" AnchorY="0"/>
 					</Item>
 				</Playable>
 			</AlignNode>
+			<Lua>if missionMode then</Lua>
+			<AlignNode Name="figure" Ref="True" HAlign="Center" VAlign="Center">
+				<Menu Name="squad" Width="{ secondLearner and 1700 or 1150 }" Height="1074" Y="100">
+					<FormationRole Name="mentorCard" Ref="True" Role="{ mentorRole or 'charM' }" Editing="False" Cap="True"/>
+					<Lua>if learnerIncluded then</Lua>
+					<FormationRole Name="learnerCard" Ref="True" Role="ninilite" Editing="False"/>
+					<Lua>else</Lua>
+					<Node Width="510" Height="1017" TouchEnabled="True" Name="learnerCard" Ref="True">
+						<FormationSlot X="255" Y="508.5"/>
+					</Node>
+					<Lua>end</Lua>
+					<Lua>if secondLearner then</Lua>
+					<Lua>if secondIncluded then</Lua>
+					<FormationRole Name="secondCard" Ref="True" Role="wuyun" Editing="False"/>
+					<Lua>else</Lua>
+					<Node Width="510" Height="1017" TouchEnabled="True" Name="secondCard" Ref="True"><FormationSlot X="255" Y="508.5"/></Node>
+					<Lua>end</Lua>
+					<Lua>end</Lua>
+					<Lua>squad:alignItemsHorizontally(28.5)</Lua>
+				</Menu>
+				<SolidRect X="-1300" Y="{ secondLearner and -675 or -635 }" Width="2600" Height="{ secondLearner and 230 or 190 }" Color="0xb2000000"/>
+				<Label Name="status" Ref="True" Text="{ squadStatus or '' }" FontName="SourceHanSansCN-Regular" FontSize="40" TextWidth="2600" TextAlign="Center" Y="{ secondLearner and -550 or -535 }"/>
+			</AlignNode>
+			<AlignNode Name="bottomControl" Ref="True" HAlign="Center" VAlign="Bottom"/>
+			<Lua>else</Lua>
 			<!-- Figures -->
-			<AlignNode Name="figure" HAlign="Center" VAlign="Center">
+			<AlignNode Name="figure" Ref="True" HAlign="Center" VAlign="Center">
 				<Menu Name="menu" Width="2721" Height="1074" Y="100" Visible="True" Ref="True">
 					<FormationRole Name="p1" Role="charM" Editing="False" Cap="True"/>
 					<FormationRole Name="p2" Role="moling" Editing="False">
@@ -61,7 +87,7 @@
 						<FormationSlot/>
 						<Lua>teamMenu:alignItems(28.5)</Lua>
 					</Menu>
-					<ScrollArea Name="charMenu" Y="-263.25" PaddingX="0" ScrollBar="False">
+					<ScrollArea Name="charMenu" Ref="True" Y="-263.25" PaddingX="0" ScrollBar="False">
 						<Item Name="view">
 							<RoleSelect Vacant="True"/>
 							<RoleSelect/>
@@ -76,7 +102,7 @@
 					<RoleTab X="-1375" Y="240"/>
 				</Node>
 			</AlignNode>
-			<AlignNode Name="bottomControl" HAlign="Center" VAlign="Bottom">
+			<AlignNode Name="bottomControl" Ref="True" HAlign="Center" VAlign="Bottom">
 				<Node Name="shadow" Visible="True" Ref="True">
 					<Node Name="mirror" Width="2721" Height="300" AnchorY="1" ScaleY="-1">
 						<Sprite File="box2.png" X="{ p1.x - 150 }" Y="100"/>
@@ -156,19 +182,20 @@
 					</Node>
 				</Node>
 			</AlignNode>
+			<Lua>end</Lua>
 			<!-- LSD OS -->
 			<LsdOS Name="lsdOS"/>
 			<!-- Left Top -->
 			<AlignNode Name="topControl" HAlign="Left" VAlign="Top">
-				<BackButton X="155" Y="-78.5"/>
+				<BackButton Name="backButton" Ref="True" X="155" Y="-78.5"/>
 			</AlignNode>
 			<!-- Left Bottom -->
 			<AlignNode Name="leftControl" HAlign="Left" VAlign="Bottom">
-				<Button Text="已有编队" TextBG="FORMATION" X="281.5" Y="111.5"/>
+				<Button Name="rosterButton" Ref="True" Text="{ missionMode and '调整学员' or '已有编队' }" TextBG="{ missionMode and '' or 'FORMATION' }" X="281.5" Y="111.5"/>
 			</AlignNode>
 			<!-- Right Bottom -->
 			<AlignNode Name="rightControl" HAlign="Right" VAlign="Bottom">
-				<Button Text="开始作战" TextBG="START BATTLE" X="-281.5" Y="111.5"/>
+				<Button Name="startButton" Ref="True" Text="开始作战" TextBG="{ missionMode and '' or 'START BATTLE' }" X="-281.5" Y="111.5"/>
 			</AlignNode>
 		</AlignNode>
 		<!-- Left GearBox -->
@@ -177,21 +204,22 @@
 			<!--<FilterBox/>-->
 		</AlignNode>
 		<!-- Right GearBox -->
-		<AlignNode Name="rightBox" HAlign="Right" VAlign="Center">
+		<AlignNode Name="rightBox" Visible="{ not missionMode }" HAlign="Right" VAlign="Center">
 			<GearBox Right="True"/>
 		</AlignNode>
+		<Lua>rightBox.visible = not missionMode</Lua>
 		<Slot Name="AlignLayout" Args="w, h">
 			<Yue>
 				scale = h / H
 				ratio = w / h
 				extraScale = ratio / math.max ratio, 1.9
-				for item in *{figure, bottomControl}
+				for item in *{formation.figure, formation.bottomControl}
 					item.scaleX = scale * extraScale
 					item.scaleY = scale * extraScale
 				for item in *{bg, lsdOS, topControl, leftControl, rightControl, leftBox, rightBox}
 					item.scaleX = scale
 					item.scaleY = scale
-				charMenu\adjustSizeWithAlign "Auto", 27, Size 2715, 1036.5
+				formation.charMenu\adjustSizeWithAlign "Auto", 27, Size 2715, 1036.5 if formation.charMenu
 			</Yue>
 		</Slot>
 	</AlignNode>

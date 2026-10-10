@@ -4,6 +4,7 @@ local conf = Config(
 	"skipOP",
 	"char",
 	"charName",
-	"heroine"
+	"heroine",
+	"tutorialCompleted"
 )
 return conf

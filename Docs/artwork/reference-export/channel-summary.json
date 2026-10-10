@@ -1,0 +1,23 @@
+{
+  "fmove": {
+    "durationSource": "q-character-motion-analysis.json",
+    "boneTracks": 77,
+    "attachmentSlots": 0,
+    "slotTracks": 0,
+    "ikTracks": 0
+  },
+  "idle": {
+    "durationSource": "q-character-motion-analysis.json",
+    "boneTracks": 74,
+    "attachmentSlots": 1,
+    "slotTracks": 5,
+    "ikTracks": 2
+  },
+  "prepare": {
+    "durationSource": "q-character-motion-analysis.json",
+    "boneTracks": 77,
+    "attachmentSlots": 1,
+    "slotTracks": 5,
+    "ikTracks": 2
+  }
+}

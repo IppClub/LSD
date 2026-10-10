@@ -1,0 +1,8 @@
+title: Start
+---
+<<preload "wuyun", "char">>
+[char id=wuyun name=乌云/]小扎西，刀什么时候出手，枪什么时候抬起来，还是得一起练过才知道。
+[char id=char name=我/]示范和成果都按人保管。我们去训练室看看，再决定该补哪些情境。
+[char id=wuyun name=乌云/]也要给我留点观察的时间。草原上的路，不是每一步都得靠别人指挥。
+[char id=char name=我/]队伍指令只定位置和目标，怎样行动由你学会的经验来判断。
+===

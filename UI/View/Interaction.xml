@@ -5,7 +5,7 @@
 			<Lua>if fliped then</Lua>
 				<Sprite File="button.clip|prompt_chat_name" X="{ $X }" Y="{ $Y }" ScaleX="-1"/>
 				<Sprite File="button.clip|prompt_chat_name1" X="{ $L }" Y="{ $B }" ScaleX="-1" AnchorX="0" AnchorY="0"/>
-				<MovingText Name="clip" TextBG="TARGET" OffsetY="25">
+				<MovingText Name="clip" TextBG="{ '' }" OffsetY="25">
 					<Item Name="mask">
 						<Sprite File="button.clip|prompt_chat_name" AnchorX="1" AnchorY="0" ScaleX="-1"/>
 					</Item>
@@ -14,7 +14,7 @@
 			<Lua>else</Lua>
 				<Sprite File="button.clip|prompt_chat_name" X="{ $X }" Y="{ $Y }"/>
 				<Sprite File="button.clip|prompt_chat_name1" X="{ $R }" Y="{ $B }" AnchorX="0" AnchorY="0"/>
-				<MovingText Name="clip" TextBG="TARGET" OffsetY="25">
+				<MovingText Name="clip" TextBG="{ '' }" OffsetY="25">
 					<Item Name="mask">
 						<Sprite File="button.clip|prompt_chat_name" AnchorX="0" AnchorY="0"/>
 					</Item>

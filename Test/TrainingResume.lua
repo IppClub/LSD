@@ -1,0 +1,27 @@
+-- Re-run after stopping and restarting the native engine, not just the scene.
+local D = require("Dora")
+local root = D.Path:getPath(D.Path:getScriptPath(...))
+for _, path in ipairs({root,D.Path(root,"Script"),D.Path(root,"Spine"),D.Path(root,"Image"),D.Path(root,"Font")}) do D.Content:insertSearchPath(1,path) end
+local output = D.Path(root,"Test","training-resume-result.txt")
+D.Content:save(output,"LSD_TRAINING_RESUME_RUNNING\n")
+local database = assert(D.Content:load(D.Path(root,"Test","training-resume-fixture.txt")),"No completed training fixture")
+assert(D.Path:getPath(database)==D.Content.writablePath and D.Path:getFilename(database):match("^lsd%-game0%-training%-qa%-%d+%.db$"),"Not an isolated training QA save")
+assert(not D.DB:existDB("lsd"),"Another game owns the schema")
+assert(D.DB:exec("ATTACH DATABASE '"..database:gsub("'","''").."' AS lsd"))
+D.Director.entry:slot("Cleanup",function() if D.DB:existDB("lsd") then D.DB:exec("DETACH DATABASE lsd") end end)
+D.thread(function()
+	local ok,result = xpcall(function()
+		local Progress = require("Training.Progress")
+		local loaded,status = Progress.load()
+		assert(loaded and status=="LOADED","Saved training not restored")
+		assert(Progress.adopted and Progress.previous,"Adopted/history missing after restart")
+		assert(Progress.adopted.sampleCount==7 and Progress.store.revision==3,"Wrong persisted revision")
+		local arena = require("Training.Arena").createAsync({adopted=Progress.adopted,previous=Progress.previous})
+		assert(arena:beginTrial(530,arena.adopted))
+		while arena.mode=="trial" do D.sleep(0.1) end
+		assert(arena.result.won and arena.result.metrics.hits==5 and arena.result.metrics.fallback==0,"Restored model failed real battle")
+		return "PASS revision="..Progress.store.revision.." samples="..Progress.adopted.sampleCount.." previous=true hits="..arena.result.metrics.hits.." fallback="..arena.result.metrics.fallback
+	end,debug.traceback)
+	local report = "LSD_TRAINING_RESUME_"..(ok and result or "FAIL "..tostring(result))
+	print(report); D.Content:save(output,report.."\n")
+end)

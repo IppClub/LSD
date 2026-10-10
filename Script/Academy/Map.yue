@@ -1,4 +1,5 @@
 import "Platformer" as :Data
+import "Dora" as :DB
 import global
 
 routes =
@@ -97,9 +98,9 @@ routes =
 	PassageC:
 		name: "C区走廊"
 		left:
-			name: "左边门"
-			enter: ""
-			targets: []
+			name: "站台通道"
+			enter: "right"
+			targets: ["Station",]
 		right:
 			name: "右边门"
 			enter: "left"
@@ -113,8 +114,8 @@ routes =
 		name: "D区走廊"
 		left:
 			name: "左边门"
-			enter: ""
-			targets: []
+			enter: "right"
+			targets: ["LibraryRoom", ]
 		right:
 			name: "右边门"
 			enter: "left"
@@ -123,6 +124,24 @@ routes =
 			name: "电梯"
 			enter: "center"
 			targets: ["PassageC", ]
+
+	LibraryRoom:
+		name: "资料室"
+		left:
+			name: "左边门"
+			enter: ""
+			targets: {}
+		right:
+			name: "右边门"
+			enter: "left"
+			targets: {"PassageD"}
+
+	Station:
+		name: "地铁站台"
+		right:
+			name: "学院通道"
+			enter: "left"
+			targets: ["PassageC",]
 
 states =
 	* PreparationRoom: true
@@ -137,8 +156,14 @@ states =
 
 	* PassageD: true
 		RDRoom: true
+		LibraryRoom: true
+		Station: true
 
 isAvailable = (name) ->
+	if name == "Station"
+		return false unless DB\existDB("lsd") and DB\exist("Game0StoryUnlocks", "lsd")
+		rows = DB\query "SELECT id FROM lsd.Game0StoryUnlocks WHERE id='archive-discovered'"
+		return false unless rows and #rows > 0
 	level = Data.store.academyLevel ?? #states
 	for i = 1, level
 		if states[i][name]

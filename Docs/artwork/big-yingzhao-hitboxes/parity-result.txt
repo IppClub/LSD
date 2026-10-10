@@ -1,0 +1,2 @@
+PASS animations=15 hullChecks=1110810 hullMaxError=0.00012207 artCoordinates=5435100 artMaxError=0.00378418
+Original and derived meshes compared with the engine Spine runtime; native rendering and combat integration remain unverified.

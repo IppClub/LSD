@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "status": "candidate; complete native wall traversal fixture implemented; story scene and OS play pending",
+  "generator": "Tools/build_roof_climb.py",
+  "nativePoseReader": "Tools/read_spine_pose.cpp",
+  "nativeVerifier": "Tools/verify_roof_climb.cpp",
+  "files": [
+    {
+      "name": "charM",
+      "source": "Spine/ControlPod/charM.json",
+      "sourceSha256": "b839c4919e3ea25439e3e4c97c237163c328bee648a0e97d426dd9899b05bbdc",
+      "outputSha256": "effa86ff0ffd719ca8740e4056ce25bb9b270a6cc6e1e3488f28e9405fa422d8",
+      "originalClipsUnchanged": [
+        "idle",
+        "fmove",
+        "prepare",
+        "pistol",
+        "aim",
+        "jump",
+        "jumping",
+        "landing"
+      ],
+      "jumpSource": "Docs/artwork/interrogation/charM/source-export/charM.json",
+      "jumpSourceSha256": "0a9b2fa418215fda7900d49a4abbe0053f9abfad7e1e0ee0366b1415cfcfd9f5"
+    },
+    {
+      "name": "charF",
+      "source": "Spine/ControlPod/charF.json",
+      "sourceSha256": "dc0810fe82c986c772c11e0579f84257c1ff0620eb0165d3444f9a39e58181fb",
+      "outputSha256": "94b79a0a4b0e59d5b2e419b818f26ba0c4899a033c47ad0e8a1c6a26356ec654",
+      "originalClipsUnchanged": [
+        "idle",
+        "fmove",
+        "prepare",
+        "pistol",
+        "aim",
+        "jump",
+        "jumping",
+        "landing"
+      ],
+      "jumpSource": "Docs/artwork/interrogation/charF/source-export/charF.json",
+      "jumpSourceSha256": "4c6194dce74577d237818c6d8a809421ea1a1457573faac2a81590c61250124a"
+    },
+    {
+      "name": "ninilite",
+      "source": "Spine/ControlPod/ninilite.json",
+      "sourceSha256": "0bff86442abe62b7a37e9199c51557ec3e32ba48f4cbc152552931f3e3c1211d",
+      "outputSha256": "b9aebe654b9c959a51d40e31ac468a4a9d388b259ac79e539e8290d311066d5c",
+      "originalClipsUnchanged": [
+        "idle",
+        "fmove",
+        "prepare",
+        "pistol",
+        "aim",
+        "jump",
+        "jumping",
+        "landing"
+      ],
+      "jumpSource": "Docs/artwork/reference-export/ninilite.json",
+      "jumpSourceSha256": "3bce93190b60135e509391f76ae8ccf472c627de3f2b55206add07e9c0430aa0"
+    }
+  ],
+  "contactEvidence": "Docs/evidence/2026-10-04/roof-climb-native-contacts.json",
+  "note": "Constraints remain in Spine 4.3 unified constraints array; mix disabled only in climb. Original clips and pixels preserved.",
+  "runtimeController": "Script/Factory/RoofClimb.lua",
+  "runtimeContactEvidence": "Docs/evidence/2026-10-04/roof-climb-live-contact.json",
+  "newClips": [
+    "climb",
+    "climbSettle",
+    "climbEnter",
+    "roofPull",
+    "roofTuck"
+  ],
+  "settleSeconds": 0.4,
+  "idleRecoverySeconds": 0.2,
+  "traversalController": "Script/Factory/RoofTraverse.lua",
+  "traversalEvidence": "Docs/evidence/2026-10-04/roof-traverse-native.json"
+}

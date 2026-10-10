@@ -1,0 +1,7 @@
+local Cover=dofile('Script/Final/Cover.lua')
+assert(Cover.intersection(1080,0,1300,150,1040,150))
+assert(Cover.intersection(1080,0,1110,35,1040,155))
+assert(not Cover.intersection(1080,0,1300,500,1040,500),'Cover must not block above its top')
+assert(not Cover.intersection(1080,0,1300,150,1150,150),'Same-side target should be exposed')
+assert(not Cover.intersection(1080,0,1300,150,800,150),'Distant target must not receive nearby cover')
+print('LSD_FINAL_COVER_PASS actualSegment=true aboveTopExposed=true sameSideExposed=true distanceBounded=true')

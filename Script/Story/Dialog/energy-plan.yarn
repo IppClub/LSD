@@ -1,0 +1,16 @@
+title: Start
+---
+<<preload "ninilite", "char", "wuyun">>
+[char id=wuyun name=乌云/]大清早的，俩扎西吵什么？我正梦见在牧场骑马，被你俩打断了。
+[char id=char name=我/]都快中午了。地下城的林睿哲刚来访，希望一起收集地面能源，调查这个世界。
+[char id=wuyun name=乌云/]那你俩怎么不叫醒我？算了，听起来是了解这个世界的不错方式。
+[char id=char name=我/]他也想让你加入基地。我告诉他，这得由你自己决定。
+[char id=wuyun name=乌云/]我愿意和你们一起看看。我不会为了谁的命令交出自己的意志。
+[char id=ninilite name=妮妮莉特/]我也要去！不要又把我一个人留在这里。
+[char id=char name=我/]地点还是遗弃城市。夜光镜收到地图，紫色光点是他标记的能源位置。
+[char id=char name=我/]标记不是调查结论。先确认位置和退路，再核实能源与资料。
+[char id=wuyun name=乌云/]昨天只是在近处接应。真要两面作战，得先知道彼此习惯怎么走、什么时候出手。
+[char id=char name=我/]回训练室，在虚拟训练场分别练习。队伍指令只指定位置和目标，不能代替你们学会动作。
+[char id=ninilite name=妮妮莉特/]我的训练成果要留着。你可别把我教成别人。
+[char id=char name=我/]当然。各自的示范、模型和试战记录分别保管。夜光镜先帮助我们熟悉调查路线。
+===

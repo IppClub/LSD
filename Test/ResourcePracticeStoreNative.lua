@@ -1,0 +1,22 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...));local out=root..'/Test/resource-practice-store-result.json';local r={status='RUNNING'}
+D.Content:save(out,D.json.encode(r))
+D.thread(function()
+ local ok,err=xpcall(function()
+  local path=D.Content.writablePath..'/resource-practice-store-'..os.time()..'.db';assert(not D.DB:existDB('lsd')and not D.Content:exist(path));assert(D.DB:exec("ATTACH DATABASE '"..path.."' AS lsd")>=0)
+  local Store=require('Training.ResourcePracticeStore');local absent,why=Store.loadLatestAsync();assert(not absent and why=='NOT_RECORDED')
+  local source=D.json.decode(D.Content:load(root..'/Docs/evidence/2026-10-05/resource-practice-ui/source.json'),32)
+  assert(D.DB:exec("CREATE TRIGGER lsd.RejectPractice BEFORE INSERT ON Game0ResourcePractices BEGIN SELECT RAISE(ABORT,'practice fault'); END")>=0)
+  assert(not Store.saveRunAsync(source));assert(not Store.loadLatestAsync())
+  assert(D.DB:exec('DROP TRIGGER lsd.RejectPractice')>=0);assert(Store.saveRunAsync(source))
+  assert(D.DB:exec('DETACH DATABASE lsd')>=0);assert(D.DB:exec("ATTACH DATABASE '"..path.."' AS lsd")>=0)
+  assert(Store.loadLatestAsync().id==1);local ok,why,id=Store.saveRunAsync(source);assert(ok and why=='ALREADY_SAVED'and id==1)
+  source.profile='near';local ok,why=Store.saveRunAsync(source);assert(not ok and why=='EPISODE_CONFLICT')
+  D.Cache:loadAsync('button.clip');local L=require('Economy.Loadout');local confirmed
+  local config=require('UI.SupplyLoadout')({virtual=true,values=L.defaults(),formation={mentor=true,learner='ninilite',wuyun=true},closed=function(ok,result)confirmed=result end});config:addTo(D.Director.ui3D);config:alignLayout()
+  config.buttons[1][-1]:emit('Tapped');assert(config.values['mentor:kinetic']==39 and config.quote.total==291)
+  config.saveButton:emit('Tapped');D.sleep(.1);assert(confirmed.values['mentor:kinetic']==39)
+  assert(#D.DB:query("SELECT name FROM lsd.sqlite_master WHERE name IN ('Game0SupplyWallet','Game0SupplyLoadout')")==0)
+  r.checks={'write failure keeps prior records','retry persists','file reopen validates source','duplicate save idempotent','conflicting source rejected','unit quantity adjustment','virtual configuration creates no economy tables'}
+ end,debug.traceback)
+ r.status=ok and 'PASS' or 'FAIL';r.error=not ok and err or nil;D.Content:save(out,D.json.encode(r,false,true))
+end)

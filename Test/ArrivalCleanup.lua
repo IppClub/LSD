@@ -1,0 +1,27 @@
+-- Stress leaving the startup scene before its delayed HUD finishes.
+local D=require("Dora")
+local root=D.Path:getPath(D.Path:getScriptPath(...))
+for _,p in ipairs({root,D.Path(root,"Script"),D.Path(root,"Spine"),D.Path(root,"Image"),D.Path(root,"Font")}) do D.Content:insertSearchPath(1,p) end
+local id=tostring(os.time()); local out=D.Path(root,"Test","arrival-cleanup-result.txt"); D.Content:save(out,"LSD_ARRIVAL_CLEANUP_RUNNING runId="..id.."\n")
+D.thread(function()
+ local ok,result=xpcall(function()
+  local source=assert(D.Content:load(D.Path(root,"Test","wuyun-training-resume-fixture.txt")))
+  assert(D.Path:getPath(source)==D.Content.writablePath and D.Path:getFilename(source):match("^lsd%-wuyun%-training%-qa%-%d+%.db$"))
+  local db=D.Path(D.Content.writablePath,"lsd-arrival-cleanup-qa-"..id..".db")
+  assert(not D.DB:existDB("lsd") and not D.Content:exist(db) and D.Content:copyAsync(source,db))
+  assert(D.DB:exec("ATTACH DATABASE '"..db:gsub("'","''").."' AS lsd")>=0)
+  D.Director.entry:slot("Cleanup",function() if D.DB:existDB("lsd") then D.DB:exec("DETACH DATABASE lsd") end end)
+  require("Start")
+  local function wait(f) local deadline=D.App.runningTime+15; while not f() do assert(D.App.runningTime<deadline,"Arrival stress timed out"); D.sleep(0.05) end end
+  wait(function() local w=D.Platformer.Data.store.world; return w and w.tag=="PreparationRoom" and D.Group({"player","unit"}):find(function(e) return e.player and e.unit.world==w end) end)
+  require("Training.Level")(); wait(function() return D.Director.ui3D:getChildByTag("training-controls") end)
+  local ui=D.Director.ui3D:getChildByTag("training-controls"); D.sleep(12)
+  assert(D.Platformer.Data.store.world.tag=="VRTraining" and D.Director.ui3D:getChildByTag("training-controls")==ui)
+  local nav=0; D.Director.ui3D.children:each(function(n) if n.tag=="academy-navigation" then nav=nav+1 end end)
+  assert(nav==0,"Late startup injected academy UI into training")
+  local hud=0; D.Director.ui3D.children:each(function(n) if n==D.Director.ui3D:getChildByTag("trainingHUD") then hud=hud+1 elseif n.topControl and n.skillArea then error("Extra late academy HUD") end end)
+  assert(hud==1)
+  return "PASS earlySceneExitStress=true delayedArrivalCancelled=true noStaleAcademyUi=true singleTrainingHud=true currentScenePreserved=true"
+ end,debug.traceback)
+ local report="LSD_ARRIVAL_CLEANUP_"..(ok and result or "FAIL "..tostring(result)).." runId="..id; print(report); D.Content:save(out,report.."\n")
+end)

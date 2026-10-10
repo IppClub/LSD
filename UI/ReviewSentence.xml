@@ -3,13 +3,18 @@
 		<Label Name="nameLabel"
 			Text="{ name }"
 			FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
-			X="0" Y="{ $T }" AnchorX="0" AnchorY="1" TextWidth="220"/>
+			X="0" Y="{ $T }" AnchorX="0" AnchorY="1" TextWidth="{ Label.AutomaticWidth }"/>
 		<Label Name="textLabel"
 			Text="{ text }"
 			FontName="SourceHanSansCN-Regular" FontSize="50" Color3="0xffffff" TextAlign="Left"
-			X="250" Y="{ $T }" TextWidth="{ width - 250 }" AnchorX="0" AnchorY="1"/>
+			X="0" Y="{ $T }" TextWidth="{ width }" AnchorX="0" AnchorY="1"/>
 		<Yue>
-			height = math.max nameLabel.height, textLabel.height
+			column = math.min math.max(250, nameLabel.width + 30), width * 0.35
+			nameScale = math.min 1, (column - 30) / math.max(1, nameLabel.width)
+			nameLabel.scaleX = nameLabel.scaleY = nameScale
+			textLabel.x = column
+			textLabel.textWidth = width - column
+			height = math.max nameLabel.height * nameScale, textLabel.height
 			node.height = height+60
 			nameLabel.y = height-30
 			textLabel.y = height-30

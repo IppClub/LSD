@@ -75,15 +75,30 @@ _module_0 = function() -- 10
 	end) -- 44
 	return thread(function() -- 55
 		sleep(10) -- 56
-		local HUDControl = require("UI.HUDControl") -- 57
-		local _with_0 = HUDControl() -- 58
-		_with_0:addTo(Director.ui3D) -- 59
-		_with_0.visible = false -- 60
-		sleep(1) -- 61
-		_with_0.visible = true -- 62
-		_with_0:perform(Opacity(1, 0, 1)) -- 63
-		emit("HUD.DisplayMove", true) -- 64
-		return _with_0 -- 58
+		if not (world == Data.store.world and world.parent) then -- 57
+			return -- 57
+		end -- 57
+		local HUDControl = require("UI.HUDControl") -- 58
+		local _with_0 = HUDControl() -- 59
+		_with_0:addTo(Director.ui3D) -- 60
+		_with_0.visible = false -- 61
+		_with_0.topControl.visible = false -- 62
+		_with_0.message.visible = false -- 63
+		sleep(1) -- 64
+		if not (world == Data.store.world and world.parent) then -- 65
+			_with_0:removeFromParent() -- 66
+			return -- 67
+		end -- 65
+		_with_0.visible = true -- 68
+		_with_0:perform(Opacity(1, 0, 1)) -- 69
+		emit("HUD.DisplayMove", true) -- 70
+		Group({ -- 71
+			"busy" -- 71
+		}):each(function(self) -- 71
+			self.busy = nil -- 71
+		end) -- 71
+		require("Academy.Navigation").attach(world) -- 72
+		return _with_0 -- 59
 	end) -- 55
 end -- 10
 return _module_0 -- 1

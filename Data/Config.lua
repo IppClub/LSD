@@ -1,9 +1,11 @@
+-- [tl]: Data/Config.tl
 local Config = require("Config")
 local conf = Config(
 "lsd",
 "skipOP",
 "char",
 "charName",
-"heroine")
+"heroine",
+"tutorialCompleted")
 
 return conf

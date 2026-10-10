@@ -1,0 +1,29 @@
+{
+  "status": "native scene integration in progress; not final Game0 acceptance",
+  "generator": "builtin image_gen",
+  "generationFile": "exec-8fe53ba5-1684-446d-a15a-5acc8fd11c4f.png",
+  "source": "new supplementary factory interior artwork; not original game design art",
+  "sha256": "ef7d1ac16c2f79732f6023ae6b0063441392308cccbebab65a49b6eb7a796e1d",
+  "size": [
+    1536,
+    1024
+  ],
+  "alpha": "preserved; sprite regions are selected by engine textureRect without raster edits",
+  "parts": [
+    "curved wall",
+    "stair tread",
+    "central support",
+    "balcony",
+    "hatch frame",
+    "hatch disk",
+    "open passage",
+    "access console"
+  ],
+  "design": "Seven real landings connected by continuous helical traversal, independently transformed hatch disk and fixed frame. Original Q fox remains in use.",
+  "sound": {
+    "file": "Sound/control-pod-hatch.wav",
+    "source": "Tools/build_control_pod_sound.py; original synthesized geared motor and resonant metal latches",
+    "duration": 2.8,
+    "sampleRate": 48000
+  }
+}

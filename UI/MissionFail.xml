@@ -3,9 +3,10 @@
 	<Import Module="UI.Control.Basic.AlignNode"/>
 	<Import Module="UI.MovingText"/>
 	<Import Module="UI.FullScreenMask"/>
+	<Import Module="UI.PropButton"/>
 
 	<Lua>local H <const> = 1563</Lua>
-	<AlignNode InUI="True" IsRoot="True">
+	<AlignNode Name="failure" InUI="True" IsRoot="True">
 		<FullScreenMask/>
 		<AlignNode Name="left" HAlign="Left" VAlign="Center">
 			<SolidRect Name="rc" Y="-296" Width="3258" Height="592" Color="0xb2000000"/>
@@ -16,13 +17,13 @@
 				</Yue>
 			</Grid>
 			<Label
-				Text="行动失败"
-				FontName="SourceHanSansCN-Regular" FontSize="300" Color3="0xffffff" TextAlign="Left"
+				Text="{ resultTitle or '行动失败' }"
+				FontName="SourceHanSansCN-Regular" FontSize="{ missionMode and 140 or 300 }" Color3="0xffffff" TextAlign="Left"
 				Spacing="10" X="129.5" Y="268.5" AnchorX="0" Order="1"/>
 			<Label
-				Text="2-3地底的喧嚣"
+				Text="{ missionTitle or '2-3地底的喧嚣' }"
 				FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Center"
-				X="787.5" Y="225" Order="1" AnchorX="0" Opacity="0.7"/>
+				X="{ missionMode and 129.5 or 787.5 }" Y="{ missionMode and 420 or 225 }" Order="1" AnchorX="0" Opacity="0.7"/>
 		</AlignNode>
 		<AlignNode Name="center" HAlign="Center" VAlign="Center">
 			<Sprite File="ar.clip|lsdar_settlement_icon_1" X="-540"/>
@@ -49,7 +50,7 @@
 				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
 				X="-540" Y="-190" Order="1" AnchorY="1" Opacity="0.5"/>
 			<Label
-				Text="配备更好的装备"
+				Text="{ missionMode and '检查破甲搭配与消耗' or '配备更好的装备' }"
 				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
 				Y="-190" Order="1" AnchorY="1" Opacity="0.5"/>
 			<Label
@@ -57,7 +58,7 @@
 				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
 				X="540" Y="-190" Order="1" AnchorY="1" Opacity="0.5"/>
 			<Label
-				Text="点击空白处退出"
+				Text="{ missionMode and '确认损耗后重新配置或返回' or '点击空白处退出' }"
 				FontName="SourceHanSansCN-Regular" FontSize="35" Color3="0xffffff" TextAlign="Center"
 				Y="-357" Order="1" AnchorY="1" Opacity="0.3"/>
 		</AlignNode>
@@ -70,6 +71,7 @@
 				</MovingText>
 			</Node>
 		</AlignNode>
+		<Lua>if missionMode then require("UI.ResultDetails").failure(failure, center, args) end</Lua>
 		<Slot Name="AlignLayout" Args="w, h">
 			<Yue>
 				global rc

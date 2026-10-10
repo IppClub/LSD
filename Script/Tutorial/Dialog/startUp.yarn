@@ -15,8 +15,7 @@ colorID: 0
 我: 我明白了。我该怎么开始？
 工作人员: 首先，我们需要收集一些基本信息。您的名字是？
 -> 我: 提供姓名信息。
-	//<<inputName>>
-	<<set $charName to "匿名玩家">>
+	<<inputName>>
 工作人员: 了解了，{$charName}。您的性别是？
 -> 我: 男。
 	<<setCharId "charM">>

@@ -1,0 +1,41 @@
+{
+  "status": "motion study candidate; NOT adopted; art fidelity and articulated texture seams pending",
+  "reference": "Q-huli.png",
+  "learnedFrom": [
+    "ninilite",
+    "wuyun",
+    "charF"
+  ],
+  "parts": 14,
+  "frames": {
+    "idle": 120,
+    "move": 60,
+    "prepare": 120
+  },
+  "recovery": 0.2,
+  "footPlant": "two-bone IK to separate foot with fixed idle ground contact and 60 percent stance",
+  "stanceDistance": 180,
+  "stanceSeconds": 0.6,
+  "speedAtWorldVelocity200AndHeight300": 1.5533333333333332,
+  "stepClockKeyFrames": [
+    0,
+    15,
+    30,
+    45,
+    60
+  ],
+  "stepEventAttributeFrames": [
+    30,
+    60
+  ],
+  "stepContactFrames": [
+    15,
+    45
+  ],
+  "remaining": [
+    "match original silhouette and rear bow",
+    "blink and separate front hair",
+    "review knee texture seam and torso occlusion",
+    "actual scene transitions and long loops"
+  ]
+}

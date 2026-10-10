@@ -15,21 +15,30 @@ highlight.x = node1.width*0.5 -- 4
 highlight.y = node1.height*0.5 -- 4
 highlight.visible = false -- 4
 node1:addChild(highlight) -- 4
-local playable1 = Playable("spine:Spine/kineticgun") -- 5
-playable1.x = node1.width*0.5 - 60 -- 5
-playable1.y = node1.height*0.5 - 40 -- 5
-playable1.scaleX = 0.5 -- 5
-playable1.scaleY = 0.5 -- 5
-playable1.look = "PT" -- 5
-node1:addChild(playable1) -- 5
-node1:slot("TapBegan",function() -- 6
-normal.visible = false -- 8
-highlight.visible = true -- 9
-end) -- 9
-node1:slot("TapEnded",function() -- 12
-normal.visible = true -- 14
-highlight.visible = false -- 15
-end) -- 15
-end -- 18
-return node1 -- 18
+if not text then -- 5
+local playable1 = Playable('spine:Spine/' .. (icon or 'kineticgun')) -- 6
+playable1.x = node1.width*0.5 - 60 -- 6
+playable1.y = node1.height*0.5 - 40 -- 6
+playable1.scaleX = 0.5 -- 6
+playable1.scaleY = 0.5 -- 6
+playable1.look = "PT" -- 6
+node1:addChild(playable1) -- 6
+else -- 7
+local label1 = Label("SourceHanSansCN-Regular",50) -- 8
+label1.x = node1.width*0.5 -- 8
+label1.y = node1.height*0.5 -- 8
+label1.text = text -- 8
+node1:addChild(label1) -- 8
+node1.textLabel = label1
+end -- 9
+node1:slot("TapBegan",function() -- 10
+normal.visible = false -- 12
+highlight.visible = true -- 13
+end) -- 13
+node1:slot("TapEnded",function() -- 16
+normal.visible = true -- 18
+highlight.visible = false -- 19
+end) -- 19
+end -- 22
+return node1 -- 22
 end

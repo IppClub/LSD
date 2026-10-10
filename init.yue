@@ -10,4 +10,4 @@ if scriptPath := Path\getScriptPath ...
 			Path scriptPath, "Font"
 		]
 		Content\insertSearchPath 1, path
-	require "Start"
+	require("Save.Title").open!

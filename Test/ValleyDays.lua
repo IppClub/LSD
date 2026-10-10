@@ -1,0 +1,46 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...))
+for _,p in ipairs({root,D.Path(root,'Script'),D.Path(root,'Spine'),D.Path(root,'Image'),D.Path(root,'Font')}) do D.Content:insertSearchPath(1,p) end
+local id=tostring(os.time());local out=D.Path(root,'Test','valley-days-result.txt');D.Content:save(out,'LSD_VALLEY_DAYS_RUNNING '..id..'\n')
+D.thread(function()
+ local ok,res=xpcall(function()
+  local source=assert(D.Content:load(D.Path(root,'Test','valley-activities-resume-fixture.txt')))
+  assert(D.Path:getPath(source)==D.Content.writablePath and D.Path:getFilename(source):match('^lsd%-valley%-activities%-qa%-%d+%.db$'))
+  local db=D.Path(D.Content.writablePath,'lsd-valley-days-qa-'..id..'.db');assert(not D.DB:existDB('lsd') and not D.Content:exist(db) and D.Content:copyAsync(source,db));assert(D.DB:exec("ATTACH DATABASE '"..db:gsub("'","''").."' AS lsd")>=0)
+  D.Director.entry:slot('Cleanup',function() if D.DB:existDB('lsd') then D.DB:exec('DETACH DATABASE lsd') end end)
+  local function wait(f,t) local endTime=D.App.runningTime+(t or 15);while not f() do assert(D.App.runningTime<endTime,'Valley days stalled');D.sleep(.03) end end
+  require('Start');wait(function() local w=D.Platformer.Data.store.world;return w and w.valleyDays and w.valleyEncounter.phase=='ready' end,30)
+  local w=D.Platformer.Data.store.world;local c=w.valleyDays;local service=assert(require('Story.Service').open())
+  local p=assert(D.Group({'player','unit'}):find(function(e) return e.player and e.unit.world==w end))
+  for _,name in ipairs({'fmove','idle','turn'}) do local a=p.unit:getAction(name);if a then a.reaction=.05 end end
+  local function move(x) local deadline=D.App.runningTime+25;while math.abs(p.unit.x-x)>25 do assert(D.App.runningTime<deadline);p.keyLeft=p.unit.x>x;p.keyRight=p.unit.x<x;D.sleep(.03) end;p.keyLeft=false;p.keyRight=false;p.unit:stop();p.unit.velocityX=0;D.sleep(.1) end
+  assert(not service:canRead('valley-friends','OuterHeaven'),'Days gate bypassed')
+  move(1800);wait(function() return c.rest.menu.menu.enabled end)
+  assert(D.DB:exec("CREATE TRIGGER lsd.fail_valley_days BEFORE INSERT ON Game0StoryUnlocks WHEN NEW.id='valley-days-passed' BEGIN SELECT RAISE(ABORT,'QA valley days fault'); END")>=0)
+  c.rest.menu:emit('Tapped',1);wait(function() return w.storyFlow and w.storyFlow.id=='valley-days' and w.storyFlow.view.visible end)
+  local f=w.storyFlow
+  local function complete(flow,seconds)
+   local deadline=D.App.runningTime+(seconds or 30)
+   while flow.phase=='dialogue' or flow.phase=='saving' do assert(D.App.runningTime<deadline,'Valley dialogue stalled');if not flow.view._advancing then flow.view.confirm:emit('Tapped') end;D.sleep(.08) end
+  end
+  complete(f);assert(f.phase=='save-error' and c.restCompleted and #c.logs==2 and #f.view._reviews==1)
+  assert(not service:summary().completed['valley-days'] and p.busy)
+  D.DB:exec('DROP TRIGGER lsd.fail_valley_days');f.retryButton:emit('Tapped');wait(function() return f.phase=='complete' and not p.busy end)
+  assert(#c.logs==2 and service:summary().completed['valley-days'])
+  local v=w.valleyEncounter.actor;move(v.unit.x);wait(function() return c.friends.menu.menu.enabled end)
+  c.friends.menu:emit('Tapped',1);wait(function() return w.storyFlow~=f and w.storyFlow.view.visible end);f=w.storyFlow
+  complete(f);assert(f.phase=='complete' and #f.view._reviews==24,'Original later dialogue missing')
+  assert(f.view._reviews[6].name=='怪物' and f.view._reviews[14].name=='大狐狸' and f.view._reviews[15].name=='万薇莉','Original speaker names missing')
+  assert(c.fox and c.foxArrival and c.foxArrival.completed and math.abs(c.foxArrival.from-c.foxArrival.to)>450,'Fox did not actually arrive')
+  assert(service:summary().completed['valley-friends'] and service:summary().unlocks['fox-route-offered'])
+  local arrival=c.foxArrival.completed;local logs=D.json.encode(c.logs,false,true)
+  local journal=assert(require('Story.Journal').openAsync(w,11));journal.view.researchButton:emit('Tapped')
+  wait(function() return w.storyFlow~=f and w.storyFlow.view.visible end);f=w.storyFlow;complete(f)
+  assert(f.phase=='complete' and #f.view._reviews==24 and c.foxArrival.completed==arrival and D.json.encode(c.logs,false,true)==logs,'Replay repeated arrival/rest')
+  wait(function() return D.Director.ui3D:getChildByTag('story-journal') end);D.Director.ui3D:getChildByTag('story-journal').controller.view.closeButton:emit('Tapped')
+  assert(#D.DB:query("SELECT id FROM lsd.Game0StoryUnlocks WHERE id='fox-route-offered'")==1)
+  for _,log in ipairs(c.logs) do assert(log.completed-log.started>=log.duration-.05) end
+  D.Content:save(D.Path(root,'Test','valley-days-resume-fixture.txt'),db)
+  return 'PASS earnedFiveActivityCopy=true realStart=true languageAndDaysGates=true physicalHammock=true fullSleepWake=true originalDaysDisplay=true saveRollbackRetry=true originalLaterRows24=true originalFoxActuallyArrives=true originalSpeakerNames=true publicJournalReplay=true noRepeatArrivalRest=true rewardOnce=true'
+ end,debug.traceback)
+ local report='LSD_VALLEY_DAYS_'..(ok and res or 'FAIL '..tostring(res))..' runId='..id;print(report);D.Content:save(out,report..'\n')
+end)

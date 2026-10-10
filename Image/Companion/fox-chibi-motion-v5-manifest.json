@@ -1,0 +1,274 @@
+{
+  "status": "joint and direction repair integrated; startup blending and final animation polish pending",
+  "artFacesRight": false,
+  "reference": "Q-huli.png",
+  "source": "fox-chibi-parts-v2.png",
+  "landmarks": {
+    "nearThigh": [
+      [
+        145,
+        733,
+        114,
+        195
+      ],
+      [
+        210,
+        754
+      ],
+      [
+        196,
+        898
+      ],
+      0.65
+    ],
+    "farThigh": [
+      [
+        861,
+        732,
+        115,
+        196
+      ],
+      [
+        916,
+        754
+      ],
+      [
+        924,
+        898
+      ],
+      0.65
+    ],
+    "nearShin": [
+      [
+        501,
+        773,
+        129,
+        222
+      ],
+      [
+        566,
+        821
+      ],
+      [
+        563,
+        993
+      ],
+      0.65
+    ],
+    "nearFoot": [
+      [
+        501,
+        975,
+        129,
+        80
+      ],
+      [
+        563,
+        993
+      ],
+      null,
+      0.65
+    ],
+    "farShin": [
+      [
+        1192,
+        773,
+        135,
+        222
+      ],
+      [
+        1262,
+        821
+      ],
+      [
+        1262,
+        993
+      ],
+      0.65
+    ],
+    "farFoot": [
+      [
+        1192,
+        975,
+        135,
+        80
+      ],
+      [
+        1262,
+        993
+      ],
+      null,
+      0.65
+    ],
+    "nearUpperArm": [
+      [
+        130,
+        506,
+        139,
+        188
+      ],
+      [
+        243,
+        530
+      ],
+      [
+        159,
+        671
+      ],
+      0.32
+    ],
+    "farUpperArm": [
+      [
+        842,
+        505,
+        156,
+        201
+      ],
+      [
+        867,
+        529
+      ],
+      [
+        964,
+        681
+      ],
+      0.32
+    ],
+    "nearForearm": [
+      [
+        449,
+        554,
+        184,
+        158
+      ],
+      [
+        590,
+        556
+      ],
+      [
+        510,
+        650
+      ],
+      0.44
+    ],
+    "farForearm": [
+      [
+        1187,
+        559,
+        183,
+        154
+      ],
+      [
+        1244,
+        560
+      ],
+      [
+        1306,
+        651
+      ],
+      0.44
+    ],
+    "body": [
+      [
+        483,
+        119,
+        189,
+        283
+      ],
+      [
+        577.5,
+        260.5
+      ],
+      null,
+      0.65
+    ],
+    "skirt": [
+      [
+        1101,
+        77,
+        347,
+        311
+      ],
+      [
+        1268,
+        103
+      ],
+      null,
+      0.84
+    ],
+    "head": [
+      [
+        8,
+        25,
+        404,
+        425
+      ],
+      [
+        210,
+        382
+      ],
+      null,
+      0.76
+    ]
+  },
+  "parts": 15,
+  "renderParts": [
+    "leftRear",
+    "rightRear",
+    "farThigh",
+    "farShin",
+    "farFoot",
+    "nearThigh",
+    "nearShin",
+    "nearFoot",
+    "farUpperArm",
+    "nearUpperArm",
+    "skirt",
+    "body",
+    "farForearm",
+    "nearForearm",
+    "head"
+  ],
+  "nativeBoneHierarchy": {
+    "body": "rig",
+    "head": "body",
+    "skirt": "body",
+    "leftRear": "head",
+    "rightRear": "head",
+    "nearUpperArm": "body",
+    "nearForearm": "nearUpperArm",
+    "nearThigh": "rig",
+    "nearShin": "nearThigh",
+    "nearFoot": "nearShin",
+    "farUpperArm": "body",
+    "farForearm": "farUpperArm",
+    "farThigh": "rig",
+    "farShin": "farThigh",
+    "farFoot": "farShin"
+  },
+  "frames": {
+    "idle": 120,
+    "move": 60,
+    "prepare": 120
+  },
+  "strideDistance": 140,
+  "stanceSeconds": 0.6,
+  "sourceAngleCorrection": true,
+  "mirroredParts": [
+    "farShin",
+    "farFoot"
+  ],
+  "footForwardLandmarks": {
+    "nearFoot": [
+      525,
+      1038
+    ],
+    "farFoot": [
+      1298,
+      1038
+    ]
+  },
+  "recovery": 0.2,
+  "startPhase": 0.3,
+  "anticipationSeconds": 0.2
+}

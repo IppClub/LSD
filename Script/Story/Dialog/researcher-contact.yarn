@@ -1,0 +1,6 @@
+title: Start
+---
+<<preload "char">>
+[char name=研发人员/]谁在那里
+[char id=char name=我/]就是现在！
+===

@@ -1,0 +1,18 @@
+title: Start
+---
+<<preload "ayan", "char", "sunborn", "liyena">>
+[char id=char name=我/]等等，好像也不是走这里吧……
+[char id=sunborn name=林睿哲/]刚才被一些事情耽误了，抱歉让阁下久等。
+[char id=sunborn name=林睿哲/]这里用于学院成员提升格斗技巧，对付地面的怪物。那边是阿岩完成的 AI 训练室。
+[char id=sunborn name=林睿哲/]原先设计到一半没了思路，是他帮助完成的，非常厉害。你们应该已经认识了。
+[char id=char name=我/]是，是啊。（在自己设计的场地带了这么多弯路，也挺厉害的。）
+[char id=sunborn name=林睿哲/]阿岩，这位是我们的新成员，希望你们好好相处。阿岩，你在听吗？
+[char id=ayan name=阿岩/]啊？在的，在的。
+[char id=sunborn name=林睿哲/]现在，请你和李叶娜合作训练。先一起消灭虚拟怪物，再由她与你对打。
+[char id=char name=我/]你是借此让我得到学院成员的认可吧？
+[char id=sunborn name=林睿哲/]聪明人。
+[char id=liyena name=李叶娜/]我会在场地里等你。合作也好，对打也好，请认真对待。
+[char id=sunborn name=林睿哲/]阿岩，你带他去入口。
+[char id=char name=我/]阿岩？（轻轻戳了戳低头沉思的建筑师。）
+[char id=ayan name=阿岩/]嗯？不好意思，没反应过来。入口在左侧发光终端，请跟我来。
+===

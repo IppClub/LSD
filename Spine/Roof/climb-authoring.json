@@ -1,0 +1,89 @@
+[
+  {
+    "name": "charM",
+    "maxReachClamp": 0,
+    "duration": 2.4,
+    "risePerCycle": 60.0,
+    "stanceFraction": 0.7,
+    "status": "candidate awaiting native visual and contact acceptance",
+    "HandL": {
+      "x": 30,
+      "highY": 216.62580717250563,
+      "phase": 0
+    },
+    "HandR": {
+      "x": 40,
+      "highY": 212.9440602262514,
+      "phase": 0.5
+    },
+    "FootL": {
+      "x": 10,
+      "highY": 55,
+      "phase": 0.5
+    },
+    "FootR": {
+      "x": 20,
+      "highY": 55,
+      "phase": 0
+    },
+    "sha256": "effa86ff0ffd719ca8740e4056ce25bb9b270a6cc6e1e3488f28e9405fa422d8"
+  },
+  {
+    "name": "charF",
+    "maxReachClamp": 0,
+    "duration": 2.4,
+    "risePerCycle": 60.0,
+    "stanceFraction": 0.7,
+    "status": "candidate awaiting native visual and contact acceptance",
+    "HandL": {
+      "x": 30,
+      "highY": 192.2458581302552,
+      "phase": 0
+    },
+    "HandR": {
+      "x": 40,
+      "highY": 198.65944821856084,
+      "phase": 0.5
+    },
+    "FootL": {
+      "x": 10,
+      "highY": 55,
+      "phase": 0.5
+    },
+    "FootR": {
+      "x": 20,
+      "highY": 55,
+      "phase": 0
+    },
+    "sha256": "94b79a0a4b0e59d5b2e419b818f26ba0c4899a033c47ad0e8a1c6a26356ec654"
+  },
+  {
+    "name": "ninilite",
+    "maxReachClamp": 0,
+    "duration": 2.4,
+    "risePerCycle": 60.0,
+    "stanceFraction": 0.7,
+    "status": "candidate awaiting native visual and contact acceptance",
+    "HandL": {
+      "x": 30,
+      "highY": 204.99385973358528,
+      "phase": 0
+    },
+    "HandR": {
+      "x": 40,
+      "highY": 204.6763734584341,
+      "phase": 0.5
+    },
+    "FootL": {
+      "x": 10,
+      "highY": 55,
+      "phase": 0.5
+    },
+    "FootR": {
+      "x": 20,
+      "highY": 55,
+      "phase": 0
+    },
+    "sha256": "b9aebe654b9c959a51d40e31ac468a4a9d388b259ac79e539e8290d311066d5c"
+  }
+]

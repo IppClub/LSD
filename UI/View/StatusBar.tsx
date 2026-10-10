@@ -1,5 +1,5 @@
 // @preview-file off
-import { React, toNode, useRef } from 'DoraX';
+import { React, toNode, reference } from 'DoraX';
 import { Color, Color3, DrawNode, Vec2 } from 'Dora';
 
 interface BarProps {
@@ -64,14 +64,14 @@ function StatusBar(props: StatusBarProps) {
 	);
 };
 
-export default function StatusBarNode(this: void, hp: number, ap: number, hpColor3: number) {
-	const hpBar = useRef<DrawNode.Type>();
-	const apBar = useRef<DrawNode.Type>();
+export default function StatusBarNode(this: void, hp: number, ap: number, hpColor3: number, showArmor = true) {
+	const hpBar = reference<DrawNode.Type>();
+	const apBar = reference<DrawNode.Type>();
 	const node = toNode(
-		<StatusBar width={100} height={10} bars={[
+		<StatusBar width={100} height={10} bars={showArmor ? [
 			{color3: 0x8dbef3, percentage: ap, ref: apBar},
 			{color3: hpColor3, percentage: hp, ref: hpBar}
-		]}/>
+		] : [{color3: hpColor3, percentage: hp, ref: hpBar}]}/>
 	);
 	return $multi(node, hpBar.current, apBar.current);
 }

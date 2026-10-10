@@ -1,0 +1,27 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...))
+for _,p in ipairs({root,D.Path(root,'Script')})do D.Content:insertSearchPath(1,p)end
+local out=D.Path(root,'Test/save-selection-result.json');local report={status='RUNNING',runId=os.time(),osInput=false};D.Content:save(out,D.json.encode(report))
+D.thread(function()
+ local ok,why=xpcall(function()
+  local dir=D.Path(D.Content.writablePath,'lsd-selection-qa-'..report.runId);assert(not D.Content:exist(dir)and D.Content:mkdir(dir));report.directory=dir
+  local source=assert(D.Content:load(D.Path(root,'Test/fresh-ending-resume-fixture.txt')));assert(D.Path:getFilename(source):match('^lsd%-fresh%-ending%-flow%-qa%-%d+%.db$'))
+  assert(D.Content:copyAsync(source,D.Path(dir,'lsd.db')));assert(D.Content:save(D.Path(dir,'lsd-current-save.txt'),'lsd.db'))
+  local store=require('Save.Slots').new(dir);assert(store:current()=='lsd.db');assert(store:attach('lsd.db'));D.DB:exec('DETACH DATABASE lsd')
+  assert(require('Save.Selection').read(dir)=='lsd.db')
+  local next=assert(store:create());D.DB:exec('DETACH DATABASE lsd');assert(store:current()==next and D.Content:load(D.Path(dir,'lsd-current-save.txt'))=='lsd.db')
+  local function catalog(sql)
+   assert(D.DB:exec("ATTACH DATABASE '"..D.Path(dir,'lsd-save-catalog.db').."' AS qa_catalog")>=0)
+   assert(D.DB:exec(sql)>=0);D.DB:exec('DETACH DATABASE qa_catalog')
+  end
+  catalog("CREATE TRIGGER qa_catalog.fail_selection BEFORE INSERT ON Selection BEGIN SELECT RAISE(FAIL,'QA selection write'); END")
+  local old=D.Content:load(D.Path(dir,'lsd.db'));local loaded,err=store:attach('lsd.db')
+  assert(not loaded and err=='SELECTION_WRITE_FAILED'and not D.DB:existDB('lsd'))
+  assert(store:current()==next and D.Content:load(D.Path(dir,'lsd.db'))==old)
+  assert(not D.DB:existDB('save_catalog'))
+  catalog('DROP TRIGGER qa_catalog.fail_selection');assert(store:attach('lsd.db'));D.DB:exec('DETACH DATABASE lsd');assert(store:current()=='lsd.db')
+  local corrupt=D.Path(dir,'corrupt');assert(D.Content:mkdir(corrupt));assert(D.Content:save(D.Path(corrupt,'lsd-save-catalog.db'),'QA damaged catalog'))
+  local value,error=require('Save.Slots').new(corrupt):current();assert(not value and error=='CATALOG_UNREADABLE')
+  report.legacyRead=true;report.catalogPreferred=true;report.failedTransactionPreservedSelection=true;report.originalPreserved=true;report.retry=true;report.corruptCatalogReported=true;report.status='PASS'
+ end,debug.traceback)
+ if not ok then report.status='FAIL';report.error=why end;D.Content:save(out,D.json.encode(report));print(D.json.encode(report))
+end)

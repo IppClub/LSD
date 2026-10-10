@@ -1,0 +1,39 @@
+title: Start
+---
+<<preload "moyu", "moling", "char">>
+[char id=char name=我/]请问有人在吗？
+[char id=moyu name=半夏/]请问这位贵客，有什么可以帮忙的吗？
+[char id=moyu name=半夏/]无论是身体不适、大病小痛还是心理抑郁、情感咨询，神医半夏24小时为您提供热线服务，包准药到病除、妙手回春
+[char id=moyu name=半夏/]看起来您好像气色不太好，经过我多年望闻问切的经验，您一定是刚刚经历过一场恶战
+[char id=moyu name=半夏/]唉呀，这可不行，您需要一剂静养散安心定神、恢复元气
+[char id=char name=我/]不必，我只是来这里拜访林睿哲招募的新人，我也是林睿哲刚刚招募的成员之一（内心吐槽：救命，这人真的不需要看精神科医生吗）
+[char id=moyu name=半夏/]原来是这样，咳咳，自我介绍一下，我是林睿哲刚刚招募的成员，医师半夏，专攻中医方向。
+[char id=moyu name=半夏/]请问您佳名？
+[char id=char name=我/]{$charName}，负责军事训练和战斗
+[char id=moyu name=半夏/]真是有缘千里来相见，看来我这个医师以后可以经常帮到你呢
+[char id=char name=我/]。。。。。。（内心吐槽：我现在辞职还来得及吗）
+[char id=moyu name=半夏/]以后的战斗受伤在所难免，你一定要信任我的医术，在这个世界，如果我是第二，那么无人敢说第。。。。。
+[char id=moling name=忍冬/]半夏，你又在发什么疯？
+[char id=moyu name=半夏/]啊哈哈，这是我姐姐忍冬，这个世界第一医师，主攻西医方向
+[char id=moyu name=半夏/]对不起，姐姐，忘了和你介绍了
+[char id=moyu name=半夏/]这是一位新来的负责军事训练和战斗的伙伴{$charName}
+[char id=moling name=忍冬/]知道了
+[char id=moyu name=半夏/]{$charName}，这是我姐姐忍冬，这边是我们的手术台和医药器具，这是姐姐平时实验用的药水
+[char id=char name=我/]您好，幸会，忍冬医生，请问一下林睿哲是怎么找到如此。。。非同凡响的成员
+[char id=char name=我/]（这位医生似乎比李叶娜还难说话呢）
+[char id=moling name=忍冬/]问我弟
+[char id=moyu name=半夏/]其实姐姐本来不太想管外界的事情，有一天林睿哲来访说希望我们能加入学院帮助这个世界
+[char id=moyu name=半夏/]我当然很好说话，但是我姐姐是被我软磨硬泡、林睿哲三顾茅庐才勉强同意的
+[char id=moling name=忍冬/]茅庐？
+[char id=moyu name=半夏/]对不起，姐姐，我们住的地方是仙境，我只是用个典故，嘻嘻
+[char id=char name=我/]说明你俩在这个世界很杰出很有名
+[char id=moyu name=半夏/]我姐姐是，至于我嘛，过奖了过奖了，但我姐姐讨厌出名这种东西
+[char id=char name=我/]为什么
+[char id=moyu name=半夏/]这个嘛，以后再说，我们不如聊点别的，比如。。。。。。
+[char id=moling name=忍冬/]不早了，送客
+[char id=moyu name=半夏/]姐姐，这多没意思啊，你看我好不容易找到一个能聊天的伙伴
+[char id=moyu name=半夏/]人家{$charName}还没来多久呢，你就要下逐客令
+[char id=char name=我/]我确实该回去了，还有人等着我
+[char id=moyu name=半夏/]真可惜，来日方长，你以后一定要经常来找我聊天啊，有什么困难我都乐意帮忙的
+[char id=char name=我/]好，再见（吐槽：看来以后这里一定很精彩）
+===

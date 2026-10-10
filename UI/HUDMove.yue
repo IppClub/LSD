@@ -6,24 +6,61 @@ export default Class HUDMove,
 	__init: =>
 		playerGroup = Group {"player"}
 		keyboardEnabled = false
+		pendingLeft, pendingRight = false, false
+		vpadLeft, vpadRight = false, false
+		lastLeft, lastRight = false, false
+		pendingVpadLeft, pendingVpadRight = false, false
+		isActive = -> true
+		@keyboardEnabled = true
+		@slot "KeyDown", (key) ->
+			return unless isActive!
+			pendingLeft = true if key == "A"
+			pendingRight = true if key == "D"
 		updatePlayerControl = (key, down, vpad) ->
 			if keyboardEnabled and vpad
 				keyboardEnabled = false
+			if vpad
+				if key == "keyLeft"
+					vpadLeft = down
+					pendingVpadLeft = true if down
+				else
+					vpadRight = down
+					pendingVpadRight = true if down
+				return
+			if key == "keyLeft" then lastLeft = down else lastRight = down
+			if callback := @onMove
+				callback key, down
+				return
 			if player := playerGroup\find (e) -> e.player
 				player[key] = down
+		clearInput = ->
+			pendingLeft, pendingRight = false, false
+			pendingVpadLeft, pendingVpadRight = false, false
+			vpadLeft, vpadRight = false, false
+			keyboardEnabled = false
+			updatePlayerControl "keyLeft", false, false if lastLeft
+			updatePlayerControl "keyRight", false, false if lastRight
+		isActive = (require "UI.InputAvailability").bind @, clearInput
+		@slot "Cleanup", clearInput
 		@gslot "HUD.DisplayMove", (visible) ->
 			@visible = visible
 			@perform Scale 0.3, 0, 1, Ease.OutBack
 		@schedule ->
-			return unless @visible
-			keyA = Keyboard\isKeyPressed("A") or Controller\isButtonPressed 0, "dpleft"
-			keyD = Keyboard\isKeyPressed("D") or Controller\isButtonPressed 0, "dpright"
+			unless isActive!
+				clearInput!
+				return false
+			keyA = pendingLeft or Keyboard\isKeyPressed("A") or Controller\isButtonPressed 0, "dpleft"
+			keyD = pendingRight or Keyboard\isKeyPressed("D") or Controller\isButtonPressed 0, "dpright"
+			pendingLeft, pendingRight = false, false
 			keyboardEnabled = true if keyA or keyD
-			return false unless keyboardEnabled
+			unless keyboardEnabled
+				keyA = vpadLeft or pendingVpadLeft
+				keyD = vpadRight or pendingVpadRight
+			pendingVpadLeft, pendingVpadRight = false, false
 			updatePlayerControl "keyLeft", keyA, false
 			updatePlayerControl "keyRight", keyD, false
 			false
 		@slot "Left", (down) ->
-			updatePlayerControl "keyLeft", down, true
+			updatePlayerControl "keyLeft", down, true if isActive!
 		@slot "Right", (down) ->
-			updatePlayerControl "keyRight", down, true
+			updatePlayerControl "keyRight", down, true if isActive!

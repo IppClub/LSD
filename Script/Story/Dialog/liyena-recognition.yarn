@@ -1,0 +1,9 @@
+title: Start
+---
+<<preload "liyena", "char">>
+[char id=liyena name=李叶娜/]好吧，你确实还算有两把刷子，至少不会拖我们学院后腿。
+[char id=liyena name=李叶娜/]之前的事，是我们的人不对。
+[char id=char name=我/]这句话，我会转告妮妮莉特。我们都还要在这里生活和作战。
+[char id=liyena name=李叶娜/]不过记住，好好和首领合作。要是敢违背信义，我李叶娜第一个饶不了你。
+[char id=char name=我/]合作也需要彼此信任。今天的两场训练，我们都没有敷衍。
+===

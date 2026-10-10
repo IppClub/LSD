@@ -1,0 +1,12 @@
+title: Start
+---
+<<preload "char", "villywan">>
+[char id=char name=我/]走
+<<foxOpenSpace>>
+[char id=char name=我/]我现在要回自己的基地，你们各自回去吧
+[char name=大狐狸/]我已经没有亲族了，我想加入基地，亲自捣毁这个断网组织，我可以帮你们侦察，帮你们找草药，或者别的什么都可以，只要让我加入
+[char id=char name=我/]只要你乐意，当然可以
+[char id=villywan name=万薇莉/]我也要来
+[char id=char name=我/]不行，你不能让桃源谷卷入纷争，我以前读过一个类似的故事
+[char id=villywan name=万薇莉/]只要你们帮我保密就好，拜托拜托，我就是想看看外面的世界
+===

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "animation": "pistol",
+  "weaponAsset": "kineticgun",
+  "weaponLook": "PT",
+  "weaponScale": 0.3,
+  "characterScale": 1,
+  "space": "unit local, mirrored by facing",
+  "purpose": "Preview origin only; never changes emitted projectile angle or position",
+  "profiles": {
+    "charF": {
+      "points": [
+        {
+          "angle": -38.9906930923462,
+          "x": 121.67785644531205,
+          "y": 116.05895996093801
+        },
+        {
+          "angle": -20.9895944595337,
+          "x": 147.53070068359398,
+          "y": 92.78659057617199
+        },
+        {
+          "angle": 0.0129604339599609,
+          "x": 171.40637207031205,
+          "y": 59.38009643554699
+        },
+        {
+          "angle": 20.9853029251099,
+          "x": 186.645263671875,
+          "y": 21.642242431640966
+        },
+        {
+          "angle": 38.9903497695923,
+          "x": 192.23846435546898,
+          "y": -11.964202880859034
+        }
+      ],
+      "source": "Docs/evidence/2026-10-07/yingzhao-female-muzzle-calibration/result.json",
+      "characterAssetSha256": "e180ceb2b8ec1c95d31db6af6e4b4aec76f25a707f9e279a7f3273dae02200f2"
+    },
+    "charM": {
+      "points": [
+        {
+          "angle": -38.9867448806763,
+          "x": 164.88684082031205,
+          "y": 71.91970825195301
+        },
+        {
+          "angle": -20.9856462478638,
+          "x": 177.17004394531205,
+          "y": 48.97937011718801
+        },
+        {
+          "angle": 0.0417566299438477,
+          "x": 188.14276123046898,
+          "y": 16.88220214843801
+        },
+        {
+          "angle": 20.9885215759277,
+          "x": 193.12982177734398,
+          "y": -19.39599609375
+        },
+        {
+          "angle": 38.9930534362793,
+          "x": 191.49963378906205,
+          "y": -50.90884399414102
+        }
+      ],
+      "source": "Docs/evidence/2026-10-07/yingzhao-male-muzzle-calibration/result.json",
+      "characterAssetSha256": "b6784950464bed251945f4588cfcad75aa9b4d2ddce00479ea6c4311016fd1a7"
+    }
+  }
+}

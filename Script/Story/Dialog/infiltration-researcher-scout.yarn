@@ -1,0 +1,6 @@
+title: Start
+---
+<<preload "wuyun", "char">>
+[char id=wuyun name=乌云/]要不要抓个人问情况
+[char id=char name=我/]好
+===

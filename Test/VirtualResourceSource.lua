@@ -1,0 +1,18 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...));local out=root..'/Test/virtual-resource-source-result.json';local r={status='RUNNING'}
+D.Content:save(out,D.json.encode(r))
+D.thread(function()
+ local ok,err=xpcall(function()
+  local source=D.json.decode(D.Content:load(root..'/Docs/evidence/2026-10-05/resource-virtual-budget/source.json'),32)
+  local review,why=require('Training.ResourceTraceReview').rebuild(source.trace,source.episode,'failed');assert(review,why);assert(review.resourceMode=='virtual')
+  local models=assert(require('Training.ResourceQ').learn(source.trace,source.episode,'failed'))
+  assert(require('Training.FlowerIdentity').equal(models,assert(require('Training.ResourceQ').learn(source.trace,source.episode,'failed'))))
+  source.episode.versions.resourceSimulation=nil;assert(not require('Training.CombatStore').validate(source.episode))
+  source.episode.versions.resourceSimulation=1;source.episode.resources.mode='mission';assert(not require('Training.CombatStore').validate(source.episode))
+  local S=require('Economy.CombatSession');local v=assert(S.virtual('virtual:close',{{actor='mentor',item='kinetic',quantity=2}}))
+  assert(v:emit('mentor','kinetic',1,'mentor'));local result=assert(v:closeVirtual('failed'))
+  assert(result.cost==4 and result.refund==2 and not v:canSpend('mentor','kinetic'))
+  local ok,why=v:emit('mentor','kinetic',1,'mentor');assert(not ok and why=='CLOSED');assert(v:closeVirtual('failed')==result and not v:closeVirtual('won'))
+  r.models=models;r.checks={'persisted virtual source rebuild','deterministic learning','simulation marker required','mission marker conflict rejected','closed training cannot consume','idempotent virtual finish'}
+ end,debug.traceback)
+ r.status=ok and 'PASS' or 'FAIL';r.error=not ok and err or nil;D.Content:save(out,D.json.encode(r,false,true))
+end)

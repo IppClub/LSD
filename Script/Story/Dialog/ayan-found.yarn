@@ -1,0 +1,11 @@
+title: Start
+---
+<<preload "char", "ninilite", "wuyun", "vika", "vivi">>
+[char id=char name=我/]是阿岩！
+[char id=char name=我/]（蹲下身）阿岩你醒醒
+[char id=char name=我/]（检查）没有呼吸和心跳了
+[char id=vivi name=烛商/]呜呜呜，好人哥哥
+[char id=wuyun name=乌云/]他手上是不是拿着什么东西
+[char id=char name=我/]（打开看）是一本日记
+[char id=char name=我/]是关于他和他女友的
+===

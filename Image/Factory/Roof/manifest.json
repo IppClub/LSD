@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "source": "image_gen built-in; 2026-10-04; exec-f8cbd149-3765-41cd-acac-1e0643aa95a2",
+  "sha256": "959fa3bcbe4c23a7c83937142711d6df0aae3c05bd28f8cb6d9c6964aa44c1af",
+  "file": "Image/Factory/Roof/architecture-v1.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "parts": {
+    "domeRear": [
+      10,
+      90,
+      538,
+      370
+    ],
+    "cannon": [
+      548,
+      8,
+      440,
+      498
+    ],
+    "domeFront": [
+      990,
+      92,
+      535,
+      364
+    ],
+    "climbWall": [
+      52,
+      490,
+      327,
+      523
+    ],
+    "catwalk": [
+      403,
+      711,
+      642,
+      125
+    ],
+    "stairs": [
+      1012,
+      556,
+      495,
+      420
+    ]
+  },
+  "status": "native composition preview; traversal animation and final acceptance pending",
+  "originalPixelsPreserved": true,
+  "compositeParts": {
+    "stairs": [
+      [
+        1048,
+        556,
+        459,
+        282
+      ],
+      [
+        1012,
+        838,
+        495,
+        138
+      ]
+    ]
+  },
+  "nativeEvidence": "Docs/evidence/2026-10-04/roof-art-preview-native.json"
+}

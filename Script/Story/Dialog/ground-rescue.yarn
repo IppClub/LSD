@@ -1,0 +1,13 @@
+title: Start
+---
+<<preload "ninilite", "char", "wuyun">>
+[char id=char name=我/]退路守住了。谢谢你出手相助，我们该怎么称呼你？
+[char id=wuyun name=乌云/]乌云。不必客套，小扎西们。你们看上去有很重要的事情，关系这个世界的安危。
+[char id=ninilite name=妮妮莉特/]我们的训练确实帮上了忙，可是地面驱动能量快用完了。我需要休息一下。
+[char id=char name=我/]先靠拢辅助机。妮妮莉特，我会帮你补充外骨骼的能量。
+[char id=wuyun name=乌云/]我还知道，你是羽凌灵选定的人，她创造了妮妮莉特。
+[char id=char name=我/]你为什么要帮我们？“扎西”又是什么意思？
+[char id=wuyun name=乌云/]是小孩子、小家伙的意思。我只是希望这里回到原来的样子。
+[char id=wuyun name=乌云/]我向冈仁波齐发誓，我只追求一片安宁。
+[char id=char name=我/]希望我可以相信你。这里还不安全，我们回去再仔细商谈。
+===

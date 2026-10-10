@@ -1,0 +1,15 @@
+title: Start
+---
+<<preload "ninilite", "char">>
+[char id=ninilite name=妮妮莉特/]我们到了地铁站台。学院的电梯和这里的列车，是把战力转移到地面调查区域的主要方式。
+[char id=char name=我/]为什么走地铁？地面的道路不能通行吗？
+[char id=ninilite name=妮妮莉特/]地面的状况很严峻。怪物已经适应那里的环境，单靠外骨骼还不够，需要辅助机协同。
+[char id=char name=我/]辅助机？
+[char id=ninilite name=妮妮莉特/]调度记录里有三种：体积庞大的护盾机，方正的枪火库，还有纤细的载人机。护盾机也是主要的采集机器。
+[char id=char name=我/]所以这次既要调查，也要保证能带着记录回来。
+[char id=ninilite name=妮妮莉特/]嗯。辅助机还要由部署队调试、分配，不能只看一眼图纸就当成已经有了支援。
+[char id=char name=我/]我们先确认这次调查的方向。暗格里记录的接触时间，与怪物出现的时间有什么关联？
+[char id=ninilite name=妮妮莉特/]还不能下结论。我们需要到地面核实，也得提防地下城里那些不愿意让我们调查的人。
+[char id=char name=我/]我会保留我们已经训练好的方法，也会观察哪里需要重新示范。你的判断同样重要。
+[char id=ninilite name=妮妮莉特/]那我们在登车前再把计划确认一遍。
+===

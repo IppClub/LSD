@@ -55,3 +55,13 @@ DerivedData/
 .vscode/
 
 .agent/
+
+# Generated QA outputs are disposable; commit concise text conclusions only.
+__pycache__/
+*.pyc
+/Test/*.tga
+/Test/*.json
+/Test/*.txt
+/Docs/evidence/**/*
+!/Docs/evidence/**/
+!/Docs/evidence/**/*.md

@@ -1,0 +1,30 @@
+-- New adoption must pass default supply; old archives remain readable/rollbackable.
+local script,source,legacy=...;local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(script));local out=root..'/Test/flower-adoption-store-result.json';D.Content:save(out,'{"status":"RUNNING"}')
+D.thread(function()
+ local r={};local ok,err=xpcall(function()
+  assert(D.Path:getPath(source)==D.Content.writablePath and D.Path:getFilename(source):match('^flower%-field%-evaluation%-%d+%.db$'))
+  local dest=D.Content.writablePath..'/flower-adoption-gate-'..os.time()..'.db';assert(not D.Content:exist(dest) and D.Content:copyAsync(source,dest));assert(D.DB:exec("ATTACH DATABASE '"..dest.."' AS lsd")>=0);require('Data.Config'):loadAsync()
+  local R=require('Training.FlowerAdoptionReview');local S=require('Training.FlowerAdoptionStore');local equal=require('Training.FlowerIdentity').equal
+  local source=assert(require('Training.FlowerPolicyStore').evidence('ninilite'));local rows=assert(require('Training.FlowerTrialStore').history('ninilite'))
+  local bundle,review=R.make(source,rows[1].setup.models,rows);assert(bundle,review)
+  assert(bundle.fieldTrials and review.required==4 and review.candidateWins==3 and not review.readyForDecision)
+  assert(#review.blockers==1 and review.blockers[1].profile=='field' and R.verifyAsync(bundle))
+  local ok,why=S.adoptAsync(bundle,{accepted=true,review=review});assert(not ok and why=='ENCOUNTER_CHANGED')
+  local old=D.json.decode(D.json.encode(bundle),32);old.fieldTrials=nil
+  local oldReview=assert(R.assess(old));assert(oldReview.readyForDecision)
+  local ok,why=S.adoptAsync(old,{accepted=true,review=oldReview});assert(not ok and why=='FIELD_EVALUATION_REQUIRED')
+  local saved=assert(load(D.Content:load(root..'/Test/Fixtures/FlowerLegacyAdoption.lua')))()(legacy)
+  assert(saved.id==1 and not saved.bundle.fieldTrials)
+  assert(D.DB:exec("CREATE TRIGGER lsd.fail_rollback BEFORE UPDATE ON Game0FlowerAdoptionState BEGIN SELECT RAISE(ABORT,'QA rollback'); END")>=0)
+  local ok,why=S.rollbackAsync('ninilite');assert(not ok and why=='WRITE_FAILED' and D.DB:query("SELECT current FROM lsd.Game0FlowerAdoptionState WHERE learner='ninilite'")[1][1]==1)
+  assert(D.DB:exec('DROP TRIGGER lsd.fail_rollback')>=0)
+  for _,name in ipairs({'Game0FlowerTrials','Game0FlowerCandidateEvidence','Game0FlowerCandidates'})do assert(D.DB:exec("DELETE FROM lsd."..name.." WHERE learner='ninilite'")>=0)end
+  package.loaded['Training.FlowerAdoptionStore']=nil;S=require('Training.FlowerAdoptionStore')
+  local archived=D.json.decode(D.DB:query('SELECT payload FROM lsd.Game0FlowerAdoptions WHERE id=1')[1][1],32)
+  assert(equal(archived.bundle,saved.bundle) and R.verifyAsync(archived.bundle))
+  local active,reason=S.load('ninilite');assert(not active and reason=='ENCOUNTER_CHANGED')
+  local ok,why=S.rollbackAsync('ninilite');assert(ok and why=='RESTORED_BASIC' and not S.load('ninilite'))
+  r.newAdoptionBlocked=true;r.missingFieldBlocked=true;r.legacyReadable=true;r.rollbackAtomic=true;r.restoredBasic=true;r.independentArchive=true;r.candidateWins=review.candidateWins;r.required=review.required;r.blockers=review.blockers
+ end,debug.traceback)
+ r.status=ok and 'PASS' or 'FAIL';r.error=not ok and err or nil;D.Content:save(out,D.json.encode(r))
+end)

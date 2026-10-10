@@ -148,7 +148,7 @@ view:addChild(node3) -- 102
 local name = Label("SourceHanSansCN-Regular",70) -- 103
 name.color3 = Color3(0x0) -- 103
 name.spacing = 5 -- 103
-name.text = "默翎" -- 103
+name.text = "忍冬" -- 103
 view:addChild(name) -- 103
 local node4 = Node() -- 104
 node4.size = Size(37,name.height) -- 104

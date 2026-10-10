@@ -5,7 +5,7 @@ local ____exports = {} -- 1
 local ____DoraX = require("DoraX") -- 2
 local React = ____DoraX.React -- 2
 local toNode = ____DoraX.toNode -- 2
-local useRef = ____DoraX.useRef -- 2
+local reference = ____DoraX.reference -- 2
 local ____Dora = require("Dora") -- 3
 local Color = ____Dora.Color -- 3
 local Color3 = ____Dora.Color3 -- 3
@@ -73,10 +73,11 @@ local function StatusBar(props) -- 48
 		) -- 53
 	) -- 53
 end -- 48
-function ____exports.default(hp, ap, hpColor3) -- 67
-	local hpBar = useRef() -- 68
-	local apBar = useRef() -- 69
-	local node = toNode(React.createElement(StatusBar, {width = 100, height = 10, bars = {{color3 = 9289459, percentage = ap, ref = apBar}, {color3 = hpColor3, percentage = hp, ref = hpBar}}})) -- 70
+function ____exports.default(hp, ap, hpColor3, showArmor) -- 67
+	if showArmor == nil then showArmor = true end
+	local hpBar = reference() -- 68
+	local apBar = reference() -- 69
+	local node = toNode(React.createElement(StatusBar, {width = 100, height = 10, bars = showArmor and {{color3 = 9289459, percentage = ap, ref = apBar}, {color3 = hpColor3, percentage = hp, ref = hpBar}} or {{color3 = hpColor3, percentage = hp, ref = hpBar}}})) -- 70
 	return node, hpBar.current, apBar.current -- 76
 end -- 76
 return ____exports -- 76

@@ -1,0 +1,14 @@
+{
+  "status": "candidate-not-runtime",
+  "source": "dataotie alt original project",
+  "regions": {
+    "tou": "head",
+    "toubaoshi": "head-gem",
+    "beijia1": "back-front",
+    "beijia2": "back-rear",
+    "qiantui1shang": "front-leg",
+    "houqiantuishang": "rear-leg",
+    "weiba": "tail"
+  },
+  "requires": "pose, visibility, overlap and runtime-source equivalence review"
+}

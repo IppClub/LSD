@@ -1,0 +1,50 @@
+{
+  "builder": "Tools/build_roof_wuyun.py",
+  "source": "Original Wuyun, restored binary region dimensions",
+  "anchors": {
+    "roofMark": {
+      "bone": "zuobi3",
+      "x": 85,
+      "y": 0
+    },
+    "roofMarkAxis": {
+      "bone": "zuobi3",
+      "x": 115,
+      "y": 0
+    }
+  },
+  "geometryEvidence": "Docs/evidence/2026-10-04/roof-wuyun-original-geometry.txt",
+  "sha256": {
+    "Spine/Roof/wuyun.json": "4ffb6829487b2d76ad479818e0fe52faffa2f26d74599f707cf2801bd1301734",
+    "Spine/wuyun.atlas": "d48f4229eede4f30f6c6e7761a28ba3a41a465f10c75c90f09fe09767792eb6c",
+    "Spine/wuyun.skel": "87995fef048e36efb7bfc4b3a75df757b42665b6168ab27981917e8f4794ed90"
+  },
+  "retainedClips": [
+    "comm",
+    "comp",
+    "fmove",
+    "hit",
+    "idle",
+    "jump",
+    "jumping",
+    "landing",
+    "lose",
+    "melee",
+    "pistol",
+    "prepare",
+    "standUp",
+    "throw"
+  ],
+  "customClips": {
+    "roofRaise": {
+      "duration": 0.8,
+      "event": "roofArmRaised"
+    },
+    "roofLower": {
+      "duration": 0.6,
+      "event": "roofArmLowered"
+    }
+  },
+  "poseSource": "Spine/Roof/wuyun-idle-pose.json",
+  "customStatus": "Native arm candidate passed, not yet attached to original 2-17 dialogue"
+}

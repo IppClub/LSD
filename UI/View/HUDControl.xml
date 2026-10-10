@@ -9,7 +9,7 @@
 
 	<Lua>local H <const> = 1563</Lua>
 	<AlignNode InUI="True" IsRoot="True">
-		<AlignNode Name="topControl" HAlign="Center" VAlign="Top">
+		<AlignNode Name="topControl" Ref="True" HAlign="Center" VAlign="Top">
 			<Sprite File="ar.clip|lsdar_bossblood_1" Y="-102.5" Visible="False"/>
 			<Sprite File="ar.clip|lsdar_bossblood_2" Y="-112.5" Visible="False"/>
 			<Sprite File="ar.clip|lsdar_bossblood_3" Y="-85"/>
@@ -31,8 +31,8 @@
 		</AlignNode>
 		<AlignNode Name="lbControl" HAlign="Left" VAlign="Bottom">
 			<Node AngleY="-20">
-				<MessageBox X="414" Y="530"/>
-				<HUDMove X="414" Y="230" Visible="False"/>
+				<MessageBox Name="message" Ref="True" X="414" Y="530"/>
+				<HUDMove Name="move" Ref="True" X="414" Y="230" Visible="False"/>
 			</Node>
 		</AlignNode>
 		<AlignNode Name="rightControl" HAlign="Right" VAlign="Center">
@@ -53,13 +53,13 @@
 		</AlignNode>
 		<AlignNode Name="rbControl" HAlign="Right" VAlign="Bottom">
 			<Node AngleY="20" Visible="True">
-				<Node Name="skillArea" X="-580" Y="365" Width="888" Height="592">
+				<Node Name="skillArea" Ref="True" X="-580" Y="365" Width="888" Height="592">
 					<Skill Visible="False" PlaceHolder="True"/>
 					<Skill Visible="False" PlaceHolder="True"/>
 					<Skill Visible="False" PlaceHolder="True"/>
 					<Skill Visible="False" PlaceHolder="True"/>
 					<Skill Visible="False" PlaceHolder="True"/>
-					<Skill Visible="False" Name="weapon" Ref="True">
+					<Skill Visible="False" Name="weapon" Ref="True" Icon="{ weaponIcon or 'kineticgun' }">
 						<Slot Name="TapBegan">
 							<Lua>emit("Skill.Began")</Lua>
 						</Slot>

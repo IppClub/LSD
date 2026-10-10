@@ -1,8 +1,11 @@
 import { BodyMoveType, cycle, Ease, Node, once, Opacity, sleep, Spine, tolua, TypeName, Vec2 } from 'Dora';
-import { Unit, UnitAction, Data, BulletDef, Face, Bullet, TargetAllow, Relation } from 'Platformer'
+import type * as PlatformerTypes from 'Platformer';
+import { Relation } from 'Platformer';
+// Keep the native module name at runtime; declaration paths are types only.
+const { Unit, UnitAction, Data, BulletDef, Face, Bullet, TargetAllow } = require('Platformer') as typeof PlatformerTypes;
 import { React, toNode } from 'DoraX';
 import * as Rectangle from 'UI/View/Shape/Rectangle';
-import { LightStrip } from 'Tutorial/LightStrip';
+import { LightStrip } from 'Script/Tutorial/LightStrip';
 
 export default function(this: void) {
 	UnitAction.add("bmove", {
@@ -54,13 +57,7 @@ export default function(this: void) {
 		available: (owner) => owner.onSurface,
 		create: (owner) => {
 			const playable = owner.playable;
-			switch (playable.lastCompleted) {
-				case "pistol":
-				case "laser":
-				case "hit":
-					playable.recovery = 0.0;
-					break
-			}
+			playable.recovery = 0.2;
 			playable.play("prepare", true);
 			return () => !owner.onSurface;
 		}
@@ -72,6 +69,7 @@ export default function(this: void) {
 		recovery: 0.2,
 		create: (owner) => {
 			const playable = owner.playable;
+			playable.recovery = 0.2;
 			playable.play("idle", true);
 			const playIdleSpecial = coroutine.create(() => {
 				while (true) {
@@ -116,7 +114,7 @@ export default function(this: void) {
 				targetAllow.terrainAllowed = true;
 				bullet.angle = 0
 				bullet.targetAllow = targetAllow.toValue();
-				bullet.slot("HitTarget", (bullet: Bullet.Type, target: Unit.Type, pos: Vec2.Type) => {
+				bullet.slot("HitTarget", (bullet: PlatformerTypes.Bullet.Type, target: PlatformerTypes.Unit.Type, pos: Vec2.Type) => {
 					const entity = target.entity as unknown as {hp: number, ap: number};
 					target.data.hitFromRight = bullet.velocityX < 0;
 					entity.ap -= 100;
@@ -170,7 +168,7 @@ export default function(this: void) {
 				targetAllow.allow(Relation.Enemy, true);
 				targetAllow.terrainAllowed = true;
 				bullet.targetAllow = targetAllow.toValue();
-				bullet.slot("HitTarget", (bullet: Bullet.Type, target: Unit.Type, pos: Vec2.Type, normal: Vec2.Type) => {
+				bullet.slot("HitTarget", (bullet: PlatformerTypes.Bullet.Type, target: PlatformerTypes.Unit.Type, pos: Vec2.Type, normal: Vec2.Type) => {
 					const entity = target.entity as unknown as {hp: number, ap: number};
 					target.data.hitFromRight = bullet.velocityX < 0;
 					entity.hp -= 1;
@@ -304,7 +302,7 @@ export default function(this: void) {
 					const unit = tolua.cast(item, TypeName.Unit);
 					if (unit && Data.isEnemy(unit.group, owner.group) && (unit.x >= owner.x == owner.faceRight)) {
 						unit.applyLinearImpulse(Vec2(unit.x < owner.x ? -500 : 500, 0), Vec2.zero);
-						unit.start("cancal");
+						unit.start("cancel");
 						if (unit.x < owner.x && !unit.faceRight) {
 							unit.start("turn");
 						}

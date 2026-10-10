@@ -10,7 +10,8 @@
 	<Import Module="UI.TacticReview"/>
 
 	<Lua>local H <const> = 1563</Lua>
-	<AlignNode InUI="True" IsRoot="True">
+	<AlignNode Name="settlement" InUI="True" IsRoot="True">
+		<Lua>if missionMode and resultStatus ~= "Complete" then settlement:cleanup(); return require("UI.MissionFail")(args) end</Lua>
 		<AlignNode Name="bk" HAlign="Left" VAlign="Bottom">
 			<SolidRect Name="mask" Width="3258" Height="1563" Color="0x66000000"/>
 		</AlignNode>
@@ -19,21 +20,22 @@
 			<Node Order="1" Y="-54">
 				<Sprite Name="logo" File="ar.clip|lsdar_settlement_logo" X="438.5"/>
 				<Sprite File="ar.clip|lsdar_settlement_ribbon" Y="-492" AnchorX="0"/>
-				<Label
-					Text="行动结束"
-					FontName="SourceHanSansCN-Regular" FontSize="300" Color3="0xffffff" TextAlign="Left"
+				<Label Name="resultHeading"
+					Text="{ resultTitle or '行动结束' }"
+					FontName="SourceHanSansCN-Regular" FontSize="{ missionMode and 140 or 300 }" Color3="0xffffff" TextAlign="Left"
 					Spacing="10" X="129.5" Y="537" AnchorX="0"/>
+				<Lua>if missionMode then local k=math.min(1,940/math.max(1,resultHeading.width)); resultHeading.scaleX=k; resultHeading.scaleY=k; settlement.resultHeading=resultHeading end</Lua>
 				<Label
-					Text="2-3地底的喧嚣"
+					Text="{ missionTitle or '2-3地底的喧嚣' }"
 					FontName="SourceHanSansCN-Regular" FontSize="55" Color3="0xffffff" TextAlign="Left"
 					X="129.5" Y="657" AnchorX="0" Opacity="0.7"/>
 				<Label
-					Text="10秒后自动退出战斗结算界面"
+					Text="{ missionMode and '确认收支后选择下一步' or '10秒后自动退出战斗结算界面' }"
 					FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
 					X="129.5" Y="-492" AnchorX="0"/>
 				<Node Name="assessment" Visible="True">
 					<Label Name="lb"
-						Text="获得物资"
+						Text="{ missionMode and '行动收支' or '获得物资' }"
 						FontName="SourceHanSansCN-Regular" FontSize="40" Color3="0xffffff" TextAlign="Left"
 						X="129.5" Y="100" AnchorX="0" Opacity="0.5" AnchorY="0"/>
 					<Label
@@ -48,22 +50,24 @@
 						Text="TEAM MEMBER"
 						FontName="SourceHanSansCN-Regular" FontSize="30" Color3="0xffffff" TextAlign="Left"
 						X="{ lb1.x + lb1.width + 30 }" Y="476" AnchorX="0" Opacity="0.5" AnchorY="0"/>
-					<MissionTab X="582" Y="407" Mode="Main" Title="地底的喧嚣" Status="Complete"/>
+					<MissionTab X="582" Y="407" Mode="{ missionCategory or 'Main' }" Title="{ missionTitle or '地底的喧嚣' }" Status="Complete"/>
+					<Lua>if not missionMode then</Lua>
 					<MissionTab X="582" Y="315" Mode="Side" Title="饕餮骚动中" Status="(15/30)"/>
 					<MissionTab X="582" Y="223" Mode="Map" Title="黑暗中的残影" Status="Failed"/>
-					<ScrollArea Name="rewardArea" PaddingX="0" X="582" Y="-166" Width="964" Height="500" ScrollBar="False">
+					<Lua>end</Lua>
+					<ScrollArea Name="rewardArea" PaddingX="0" X="582" Y="-166" Width="964" Height="500" ScrollBar="{ missionMode == true }">
 						<Lua>do</Lua>
 						<Item Name="view">
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
-							<RewardItem/>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><RewardItem/><Lua>end</Lua>
 						</Item>
 						<Lua>end</Lua>
 						<Lua>rewardArea:adjustSizeWithAlign("Auto", 0, Size(964, 500))</Lua>
@@ -71,11 +75,11 @@
 					<ScrollArea Name="memberArea" PaddingY="0" Y="24" Width="964" Height="843" ScrollBar="False">
 						<Lua>do</Lua>
 						<Item Name="view">
-							<MemberView/>
-							<MemberView/>
-							<MemberView/>
-							<MemberView/>
-							<MemberView/>
+							<Lua>if not missionMode then</Lua><MemberView/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><MemberView/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><MemberView/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><MemberView/><Lua>end</Lua>
+							<Lua>if not missionMode then</Lua><MemberView/><Lua>end</Lua>
 						</Item>
 						<Lua>end</Lua>
 						<Lua>memberArea:adjustSizeWithAlign("Horizontal", 0, Size(964, 843))</Lua>
@@ -106,9 +110,10 @@
 					</Item>
 				</MovingText>
 			</Node>
-			<PropButton X="-646" Y="-546" Text="再次行动"/>
-			<PropButton X="-273" Y="-546" Text="返回基地"/>
+			<PropButton Name="againButton" Ref="True" X="-646" Y="-546" Text="{ againText or '再次行动' }"/>
+			<PropButton Name="baseButton" Ref="True" X="-273" Y="-546" Text="{ baseText or '返回基地' }"/>
 		</AlignNode>
+		<Lua>if missionMode then require("UI.ResultDetails").success(settlement, rewardArea, memberArea, args) end</Lua>
 		<Slot Name="AlignLayout" Args="w, h">
 			<Yue>
 				global rc, mask
@@ -125,7 +130,10 @@
 				memberWidth = w / scale - 1115
 				with memberArea
 					.x = 1115 + memberWidth / 2
-					\adjustSizeWithAlign "Horizontal", 0, Size memberWidth, 843
+					if missionMode
+						settlement\layoutResultDetails memberWidth
+					else
+						\adjustSizeWithAlign "Horizontal", 0, Size memberWidth, 843
 				tacticWidth = w / scale - 704
 				with tacticArea
 					.x = 704 + tacticWidth / 2

@@ -1,0 +1,32 @@
+[
+  {
+    "source": "Docs/artwork/researcher/export/actions.skel",
+    "asset": "Spine/StoryActions/researcher.skel",
+    "sha256": "4dd39c435efe39859605a410123b7ef69613fe44cf8c05634d861901d398bb84"
+  },
+  {
+    "source": "Docs/artwork/interrogation/wuyun/export/actions.skel",
+    "asset": "Spine/StoryActions/wuyun.skel",
+    "sha256": "7a7bb8f3e5b829435b7fa881352e194bc3976e1ca773c16b106526544fdc2fc0"
+  },
+  {
+    "source": "Docs/artwork/interrogation/charM/export/actions.skel",
+    "asset": "Spine/StoryActions/charM.skel",
+    "sha256": "4cdef1a2734dd185574ca03a753d7b6609353e3d9a932dd1ead4ac2529b0b60e"
+  },
+  {
+    "source": "Docs/artwork/interrogation/charF/export/actions.skel",
+    "asset": "Spine/StoryActions/charF.skel",
+    "sha256": "b92c560cd499d103ab5a5f2d74fc4426688176960bc89e9dd5ad7ac02b8be9b4"
+  },
+  {
+    "source": "Docs/artwork/interrogation/charM/hand-fit.json",
+    "asset": "Spine/StoryActions/charM-hand-fit.json",
+    "sha256": "1d9a4090c034520f4d259381eefb07623fc724ce0215c6d4882937ef0fc43151"
+  },
+  {
+    "source": "Docs/artwork/interrogation/charF/hand-fit.json",
+    "asset": "Spine/StoryActions/charF-hand-fit.json",
+    "sha256": "3543a51f89d635659e65a15c456e4cd96cb7ffd49bc3fa52081a6e6960ef0a31"
+  }
+]

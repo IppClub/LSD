@@ -1,0 +1,55 @@
+-- Public HUD demonstrations, actual C4.5 and identical real-battle baseline comparison.
+local D=require("Dora")
+local root=D.Path:getPath(D.Path:getScriptPath(...))
+for _,p in ipairs({root,D.Path(root,"Script"),D.Path(root,"Spine"),D.Path(root,"Image"),D.Path(root,"Font")}) do D.Content:insertSearchPath(1,p) end
+local id=tostring(os.time()); local out=D.Path(root,"Test","learning-strategy-result.txt")
+local function report(s) D.Content:save(out,"LSD_LEARNING_STRATEGY_"..s.." runId="..id.."\n"); print("LSD_LEARNING_STRATEGY_"..s) end
+report("RUNNING")
+local db=D.Path(D.Content.writablePath,"lsd-learning-strategy-qa-"..id..".db")
+assert(not D.Content:exist(db) and not D.DB:existDB("lsd") and D.DB:exec("ATTACH DATABASE '"..db:gsub("'","''").."' AS lsd")>=0)
+D.Director.entry:slot("Cleanup",function() if D.DB:existDB("lsd") then D.DB:exec("DETACH DATABASE lsd") end end)
+D.thread(function()
+ local ok,result=xpcall(function()
+  require("Training.Level")()
+  local function wait(test,seconds)
+   local deadline=D.App.runningTime+(seconds or 10)
+   while not test() do assert(D.App.runningTime<deadline,"Learning public UI wait timeout"); D.sleep(0.05) end
+  end
+  wait(function() return D.Director.ui3D:getChildByTag("training-controls") end)
+  local ui=D.Director.ui3D:getChildByTag("training-controls"); local a=assert(ui.arena)
+  local menu=ui:getChildByTag("training-menu"); local hud=D.Director.ui3D:getChildByTag("trainingHUD")
+  D.sleep(0.8)
+  for i=1,6 do
+   menu:getChildByTag("近处对练"):emit("Tapped"); D.sleep(0.25)
+   hud.move:emit("Left",true); D.sleep(0.12); hud.move:emit("Left",false)
+   menu:getChildByTag("中距对练"):emit("Tapped"); D.sleep(0.25)
+   hud.weapon:emit("TapBegan"); D.sleep(0.05); hud.weapon:emit("TapEnded"); D.sleep(1.5)
+   assert(a.metrics.hits==1,"Mid-range public shot did not hit")
+   menu:getChildByTag("远处对练"):emit("Tapped"); D.sleep(0.25)
+   hud.move:emit("Right",true); D.sleep(0.12); hud.move:emit("Right",false)
+  end
+  assert(a.recorder.counts.bmove==6 and a.recorder.counts.laser==6 and a.recorder.counts.fmove==6,"Public strategy sample distribution")
+  local samples=#a.recorder.samples; assert(samples==18,"Episode samples lost")
+  menu:getChildByTag("结束示范"):emit("Tapped"); wait(function() return a.mode=="review" and a.candidate end)
+  local model=a.candidate; local Model=require("Training.Model")
+  local function state(d) return {distance=d,facing="yes",enemyAction="idle",attackReady="yes"} end
+  assert(Model.predict(model,state(220))=="bmove","Near held-out input did not retreat")
+  assert(Model.predict(model,state(420))=="laser","Mid held-out input did not shoot")
+  assert(Model.predict(model,state(680))=="fmove","Far held-out input did not approach")
+  report("RUNNING phase=comparison samples="..samples.." rules="..D.json.encode(model.rules))
+  menu:getChildByTag("三场试战"):emit("Tapped")
+  wait(function() return a.evaluation and not a.evaluating end,140)
+  local e=a.evaluation; local c,b=e.summary.candidate,e.summary.baseline
+  assert(#e.candidate==3 and #e.baseline==3 and c.wins==3 and b.wins==3,"Equal trial matrix/wins missing")
+  assert(c.health>b.health and c.health==100,"Learned retreat did not improve survival")
+  assert(c.fallback==0 and b.fallback==0 and c.baselineActions==0 and b.modelActions==0,"Controllers mixed or fallback substituted")
+  assert(c.actions.bmove and c.actions.fmove and c.actions.laser,"Learned action variety missing from real trial")
+  for i,d in ipairs(require("Training.Arena").trialDistances) do assert(d~=180 and d~=460 and d~=800 and e.baseline[i].controller=="basic-shot" and e.candidate[i].controller=="learned") end
+  menu:getChildByTag("采用"):emit("Tapped")
+  wait(function() return require("Training.Progress").adopted==model and a.mode=="review" end)
+  assert(require("Training.Progress").load() and require("Training.Progress").adopted.sampleCount==18,"Rich model not persisted")
+  D.Content:save(D.Path(root,"Test","learning-strategy-resume-fixture.txt"),db)
+  return "PASS publicHud=true retainedEpisodes=true samples=18 nativeC45=true heldOutActions=retreat/shoot/approach identicalTrials=3 controllersSeparated=true fallback=0 adoptedSaved=true candidate="..D.json.encode(c).." baseline="..D.json.encode(b).." rules="..D.json.encode(model.rules)
+ end,debug.traceback)
+ report(ok and result or "FAIL "..tostring(result))
+end)

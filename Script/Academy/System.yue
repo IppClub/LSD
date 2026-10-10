@@ -10,15 +10,15 @@ export default ->
 	const Width, Height, GrabSize, Outline, MaxPath = 100, 300, 400, 6, 2
 
 	const names = {
-		moling: '默翎'
-		moyu: '默羽'
-		liyena: '李叶那'
+		moling: '忍冬'
+		moyu: '半夏'
+		liyena: '李叶娜'
 		ayan: '阿岩'
 		villywan: '万薇莉'
-		yuzijiang: '余梓绛'
+		yuzijiang: '余子绛'
 		ninilite: '妮妮莉特'
 		wuyun: '乌云'
-		sunborn: '向阳珄'
+		sunborn: '林睿哲'
 	}
 
 	const moveComs =
@@ -98,6 +98,7 @@ export default ->
 							sleep!
 							world.visible = true
 							oldWorld\removeFromParent!
+							require("Academy.Navigation").attach world
 				\addTo unit.world
 
 	with Observer "Remove", moveComs
@@ -155,7 +156,7 @@ export default ->
 				if .decisionTree not in ["AI:PlayerControl", "AI:NPC"]
 					isCommonAI = false
 					if player
-						world.camera.followTarget = unit
+						world.camera.followTarget = u
 				world\addShadowTo u
 				\addTo world
 				return unless isCommonAI
@@ -171,8 +172,10 @@ export default ->
 						minDictance = nil
 						return if unit.entity.busy
 						for body in *sensor.sensedBodies
+							continue if unit.entity.moveTargets
 							:entity = body
 							continue unless entity
+							continue if entity.storyCompanion
 							continue if body.decisionTree ~= "AI:NPC"
 							continue unless entity.player?
 							continue if body == unit
@@ -213,21 +216,11 @@ export default ->
 								nameText = names[target.entity.name] ?? "人物"
 								target.entity.interaction = with ui := Interaction text: nameText, buttons: {
 											{"对话", "TALK"}
-											{"进行训练", "TRAINING"}
 											{"个人信息", "INFORMATION"}
 										}, fliped: target.x < unit.x
 									.order = world.children.last.order
 									.transformTarget = target
 									\slot "Tapped", (index) ->
-										switch index
-											when 1 then \schedule once ->
-												startTime = App.runningTime
-												deltaTime = App.runningTime - startTime
-												if deltaTime < 0.5
-													sleep 0.5 - deltaTime
-												\hide false
-												import "UI.Story"
-												Director.ui\addChild with Story!
-													\slot "Hide", -> ui\show!
+										thread -> require("Academy.Companion").openAsync target.entity.name, world, index == 1 and "talk" or "information"
 									\addTo world
 									\show!

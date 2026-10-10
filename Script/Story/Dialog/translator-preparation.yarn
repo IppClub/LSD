@@ -1,0 +1,19 @@
+title: Start
+---
+<<preload "ninilite", "wuyun", "char">>
+[char id=ninilite name=妮妮莉特/]{$charName}，你终于回来啦
+[char id=ninilite name=妮妮莉特/]我看到了主人的消息，我好想哭，又好开心好开心
+[char id=ninilite name=妮妮莉特/]总之，主人没事真是太好了
+[char id=char name=我/]你开心就好
+[char id=char name=我/]但现在还不是高兴和放松的时候。林睿哲刚刚发来消息说，我们明天凌晨需要去地面搜集材料制作转译器
+[char id=wuyun name=乌云/]转译器是什么？
+[char id=char name=我/]实现战斗数据共享和记录的东西，并且可以根据数据实现记忆追溯
+[char id=char name=我/]用于提升作战经验，成员之间实现异地战斗指导协助、降低伤害之类
+[char id=char name=我/]根据地图显示，材料在这个废弃工厂
+[char id=char name=我/]但是途中需要经过一片沼泽，需要我们小心行事
+[char id=ninilite name=妮妮莉特/]你就这么相信林睿哲？
+[char id=char name=我/]说不上相信吧，只是想出手相助一下这个世界而已，玩够了就回去
+[char id=char name=我/]既然羽凌灵是能让你真正信任的，那希望你能在她守护过的地方快乐生活
+[char id=wuyun name=乌云/]果然人有了牵挂都难以自由呢
+[char id=wuyun name=乌云/]愿雪山的神鹰庇佑我们行动成功
+===

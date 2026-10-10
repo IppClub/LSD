@@ -41,7 +41,7 @@ TextInput = Class ((args) ->
 
 	with inputBox.box
 		textEditing = ""
-		textDisplay = ""
+		textDisplay = text
 
 		.size = Size width, height
 		.hint = hint
@@ -56,9 +56,13 @@ TextInput = Class ((args) ->
 			\detachIME!
 			\attachIME!
 			updateIMEPos!
+		.getCommittedText = => u8.sub textDisplay, 1, -1 - u8.len(textEditing)
 		.updateDisplayText = (_, txt) ->
+			textEditing = ""
 			textDisplay = txt
-			label.text = txt
+			label.x = 0
+			label.opacity = txt == "" and hint ~= "" and 0.6 or 1.0
+			label.text = txt == "" and hint ~= "" and hint or txt
 
 		\slot "AttachIME", ->
 			label.opacity = 1.0
@@ -69,7 +73,9 @@ TextInput = Class ((args) ->
 			.keyboardEnabled = false
 			cursor.visible = false
 			cursor\unschedule!
+			textDisplay = u8.sub textDisplay, 1, -1 - u8.len(textEditing)
 			textEditing = ""
+			label.text = textDisplay
 			label.x = 0
 			if textDisplay == ""
 				label.opacity = 0.6
@@ -83,6 +89,16 @@ TextInput = Class ((args) ->
 				textEditing = "" if key == "BackSpace"
 			else
 				return if textEditing ~= ""
+			-- Desktop paste is an explicit text edit, never a synthetic submit.
+			modified = Keyboard\isKeyPressed("LCtrl") or Keyboard\isKeyPressed("RCtrl") or Keyboard\isKeyPressed("LGui") or Keyboard\isKeyPressed("RGui")
+			if key == "V" and modified and type(App.getClipboardText) == "function"
+				clipboard = App\getClipboardText!
+				if clipboard ~= ""
+					clipboard = clipboard\gsub "[\r\n\t]", " "
+					textDisplay = u8.sub textDisplay .. clipboard, 1, 64
+					updateText textDisplay
+					updateIMEPos!
+				return
 			switch key
 				when "BackSpace"
 					if #textDisplay > 0
@@ -110,10 +126,10 @@ TextInput = Class ((args) ->
 	inputBox\alignLayout!
 	inputBox
 ), {
-	text: property (=> @label.text),
+	text: property (=> @box\getCommittedText!),
 		(value) =>
-			@detachIME! if @imeAttached
-			@updateDisplayText value
+			@box\detachIME! if @box.imeAttached
+			@box\updateDisplayText value
 }
 
 export default TextInput

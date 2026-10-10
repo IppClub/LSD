@@ -1,0 +1,45 @@
+-- Isolated story gates and atomic completion; no battle or learning quality claim.
+local D=require("Dora")
+local root=D.Path:getPath(D.Path:getScriptPath(...)); D.Content:insertSearchPath(1,D.Path(root,"Script"))
+local runId=tostring(os.time()); local out=D.Path(root,"Test","story-service-result.txt")
+D.Content:save(out,"LSD_STORY_SERVICE_RUNNING runId="..runId.."\n")
+local db=D.Path(D.Content.writablePath,"lsd-story-service-qa-"..runId..".db")
+assert(not D.Content:exist(db) and not D.DB:existDB("lsd")); assert(D.DB:exec("ATTACH DATABASE '"..db:gsub("'","''").."' AS lsd")>=0)
+D.Director.entry:slot("Cleanup",function() if D.DB:existDB("lsd") then D.DB:exec("DETACH DATABASE lsd") end end)
+D.thread(function()
+ local ok,result=xpcall(function()
+  local Service=require("Story.Service"); local story=assert(Service.open())
+  assert(not story:canRead("archive-discovery","LibraryRoom"),"Investigation bypassed mission")
+  assert(not story:canRead("station-brief","Station"),"Station bypassed archive discovery")
+  assert(not story:canRead("academy-research","OperationRoom",true),"Remote first-time replay accepted")
+  assert(story:completeAsync("academy-research","RDRoom")); assert(story:canRead("academy-research","OperationRoom",true))
+  assert(story:completeAsync("academy-research","OperationRoom",true))
+  assert(#D.DB:query("SELECT id FROM lsd.Game0StoryNodes")==1)
+  -- Reward fixture uses the real mission service; battle is separately covered.
+  local mission=assert(require("Mission.Service").open())
+  local model={schemaVersion=1,featureSchemaVersion=1,actionSetVersion=1,characterId="ninilite",actions={"laser","fmove","bmove","idle"},sampleCount=7,trainingAccuracy=1,rules={{conditions={},action="laser"}}}
+  local attempt=assert(mission:beginAsync("c0-m01",model,{mentor=true,learner="ninilite"})); assert(mission:finishAsync(attempt,"won",{fixture="story-gate"}))
+  assert(not story:completeAsync("archive-discovery","RDRoom"),"Remote discovery granted")
+  assert(D.DB:exec("CREATE TRIGGER lsd.fail_story_unlock BEFORE INSERT ON Game0StoryUnlocks BEGIN SELECT RAISE(ABORT,'QA story reward fault'); END")>=0)
+  assert(not story:completeAsync("archive-discovery","LibraryRoom"))
+  assert(not story:summary().completed["archive-discovery"],"Story partial write escaped rollback")
+  D.DB:exec("DROP TRIGGER lsd.fail_story_unlock")
+  assert(story:completeAsync("archive-discovery","LibraryRoom")); assert(story:completeAsync("archive-discovery","LibraryRoom"))
+  local reopened=assert(Service.open()):summary(); assert(reopened.completed["archive-discovery"] and reopened.unlocks["archive-discovered"])
+  assert(#D.DB:query("SELECT id FROM lsd.Game0StoryNodes")==2 and #D.DB:query("SELECT id FROM lsd.Game0StoryUnlocks")==2)
+  assert(reopened.objective:find("地面调查",1,true))
+  assert(not story:canRead("station-brief","PassageC",true),"Remote first station briefing accepted")
+  assert(story:completeAsync("station-brief","Station")); assert(story:completeAsync("station-brief","RDRoom",true))
+  local station=story:summary()
+  assert(station.completed["station-brief"] and station.unlocks["station-briefed"] and station.objective:find("登车",1,true))
+  assert(#D.DB:query("SELECT id FROM lsd.Game0StoryNodes")==3 and #D.DB:query("SELECT id FROM lsd.Game0StoryUnlocks")==3,"Station replay duplicated facts")
+  D.DB:exec("UPDATE lsd.Game0StoryMeta SET schemaVersion=2 WHERE id=1")
+  local snapshots={}
+  for _,tableName in ipairs({"Game0StoryMeta","Game0StoryNodes","Game0StoryUnlocks","Game0StorySupplies"}) do snapshots[tableName]=D.json.encode(D.DB:query("SELECT * FROM lsd."..tableName),false,true) end
+  local future,err=Service.open(); assert(not future and err=="INCOMPATIBLE_STORY_SAVE")
+  for tableName,payload in pairs(snapshots) do assert(payload==D.json.encode(D.DB:query("SELECT * FROM lsd."..tableName),false,true),"Future story schema mutated "..tableName) end
+  return "PASS missionGate=true roomGate=true recordedReplay=true atomicRollback=true idempotent=true reopenedFacts=true nextObjective=true futureReadOnly=true stationArchiveGate=true stationRoomGate=true stationReplayOnce=true"
+ end,debug.traceback)
+ local report="LSD_STORY_SERVICE_"..(ok and result or "FAIL "..tostring(result)).." runId="..runId
+ print(report); D.Content:save(out,report.."\n")
+end)

@@ -17,8 +17,7 @@ sprite1.order = -1 -- 5
 active:addChild(sprite1) -- 5
 local glow = Action(Sequence(Opacity(0.5,0,1),Opacity(0.5,1,0))) -- 7
 sprite1:slot("Enter",function() -- 12
-sprite1:perform(glow) -- 12
-sprite1:slot("ActionEnd",function(_action_) if _action_ == glow then sprite1:perform(glow) end end) -- 12
+if sprite1.running then sprite1:perform(glow, true) end -- 12
 end) -- 12
 local inactive = Sprite("button.clip|btn_big_2") -- 15
 inactive.anchor = Vec2(0,0) -- 15

@@ -16,7 +16,6 @@ local Unit = Platformer.Unit
 local Opacity = require("Opacity")
 local Spine = require("Spine")
 local loop = require("loop")
-local cycle = require("cycle")
 local Group = require("Group")
 local StatusBar = require("UI.StatusBar")
 local PlayBubbleChat = require("System.PlayBubbleChat")
@@ -118,7 +117,8 @@ return function()
 			unit:gslot("Skill.Began", function()
 				entity.keySkill = true
 			end)
-			unit:gslot("Skill.Ended", function()
+			unit:gslot("Skill.Ended", function(cancelled: boolean)
+				unit.data.aimCancelled = cancelled == true
 				entity.keySkill = false
 			end)
 			local aimLine = DrawNode()
@@ -140,27 +140,27 @@ return function()
 	Observer("AddOrChange", {"unit", "keySkill"}):watch(function(entity: Entity.Type, unit: Unit.Type, keySkill: boolean): boolean
 		local aimLine = unit:getChildByTag("aim")
 		if keySkill then
+			unit.data.aimCancelled = false
+			unit.data.aimStartedAt = App.runningTime
 			unit:schedule(loop(function(): boolean
-				cycle(0.5, function(dt: number)
-					local scaleX = unit.faceRight and 1 or -1
-					aimLine.scaleX = scaleX
-					aimLine.angle = -scaleX * dt * 90 + 45 * scaleX
-					aimLine.visible = true
-				end)
-				cycle(0.5, function(dt: number)
-					local scaleX = unit.faceRight and 1 or -1
-					aimLine.scaleX = scaleX
-					aimLine.angle = -scaleX * (1.0 - dt) * 90 + 45 * scaleX
-				end)
+				local scaleX = unit.faceRight and 1 or -1
+				local started = unit.data.aimStartedAt as number
+				local angle = require("Tutorial.AimSweep").angle(App.runningTime - started)
+				aimLine.scaleX = scaleX
+				aimLine.angle = angle * scaleX
+				aimLine.visible = true
 				return false
 			end))
 		else
+			unit:unschedule()
+			local aimStartedAt = unit.data.aimStartedAt as number
+			if aimStartedAt and App.runningTime - aimStartedAt <= 0.15 then
+				aimLine.angle = 0
+			end
 			aimLine.visible = false
-			entity.keyShoot = true
-			unit:schedule(function(): boolean
-				entity.keyShoot = false
-				return true
-			end)
+			-- Fire on release. A one-frame key flag can be cleared before the AI
+			-- reaction tick and silently lose short taps.
+			if not unit.data.aimCancelled then unit:start("kinetic") end
 		end
 	end)
 
@@ -297,6 +297,8 @@ return function()
 						sleep(0.5 - time)
 					end
 					local ArriveLevel = require("Academy.Level.Arrive")
+					local Config = require("Data.Config")
+					Config.tutorialCompleted = true
 					ArriveLevel()
 				end)
 			end)

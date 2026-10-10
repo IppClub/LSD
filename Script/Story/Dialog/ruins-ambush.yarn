@@ -1,0 +1,9 @@
+title: Start
+---
+<<preload "char", "wuyun", "ninilite", "vika">>
+[char id=wuyun name=乌云/]有袭击！
+[char id=vika name=烛参/]这是什么恶心的丑八怪，我还没遇见过这么难打的
+[char id=char name=我/]乌云、妮妮莉特，你们先带着小家伙们回基地，我负责引开他们
+[char id=ninilite name=妮妮莉特/]那怎么行
+[char id=wuyun name=乌云/]快走，别浪费时间
+===

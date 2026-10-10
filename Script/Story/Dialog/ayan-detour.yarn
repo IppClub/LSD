@@ -1,0 +1,13 @@
+title: Start
+---
+<<preload "ayan", "char">>
+[char id=ayan name=阿岩/]听说您刚刚从地面下来？
+[char id=char name=我/]对，能源已经收到了，但还没有找到有效资料。
+[char id=ayan name=阿岩/]能介绍一下地面的情况吗？有哪些城市，长什么样……有没有遇见什么人，比如我这样的建筑师？
+[char id=char name=我/]我们只查看了遗弃城市，见到的主要是怪物。其他地方还没调查过。
+[char id=ayan name=阿岩/]……这样啊。
+[char id=char name=我/]那个，您是不是走错路了？地图上不是这个方向。
+[char id=ayan name=阿岩/]啊哈哈，不好意思，我们换个方向。地面真的没有别的东西吗？
+[char id=char name=我/]暂时没有发现。你的问题，好像不只是为了工作？
+[char id=ayan name=阿岩/]……我们先去训练室吧。让客人等这么久，实在不好意思。
+===

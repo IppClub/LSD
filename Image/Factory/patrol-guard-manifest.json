@@ -1,0 +1,190 @@
+{
+  "artSource": "built-in image_gen",
+  "artStatus": "new adaptation: anonymous network patrol armour; not an original design sheet",
+  "source": "patrol-guard-parts-v1.png",
+  "sha256": "9f7d134167f38249f28350a049454a4aeeeb69914b0082823cb67d148259d278",
+  "parts": [
+    {
+      "name": "farLeg",
+      "rect": [
+        540,
+        492,
+        186,
+        400
+      ],
+      "position": [
+        -55,
+        270
+      ],
+      "anchor": [
+        0.55,
+        0.97
+      ],
+      "scale": 0.62,
+      "parent": "rig"
+    },
+    {
+      "name": "farBoot",
+      "rect": [
+        59,
+        921,
+        281,
+        245
+      ],
+      "position": [
+        -66,
+        85
+      ],
+      "anchor": [
+        0.36,
+        0.88
+      ],
+      "scale": 0.52,
+      "parent": "farLeg"
+    },
+    {
+      "name": "farArm",
+      "rect": [
+        879,
+        87,
+        331,
+        347
+      ],
+      "position": [
+        -48,
+        485
+      ],
+      "anchor": [
+        0.23,
+        0.94
+      ],
+      "scale": 0.65,
+      "parent": "rig"
+    },
+    {
+      "name": "body",
+      "rect": [
+        441,
+        101,
+        337,
+        340
+      ],
+      "position": [
+        0,
+        247
+      ],
+      "anchor": [
+        0.5,
+        0.06
+      ],
+      "scale": 0.8,
+      "parent": "rig"
+    },
+    {
+      "name": "nearLeg",
+      "rect": [
+        896,
+        465,
+        260,
+        427
+      ],
+      "position": [
+        55,
+        263
+      ],
+      "anchor": [
+        0.46,
+        0.96
+      ],
+      "scale": 0.6,
+      "parent": "rig"
+    },
+    {
+      "name": "nearBoot",
+      "rect": [
+        431,
+        935,
+        285,
+        239
+      ],
+      "position": [
+        52,
+        72
+      ],
+      "anchor": [
+        0.36,
+        0.88
+      ],
+      "scale": 0.54,
+      "parent": "nearLeg"
+    },
+    {
+      "name": "head",
+      "rect": [
+        62,
+        71,
+        348,
+        365
+      ],
+      "position": [
+        16,
+        480
+      ],
+      "anchor": [
+        0.5,
+        0.07
+      ],
+      "scale": 0.68,
+      "parent": "rig"
+    },
+    {
+      "name": "rifle",
+      "rect": [
+        732,
+        901,
+        493,
+        270
+      ],
+      "position": [
+        114,
+        347
+      ],
+      "anchor": [
+        0.26,
+        0.35
+      ],
+      "scale": 0.67,
+      "parent": "nearArm"
+    },
+    {
+      "name": "nearArm",
+      "rect": [
+        49,
+        467,
+        381,
+        385
+      ],
+      "position": [
+        -55,
+        483
+      ],
+      "anchor": [
+        0.23,
+        0.91
+      ],
+      "scale": 0.65,
+      "parent": "rig"
+    }
+  ],
+  "animations": {
+    "idle": 2.0,
+    "prepare": 1.5,
+    "fmove": 1.2,
+    "shoot": 1.4,
+    "hit": 0.6,
+    "lose": 1.6
+  },
+  "shotFrame": 48,
+  "framesPerSecond": 60,
+  "recovery": 0.2
+}

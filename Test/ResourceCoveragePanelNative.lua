@@ -1,0 +1,20 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...));local out=root..'/Test/resource-coverage-panel-result.json';local r={status='RUNNING'}
+D.Content:save(out,D.json.encode(r))
+D.thread(function()
+ local ok,err=xpcall(function()
+  local prior=D.json.decode(D.Content:load(root..'/Test/resource-q-multi-practice-result.json'),32);assert(prior.status=='PASS'and prior.database:match('^/private/tmp/lsd%-combat%-qa%-.+/save/resource%-q%-multi%-%d+%.db$'))
+  local dest=D.Content.writablePath..'/resource-coverage-panel-'..os.time()..'.db';assert(not D.DB:existDB('lsd')and D.Content:copyAsync(prior.database,dest));assert(D.DB:exec("ATTACH DATABASE '"..dest.."' AS lsd")>=0);require('Data.Config'):loadAsync()
+  local candidate=assert(require('Training.ResourceQStore').loadLatestAsync());assert(candidate.depth==4)
+  local panel=require('Training.FlowerQPanel').openAsync(function()end,candidate.bundle.baseModels)
+  assert(panel.label.text:find('当前场景没有直接训练来源',1,true))
+  panel.resourceProfile='near';panel:render();assert(panel.label.text:find('当前场景已有来源',1,true))
+  assert(panel.label.height+40<=panel.node.height)
+  local old=assert(require('Training.ResourceQStore').loadVersionAsync(2));local oldCounts=require('Training.ResourceSourceCoverage').build(old.records)
+  assert(oldCounts.exposed==2 and not oldCounts.near and not oldCounts.far)
+  local trials=assert(require('Training.ResourceQTrials').loadAsync(2));local groups=require('Training.ResourceQReview').build(trials)
+  for _,g in ipairs(groups)do if g.key.profile~='exposed'then assert(require('Training.ResourceQReview').text(g):find('没有直接训练来源',1,true))end end
+  D.sleep(.2);D.App:saveScreenshot(root..'/Docs/evidence/2026-10-06/resource-coverage-panel.tga');D.sleep(.2)
+  r.checks={'four sources rebuilt','known and unseen scenario messages','old candidate coverage unchanged by later training','panel fits'}
+ end,debug.traceback)
+ r.status=ok and 'PASS'or'FAIL';r.error=not ok and err or nil;D.Content:save(out,D.json.encode(r,false,true))
+end)

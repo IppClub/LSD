@@ -1,0 +1,61 @@
+{
+  "status": "SOURCE_INVENTORY_ONLY",
+  "originalFiles": {
+    "Spine/yu.skel": "3b3669b0c9b08c1976382eb6d6d72333cfd813ceab36053d850ac7f1a98114bd",
+    "Spine/yu.atlas": "e836e5113676592b3f55dd858220c178f2404406cc75adacbc556e2dbb48c793",
+    "Spine/yu.png": "6d5311e474af552eb5669ce57376f02e2144c72e7dd663164d67b63364ef4ae8"
+  },
+  "exportedVersion": "4.3.26",
+  "animations": [
+    "fmove",
+    "idle",
+    "idle1"
+  ],
+  "boneCount": 84,
+  "constraints": [
+    {
+      "type": "ik",
+      "name": "target",
+      "target": "target2",
+      "bones": [
+        "zong34",
+        "zong35"
+      ],
+      "bendPositive": false
+    },
+    {
+      "type": "ik",
+      "name": "target1",
+      "target": "target1",
+      "bones": [
+        "zong38",
+        "zong39"
+      ],
+      "bendPositive": false
+    },
+    {
+      "type": "ik",
+      "name": "target3",
+      "target": "target3",
+      "bones": [
+        "zong40",
+        "zong41"
+      ]
+    },
+    {
+      "type": "ik",
+      "name": "target6",
+      "target": "target6",
+      "bones": [
+        "zong36",
+        "zong37"
+      ]
+    }
+  ],
+  "limitations": [
+    "Binary version 4.3.08 imported with editor 4.3.26",
+    "Original nonessential mesh internal edges not present in binary",
+    "No seated motion exists; geometry and weighted clothing require visual review before runtime installation"
+  ],
+  "runtimeModified": false
+}

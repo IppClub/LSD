@@ -1,0 +1,42 @@
+{
+  "charFFigure": {
+    "exitCode": 0,
+    "output": "roundtrip PASS coordinateSamples=284834 maxWorldCoordinateError=0.00958252 worstAnimation=idle worstSlot=body_37 worstTime=0.244444 tolerance=.05 animationQualityNotAssessed=true\n"
+  },
+  "charMFigure": {
+    "exitCode": 0,
+    "output": "roundtrip PASS coordinateSamples=322828 maxWorldCoordinateError=0.0290222 worstAnimation=idle1 worstSlot=s1 worstTime=0 tolerance=.05 animationQualityNotAssessed=true\n"
+  },
+  "sunbornFigure": {
+    "exitCode": 0,
+    "output": "roundtrip PASS coordinateSamples=189486 maxWorldCoordinateError=0.00796509 worstAnimation=idle worstSlot=body_5 worstTime=2.64444 tolerance=.05 animationQualityNotAssessed=true\n"
+  },
+  "niniliteFigure": {
+    "samples": [
+      {
+        "sampleOffset": 0,
+        "exitCode": 4,
+        "output": "attachment mismatch slot=youyan6 time=3.33333 first=null second=youyan5\n"
+      },
+      {
+        "sampleOffset": -0.0001,
+        "exitCode": 0,
+        "output": "roundtrip PASS coordinateSamples=239322 maxWorldCoordinateError=0.00964355 worstAnimation=idle worstSlot=zuotui worstTime=0.844344 tolerance=.05 animationQualityNotAssessed=true\n"
+      },
+      {
+        "sampleOffset": 0.0001,
+        "exitCode": 0,
+        "output": "roundtrip PASS coordinateSamples=239254 maxWorldCoordinateError=0.0107574 worstAnimation=idle worstSlot=zuotui worstTime=0.222322 tolerance=.05 animationQualityNotAssessed=true\n"
+      }
+    ],
+    "interpretation": "Exact decimal attachment boundary differs after official JSON export; adjacent samples match geometry. Not exact timeline equivalence."
+  },
+  "scope": {
+    "skin": "default",
+    "samplesPerAnimation": 121,
+    "worldCoordinateTolerance": 0.05,
+    "animationQualityAssessed": false,
+    "allSkinsVerified": false,
+    "runtimeReplacementApproved": false
+  }
+}

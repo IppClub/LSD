@@ -1,0 +1,39 @@
+title: Start
+---
+<<preload "char", "villywan">>
+桃源访仙宫，薜服祠山鬼（伴动态桃花花瓣、流水、音乐、鸟啼）
+[char id=villywan name=万薇莉/]喂，醒醒，醒醒
+[char id=char name=我/]额，这是哪里
+[char id=villywan name=万薇莉/]哈哈，你总算醒了，我都担心你是不是快没心跳了，我先给你接点水来
+<<valleyWater>>
+[char id=villywan name=万薇莉/]（用竹筒倒水在一个紫砂茶杯中）先喝点水吧
+[char id=char name=我/]谢谢
+[char id=char name=我/]请问一下这里是什么地方
+[char id=villywan name=万薇莉/]这里是桃源谷，如你所见，处处流水桃林、落英缤纷，这里的村民世代以种植为生，诚实善良，懂礼知仪
+[char id=villywan name=万薇莉/]我呢，叫万薇莉，是从小在这里长大的小天才，因为我的能力很强，干活念书抓野鸡摸鱼啥都行，所以父老乡亲们又叫我威力万
+[char id=villywan name=万薇莉/]刚刚划船的时候，看到一只大狐狸守着你，你躺在岸边，一动不动，我就发发善心，把你带回我家来咯
+[char id=char name=我/]谢谢，那只大狐狸呢
+[char id=villywan name=万薇莉/]离开了，不知道什么时候回来，这里的人和动物都是自由自在的，何日来何月走，也没人想管
+[char id=villywan name=万薇莉/]看服饰，你不太像是这里的人嘛，难不成是从外面掉下来的？你叫什么名字？
+[char id=char name=我/]恐怕是的，我叫{$charName}，是幽兰草军事学院的人
+[char id=villywan name=万薇莉/]哇，桃源谷外真的还有地方诶，学院是什么？我老早就想出去玩了，可是阿爹一直不让，快给我讲讲吧
+[char id=char name=我/]额，外面的世界可能并没有你想象中的那么有意思，外面很危险，我是被怪物追赶，不小心掉到这里的
+[char id=villywan name=万薇莉/]什么怪物
+[char id=char name=我/]具体我也形容不上来，总之你还是离远一点比较好
+<<valleyRide>>
+[char id=villywan name=万薇莉/]你指的是这样的吗（万薇莉离开一会，接着骑着一只怪物出现）
+[char id=villywan name=万薇莉/]哈哈，它超可爱的
+[char id=char name=我/]（救命）（动作：一只手掩护头部）
+[char id=villywan name=万薇莉/]这是经常来我家玩的一只小怪，这些生灵和我们桃源谷的人相处得可好了
+<<valleyCalm>>
+[char id=villywan name=万薇莉/]（对怪物）来，听话，先自己坐一会，别吓着这位新来的客人，好啦好啦，别舔我手，好痒，这里有松仁果，自己先吃吧
+[char id=char name=我/]你平时居然这么跟它讲话吗
+[char id=villywan name=万薇莉/]对啊，我们大家都是这么和怪物相处的，有什么奇怪的吗？
+[char id=char name=我/]可是这些怪物一见到我们就会自动攻击
+[char id=villywan name=万薇莉/]我们桃源谷的人几千年以前就为了躲避战乱来到这里隐居，保留了许多种类的上古语言，怪物语言也是其中之一·
+[char id=villywan name=万薇莉/]每次和怪物相处，我们都是用它们的语言交流
+[char id=villywan name=万薇莉/]加上桃源谷不染战祸，未沾怨念，人们心境平和，怪物也温顺很多
+[char id=villywan name=万薇莉/]你要是有兴趣，我可以教你怪物语，不过在和怪物交流的时候，注意保持心境平和哦
+[char id=char name=我/]好啊
+[char id=villywan name=万薇莉/]也别光顾着学语言了，要不要出来在我们桃源谷玩玩？长久躺着对身体可不好，出来摸一下鱼、活动活动筋骨吧
+===

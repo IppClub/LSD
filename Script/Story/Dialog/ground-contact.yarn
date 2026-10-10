@@ -1,0 +1,9 @@
+title: Start
+---
+<<preload "ninilite", "char">>
+[char id=char name=我/]这家伙看起来和其他怪物不太一样。
+[char id=ninilite name=妮妮莉特/]可能是 BOSS。学院里只有普通怪物的数据和记录，强敌可不常见。
+[char id=char name=我/]我们的示范是在普通对手面前做的，不能把试战的胜利当作它也一样。
+[char id=ninilite name=妮妮莉特/]我会按已经学过的方法行动，也需要你观察它的前摇，帮我们留出退路。
+[char id=char name=我/]先记录它的位置。守住辅助机，我们一起面对。
+===

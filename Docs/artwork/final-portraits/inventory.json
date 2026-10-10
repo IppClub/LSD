@@ -1,0 +1,67 @@
+{
+  "charFFigure": {
+    "sourceSHA256": "2ef48ca18bc0679d9414d79d289aea35a7469e6fe2538b160d95e1a3ddc99325",
+    "exporterVersion": "4.3.26",
+    "animations": [
+      "idle"
+    ],
+    "skins": [
+      "default",
+      "full"
+    ],
+    "bones": 139,
+    "slots": 43,
+    "exportedJSONVersion": "4.3.26",
+    "sourceDataVersion": "4.3.08",
+    "runtimeReplacementApproved": false
+  },
+  "charMFigure": {
+    "sourceSHA256": "407c05aab6a7982ed8bce70acd84c2fee23d98adaa443d02bff7a52a852a4ffe",
+    "exporterVersion": "4.3.26",
+    "animations": [
+      "idle",
+      "idle1"
+    ],
+    "skins": [
+      "default",
+      "full"
+    ],
+    "bones": 112,
+    "slots": 53,
+    "exportedJSONVersion": "4.3.26",
+    "sourceDataVersion": "4.3.08",
+    "runtimeReplacementApproved": false
+  },
+  "sunbornFigure": {
+    "sourceSHA256": "82b3747dd698c218899fed27ee3b0c3ffbf4a2f0d6e344a3bec4656925aa2744",
+    "exporterVersion": "4.3.26",
+    "animations": [
+      "idle"
+    ],
+    "skins": [
+      "default",
+      "full"
+    ],
+    "bones": 95,
+    "slots": 44,
+    "exportedJSONVersion": "4.3.26",
+    "sourceDataVersion": "4.3.08",
+    "runtimeReplacementApproved": false
+  },
+  "niniliteFigure": {
+    "sourceSHA256": "47e5f989f287038fb02651ad3ecf9b3eb5fa4eced6d6f0f5bf8dfc3f4c868579",
+    "exporterVersion": "4.3.26",
+    "animations": [
+      "idle"
+    ],
+    "skins": [
+      "default",
+      "full"
+    ],
+    "bones": 160,
+    "slots": 78,
+    "exportedJSONVersion": "4.3.26",
+    "sourceDataVersion": "4.3.08",
+    "runtimeReplacementApproved": false
+  }
+}

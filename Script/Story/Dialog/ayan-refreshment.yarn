@@ -1,0 +1,11 @@
+title: Start
+---
+<<preload "ayan", "char">>
+[char id=ayan name=阿岩/]这是食物，你先用来补充体力吧。林睿哲和李队长还有任务，先离开了。
+[char id=char name=我/]谢谢。阿岩，你要不要一起吃？
+[char id=ayan name=阿岩/]不用，谢谢。
+[char id=char name=我/]感觉你好像一直心不在焉，是有什么心事吗？
+[char id=char name=我/]刚刚带错了路，你就不怕被开除吗？
+[char id=ayan name=阿岩/]唉，说起来也要感谢林睿哲了。他知道我为什么来到这里，仍然愿意让我留下。
+[char id=char name=我/]如果你愿意说，我会认真听。现在不用急着带路，也不用忙着照顾别人。
+===

@@ -1,0 +1,8 @@
+title: Start
+---
+<<preload "liyena", "char">>
+[char id=liyena name=李叶娜/]虚拟怪物清理完毕。刚才是合作，接下来换成你我对打。
+[char id=liyena name=李叶娜/]好好打，我可不会手下留情。猎鹰不会和仓鼠为伍，绵羊只会是豺狼的食物。
+[char id=char name=我/]我会认真应战。这里只是训练，我希望彼此都能从交手中学到东西。
+[char id=liyena name=李叶娜/]那就用行动证明。
+===

@@ -2,14 +2,16 @@
 	<Import Module="UI.MovingText"/>
 	<Node Name="btn" TouchEnabled="True">
 		<Sprite Name="active" File="button.clip|btn_big_1" Visible="{ selected }" AnchorX="0" AnchorY="0">
-			<Sprite File="button.clip|btn_big_light" X="{ $X }" Y="{ $Y }" Order="-1" ScaleX="2" ScaleY="2">
+			<Sprite Name="sprite1" File="button.clip|btn_big_light" X="{ $X }" Y="{ $Y }" Order="-1" ScaleX="2" ScaleY="2">
 				<Action>
 					<Sequence Name="glow">
 						<Opacity Time="0.5" Start="0" Stop="1"/>
 						<Opacity Time="0.5" Start="1" Stop="0"/>
 					</Sequence>
 				</Action>
-				<Slot Name="Enter" Perform="glow" Loop="True"/>
+				<Slot Name="Enter">
+			<Lua>if sprite1.running then sprite1:perform(glow, true) end</Lua>
+		</Slot>
 			</Sprite>
 		</Sprite>
 		<Sprite Name="inactive" File="button.clip|btn_big_2" Visible="{ not selected }" AnchorX="0" AnchorY="0"/>

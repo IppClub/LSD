@@ -1,0 +1,26 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...));local out=root..'/Test/supply-recovery-native-result.json';local r={status='RUNNING'}
+D.Content:save(out,D.json.encode(r))
+D.thread(function()
+ local ok,err=xpcall(function()
+  local path=D.Content.writablePath..'/supply-recovery-'..os.time()..'.db';assert(not D.DB:existDB('lsd')and not D.Content:exist(path));assert(D.DB:exec("ATTACH DATABASE '"..path.."' AS lsd")>=0)
+  local R=require('Economy.Recovery');local S=require('Economy.Store');assert(R.load());assert(D.DB:exec('UPDATE lsd.Game0SupplyWallet SET available=0 WHERE id=1')>=0)
+  local state=assert(R.load());assert(not R.sortAsync(state.round,state.stage,'emp'));assert(S.wallet().available==0)
+  state=assert(R.sortAsync(0,0,'kinetic'));assert(not R.sortAsync(0,0,'kinetic'))
+  -- Resume a partly completed job from persisted progress.
+  assert(D.DB:exec('DETACH DATABASE lsd')>=0);assert(D.DB:exec("ATTACH DATABASE '"..path.."' AS lsd")>=0);state=assert(R.load());assert(state.stage==1)
+  state=assert(R.sortAsync(state.round,state.stage,'emp'))
+  assert(D.DB:exec("CREATE TRIGGER lsd.RejectRecovery BEFORE UPDATE ON Game0SupplyRecovery BEGIN SELECT RAISE(ABORT,'QA fault'); END")>=0)
+  assert(not R.sortAsync(state.round,state.stage,'laser'));assert(S.wallet().available==0 and R.load().stage==2)
+  assert(D.DB:exec('DROP TRIGGER lsd.RejectRecovery')>=0)
+  state=assert(R.sortAsync(state.round,state.stage,'laser'));assert(state.reward==60 and state.balance==60)
+  assert(S.beginAsync('busy',{{actor='mentor',item='kinetic',quantity=1}},0));assert(not R.sortAsync(state.round,state.stage,'kinetic'));assert(S.settleAsync('busy','aborted'))
+  D.Cache:loadAsync('button.clip')
+  local view=require('UI.SupplyRecovery')({state=assert(R.load()),closed=function()end});view:addTo(D.Director.ui3D);view:alignLayout();D.sleep(.2)
+  D.App:saveScreenshot(root..'/Docs/evidence/2026-10-05/supply-recovery.tga');D.sleep(.1)
+  for _=1,math.ceil((R.ceiling-S.wallet().available)/R.reward) do for _,item in ipairs({'kinetic','emp','laser'})do view.buttons[item]:emit('Tapped');D.sleep(.15)end end
+  assert(S.wallet().available==R.ceiling and not view.state.eligible)
+  local last=R.load();assert(not R.sortAsync(last.round,last.stage,'kinetic'));assert(S.wallet().available==R.ceiling)
+  r.balance=R.ceiling;r.checks={'wrong crate','duplicate step','persisted partial job','reward rollback','active mission rejection','UI sorting','bounded recovery'}
+ end,debug.traceback)
+ r.status=ok and 'PASS' or 'FAIL';r.error=not ok and err or nil;D.Content:save(out,D.json.encode(r,false,true))
+end)

@@ -1,0 +1,32 @@
+title: Start
+---
+<<preload "ninilite", "char", "sunborn">>
+[char id=char name=我/]通讯器收到一条来访消息：请问可以开门吗——基地，林睿哲。
+[char id=ninilite name=妮妮莉特/]是你？几天没见，这次又想做什么？
+[char id=sunborn name=林睿哲/]妮妮莉特，几天未见，就这么戒备了吗？
+[char id=char name=我/]妮妮莉特，先别急。您是林睿哲？
+[char id=sunborn name=林睿哲/]我是地下城少主林睿哲。希望突然造访没有给阁下造成困扰。
+[char id=sunborn name=林睿哲/]李叶娜分队之前两位成员言行不当，是我管理失职。已经处分过他们了，抱歉。
+[char id=char name=我/]希望你们的成员可以善待妮妮莉特。你今天是专程来道歉吗？
+[char id=sunborn name=林睿哲/]我也想邀请阁下合作。我们正在调查一个名为断网组织的团队，以及这个世界的不稳定因子。
+[char id=ninilite name=妮妮莉特/]不要轻易相信他！主人不在，谁知道他心里打什么主意。
+[char id=char name=我/]这么快就把辛苦找到的情报交给外来人，你不怕消息走漏吗？又凭什么相信我会加入？
+[char id=sunborn name=林睿哲/]我们都有让这个世界恢复安定的目标，这也是羽凌灵的愿望。
+[char id=sunborn name=林睿哲/]我可以帮你们恢复在这里的名誉，以学院成员的身份行动、招募人员。
+[char id=char name=我/]你希望我具体做什么？
+[char id=sunborn name=林睿哲/]地下城能源匮乏，庇护不了这里的人超过两个月。地面集中了主要能源，可学院人手不足，那里又太危险。
+[char id=sunborn name=林睿哲/]我需要有人收集地面能源，也需要继续调查断网组织。让学院成为地面与地下的中转站。
+[char id=sunborn name=林睿哲/]我看过昨天的战斗。你教出的动作和临场支援，很有价值。
+[char id=char name=我/]所以你昨天在暗处旁观，没有出手？
+[char id=sunborn name=林睿哲/]既然已经有人相助，又何必多此一举？那位先生呢？如果可以，我也希望他加入基地。
+[char id=char name=我/]他还在休息。是否加入，得由他自己决定。
+[char id=sunborn name=林睿哲/]当然。我想我们很快还会见面。
+[char id=char name=我/]能帮到这个世界，我很乐意。但合作不等于无条件信任，希望你遵守约定。
+[char id=sunborn name=林睿哲/]这是夜光镜，可以捕捉光源定位，接收、读取和收集资料。算是学院的一点诚意。
+[char id=char name=我/]多谢。一言为定。
+[char id=sunborn name=林睿哲/]我不会做亏本的买卖，阁下也要尽心尽力。希望合作愉快，时常保持联系，先告辞了。
+[char id=ninilite name=妮妮莉特/]你怎么这么快就答应？这个人城府太深了。
+[char id=char name=我/]目标一致的部分可以合作。情报还要自己核实，其他方面我们多留心。
+[char id=ninilite name=妮妮莉特/]那你也不许把主人教我的东西全交给他。
+[char id=char name=我/]训练记录由我们自己保管。先听听乌云的想法，再决定下一次调查。
+===

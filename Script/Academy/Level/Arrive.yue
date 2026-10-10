@@ -54,11 +54,19 @@ export default ->
 
 	thread ->
 		sleep 10
+		return unless world == Data.store.world and world.parent
 		import "UI.HUDControl"
 		with HUDControl!
 			\addTo Director.ui3D
 			.visible = false
+			.topControl.visible = false
+			.message.visible = false
 			sleep 1
+			unless world == Data.store.world and world.parent
+				\removeFromParent!
+				return
 			.visible = true
 			\perform Opacity 1, 0, 1
 			emit "HUD.DisplayMove", true
+			Group({"busy"})\each => @busy = nil
+			require("Academy.Navigation").attach world

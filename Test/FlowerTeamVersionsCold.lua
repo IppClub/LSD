@@ -1,0 +1,17 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...));local out=root..'/Test/flower-team-versions-cold-result.json';D.Content:save(out,'{"status":"RUNNING"}')
+D.thread(function()
+ local r={};local ok,err=xpcall(function()
+  local prior=assert(D.json.decode(D.Content:load(root..'/Test/flower-team-versions-result.json'),32));assert(prior.status=='PASS')
+  assert(prior.database:match('^/private/tmp/lsd%-shan%-%d+/save/flower%-team%-versions%-%d+%.db$'))
+  local dest=D.Content.writablePath..'/flower-team-versions-cold-'..os.time()..'.db';assert(D.Content:copyAsync(prior.database,dest));assert(D.DB:exec("ATTACH DATABASE '"..dest.."' AS lsd")>=0);require('Data.Config'):loadAsync();r.database=dest
+  local S=require('Training.FlowerTeamAdoptionStore')
+  assert(D.DB:exec('UPDATE lsd.Game0FlowerTeamState SET current=? WHERE singleton=1',{prior.second})>=0)
+  local latest=assert(S.load());assert(latest.id==prior.second and latest.parent==prior.first)
+  assert(S.rollbackAsync(latest.id));local previous=assert(S.load());assert(previous.id==prior.first and previous.parent==0)
+  local equal=require('Training.FlowerIdentity').equal;assert(equal(latest.bundle.sources,previous.bundle.sources))
+  assert(latest.bundle.trials[7].episode.episode~=previous.bundle.trials[7].episode.episode and latest.bundle.trials[8].episode.episode~=previous.bundle.trials[8].episode.episode)
+  assert(S.rollbackAsync(previous.id));assert(S.currentId()==0 and #D.DB:query('SELECT * FROM lsd.Game0FlowerTeamAdoptions')==2)
+  r.twoVersionsRead=true;r.distinctNaturalPairs=true;r.parentRollback=true
+ end,debug.traceback)
+ r.status=ok and 'PASS' or 'FAIL';r.error=not ok and err or nil;D.Content:save(out,D.json.encode(r,false,true))
+end)

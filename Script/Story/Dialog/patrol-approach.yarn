@@ -1,0 +1,6 @@
+title: Start
+---
+<<preload "char">>
+[char id=char name=我/]大家注意隐蔽，小心行动
+[char id=char name=我/]夜光定位，前面有一波守卫，我们去制服他们吧
+===

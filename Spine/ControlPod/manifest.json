@@ -1,0 +1,29 @@
+{
+  "purpose": "Control-pod intimidation: hold original pistol aim before recoil",
+  "generator": "Tools/build_control_pod_aim.py",
+  "assets": [
+    {
+      "name": "charM",
+      "aimReadyTime": 0.4,
+      "sha256": "b839c4919e3ea25439e3e4c97c237163c328bee648a0e97d426dd9899b05bbdc"
+    },
+    {
+      "name": "charF",
+      "aimReadyTime": 0.1666667,
+      "sha256": "dc0810fe82c986c772c11e0579f84257c1ff0620eb0165d3444f9a39e58181fb"
+    },
+    {
+      "name": "ninilite",
+      "aimReadyTime": 0.4333333,
+      "sha256": "0bff86442abe62b7a37e9199c51557ec3e32ba48f4cbc152552931f3e3c1211d"
+    }
+  ],
+  "originalTexturesUnchanged": true,
+  "retainedOriginalAnimations": [
+    "idle",
+    "fmove",
+    "prepare",
+    "pistol"
+  ],
+  "regionDimensions": "Restored from original binary via Tools/read_spine_regions.cpp"
+}

@@ -12,7 +12,11 @@
 			ninilite = {x = 108, y = -60.5, scale = 0.42},
 			wuyun = {x = 306, y = -608.5, scale = 0.48},
 			sunborn = {x = 565, y = 9.5, scale = 0.44},
-		}
+			}
+			-- Unknown roles fall back to a neutral placement instead of crashing.
+			local function def(name)
+				return figureDefs[name] or {x = 240, y = -300, scale = 0.4}
+			end
 	</Lua>
 	<Node X="{ x or 0 }" Y="{ y or 0 }" Width="510" Height="1017" TouchEnabled="True">
 		<Lua>local scale = math.min(App.bufferSize.height / 1563, 1.0)</Lua>
@@ -35,10 +39,10 @@
 					<Lua>if editing then</Lua>
 						<Playable Name="playable"
 							File="{ 'spine:' .. role .. 'Figure' }"
-							X="{ figureDefs[role].x }"
-							Y="{ figureDefs[role].y }"
-							ScaleX="{ figureDefs[role].scale }"
-							ScaleY="{ figureDefs[role].scale }"
+							X="{ def(role).x }"
+							Y="{ def(role).y }"
+							ScaleX="{ def(role).scale }"
+							ScaleY="{ def(role).scale }"
 							Play="idle" Loop="True" Speed="0.5"/>
 						<Yue>
 							if editing
@@ -59,10 +63,10 @@
 						</Yue>
 					<Lua>else</Lua>
 						<Playable File="{ 'spine:' .. role .. 'Figure' }"
-							X="{ figureDefs[role].x }"
-							Y="{ figureDefs[role].y }"
-							ScaleX="{ figureDefs[role].scale }"
-							ScaleY="{ figureDefs[role].scale }"
+							X="{ def(role).x }"
+							Y="{ def(role).y }"
+							ScaleX="{ def(role).scale }"
+							ScaleY="{ def(role).scale }"
 							Play="idle" Loop="True" Speed="0.5"/>
 					<Lua>end</Lua>
 					</Node>

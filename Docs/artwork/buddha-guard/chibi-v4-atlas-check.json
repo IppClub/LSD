@@ -1,0 +1,92 @@
+[
+  {
+    "part": 0,
+    "solidBounds": [
+      89,
+      47,
+      479,
+      532
+    ],
+    "edgePixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "part": 1,
+    "solidBounds": [
+      156,
+      77,
+      411,
+      535
+    ],
+    "edgePixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "part": 2,
+    "solidBounds": [
+      163,
+      64,
+      370,
+      550
+    ],
+    "edgePixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "part": 3,
+    "solidBounds": [
+      104,
+      7,
+      408,
+      401
+    ],
+    "edgePixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "part": 4,
+    "solidBounds": [
+      49,
+      111,
+      509,
+      344
+    ],
+    "edgePixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "part": 5,
+    "solidBounds": [
+      66,
+      2,
+      451,
+      371
+    ],
+    "edgePixels": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+]

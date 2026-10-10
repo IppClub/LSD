@@ -1,0 +1,534 @@
+{
+  "root": "/Users/Jin/Desktop/LSD/LSD美术",
+  "count": 88,
+  "projects": [
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 乌云/wuyun.spine",
+      "relative": "Q版/Q版 spine 乌云/wuyun.spine",
+      "bytes": 231358,
+      "sha256": "7bd15d72264007907ec8f5fea9dc3e6ea267d205f3968d5cf87f72d7f6031b15"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 余子绛/yuzijiang.spine",
+      "relative": "Q版/Q版 spine 余子绛/yuzijiang.spine",
+      "bytes": 172439,
+      "sha256": "a933680320561620b8c3816d185c888dec30adf0c3737d1c497311f6e382e1ce"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 双子 妹妹/vivi.spine",
+      "relative": "Q版/Q版 spine 双子 妹妹/vivi.spine",
+      "bytes": 69265,
+      "sha256": "43c28d69d352cf6d128a835595300df1c4380ae07cac99400f4b38b447c6b4ac"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 双子 姐姐/vika.spine",
+      "relative": "Q版/Q版 spine 双子 姐姐/vika.spine",
+      "bytes": 68728,
+      "sha256": "325dfc1367dcb7b7afe3cc50ac9a07e0597f4106160a15ed7d513cbc03302702"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 女主/charF.spine",
+      "relative": "Q版/Q版 spine 女主/charF.spine",
+      "bytes": 195046,
+      "sha256": "ea26989ddca82998a52514a46eb08fba63dc643e48f1a98a22303e913227a35e"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 女主 现实/char.spine",
+      "relative": "Q版/Q版 spine 女主 现实/char.spine",
+      "bytes": 146210,
+      "sha256": "c5f1857f7ea95b8c9707248e0770eb338522672c468dae0e4af206a32b46d8e5"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 妮妮莉特/ninilite.spine",
+      "relative": "Q版/Q版 spine 妮妮莉特/ninilite.spine",
+      "bytes": 417657,
+      "sha256": "4e4b7a782b133931014f79a3b48c66be47d3668e9f72adea6a5bcd3c522b2b3f"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 学园长/sunborn.spine",
+      "relative": "Q版/Q版 spine 学园长/sunborn.spine",
+      "bytes": 153252,
+      "sha256": "317b20ec842f0c80919e93207fb9e38d41cc1c6ecc6bc32f4f6ef0b899d2096c"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 小萝莉/villywan.spine",
+      "relative": "Q版/Q版 spine 小萝莉/villywan.spine",
+      "bytes": 154483,
+      "sha256": "0ec6f82cf18b030bd61ba51b4ce46127a8e82e8cf9fd45aa1b8301b4468a24c1"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 数据银行职员/shujuyuan.spine",
+      "relative": "Q版/Q版 spine 数据银行职员/shujuyuan.spine",
+      "bytes": 79671,
+      "sha256": "ee4ed3f5e6d5217788f905f02f116f2ae208e3bd7a3e5ed3899b1c76c160ebb0"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 李叶娜 重置/liyenanew.spine",
+      "relative": "Q版/Q版 spine 李叶娜 重置/liyenanew.spine",
+      "bytes": 49591,
+      "sha256": "52f4bb680cb93733f00fdc8d27644ca95ca07b0671080d46b153c1da96f3c7a9"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 李叶那/liyena.spine",
+      "relative": "Q版/Q版 spine 李叶那/liyena.spine",
+      "bytes": 156810,
+      "sha256": "6fffb2e75f3a87b752c3b6ad2676915b68ff7b8ad3d1f16999878ad38e3d35e1"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 玉/yu.spine",
+      "relative": "Q版/Q版 spine 玉/yu.spine",
+      "bytes": 72154,
+      "sha256": "82c7aee475377530a5f598f0dfaaedfedb566ed45122c39ea8a3f074f8a55a09"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 男主/charM.spine",
+      "relative": "Q版/Q版 spine 男主/charM.spine",
+      "bytes": 209273,
+      "sha256": "cff254d94cbec03dbb1686f6598dc46b254c865d922608161faaceab0bb0fceb"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 阿岩/ayan.spine",
+      "relative": "Q版/Q版 spine 阿岩/ayan.spine",
+      "bytes": 136605,
+      "sha256": "798d2bf639f8150f2caaf58032f4f8747d8026cf35c891c4fea4f3a9fea1d82d"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 默羽/moyu.spine",
+      "relative": "Q版/Q版 spine 默羽/moyu.spine",
+      "bytes": 125157,
+      "sha256": "7d85cc5de63477beb7847fb0f928fe80488fac0a6eb7d581f1c261269aba7e10"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/Q版/Q版 spine 默翎/moling.spine",
+      "relative": "Q版/Q版 spine 默翎/moling.spine",
+      "bytes": 224265,
+      "sha256": "d646f833afb7491fa0e37b11fc39df36b9862b152e8c0254a84f7604de705c78"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/世外桃源/outerHeaven.spine",
+      "relative": "场景/世外桃源/outerHeaven.spine",
+      "bytes": 16540,
+      "sha256": "c677062d6978c6b9e9cb4107c22c81829e684f86840a7b3e9926f1c3647e9e85"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/世界地铁/station.spine",
+      "relative": "场景/世界地铁/station.spine",
+      "bytes": 2881,
+      "sha256": "52c60e85f07cb71dc0f434661c7ae52006eb98aa88b1df7f2a9b9eaea38bfa59"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/世界地铁/train.spine",
+      "relative": "场景/世界地铁/train.spine",
+      "bytes": 6270,
+      "sha256": "a426c769dcd43fa80df884f0860752936df723aefa67a2aba18782106b7b1144"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/冰封之城/frozenCity.spine",
+      "relative": "场景/冰封之城/frozenCity.spine",
+      "bytes": 13421,
+      "sha256": "11a101f2c8f4b92600feb9496358c9b95eba737cfa6f92a83d626553370985cd"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/地下城市/螺旋塔A/loopTowerA.spine",
+      "relative": "场景/地下城市/螺旋塔A/loopTowerA.spine",
+      "bytes": 14046,
+      "sha256": "eba66a67706172f0570f00ff06b9af7f144caf3530d6110f623c0fe41971a742"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/学园基地/休息室/restRoom.spine",
+      "relative": "场景/学园基地/休息室/restRoom.spine",
+      "bytes": 4285,
+      "sha256": "95b465b46022ae007745d921dd26057bf079f4db245ca87c77429b7c9e137eae"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/学园基地/备战室/preparationRoom.spine",
+      "relative": "场景/学园基地/备战室/preparationRoom.spine",
+      "bytes": 7283,
+      "sha256": "f04e57b76ff7bc2ba3dcb23edc541b6ce235cc757523fd8f8f2f068aaba9a07f"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/学园基地/指挥室/operationRoom.spine",
+      "relative": "场景/学园基地/指挥室/operationRoom.spine",
+      "bytes": 5264,
+      "sha256": "0dca5ddaedf71d39b3ee98041c92af0fcedf1ddf69a88eba5b82e90e8bce1b41"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/学园基地/研发室/RDRoom.spine",
+      "relative": "场景/学园基地/研发室/RDRoom.spine",
+      "bytes": 11298,
+      "sha256": "7c25e70a262280cf938beb082945b1b1254c57e5e7e516a04597c521a04d42a2"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/学园基地/训练室/trainingRoom.spine",
+      "relative": "场景/学园基地/训练室/trainingRoom.spine",
+      "bytes": 5984,
+      "sha256": "e90e52bc46a93aff628e39ad824956e6d9610ccf6e0c4e2c0f0fb92762a2b644"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/学园基地/过道/passage.spine",
+      "relative": "场景/学园基地/过道/passage.spine",
+      "bytes": 4155,
+      "sha256": "bda03256afac56d5bbbc9e0f52aa821d658b2cd8012fdbee7eaa8b1db5bee4c5"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/废弃工厂/factory.spine",
+      "relative": "场景/废弃工厂/factory.spine",
+      "bytes": 3348,
+      "sha256": "44dbff6fc4d7851aec58724154d2d0437f1edc6db2c1269f89c4c5b1fdb185e7"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/虚拟训练场/VRTraining.spine",
+      "relative": "场景/虚拟训练场/VRTraining.spine",
+      "bytes": 2237,
+      "sha256": "a55a292b92d6390297c44bd0588795be5397aca16e910c8fce79afa4d1eb54e6"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/场景/遗弃城市/abandonedCity.spine",
+      "relative": "场景/遗弃城市/abandonedCity.spine",
+      "bytes": 10878,
+      "sha256": "6300de8c18fb1f8e3e025f649fc743bc00a30de0fcb7b99e540d48802726b1dd"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/山魈/spine 大山魈/dashanxiao.spine",
+      "relative": "怪物/山魈/spine 大山魈/dashanxiao.spine",
+      "bytes": 184402,
+      "sha256": "0cc26e47eea7635ebdccf051ec53f693b6699009f123eeea07283d49302d00d8"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/山魈/spine 小山魈/xiaoshanxiao.spine",
+      "relative": "怪物/山魈/spine 小山魈/xiaoshanxiao.spine",
+      "bytes": 73034,
+      "sha256": "c1ee2b18130c04eec8a2ccb3e9cb110de5abe053a53182e1500c420617bb7d09"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/狐狸/spine 大狐狸/dahuli.spine",
+      "relative": "怪物/狐狸/spine 大狐狸/dahuli.spine",
+      "bytes": 498426,
+      "sha256": "8bbe4e4ee33c1b8fffea93d7603cc22f8232046097c1874134a8ef06b8e12c2c"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/狐狸/spine 小狐狸/xiaohuli.spine",
+      "relative": "怪物/狐狸/spine 小狐狸/xiaohuli.spine",
+      "bytes": 96965,
+      "sha256": "14aeb6f7dc18a65e8af5e0a683dadb655654836c1f5a89326d44f3696d554ee0"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/花妖/spine 大花妖/dahuayao.spine",
+      "relative": "怪物/花妖/spine 大花妖/dahuayao.spine",
+      "bytes": 382558,
+      "sha256": "f95da78ac045a985dab8b49d28e43475a9e59336f6a3a4002cff8f336e5504bc"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/花妖/spine 小花妖/hualei/hualei.spine",
+      "relative": "怪物/花妖/spine 小花妖/hualei/hualei.spine",
+      "bytes": 37675,
+      "sha256": "3d1b47f2eddb323ca50b26652269a4204e41844f1143a53f27b45051be1ca473"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/花妖/spine 小花妖/xiaohuayao.spine",
+      "relative": "怪物/花妖/spine 小花妖/xiaohuayao.spine",
+      "bytes": 340115,
+      "sha256": "606b739c40cd04bc6223eeefd2826ccde844efc03f7d8e15c8fed0546a236c44"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/英招/spine 中英招/zhongyingzhao.spine",
+      "relative": "怪物/英招/spine 中英招/zhongyingzhao.spine",
+      "bytes": 186719,
+      "sha256": "a07047a4f1123bb845a65ae866ae8d8f6f3565f30bd1fb1b987efe7f0e95eee4"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/英招/spine 大英招/dayingzhao.spine",
+      "relative": "怪物/英招/spine 大英招/dayingzhao.spine",
+      "bytes": 372138,
+      "sha256": "e06274f6f85b80dd798f4fe0432d562ad16f4700cedd750dd1dec813d2ba510f"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/英招/spine 小英招/xiaoyingzhao.spine",
+      "relative": "怪物/英招/spine 小英招/xiaoyingzhao.spine",
+      "bytes": 181795,
+      "sha256": "e8416b8b354904443c1e29cc372c18149fb2cc9956713e9450f94fbfb3e2167b"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/饕餮/spine 大饕餮/dataotie.spine",
+      "relative": "怪物/饕餮/spine 大饕餮/dataotie.spine",
+      "bytes": 115112,
+      "sha256": "4c2233a18aa0bab2e7adc3b2a61c1473cdd82d2a8e6c495fd8ba4a05560f61fe"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/饕餮/spine 大饕餮 alt/dataotie.spine",
+      "relative": "怪物/饕餮/spine 大饕餮 alt/dataotie.spine",
+      "bytes": 294936,
+      "sha256": "89f9d72b48889c46ebbbd4ce534210d9e3b5e368789825fb54f410c6105caf73"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/饕餮/spine 小饕餮/xiaotaotie.spine",
+      "relative": "怪物/饕餮/spine 小饕餮/xiaotaotie.spine",
+      "bytes": 107221,
+      "sha256": "e9cae8029729bb4bb67aff0ba5611e166e17ec73a66d08eb6c0bf9376ae0e5f9"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/怪物/饕餮/spine 小饕餮 alt/xiaotaotie.spine",
+      "relative": "怪物/饕餮/spine 小饕餮 alt/xiaotaotie.spine",
+      "bytes": 310017,
+      "sha256": "d13bd3697eba62f236ab209ddedc642c9eee1cf5c7c81e186d32fa4947e4b948"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-1/PV1_1.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-1/PV1_1.spine",
+      "bytes": 2298,
+      "sha256": "6be268c1b744609c56b46069c5923c305b703293537b566581fde4130eb28ab5"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-10/PV1_10.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-10/PV1_10.spine",
+      "bytes": 6610,
+      "sha256": "2f53b11b07e40cbd16ac30b2211fa72d5ad4c2b8a9326ba181dc45ad26cf115f"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-11/PV1_11.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-11/PV1_11.spine",
+      "bytes": 8791,
+      "sha256": "05bc2469951c3a9d62d16018f0f5f2ffc9f1f91e49fdce7fcb2fd9b3834a4e59"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-12/PV1_12.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-12/PV1_12.spine",
+      "bytes": 14940,
+      "sha256": "e53443525ff339c3ec2c7daead4b60c1d114090de50f7c2c451254a1b034e9f7"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-13/PV1_13.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-13/PV1_13.spine",
+      "bytes": 2286,
+      "sha256": "aa72ec158f40957310c68f15a80896b97ba91c0723fec5360abebb16e0ef164a"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-14/PV1_14.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-14/PV1_14.spine",
+      "bytes": 28990,
+      "sha256": "d20371dd6a33ac57c5630bc2662b61042245cff94a238f843ab3ca1a78c5d608"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-15/PV1_15.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-15/PV1_15.spine",
+      "bytes": 12708,
+      "sha256": "32da01f9bb9ef77ac344bd00c2e3f867a94becdffdaa1aedc8aa646560146fd5"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-16/PV1_16.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-16/PV1_16.spine",
+      "bytes": 2172,
+      "sha256": "203f216742be5c4ab61974902e591c30f0225c780819ac9f265b9a2939a90379"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-17/PV1_17.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-17/PV1_17.spine",
+      "bytes": 4027,
+      "sha256": "7dfed5eb501480554fee1d73b50bc7013fab18e9969abaf589ea5a4532a9dad5"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-18/PV1_18.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-18/PV1_18.spine",
+      "bytes": 26635,
+      "sha256": "f41b168588695866b3b3c6df36c7446ea2fe359236e0554de98c12afe91ad399"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-19/PV1_19.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-19/PV1_19.spine",
+      "bytes": 6926,
+      "sha256": "c240835663a7046e6879e1c8f4fac3e2a8d51b2b3b65ec06d054bef0483383b1"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-2/PV1_2.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-2/PV1_2.spine",
+      "bytes": 3180,
+      "sha256": "15e924e95e2360e949eb7ee0caccef437c765f24a187bcc93b539cc428174fe3"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-20/PV1_20.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-20/PV1_20.spine",
+      "bytes": 1942,
+      "sha256": "e7f388f1f02a3b2340084c1bc65917bdc4f46fe6bd9ed83536fc14628fec5300"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-21/PV1_21.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-21/PV1_21.spine",
+      "bytes": 5663,
+      "sha256": "0ca7f7dc34e29f8a4005c2fe589c59c55812acc5e2b2fb8afa23accbfeb654b8"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-22/PV1_22.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-22/PV1_22.spine",
+      "bytes": 24947,
+      "sha256": "b8d0d842373008dceae7a7300715f7fd7419bd863801a49373fc3d10f28100c2"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-23/PV1_23.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-23/PV1_23.spine",
+      "bytes": 6148,
+      "sha256": "ee8da7906c8975051ebcd1da70fdcf20457d72a408a12e31e0df258a7a6422d9"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-24/PV1_24.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-24/PV1_24.spine",
+      "bytes": 2696,
+      "sha256": "bfc30c13348b8585074a701952cdcb06068caaf2bb489d745614de99d71db002"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-25/PV1_25.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-25/PV1_25.spine",
+      "bytes": 12861,
+      "sha256": "b23fea1bd0c0b5a02a1e6a7f453144f4c637aedc17f52a9d1e86dc500066ace3"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-26/PV1_26.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-26/PV1_26.spine",
+      "bytes": 4997,
+      "sha256": "baabbe98cea9b727bb2129ad72cb2890dee6034f8205a863d5183f1e45355257"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-3/PV1_3.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-3/PV1_3.spine",
+      "bytes": 6799,
+      "sha256": "ece5696ead28dc7c351f6b8342c44644e1798c4f5e921a57a6e64a333cfc1340"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-4/PV1_4.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-4/PV1_4.spine",
+      "bytes": 17522,
+      "sha256": "0e769853eb21069f39042d2fab912dc29af4e9b0094f15a0eb3c5515a77af729"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-5/PV1_5.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-5/PV1_5.spine",
+      "bytes": 35197,
+      "sha256": "4aabc1bc73a28fae154e86248fa3c66264a6762c31a42e26b1c0e24be805ca74"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-6/PV1_6.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-6/PV1_6.spine",
+      "bytes": 19035,
+      "sha256": "7ebfc6db2ea35b61dc0839b49f6bada7838c4806e9ef37648fbd75e1169ecb3c"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-7/PV1_7.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-7/PV1_7.spine",
+      "bytes": 21739,
+      "sha256": "62086306df70eff07e72cede4928a420a39728f4b8ceff90a9e9e24cb5db1cbb"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-8/PV1_8.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-8/PV1_8.spine",
+      "bytes": 4009,
+      "sha256": "fefcce7548096b92738bf35d9cf1db4bea0ebfea22306a15410503f7f44e1429"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/灵数奇缘PV1/源文件/PV1-9/PV1_9.spine",
+      "relative": "灵数奇缘PV1/源文件/PV1-9/PV1_9.spine",
+      "bytes": 2554,
+      "sha256": "633629435bba1144fde1b5ef5556abde3e837ddf00fa4bdf466821115d3650dc"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 乌云/wuyunFigure.spine",
+      "relative": "立绘/动态立绘 乌云/wuyunFigure.spine",
+      "bytes": 48465,
+      "sha256": "0fa42d90b16ccfb313e6039a3f54619da1e2a3ea042fb371966c0cdd3a27e0e0"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 余子绛/yuzijiangFigure.spine",
+      "relative": "立绘/动态立绘 余子绛/yuzijiangFigure.spine",
+      "bytes": 38842,
+      "sha256": "6664e984bc37cd397158953db49081841818507869db09a9bccd63e4c01f8a7c"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 双子/vikaFigure.spine",
+      "relative": "立绘/动态立绘 双子/vikaFigure.spine",
+      "bytes": 148526,
+      "sha256": "4210205d341de8e9ecee16921dc293e1b34fefb53ba2a70e885ef35353659d26"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 向阳珄/sunbornFigure.spine",
+      "relative": "立绘/动态立绘 向阳珄/sunbornFigure.spine",
+      "bytes": 58987,
+      "sha256": "ac313fa93543af48059b4d236897fe8a0da74844a6ee016ebc5093cfb2aa4ecd"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 女主 游戏/charFFigure.spine",
+      "relative": "立绘/动态立绘 女主 游戏/charFFigure.spine",
+      "bytes": 156756,
+      "sha256": "d0c5cb02fc0f1742e0d73830f82700f5db931aa9b729e1dccb49a89a78b3a55b"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 女主 现实/charFigure.spine",
+      "relative": "立绘/动态立绘 女主 现实/charFigure.spine",
+      "bytes": 98873,
+      "sha256": "c6f71467984fcd2afd68ac365a4e071474987ba44e950524c13ae0ba0ed50ca3"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 妮妮莉特/niniliteFigure.spine",
+      "relative": "立绘/动态立绘 妮妮莉特/niniliteFigure.spine",
+      "bytes": 87774,
+      "sha256": "f1c8aeb1c57a118cbfb49a66851a3b1a6cab3277b046c03f45ba2b051f255537"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 小萝莉/villywanFigure.spine",
+      "relative": "立绘/动态立绘 小萝莉/villywanFigure.spine",
+      "bytes": 141288,
+      "sha256": "486b1c4b64c1fd14fb215cc67dc0406f057fcba0aa601e11cc47b93c05615fab"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 李叶娜/liyenaFigure.spine",
+      "relative": "立绘/动态立绘 李叶娜/liyenaFigure.spine",
+      "bytes": 63676,
+      "sha256": "1ebea9400ed0413a6e232e3c7183932aa47f8656366971313aa8a74fc7da5136"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 男主/charMFigure.spine",
+      "relative": "立绘/动态立绘 男主/charMFigure.spine",
+      "bytes": 50641,
+      "sha256": "46524ebed23994c5904a4336a77b2f389d69b23ef6f748c3e07e44ce5ca7b804"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 阿岩/ayanFigure.spine",
+      "relative": "立绘/动态立绘 阿岩/ayanFigure.spine",
+      "bytes": 48604,
+      "sha256": "7e6ae3ab8f6a131fa510aeef350fb45036c823df201dabc76defef24d4278c7c"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 默羽/moyuFigure.spine",
+      "relative": "立绘/动态立绘 默羽/moyuFigure.spine",
+      "bytes": 76758,
+      "sha256": "92ae1b8738a6824692dd76d4b75077c09e5452a54e96c23cb84d767cfcfafd70"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/立绘/动态立绘 默翎/molingFigure.spine",
+      "relative": "立绘/动态立绘 默翎/molingFigure.spine",
+      "bytes": 88043,
+      "sha256": "c5fe8d4639762bf30018d3a4fe4ee1528754afe3a8bea1ac4ec21c3c2231612c"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/道具/Cold Weapons/coldweapon.spine",
+      "relative": "道具/Cold Weapons/coldweapon.spine",
+      "bytes": 2239,
+      "sha256": "5559ddbd54fc5cccddaee2f86ca24dcb223cedd5410d790041e1e840883348db"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/道具/EMP Gun/empgun.spine",
+      "relative": "道具/EMP Gun/empgun.spine",
+      "bytes": 2303,
+      "sha256": "7061ea573e4e99b3e5871b574b5537037265fd5c0bf679703cdf7017cdaf0983"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/道具/Kinetic Gun/kineticgun.spine",
+      "relative": "道具/Kinetic Gun/kineticgun.spine",
+      "bytes": 2853,
+      "sha256": "d1c31de12fe98e1b2bc4a73d8e98b4d5b95a643cd989db145e552f1b963a2327"
+    },
+    {
+      "path": "/Users/Jin/Desktop/LSD/LSD美术/道具/Laser Gun/lasergun.spine",
+      "relative": "道具/Laser Gun/lasergun.spine",
+      "bytes": 2094,
+      "sha256": "00b5a1f53f54dca84ee701cddd9f6c47a257349570d1e215c8932ede7a46d0d1"
+    }
+  ]
+}

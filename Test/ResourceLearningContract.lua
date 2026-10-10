@@ -1,0 +1,18 @@
+package.path='Script/?.lua;'..package.path
+local F=require('Training.ResourceFeatures');local R=require('Training.ResourceReward')
+local observation={resources={schemaVersion=1,actor='ninilite',ammo={emp=2,blade=0},spent=85,reserved=100,budgetLeft=15},supplies='available',energyReady='ready'}
+local features=assert(F.project(observation));assert(features.empAmmo=='low' and features.bladeAmmo=='empty' and features.kineticAmmo=='unequipped' and features.missionBudget=='low')
+local key=F.key(observation);observation.supplies='empty';observation.energyReady='empty';assert(F.key(observation)==key)
+observation.resources.ammo.emp=0;assert(F.key(observation)~=key)
+assert(not F.project({supplies='available'}))
+local efficient=assert(R.calculate({{progress=20,harm=0,duration=10,cost=10}},'won',100))
+local wasteful=assert(R.calculate({{progress=20,harm=0,duration=10,cost=90}},'won',100))
+local idle=assert(R.calculate({{progress=0,harm=0,duration=120,cost=0}},'failed',100))
+assert(efficient.total>wasteful.total and wasteful.total>idle.total)
+local worstWin=assert(R.calculate({{progress=0,harm=100,duration=120,cost=100}},'won',100));assert(worstWin.total==6)
+local bestFailure=assert(R.calculate({{progress=100,harm=0,duration=0,cost=0}},'failed',100));assert(bestFailure.total==-8)
+local withdrawn=assert(R.calculate({{progress=100,harm=0,duration=0,cost=0}},'aborted',100));assert(withdrawn.total==-8)
+assert(not R.calculate({{progress=0,harm=0,duration=0,cost=101}},'won',100))
+local split=assert(R.calculate({{progress=5,harm=2,duration=5,cost=5},{progress=15,harm=8,duration=5,cost=5}},'won',100))
+assert(split.rows[1].components.terminal==0 and split.rows[2].components.terminal==10 and split.rows[1].components.cost==-.05)
+print('PASS resource features isolated from gold/energy; cheaper equivalent victory wins; idle/withdrawal cannot beat completed victory before discount; budget and invalid input rejected')

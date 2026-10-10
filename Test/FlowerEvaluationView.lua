@@ -1,0 +1,20 @@
+local D=require('Dora');local root=D.Path:getPath(D.Path:getScriptPath(...))
+local out=root..'/Test/flower-evaluation-view-result.json';D.Content:save(out,'{"status":"RUNNING"}')
+D.thread(function()
+ local ok,err=xpcall(function()
+  local r=D.json.decode(D.Content:load(root..'/Docs/evidence/2026-10-05/flower-evaluation-saved-report.json'))
+  local eval=require('Training.FlowerEvaluation')
+  local story=r.reason..'\n'..(r.evaluation.incompleteActions>0 and string.format('有%d个行动未完成，保留已发生的结果，不计为落空。\n',r.evaluation.incompleteActions)or '')..'沿道路向右到材料点。采集后打开通讯，点击通知医师。'
+  local ui=require('UI.Settlement')({missionMode=true,missionTitle='废弃工厂 · 沼泽花妖',resultTitle='沼泽道路已清理',resultStatus='Complete',reportText=eval.text(r.evaluation),storyY=-170,storyText=story})
+  ui:addTo(D.Director.ui3D)
+  for _,size in ipairs({{683,384,1366},{960,540,1920}})do
+   D.App.winSize=D.Size(size[1],size[2]);D.sleep(.5)
+   local labels={};local function visit(n) if n.text then if n.text==story then labels.story=n elseif n.text==eval.text(r.evaluation)then labels.report=n end end;if n.children then n.children:each(visit)end end;visit(ui)
+   assert(labels.report and labels.story)
+   assert(labels.report.y-labels.report.height-labels.story.y>=30,'Report/story overlap')
+   assert(labels.story.y-labels.story.height>-400,'Story crosses button area')
+   D.App:saveScreenshot(root..'/Docs/evidence/2026-10-05/flower-evaluation-spaced-'..size[3]..'.tga');D.sleep(.2)
+  end
+ end,debug.traceback)
+ D.Content:save(out,D.json.encode({status=ok and 'PASS'or 'FAIL',error=not ok and err or nil}))
+end)

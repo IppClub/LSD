@@ -24,6 +24,7 @@ txt.color3 = Color3(0xffffff) -- 10
 txt.alignment = "Left" -- 10
 txt.text = text or '' -- 10
 btn:addChild(txt) -- 10
+require("UI.FitInteraction").button(btn)
 local scaleAction = Action(Sequence(Scale(0.08,1,0.8),Scale(0.3,0.8,1,Ease.OutBack))) -- 15
 local tapBegan = Action(Tint(0,0x7ec0f8,0x7ec0f8)) -- 19
 local tapEnded = Action(Tint(0.8,0x7ec0f8,0xffffff)) -- 20

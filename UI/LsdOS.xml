@@ -5,13 +5,15 @@
 			<Stencil>
 				<Sprite File="button.clip|img_1"/>
 			</Stencil>
-			<Node>
+			<Node Name="node1">
 				<Sprite File="button.clip|img_1" X="180"/>
 				<Sprite File="button.clip|img_1"/>
 				<Action>
 					<Move Name="move" Time="5" StartX="0" StopX="-180" StartY="0" StopY="0"/>
 				</Action>
-				<Slot Name="Enter" Perform="move" Loop="True"/>
+				<Slot Name="Enter">
+			<Lua>if node1.running then node1:perform(move, true) end</Lua>
+		</Slot>
 			</Node>
 		</ClipNode>
 		<Label
